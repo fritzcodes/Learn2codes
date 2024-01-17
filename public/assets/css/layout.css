@@ -1,0 +1,21 @@
+body{
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+    background: url("assets/images/backg.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    }
+    :root{ /*---font and color defaults --*/
+    --bg-color: #ddd;
+    --text-color: #000;
+    --second-color: #5a7184;
+    --main-color: #6e54fa;
+    --big-font: 6rem;
+    --h2-font: 3rem;
+    --h1-font: 2rem;
+    --p-font: 1.1rem;
+    }
