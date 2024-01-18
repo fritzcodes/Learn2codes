@@ -119,7 +119,7 @@
     position:inherit;
     bottom: 20px; /* Adjust this value for desired vertical spacing */
     left: 60%;
-    top: 30px;
+    top: 40px;
     transform: translateX(-55%);
     width: 100%
     
@@ -214,9 +214,11 @@
     content: "\25BC";
     position: absolute;
     top: calc(50% - 8px);
-    right: 15px;
+    margin-top: 30px;
+    right: 30px;
     color: #fff;
     pointer-events: none;
+    z-index: 2; /* Set a higher z-index value */
 }
 
  .log-glass {

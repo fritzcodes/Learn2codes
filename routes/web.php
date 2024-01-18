@@ -61,6 +61,8 @@ Route::get('/', function () {
     Route::post('/forget-passwordpost', [ForgetPasswordManager::class, 'ForgetPasswordPost'])->name('forget.password.post');
     Route::get('reset-password/{token}', [ForgetPasswordManager::class, 'resetPassword'])->name('reset.password');
     Route::post('/reset-password',[ForgetPasswordManager::class, 'resetPasswordPost'])->name('reset.password.post');
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
