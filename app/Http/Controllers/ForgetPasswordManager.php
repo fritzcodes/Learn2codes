@@ -25,15 +25,15 @@ class ForgetPasswordManager extends Controller
     
         $token = Str::random(60);
     
-        $existingRecord = DB::table('password_resets')->where('email', $request->email)->first();
+        $existingRecord = DB::table('password_reset_tokens')->where('email', $request->email)->first();
     
         if ($existingRecord) {
-            DB::table('password_resets')->where('email', $request->email)->update([
+            DB::table('password_reset_tokens')->where('email', $request->email)->update([
                 'token' => $token,
                 'created_at' => Carbon::now()
             ]);
         } else {
-            DB::table('password_resets')->insert([
+            DB::table('password_reset_tokens')->insert([
                 'email' => $request->email,
                 'token' => $token,
                 'created_at' => Carbon::now()

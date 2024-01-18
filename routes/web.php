@@ -57,7 +57,10 @@ Route::get('/', function () {
         return view('frontend.about');
     })->name('about');
 
-
+    Route::get('/forget-password', [ForgetPasswordManager::class, 'ForgetPassword'])->name('forgetPassword');
+    Route::post('/forget-passwordpost', [ForgetPasswordManager::class, 'ForgetPasswordPost'])->name('forget.password.post');
+    Route::get('reset-password/{token}', [ForgetPasswordManager::class, 'resetPassword'])->name('reset.password');
+    Route::post('/reset-password',[ForgetPasswordManager::class, 'resetPasswordPost'])->name('reset.password.post');
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -73,10 +76,7 @@ Route::middleware([
     Route::post('/change-password', [ProfileController::class, 'changePassword'])->name('change.password');
 
     //forgetpass route
-    Route::get('/forget-password', [ForgetPasswordManager::class, 'ForgetPassword'])->name('forget.password');
-    Route::post('/forget-password', [ForgetPasswordManager::class, 'ForgetPasswordPost'])->name('forget.password.post');
-    Route::get('reset-password/{token}', [ForgetPasswordManager::class, 'resetPassword'])->name('reset.password');
-    Route::post('/reset-password',[ForgetPasswordManager::class, 'resetPasswordPost'])->name('reset.password.post');
+   
 });
 
 

@@ -35,7 +35,7 @@
 
                 <label>we will send a link to your email, use the link to reset password</label>
 
-                    <form action="{{ route('forget.password.post') }}" method="POST">
+                    <form action="/forget-passwordpost" method="POST">
                         @csrf
                      
 
