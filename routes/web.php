@@ -61,7 +61,7 @@ Route::get('/', function () {
     Route::post('/forget-passwordpost', [ForgetPasswordManager::class, 'ForgetPasswordPost'])->name('forget.password.post');
     Route::get('reset-password/{token}', [ForgetPasswordManager::class, 'resetPassword'])->name('reset.password');
     Route::post('/reset-password',[ForgetPasswordManager::class, 'resetPasswordPost'])->name('reset.password.post');
-
+    Route::get('/profile', [ProfileController::class, 'Index'])->name('profile');
 
 Route::middleware([
     'auth:sanctum',
@@ -73,7 +73,7 @@ Route::middleware([
     })->name('dashboard');
     
     //profile route
-    Route::get('/profile', [ProfileController::class, 'Index'])->name('profile');
+    
     Route::post('/update', [ProfileController::class, 'update'])->name('update');
     Route::post('/change-password', [ProfileController::class, 'changePassword'])->name('change.password');
 
