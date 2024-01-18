@@ -45,8 +45,8 @@ class ForgetPasswordManager extends Controller
     $message->subject("Reset Password");
 });
 
-    
-        return redirect()->to(route('forget.password'))->with("Success","We have sent an email to reset password.");
+        return redirect()->route('forgetPassword', ['token' => $token])->with("success", "We have sent an email to reset password.");
+
     }
     
 
@@ -64,18 +64,20 @@ class ForgetPasswordManager extends Controller
             "password_confirmation"=>"required"
         ]);
 
-        $updatePassword = DB::table('password_resets')->where([
+        $updatePassword = DB::table('password_reset_tokens')->where([
             "email" => $request->email,
             "token" => $request->token
         ])->first();
 
         if (!$updatePassword) {
-            return redirect()->route('reset.password')->with("error", "Invalid email for password reset");
+            return redirect()->route('reset.password', ['token' => $request->token])->with("error", "Invalid email for password reset");
+
+            
         }
 
         User::where("email",$request->email)->update(["password" => Hash::make($request->password)]);
 
-        DB::table('password_resets')->where(["email" => $request->eamil])->delete();
+        DB::table('password_reset_tokens')->where(["email" => $request->email])->delete();
 
         return redirect()->to(route('login'))->with("success","Password reset success");
     }
