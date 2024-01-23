@@ -1,0 +1,535 @@
+   /* Reset and basic styling */
+
+      * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
+      text-decoration: none;
+      list-style: none;
+      }
+    
+      /*---font and color defaults --*/
+
+      :root{ 
+      --bg-color: #fff;
+      --text-color: #221341;
+      --second-color: #5a7184;
+      --main-color: #6e54fa;
+      --big-font: 6rem;
+      --h2-font: 3rem;
+      --p-font: 1.1rem;
+      }
+
+      :root {
+    --gray: rgb(34, 48, 64);
+    --blue: rgb(0, 122, 253);
+    --green: rgb(6, 215, 108);
+    --white: rgb(253, 251, 252);
+      }
+
+
+      header {    
+      padding: 20px 2%;
+      position: fixed;
+      top:0;
+      right: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: transparent;
+      }
+
+      #back-btn{
+      color: var(--bg-color);
+      font-size: 60px;
+      z-index: 10001;
+      cursor: pointer;
+      display: block;
+      }
+
+      .navbar a {
+      color: var(--bg-color);
+      font-size: var(--p-font);
+      font-weight: 500;
+      padding: 10px 22px;
+      border-radius: 4px;
+      transition: ease .40s;
+      display: block;
+      margin: 1.2rem 0;
+      }
+
+      .navbar a:hover {
+      background: var(--bg-color);
+      color: var(--text-color);
+      box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
+      border-radius: 4px;
+      transition: ease .40s;
+      }
+
+      .profile button{
+      display: flex;
+      color: var(--bg-color);
+      border-style: unset;
+      background: transparent;
+      cursor: pointer;
+      align-items: center;
+      text-align: left;
+      }
+
+      .profile h2{
+      margin-left: 8px;
+      height: 25px;
+      width: 170px;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      scroll-behavior: unset;
+      }
+
+      .avatar{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      }
+
+      #menu-icon {
+      color: var(--bg-color);
+      font-size: 50px;
+      z-index: 10001;
+      cursor: pointer;
+      display: block;
+      }
+
+      .login-btn{
+      margin-top: 20px;
+      padding: 10px 10%;
+      flex-shrink: 0;
+      border-radius: 35.07px;
+      background: #7DF160;
+      }
+
+      .login-btn:hover{
+      cursor: pointer;
+      box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
+      }
+
+      .login-btn:active{
+      background: var(--bg-color);
+      color: var(--text-color);
+      }
+
+      .navbar {
+      position: absolute;
+      top: 0;
+      right: -100%;
+      width: 40%;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0%;
+      transition: 0.5s all;
+      }
+
+      .open {
+      right: 0;
+      }
+
+      .list {
+      width: 50%;
+      margin-top: 100px;     
+      }
+
+      body {
+      padding: 90px 10%;
+      width: 100%;
+      height: 100vh;
+      background: url('../svg/proressbg.svg') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--text-color);
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+      z-index: -1; /* Behind other content */
+      background-size: cover;  
+      }
+   
+
+      .space-background { 
+      width: 100%;
+      height: 520px; 
+      padding: 100px 10%;
+      position: relative; 
+      border-radius: 35.066px;
+      border: 1px solid #333;
+      background-color: rgba(255, 255, 255, 0.1); 
+      @supports (-webkit-backdrop-filter: blur(6px)) or (backdrop-filter: blur(6px)) {
+      backdrop-filter: blur(6px); 
+      -webkit-backdrop-filter: blur(6px); /* Safari 9+, Safari on iOS 9+ */
+      background: radial-gradient(254.43% 143.73% at 6.62% 2.73%, rgba(255, 182, 72, 0.56) 0%, rgba(255, 182, 72, 0.56) 0%,       rgba(255, 182, 72, 0.56) 0.01%, rgba(53, 0, 62, 0.08) 100%);
+      
+      }
+   }
+      /*----------- Content Section------------ */
+
+      .content-section {
+      align-items: center;
+      align-content: center;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      justify-content: space-between;
+      text-align: center;
+      }
+
+       /* -------Updated content container======= */
+
+      .content-container4 {
+    
+      transition: ease .40s;
+      margin-left: -20px;
+      margin-top: -10px;
+      padding-bottom: 10px;
+      position: absolute;
+      }
+
+      .content-container4:hover{
+      transform: scale(1.1);
+      color: #4169E1;
+      }
+
+      .content-container5{
+      transition: ease .40s;
+      margin-left: -20px;
+      margin-top: 100px;
+      padding-bottom: 10px;
+      position: absolute;
+   
+      }
+
+      .content-container5:hover{
+      transform: scale(1.1);
+      color: #4169E1;
+      }
+
+
+
+
+.heading {
+    position: absolute;
+    top: 5px; /* Adjust the top position as needed */
+    left: 42.40%;  
+    font-size: 30px;
+    color: black;
+    font-family: "Comic Sans MS", cursive;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.heading:hover {
+  color: #00FF7F; 
+}
+
+
+.headline 
+	{
+    position: absolute;
+    top: -10px; /* Adjust the top position as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 45px;
+    color: black;
+    font-family: "Comic Sans MS", cursive;
+    font-weight: bold;
+    	
+}
+
+.headline:hover {
+  color: #00FF7F; /* Change the color to your desired hover color */
+}
+
+
+
+.profile-icon {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    margin-left: 34%;
+    margin-top: -25px;
+    border-radius: 60%;
+    background-color: lightgray;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid black;
+    background: url("../assets/user.png");
+    background-size: 102%;
+    background-repeat: no-repeat;
+    
+}
+.profile-icon:hover {
+    position: absolute;	    
+    border: 2px solid #00FF7F; /* Add a border when hovered */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a box shadow when hovered */
+}
+
+.profile-image {
+    position: absolute;   
+    display: none;
+    border: 2px solid #00FF7F;
+    
+    
+    }
+
+.cancel-button {
+    position: absolute;
+    display: block; /* Change from none to block */
+    margin-top: -30px;
+    margin-bottom: 105px;
+    cursor: pointer;
+    margin-left: 480px;
+    margin-right: 600px;
+    padding: 12px;
+    text-align: center;
+    border-radius: 20px;
+    background: url('../assets/close.png');
+    background-size: cover;
+   
+}
+
+.cancel-button:hover {
+    position: absolute;	  
+    background-size: cover; /* Adjust the background size on hover */
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.7); /* Add a box shadow on hover */
+    border: 2px solid #00FF7F; /* Change border color on hover */
+
+}
+
+.label1 {
+    position: absolute;
+    margin-top: 95px;
+    margin-left: 90px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+}
+
+.firstname {
+    position: absolute;
+    margin-left: 90px;
+    padding: 10px;
+    border-radius: 12px;
+    width: 25%;
+    border-color: black; 
+    margin-top: 120px;
+    color: black;
+    border-color: black;
+}
+
+
+.label2 {
+    position: absolute; 
+    margin-left: 500px;
+    margin-top: 95px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+}
+.lastname {
+    position: absolute;
+    margin-left: 500px;
+    margin-top:  120px;
+    padding: 10px;
+    border-radius: 12px;
+    width: 25%;
+    border-color: black;
+    color: black;
+}
+.label3 {
+    position: absolute;
+    margin-left:90px;
+    margin-top: 155px; 
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+}
+.course {
+    position: absolute;
+    margin-left: 90px;
+    margin-top: 180px;
+    border-radius: 12px;
+    width: 25%;
+    border-color: black;
+    padding: 10px;
+    color: black;
+}
+.label4 {
+    position: absolute;
+    margin-right: 10px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 500px;
+    margin-top: 160px;
+    color: black;
+}
+.Years {
+    position: absolute;
+    margin-left: 500px;
+    margin-top: 180px;
+    width: 270px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 12px;
+    border-color: black;
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.7); 
+    border: 2px solid black; 
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 85%;
+    color: #666;
+      	
+}
+.Years option {
+    color: black;
+    position: absolute;
+
+}
+.Years::after {
+    position: absolute;
+    content: '\25BC'; 
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: black; /* Set the arrow color */
+
+}
+.Years:focus,
+.Years:hover {
+     color: black;
+     position: absolute;
+}
+
+.Years:focus option,
+.Years option {
+    color: black;
+   
+
+}
+.label5 {
+    position: absolute;
+    margin-left: 90px;
+    margin-top: 230px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+
+}
+.username {
+    position: absolute;
+    margin-left: 90px;
+    margin-top: 255px;
+    border-radius: 12px;
+    width: 25%;
+    border-color: black;
+    padding: 10px;
+    
+}
+
+.label6 {
+    position: absolute;
+    margin-left: 500px;
+    margin-top: 230px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+
+}
+.Email {
+    position: absolute;
+    margin-left: 500px;
+    margin-top: 255px;
+    border-radius: 12px;
+    width: 25%;
+    border-color: black;
+    padding: 10px;
+}
+.submit-button {
+    position: absolute;
+    padding: 12px 25px;
+    margin-left: 585px;
+    margin-top: 305px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #6B8E23;	 /* Green color for submit button */
+    color: black; /* White text color */
+    border: 2px solid black;
+    border-radius: 20px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: bold;
+    
+}
+.submit-button:hover {
+    background-color: #45a049; /* Darker green color on hover */
+    border: 3px solid black;
+}
+
+.reset-button {
+    position: absolute;
+    padding: 12px 25px;
+    margin-left: 680px;
+    margin-top: 305px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color:#CD5C5C; 
+    color: black; 
+    border-radius: 20px;
+    border: 2px solid black;
+     font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: bold;
+}
+
+.reset-button:hover {
+    background-color: #d32f2f;
+    border: 3px solid black;
+}
+
+.verification-message {
+    position: absolute;
+    padding: 10px;
+    margin-left: 310px; 
+    margin-top: 330px;
+    font-size: 20px;
+    color:  #6B8E23;
+}
+
+
+input[type="text"] {
+  border-color: black; 
+  transition: border-color 0.3s ease; 
+}
+
+input[type="text"]:focus,
+input[type="text"]:hover {
+  border-color: #00FF7F;
+}
+
+
+
+select {
+  border-color: black; 
+  transition: border-color 0.3s ease;
+}
+
+select:focus,
+select:hover {
+  border-color: #00FF7F;
+}
+
+

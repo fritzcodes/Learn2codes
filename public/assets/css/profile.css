@@ -1,110 +1,498 @@
-body {
-    background: #f5f5f5;
-    margin-top: 20px;
+   /* Reset and basic styling */
+
+      * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
+      text-decoration: none;
+      list-style: none;
+      }
+    
+      /*---font and color defaults --*/
+
+      :root{ 
+      --bg-color: #fff;
+      --text-color: #221341;
+      --second-color: #5a7184;
+      --main-color: #6e54fa;
+      --big-font: 6rem;
+      --h2-font: 3rem;
+      --p-font: 1.1rem;
+      }
+
+      header {    
+         padding: 20px 2%;
+         position: fixed;
+         top:0;
+         right: 0;
+         width: 100%;
+         z-index: 1000;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         background-color: transparent;
+      }
+
+
+
+      #back-btn{
+      color: var(--bg-color);
+      font-size: 60px;
+      z-index: 10001;
+      cursor: pointer;
+      display: block;
+      }
+
+      .navbar a {
+      color: var(--bg-color);
+      font-size: var(--p-font);
+      font-weight: 500;
+      padding: 10px 22px;
+      border-radius: 4px;
+      transition: ease .40s;
+      display: block;
+      margin: 1.2rem 0;
+      }
+
+      .navbar a:hover {
+      background: var(--bg-color);
+      color: var(--text-color);
+      box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
+      border-radius: 4px;
+      transition: ease .40s;
+      }
+
+      .profile button{
+      display: flex;
+      color: var(--bg-color);
+      border-style: unset;
+      background: transparent;
+      cursor: pointer;
+      align-items: center;
+      text-align: left;
+      }
+
+      .profile h2{
+      margin-left: 8px;
+      height: 25px;
+      width: 170px;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      scroll-behavior: unset;
+      }
+
+      .avatar{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      }
+
+      #menu-icon {
+      color: var(--bg-color);
+      font-size: 50px;
+      z-index: 10001;
+      cursor: pointer;
+      display: block;
+      }
+
+      .login-btn{
+      margin-top: 20px;
+      padding: 10px 10%;
+      flex-shrink: 0;
+      border-radius: 35.07px;
+      background: #7DF160;
+      }
+
+      .login-btn:hover{
+      cursor: pointer;
+      box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
+      }
+
+      .login-btn:active{
+      background: var(--bg-color);
+      color: var(--text-color);
+      }
+
+      .navbar {
+      position: absolute;
+      top: 0;
+      right: -100%;
+      width: 40%;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0%;
+      transition: 0.5s all;
+      }
+
+      .open {
+      right: 0;
+      }
+
+      .list {
+      width: 50%;
+      margin-top: 100px;     
+      }
+
+
+      .space-background { 
+      width: 100%;
+      height: 500px; 
+      padding: 100px 10%;
+      position: relative; 
+      border-radius: 35.066px;
+      border: 1px solid #fefefe;
+      background-color: rgba(255, 255, 255, 0.8); /* Fallback background color with transparency Fallback for       browsers       that do       not support backdrop-filter */ 
+
+      /* Apply backdrop-filter for browsers that support it */
+      @supports (-webkit-backdrop-filter: blur(6px)) or (backdrop-filter: blur(6px)) {
+      backdrop-filter: blur(6px); /* Standard syntax */
+      -webkit-backdrop-filter: blur(6px); /* Safari 9+, Safari on iOS 9+ */
+      background: radial-gradient(254.43% 143.73% at 6.62% 2.73%, rgba(255, 182, 72, 0.56) 0%, rgba(255, 182, 72, 0.56) 0%,       rgba(255,       182, 72, 0.56) 0.01%, rgba(53, 0, 62, 0.08) 100%);
+      }
+   }
+      /*----------- Content Section------------ */
+
+      .content-section {
+      align-items: center;
+      align-content: center;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      justify-content: space-between;
+      text-align: center;
+      border: 1px solid black;
+      }
+
+    
+     
+
+      .heading {
+      position: absolute;
+      top: 20px; /* Adjust the top position as needed */
+      left: 43%;
+      font-size: 30px;
+      color: #333;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-weight: bold;
+      }
+
+      .headlines {
+      position: absolute;
+      top: 5px; /* Adjust the top position as needed */
+      left: 43.10%;
+      font-size: 43px;
+      color: #333;
+      font-family: 'Helvetica Neue', Arial, sans-serif;   	
+      }
+
+
+     
+      .imageContainer {
+      position: absolute;
+      text-align: center;
+      margin-top: -30px;
+      margin-left: 360px;
+      border: 3px solid black; /* Border color around the circular container */
+      border-radius: 60%; /* Ensure the container is circular */
+      width: 130px; /* Set the width to your desired value */
+      height: 120px; /* Set the height to your desired value */
+      overflow: hidden; /* Clip the circular container */
+      border: 3px solid #333;
+      }
+
+      .displayedImage {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: none;
+      object-fit: cover;
+      }
+
+
+      .labelread1 {
+      position: absolute;
+      margin-left: 50px;
+      margin-top: 40px; 
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      color: black; 
+      }
+
+     .dataLabel1 {
+     position: absolute;
+     background-color: rgba(255, 900, 203, 0.15);
+     border: 3px solid #333;
+     font-family: 'Helvetica Neue', Arial, sans-serif;
+     font-weight: bold;
+     font-size: 80%;
+     border-radius: 10px;
+     padding-left: 10px;
+     padding-top: 5px;
+     padding-bottom: 5px;
+     margin-left: 50px; 
+     margin-top: 60px;
+     width: 300px;
+     height: 30px;
+     }
+
+
+    .labelread2 {
+    position: absolute; 
+    margin-left: 510px;
+    margin-top: 40px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    color: black;
+    }
+
+    .dataLabel2 {
+    position: absolute;
+    background-color: rgba(255, 900, 203, 0.15);
+    border: 3px solid #333;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 80%;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 510px; 
+    margin-top: 60px;
+    width: 300px;
+    height: 30px;
+    }
+
+   .labelread3 {
+   position: absolute;
+   margin-left: 50px;
+   margin-top: 100px; 
+   font-family: 'Helvetica Neue', Arial, sans-serif;
+   font-weight: bold;
+   font-size: 14px;
+   color: black;  
+   }
+
+
+   .dataLabel3 {
+   position: absolute;
+   background-color: rgba(255, 900, 203, 0.15);
+   border: 3px solid #333;
+   font-family: 'Helvetica Neue', Arial, sans-serif;
+   font-weight: bold;
+   font-size: 80%;
+   border-radius: 10px;
+   padding-left: 10px;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   margin-left: 50px; 
+   margin-top:  120px;
+   width: 300px;
+   height: 30px;
+   }
+
+
+   .labelread4 {
+   position: absolute;
+   font-family: 'Helvetica Neue', Arial, sans-serif;
+   font-weight: bold;
+   font-size: 14px;
+   margin-left: 510px;
+   margin-top: 100px;
+   color: black;
+   }
+
+
+   .dataLabel4 {
+   position: absolute;
+   background-color: rgba(255, 900, 203, 0.15);
+   border: 3px solid #333;
+   font-family: 'Helvetica Neue', Arial, sans-serif;
+   font-weight: bold;
+   font-size: 80%;
+   border-radius: 10px;
+   padding-left: 10px;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   margin-left: 510px; 
+   margin-top: 120px;
+   width: 300px;
+   height: 30px;
+   }
+
+   .labelread5 {
+   position: absolute;
+   margin-left: 50px;
+   margin-top: 160px;
+   font-family: 'Helvetica Neue', Arial, sans-serif;
+   font-weight: bold;
+   font-size: 14px;
+   color: black;   
+   }
+
+   .dataLabel5 {
+   position: absolute;
+   background-color: rgba(255, 900, 203, 0.15);
+   border: 3px solid #333;
+   font-family: 'Helvetica Neue', Arial, sans-serif;
+   font-weight: bold;
+   font-size: 80%;
+   border-radius: 10px;
+   padding-left: 10px;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   margin-left: 50px; 
+   margin-top: 180px;
+   width: 300px;
+   height: 30px;
+   }
+
+
+   .labelread6 {
+   position: absolute;
+   margin-left: 510px;
+   margin-top: 160px;
+   font-family: 'Helvetica Neue', Arial, sans-serif;
+   font-weight: bold;
+   font-size: 14px;
+   color: black;   
+   }
+
+
+   .dataLabel6 {
+   position: absolute;
+   background-color: rgba(255, 900, 203, 0.15);
+   border: 3px solid #333;
+   font-family: 'Helvetica Neue', Arial, sans-serif;
+   font-weight: bold;
+   font-size: 80%;
+   border-radius: 10px;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   padding-left: 5px;
+   margin-left: 510px; 
+   margin-top: 180px;
+   letter-spacing: 1px;
+   width: 300px;
+   height: 30px;
+   }
+
+   .Editprofile {
+   position: absolute;
+   margin-left:375px;
+   margin-top: 350px;
+   font-size: 15px;
+   letter-spacing: 1px;
+   color: #4169E1;
+   font-weight: regular;
+   }
+
+   .Editprofile:hover {
+   transform: scale(1.1);
+   color: #4169E1;
+   font-weight: bold;
+   
+   }
+
+
+
+.badges {
+
+   height: 80px;
+   width: 180px;
+   background: url('../svg/badges-btn.svg');
+   background-size: cover;
+   border: transparent;
+   margin-left: 55px;
+   margin-top: 250px;
+   cursor: pointer;
+
 }
 
-.ui-w-80 {
-    width : 80px !important;
-    height: auto;
+
+.badges:hover {
+   transform: scale(1.1);
+   color: #4169E1;
+   font-weight: bold;
+   cursor: pointer;
 }
 
-.btn-default {
-    border-color: rgba(24, 28, 33, 0.1);
-    background  : rgba(0, 0, 0, 0);
-    color       : #4E5155;
+
+
+.Experience {
+
+   height: 80px;
+   width: 180px;
+   background: url('../svg/Exp-progress-btn.svg');
+   background-size: cover;
+   border: transparent;
+   margin-left: 100px;
+   margin-top: -30px;
+   cursor: pointer;
 }
 
-label.btn {
-    margin-bottom: 0;
+
+.Experience:hover {
+   transform: scale(1.1);
+   color: #4169E1;
+   font-weight: bold;
+   cursor: pointer;
+   
+   }
+
+
+
+.Changepassword {
+
+   height: 80px;
+   width: 180px;
+   background: url('../svg/Changepassword.svg'); 
+   background-size: cover;
+   border: transparent;
+   margin-left: 100px;
+   margin-top: -30px;
+   cursor: pointer;
 }
 
-.btn-outline-primary {
-    border-color: #26B4FF;
-    background  : transparent;
-    color       : #26B4FF;
+.Changepassword:hover {
+   transform: scale(1.1);
+   color: #4169E1;
+   font-weight: bold;
+   cursor: pointer;
+   
 }
 
-.btn {
-    cursor: pointer;
+.badge1 {
+
+cursor: pointer;
 }
 
-.text-light {
-    color: #babbbc !important;
+.Experiences {
+
+cursor: pointer;
+
 }
 
-.btn-facebook {
-    border-color: rgba(0, 0, 0, 0);
-    background  : #3B5998;
-    color       : #fff;
+.Passwords {
+
+cursor: pointer;
+
 }
 
-.btn-instagram {
-    border-color: rgba(0, 0, 0, 0);
-    background  : #000;
-    color       : #fff;
-}
 
-.card {
-    background-clip: padding-box;
-    box-shadow     : 0 1px 4px rgba(24, 28, 33, 0.012);
-}
 
-.row-bordered {
-    overflow: hidden;
-}
 
-.account-settings-fileinput {
-    position  : absolute;
-    visibility: hidden;
-    width     : 1px;
-    height    : 1px;
-    opacity   : 0;
-}
 
-.account-settings-links .list-group-item.active {
-    font-weight: bold !important;
-}
 
-html:not(.dark-style) .account-settings-links .list-group-item.active {
-    background: transparent !important;
-}
 
-.account-settings-multiselect~.select2-container {
-    width: 100% !important;
-}
 
-.light-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
-    border-color: rgba(24, 28, 33, 0.03) !important;
-}
 
-.light-style .account-settings-links .list-group-item.active {
-    color: #4e5155 !important;
-}
 
-.material-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
-    border-color: rgba(24, 28, 33, 0.03) !important;
-}
 
-.material-style .account-settings-links .list-group-item.active {
-    color: #4e5155 !important;
-}
 
-.dark-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
-    border-color: rgba(255, 255, 255, 0.03) !important;
-}
 
-.dark-style .account-settings-links .list-group-item.active {
-    color: #fff !important;
-}
 
-.light-style .account-settings-links .list-group-item.active {
-    color: #4E5155 !important;
-}
-
-.light-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
-    border-color: rgba(24, 28, 33, 0.03) !important;
-}

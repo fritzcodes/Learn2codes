@@ -17,7 +17,7 @@ class ProfileController extends Controller
      */
     public function Index(): View
     {
-        return view('frontend.profile');
+        return view('frontend.profile.profile');
     }
 
     public function edit(Request $request): View
@@ -31,7 +31,7 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request)
+    public function update (ProfileUpdateRequest $request)
     {
         $user = Auth::user();
         $data = $request->validated();
@@ -107,3 +107,4 @@ class ProfileController extends Controller
         return response()->json($msg);
     }
 }
+

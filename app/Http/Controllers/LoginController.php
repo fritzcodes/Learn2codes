@@ -60,7 +60,7 @@ class LoginController extends Controller
             return redirect('landing')->with('success', 'Login Success');
         } else {
             
-            return redirect()->route('login')->with("error", "Wrong Email or Password.");
+            return redirect()->route('login')->with ("error", "Wrong Email or Password.");
         }
     }
 
