@@ -121,7 +121,7 @@
 <body>
 
     <header>
-        <a href="startmenu" class="bx bx-chevron-left" id="back-btn"></a>
+        <a href="{{ route('startmenu') }}" class="bx bx-chevron-left" id="back-btn"></a>
         <div class="bx bx-menu" id="menu-icon"></div>
 
         <ul class="navbar">
@@ -198,18 +198,18 @@
             <input type="text" id="email" class="dataLabel6" readonly autocomplete="off">
         </div>
 
-        <a href="IndexEditprofile.html" class="Editprofile">Edit Profile</a>
+        <a href="{{ route('profile.edit') }}" class="Editprofile">Edit Profile</a>
 
 
-        <a href="IndexBadges.html" class="badge1">
+        <a href="{{ route('profile.badge') }}" class="badge1">
             <button class="badges"></button>
         </a>
 
-        <a href="IndexProgress.html" class="Experiences">
+        <a href="{{ route('profile.progress') }}" class="Experiences">
             <button class="Experience"></button>
         </a>
 
-        <a href="IndexMyPassword.html">
+        <a href="{{ route('changepassword') }}">
             <button class="Changepassword" class="Passwords"></button>
         </a>
 

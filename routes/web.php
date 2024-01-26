@@ -61,7 +61,15 @@ Route::get('/', function () {
     Route::post('/forget-passwordpost', [ForgetPasswordManager::class, 'ForgetPasswordPost'])->name('forget.password.post');
     Route::get('reset-password/{token}', [ForgetPasswordManager::class, 'resetPassword'])->name('reset.password');
     Route::post('/reset-password',[ForgetPasswordManager::class, 'resetPasswordPost'])->name('reset.password.post');
+
+    //profile
     Route::get('/profile', [ProfileController::class, 'Index'])->name('profile');
+    Route::get('/profile-edit', [ProfileController::class, 'Edit'])->name('profile.edit');
+    Route::get('/changepassword', [ProfileController::class, 'changePassword'])->name('changepassword');
+    Route::get('/profile-badge', [ProfileController::class, 'Badge'])->name('profile.badge');
+    Route::get('/badge-search', [ProfileController::class, 'Search'])->name('badge.search');
+    Route::get('/profile-progress', [ProfileController::class, 'Myprogress'])->name('profile.progress');
+    
 
 Route::middleware([
     'auth:sanctum',
@@ -74,8 +82,10 @@ Route::middleware([
     
     //profile route
     
-    Route::post('/update', [ProfileController::class, 'update'])->name('update');
+    // Route::post('/update', [ProfileController::class, 'update'])->name('update');
+    // Route::get('/profile-edit', [ProfileController::class, 'Edit'])->name('profile.edit');
     Route::post('/change-password', [ProfileController::class, 'changePassword'])->name('change.password');
+    
 
     //forgetpass route
    

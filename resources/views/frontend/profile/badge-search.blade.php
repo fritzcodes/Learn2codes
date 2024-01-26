@@ -17,7 +17,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
 <!-- Add this in your HTML -->
-
+<style>
+      body {
+      padding: 90px 10%;
+      width: 100%;
+      height: 100vh;
+      background: url('assets/images/proressbg.svg') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--text-color);
+      overflow-x: hidden; 
+      z-index: -1; 
+      background-size: cover;
+      
+  }
+</style>
 
 </head>
 <body>
