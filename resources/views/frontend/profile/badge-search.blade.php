@@ -35,21 +35,37 @@
 </head>
 <body>
 
-<header>
-  <a href="IndexBadges.html" class="bx bx-chevron-left" id="back-btn"></a>
-  <div class="bx bx-menu" id="menu-icon"></div>
-  <ul class="navbar open">
- 
-    <li class="profile"><button><img src="avatar.png" alt="Avatar" class="avatar"><h2>Garen Damacia</h2></button></li>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#forums">Forums</a></li>
-    <li><a href="#playground">Playground</a></li>
-    <li><a href="#modules">Modules</a></li>
-    <li><a href="#leaderboard">Leaderboard</a></li>
-    <li><button class="login-btn">Login</button></li>
-  
+   <header>
+      <a href="{{ route('profile.badge') }}" class="bx bx-chevron-left" id="back-btn"></a>
+      <div class="bx bx-menu" id="menu-icon"></div>
 
-</header>
+      <ul class="navbar">
+
+          <ul class="profile">
+              <button><a href="{{ route('profile') }}" class="profile-link">
+
+                      @if (Auth::check() && Auth::user()->profile_photo)
+                          <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
+                              alt="Profile Photo" class="avatar">
+                      @else
+                          <!-- Placeholder image or default avatar -->
+                          <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
+                      @endif
+                      <h2>{{ Auth::user()->username }}</h2>
+                  </a></button>
+          </ul>
+
+          <li><a href="startmenu">Home</a></li>
+          <li><a href="#forums">Forums</a></li>
+          <li><a href="#playground">Playground</a></li>
+          <li><a href="#modules">Modules</a></li>
+          <li><a href="#leaderboard">Leaderboard</a></li>
+          {{-- <button class="login-btn" href="{{ route('logout') }}" >Logout</button> --}}
+          <li><a class="logout-btn" href="{{ route('logout') }}">Logout</a></li>
+
+      </ul>
+
+  </header>
 
 <body>
  <section class="space-background">

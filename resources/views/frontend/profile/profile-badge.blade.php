@@ -156,7 +156,7 @@
 	
 
  </div>  
-<button type="button" href="{{ route('badge.search') }}" class="btn-primary">Check My Badge</button>
+<a type="button" href="{{ route('badge.search') }}" class="btn-primary">Check My Badge</a>
       
 </section>
 

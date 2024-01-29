@@ -2,7 +2,7 @@
 .glass1 {
 
     position: fixed;
-    display: flex;
+    display: fixed;
     margin-top: 7px;
     margin-left: 5%;
     top: 0px;

@@ -202,19 +202,17 @@ h2 {
 
 
 
-#tab-content {
-
-            flex: 1;
-            padding-left: 20px;
-	    padding-top:16px;
-	    padding:right: 5px;
-            box-sizing: border-box;
-	    margin-left:70px;
-	    margin-top:-216px;
-
-	    
-	    
+#tab-content { flex: 1;
+  padding-left: 20px;
+  padding-top:16px;
+  padding:right: 5px;
+  box-sizing: border-box;
+  margin-left:70px;
+  margin-top:-216px;
+  
 }
+
+
 
 
 .tab-content {
