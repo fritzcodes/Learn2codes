@@ -159,45 +159,53 @@
         <div class="heading">My Profile</div>
         <div class="headlines">______</div>
 
+        <form method="post" enctype="multipart/form-data" id="formData">
+            @csrf
+            <div class="imageContainer" id="imageContainer">
 
-        <div class="imageContainer" id="imageContainer">
-          
-            <img id="displayedImage"class="displayedImage" src="assets/images/avatar.png" alt="Image to be displayed">
-        </div>
-        <br>
+                <img id="displayedImage"class="displayedImage" src="assets/images/avatar.png"
+                    alt="Image to be displayed">
+            </div>
+            <br>
 
-        <label for="firstName" class="labelread1">First Name:</label>
-        <div class="datalabels1">
-            <input type="text" id="firstName" class="dataLabel1" readonly autocomplete="off" value="{{ Auth::user()->fname }}">
-        </div>
+            <label for="firstName" class="labelread1">First Name:</label>
+            <div class="datalabels1">
+                <input type="text" id="firstName" class="dataLabel1" readonly autocomplete="off"
+                    value="{{ Auth::user()->fname }}">
+            </div>
 
-        <label for="lastName" class="labelread2" placeholder="">Last Name:</label>
-        <div class="datalabels2">
-            <input type="text" id="lastName" class="dataLabel2" readonly autocomplete="off" value="{{ Auth::user()->lname }}">
-        </div>
-
-
-        <label for="Course" class="labelread3">Course :</label>
-        <div class="datalabels3">
-            <input type="text" id="Course" class="dataLabel3" readonly autocomplete="off" value="{{ Auth::user()->course }}" placeholder="Your course?">
-        </div>
-
-        <label for="year" class="labelread4">Year Level:</label>
-        <div class="datalabels4">
-            <input type="text" id="year" class="dataLabel4" readonly autocomplete="off" value="{{ Auth::user()->year }}">
-        </div>
+            <label for="lastName" class="labelread2" placeholder="">Last Name:</label>
+            <div class="datalabels2">
+                <input type="text" id="lastName" class="dataLabel2" readonly autocomplete="off"
+                    value="{{ Auth::user()->lname }}">
+            </div>
 
 
-        <label for="Username" class="labelread5">Username:</label>
-        <div class="datalabels5">
-            <input type="text" id="Username" class="dataLabel5" readonly autocomplete="off" value="{{ Auth::user()->username }}">
-        </div>
+            <label for="Course" class="labelread3">Course :</label>
+            <div class="datalabels3">
+                <input type="text" id="Course" class="dataLabel3" readonly autocomplete="off"
+                    value="{{ Auth::user()->course }}" placeholder="Your course?">
+            </div>
 
-        <label for="email" class="labelread6">Email Add:</label>
-        <div class="datalabels6">
-            <input type="text" id="email" class="dataLabel6" readonly autocomplete="off"  value="{{ Auth::user()->email }}">
-        </div>
+            <label for="year" class="labelread4">Year Level:</label>
+            <div class="datalabels4">
+                <input type="text" id="year" class="dataLabel4" readonly autocomplete="off"
+                    value="{{ Auth::user()->year }}">
+            </div>
 
+
+            <label for="Username" class="labelread5">Username:</label>
+            <div class="datalabels5">
+                <input type="text" id="Username" class="dataLabel5" readonly autocomplete="off"
+                    value="{{ Auth::user()->username }}">
+            </div>
+
+            <label for="email" class="labelread6">Email Add:</label>
+            <div class="datalabels6">
+                <input type="text" id="email" class="dataLabel6" readonly autocomplete="off"
+                    value="{{ Auth::user()->email }}">
+            </div>
+        </form>
         <a href="{{ route('profile.edit') }}" class="Editprofile">Edit Profile</a>
 
 

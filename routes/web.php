@@ -64,6 +64,7 @@ Route::get('/', function () {
 
     //profile
     Route::get('/profile', [ProfileController::class, 'Index'])->name('profile');
+    Route::post('/update', [ProfileController::class, 'update'])->name('update');
     Route::get('/profile-edit', [ProfileController::class, 'Edit'])->name('profile.edit');
     Route::get('/changepassword', [ProfileController::class, 'changePassword'])->name('changepassword');
     Route::get('/profile-badge', [ProfileController::class, 'Badge'])->name('profile.badge');
@@ -82,9 +83,9 @@ Route::middleware([
     
     //profile route
     
-    // Route::post('/update', [ProfileController::class, 'update'])->name('update');
-    // Route::get('/profile-edit', [ProfileController::class, 'Edit'])->name('profile.edit');
-    Route::post('/change-password', [ProfileController::class, 'changePassword'])->name('change.password');
+    // // Route::post('/update', [ProfileController::class, 'update'])->name('update');
+    // // Route::get('/profile-edit', [ProfileController::class, 'Edit'])->name('profile.edit');
+    // Route::post('/change-password', [ProfileController::class, 'changePassword'])->name('change.password');
     
 
     //forgetpass route
