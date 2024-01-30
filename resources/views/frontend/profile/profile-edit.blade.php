@@ -83,29 +83,36 @@
     	</div>
 
 	<label class="label1" for="firstname">First Name:</label>
-    	<input class="firstname" type="text" id="firstname" placeholder="Imong ngalan?">
+    	<input class="firstname" type="text" id="firstname" placeholder="First Name?" value="{{ Auth::user()->fname }}"
+		name="name" required>
 	
 	<label class="label2" for="lastname">Last Name:</label>
-    	<input class="lastname" type="text" id="name" placeholder="Your Last Name?">
+    	<input class="lastname" type="text" id="name" placeholder="Last Name?" value="{{ Auth::user()->lname }}"
+		name="name" required>
 	<br>
 	<label class="label3" for="course">Course:</label>
-    	<input class="course" type="text" id="course" placeholder="Your Course?">
+    	<input class="course" type="text" id="course" placeholder="Course?"  value="{{ Auth::user()->course }}" name="course" required>>
 	
 	
         <label class="label4"for="Years">Year Level:</label>
 	<select class="Years" id="Years" onchange="showYear()">
-	<option class="option1" value="1">Your Year Level?</option>
-    	<option class="option1" value="1">1st Year</option>
-    	<option class="option1"value="2">2nd Year</option>
-    	<option class="option1"value="3">3rd Year</option>
-    	<option class="option1"value="4">4th Year</option>
+	<option class="option1" value="{{ Auth::user()->year }}">---Select Year---</option>
+    	<option class="option1" value="1st Year"
+		{{ Auth::user()->year == '1st Year' ? 'selected' : '' }}>1st Year</option>
+    	<option class="option1"value="2nd Year"
+		{{ Auth::user()->year == '2nd Year' ? 'selected' : '' }}>2nd Year</option>
+    	<option class="option1"value="3rd Year"
+		{{ Auth::user()->year == '3rd Year' ? 'selected' : '' }}>3rd Year</option>
+    	<option class="option1"{{ Auth::user()->year == '4th Year' ? 'selected' : '' }}>4th Year</option>
 	</select>
         
 	<label class="label5" for="username">Username:</label>
-    	<input class="username" type="text" id="username" placeholder="Your Username?">
+    	<input class="username" type="text" id="username" placeholder="Your Username?"  
+		value="{{ Auth::user()->username }}" name="username" required>
   	
 	<label class="label6" for="Email">Email:</label>
-    	<input class="Email" type="text" id="Email" placeholder="Your Email?">
+    	<input class="Email" type="text" id="Email" placeholder="Your Email?" value="{{ Auth::user()->email }}" name="email">
+		<input type="hidden" name="id" value="{{ Auth::user()->id }}" required>
 
 
 	<button class="submit-button" onclick="submitForm()">Save</button>
@@ -117,8 +124,7 @@
 		
 </section>
 
-<script src="assets/js/headermenu.js"></script>
-<script src="assets/js/profileEdit.js"></script>
+
 
 
 </body>
