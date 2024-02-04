@@ -86,7 +86,7 @@
     <section class="space-background">
         <div class="content-section">
             <div class="content-container1">
-                <a href="#playground" class="content-link">
+                <a href="Playground" class="content-link">
                     <img src="assets/images/playground-btn.svg" alt="Playground" id="playground">
                 </a>
             </div>
