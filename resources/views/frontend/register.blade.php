@@ -59,6 +59,11 @@
             {{ Session::get('success') }}
         </div>
     @endif
+    @if(Session::has('error'))
+        <div class="alert alert-success" role="alert" style="color:rgb(130, 6, 6); margin-left:35%" >
+            {{ Session::get('error') }}
+        </div>
+    @endif
 	<form action="{{ route('register') }}" method="POST" class="signup-form">
     @csrf
         <br>

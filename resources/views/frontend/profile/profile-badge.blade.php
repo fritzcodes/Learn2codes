@@ -54,7 +54,7 @@
 
             <li><a href="startmenu">Home</a></li>
             <li><a href="#forums">Forums</a></li>
-            <li><a href="#playground">Playground</a></li>
+            <li><a href="Playground">Playground</a></li>
             <li><a href="#modules">Modules</a></li>
             <li><a href="#leaderboard">Leaderboard</a></li>
             {{-- <button class="login-btn" href="{{ route('logout') }}" >Logout</button> --}}

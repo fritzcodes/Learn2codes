@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\AdminController\AddQuestionController;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
@@ -36,7 +37,26 @@ Route::get('/', function () {
     Route::get('/login', [LoginController::class, 'login'])->name('login');
     Route::post('/login', [LoginController::class, 'loginPost'])->name('login');
 
-   
+    Route::get('/admin/index', [AddQuestionController::class, 'Index'])->name('index');
+    Route::post('/admin/addQuestion', [AddQuestionController::class, 'addQuestion'])->name('addQuestion');
+    Route::post('/admin/deleteQuestion', [AddQuestionController::class, 'deleteQuestion'])->name('deleteQuestion');
+    Route::get('/admin/getQuizEasy', [AddQuestionController::class, 'getQuiz'])->name('getQuiz');
+    Route::get('/admin/getQuizMediumJava', [AddQuestionController::class, 'getQuizMediumJava'])->name('getQuizMediumJava');
+    Route::get('/admin/getQuizHardJava', [AddQuestionController::class, 'getQuizHardJava'])->name('getQuizHardJava');
+
+    Route::get('/admin/getQuizEasyCsharp', [AddQuestionController::class, 'getQuizEasyCsharp'])->name('getQuizEasyCsharp');
+    Route::get('/admin/getQuizMediumCsharp', [AddQuestionController::class, 'getQuizMediumCsharp'])->name('getQuizMediumCsharp');
+    Route::get('/admin/getQuizHardCsharp', [AddQuestionController::class, 'getQuizHardCsharp'])->name('getQuizHardCsharp');
+
+    Route::get('/admin/getQuizEasyCplus', [AddQuestionController::class, 'getQuizEasyCplus'])->name('getQuizEasyCplus');
+    Route::get('/admin/getQuizMediumCplus', [AddQuestionController::class, 'getQuizMediumCplus'])->name('getQuizMediumCplus');
+    Route::get('/admin/getQuizHardCplus', [AddQuestionController::class, 'getQuizHardCplus'])->name('getQuizHardCplus');
+
+    Route::get('/admin/getQuizEasyPython', [AddQuestionController::class, 'getQuizEasyPython'])->name('getQuizEasyPython');
+    Route::get('/admin/getQuizMediumPython', [AddQuestionController::class, 'getQuizMediumPython'])->name('getQuizMediumPython');
+    Route::get('/admin/getQuizHardPython', [AddQuestionController::class, 'getQuizHardPython'])->name('getQuizHardPython');
+
+    
     Route::get('/', [TemplateController::class, 'index']);
     Route::delete('/logout', [LoginController::class, 'logout'])->name('logout');
     

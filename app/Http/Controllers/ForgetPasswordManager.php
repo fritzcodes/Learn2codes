@@ -79,7 +79,7 @@ class ForgetPasswordManager extends Controller
 
         DB::table('password_reset_tokens')->where(["email" => $request->email])->delete();
 
-        return redirect()->to(route('login'))->with("success","Password reset success");
+        return redirect()->to(route('login'))->with("success","Password reset Successfully");
     }
     
 }

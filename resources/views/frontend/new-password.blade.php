@@ -21,7 +21,7 @@
             padding: 90px 10%;
             width: 100%;
             height: 100vh;
-            /* background: url('assets/images/rocket.svg'); */
+            background: url('/assets/images/backmenu.svg');
             color: var(--text-color);
             overflow-x: hidden;
             /* Prevent horizontal scrolling */
@@ -494,11 +494,11 @@
     </style>
 </head>
 
-<body style="background-image: url('http://127.0.0.1:8000/reset-password/assets/images/backmenu.svg')">
+<body">
 
     <section class="space-background">
         <div class="logo">
-            <img src="http://127.0.0.1:8000/assets/images/logo.svg" alt="learn2Code">
+            <img src="/assets/images/logo.svg" alt="learn2Code">
 
         </div>
         @if ($errors->any())
@@ -534,7 +534,7 @@
                 <input placeholder="new password" type="password" id="password" name="password"> <br>
                 <br>
                 <label for="email">Confirm password:</label><br>
-                <input placeholder="confirm password" type="password" id="password" name="password_confirmation"><br>
+                <input placeholder="confirm password" type="password" id=" confirm_password" name="password_confirmation"><br>
                 <br>
                 <br>
                 <ul class="reset-button">

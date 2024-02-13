@@ -16,6 +16,7 @@
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <style>
     body{
@@ -111,7 +112,7 @@
     <script src="assets/js/python/pythonQuehard15.js"></script>
 
     <!-- Inside this JavaScript file I've coded all Quiz Codes -->
-    <script src="assets/js/python/quizContenteasy.js"></script>
+    <script src="assets/js/python/quizContenthard.js"></script>
 
 </body>
 </html>

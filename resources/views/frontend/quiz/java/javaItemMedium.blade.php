@@ -45,7 +45,7 @@
 <body>
 
     <header>
-        <a href="{{ route('Language') }}" class="bx bx-chevron-left" id="back-btn"></a>
+        <a href="{{ route('javaDiff') }}" class="bx bx-chevron-left" id="back-btn"></a>
         <div class="bx bx-menu" id="menu-icon"></div>
     
         <ul class="navbar">

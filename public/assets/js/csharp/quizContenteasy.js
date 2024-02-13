@@ -10,6 +10,7 @@ const time_line = document.querySelector("header .time_line");
 const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
 
+
 // Uncomment the following lines to show the activeInfo without clicking the start button
 info_box.classList.add("activeInfo"); // Show info box
 
@@ -17,11 +18,13 @@ info_box.classList.add("activeInfo"); // Show info box
 exit_btn.onclick = () => {
     info_box.classList.remove("activeInfo"); // Hide info box
 }
+
 // if continueQuiz button clicked
 continue_btn.onclick = ()=>{
+
     info_box.classList.remove("activeInfo"); //hide info box
     quiz_box.classList.add("activeQuiz"); //show quiz box
-    shuffleArray(questions); // Shuffle the questions
+    shuffleArray(questions); // Shuffle the questions    
     showQuetions(0); //calling showQestions function
     queCounter(1); //passing 1 parameter to queCounter
     startTimer(15); //calling startTimer function
@@ -38,6 +41,7 @@ let widthValue = 0;
 
 const restart_quiz = result_box.querySelector(".buttons .restart");
 const quit_quiz = result_box.querySelector(".buttons .quit");
+
 
 // if restartQuiz button clicked
 restart_quiz.onclick = ()=>{

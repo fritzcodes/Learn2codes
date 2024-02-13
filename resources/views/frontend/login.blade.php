@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +16,7 @@
     <link rel="pr	econnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
 
@@ -55,10 +54,23 @@
             <h2>Login</h2>
 
             @if (Session::has('error'))
-                <div class="alert alert-danger" role="alert">
-                    {{ Session::get('error') }}
+                <div class="alert alert-danger" role="alert" style="color:rgb(130, 6, 6); width: 100%; margin-top:-30px">
+                    <p style="">{{ Session::get('error') }}</p>
                 </div>
             @endif
+            @if (session('success'))
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        Swal.fire({
+                            title: 'Success!',
+                            text: '{{ session('success') }}',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        });
+                    });
+                </script>
+            @endif
+
             <form action="{{ route('login') }}" method="POST" class="log-form">
                 @csrf
                 <input type="email" style="font-size: 16px" id="email" name="email" placeholder="Email"
@@ -92,7 +104,6 @@
         </form>
 
         <script>
-            
             function togglePassword(inputId) {
                 var passwordInput = document.getElementById(inputId);
                 var imageeye = passwordInput.parentNode.querySelector('img');
@@ -144,7 +155,7 @@
 
 
 
-</header>
+    </header>
 
 
 </body>

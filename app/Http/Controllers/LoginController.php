@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Mail;
-use Validator;
 use Socialite;
 use Exception;
 use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -25,6 +25,29 @@ class LoginController extends Controller
 
     public function registerPost(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:users,email',
+            'username' => 'required|unique:users,username',
+        ]);
+        
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            if ($errors->has('username') && $errors->has('email')) {
+                return back()->with('error', 'Username and email already exists');
+            }
+            if ($errors->has('email')) {
+                return back()->with('error', 'Email already exists');
+            }
+            if ($errors->has('username')) {
+                return back()->with('error', 'Username already exists');
+            }
+            
+        }
+        
+        // If there are other validation failures, you can handle them here
+        
+        // If validation succeeds, continue with your logic
+        
         $user = new User();
 
         $user->fname = $request->fname;
@@ -37,7 +60,7 @@ class LoginController extends Controller
 
         $user->save();
 
-        return back()->with('success', 'Register successfully');
+        return redirect()->to(route('login'))->with("success","Register successfully");
     }
 
     public function login()

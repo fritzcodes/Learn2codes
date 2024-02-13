@@ -58,7 +58,7 @@
 
             <li><a href="startmenu">Home</a></li>
             <li><a href="#forums">Forums</a></li>
-            <li><a href="#playground">Playground</a></li>
+            <li><a href="Playground">Playground</a></li>
             <li><a href="#modules">Modules</a></li>
             <li><a href="#leaderboard">Leaderboard</a></li>
             {{-- <button class="login-btn" href="{{ route('logout') }}" >Logout</button> --}}
@@ -80,7 +80,7 @@
                 <span></span>
             </div>
 
-            <form method="post" enctype="multipart/form-data" id="formData">
+            <form method="post" enctype="multipart/form-data" id="formData" action="/profile-edit">
                 @csrf
 
                 <input type="file" class="profile-image" accept="image/*" onchange="previewImage()"  />
@@ -123,7 +123,7 @@
                 <input type="hidden" name="id" value="{{ Auth::user()->id }}" required>
 
 
-                <button class="submit-button" onclick="submitForm()">Save</button>
+                <button type="submit" class="submit-button">Save</button>
                 <button class="reset-button" onclick="resetForm()">Reset</button>
 
                 <!-- Verification Message -->

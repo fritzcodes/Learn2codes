@@ -16,6 +16,8 @@ class QuizController extends Controller
     }
 
 
+    
+
 //java Quiz Easy
     public function JavaDifficulty(): View
     {
