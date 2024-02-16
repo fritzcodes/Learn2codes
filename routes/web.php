@@ -9,6 +9,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\AdminController\AddQuestionController;
+use App\Http\Controllers\ExerciseControllers;
+use App\Http\Controllers\ModulesController;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
@@ -57,6 +59,15 @@ Route::get('/', function () {
     Route::get('/admin/getQuizHardPython', [AddQuestionController::class, 'getQuizHardPython'])->name('getQuizHardPython');
 
     
+    //MODULE
+    Route::get('/moduleLanguage', [ModulesController::class, 'Index'])->name('moduleLanguage');
+    Route::get('/java_Default', [ModulesController::class, 'JavaModuleDefault'])->name('JavaDefault');
+    Route::get('/java_Intro', [ModulesController::class, 'JavaModuleIntro'])->name('JavaIntro');
+    Route::get('/java_Install', [ModulesController::class, 'JavaModuleInstall'])->name('JavaInstall');
+    Route::get('/java_Syntax', [ModulesController::class, 'JavaModuleSyntax'])->name('JavaSyntax');
+    Route::get('/java_Features', [ModulesController::class, 'JavaModuleFeatures'])->name('JavaFeatures');
+
+
     Route::get('/', [TemplateController::class, 'index']);
     Route::delete('/logout', [LoginController::class, 'logout'])->name('logout');
     
@@ -90,7 +101,11 @@ Route::get('/', function () {
     //profile
     Route::get('/profile', [ProfileController::class, 'Index'])->name('profile');
     Route::post('/update', [ProfileController::class, 'update'])->name('update');
+    Route::get('/update', [ProfileController::class, 'Edit'])->name('update');
     Route::get('/profile-edit', [ProfileController::class, 'Edit'])->name('profile.edit');
+    Route::post('/profile-edit', [ProfileController::class, 'update'])->name('profile.edit');
+    // Route::get('/changepassword', [ProfileController::class, 'changePassword'])->name('changepassword');
+    Route::post('/change-password', [ProfileController::class, 'changePasswords'])->name('changepassword');
     Route::get('/changepassword', [ProfileController::class, 'changePassword'])->name('changepassword');
     Route::get('/profile-badge', [ProfileController::class, 'Badge'])->name('profile.badge');
     Route::get('/badge-search', [ProfileController::class, 'Search'])->name('badge.search');
@@ -102,7 +117,7 @@ Route::get('/', function () {
     Route::get('/javaDiff', [QuizController::class, 'JavaDifficulty'])->name('javaDiff');
     Route::get('/csharpDiff', [QuizController::class, 'CsharpDifficulty'])->name('csharpDiff');
     Route::get('/c++Diff', [QuizController::class, 'CplusDifficulty'])->name('c++Diff');
-
+            
 //java quiz items
 Route::get('/javaItemEasy', [QuizController::class, 'JavaItemEasy'])->name('javaEasy');
 Route::get('/javaItemMedium', [QuizController::class, 'JavaItemMedium'])->name('javaMedium');
@@ -204,7 +219,7 @@ Route::get('/csharpQuizHard20', [QuizController::class, 'CsharpQuizHard20'])->na
 Route::get('/csharpQuizHard30', [QuizController::class, 'CsharpQuizHard30'])->name('C#Hard30');
 
 
-
+Route::get('/javaExercise', [ExerciseControllers::class, 'Index'])->name('javaExe');
 
 Route::middleware([
     'auth:sanctum',

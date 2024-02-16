@@ -163,8 +163,9 @@
             @csrf
             <div class="imageContainer" id="imageContainer">
 
-                <img id="displayedImage"class="displayedImage" src="assets/images/avatar.png"
-                    alt="Image to be displayed">
+                <img style="width:100%; height:100%; border-radius:50%"
+                    src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
+                    alt="">
             </div>
             <br>
 

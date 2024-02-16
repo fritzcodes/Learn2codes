@@ -41,6 +41,22 @@
             outline: none;
 
         }
+        .alert {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 85%;
+            text-align: center;
+            padding: 10px;
+            background-color: #ee0505; /* Adjust the background color as needed */
+            color: #333; /* Adjust the text color as needed */
+            z-index: 1;
+        }
+
+        .alert.alert-error {
+            background-color: #ffaaaa; /* Adjust the error message color as needed */
+        }
+
     </style>
 
 </head>
@@ -54,7 +70,7 @@
             <h2>Login</h2>
 
             @if (Session::has('error'))
-                <div class="alert alert-danger" role="alert" style="color:rgb(130, 6, 6); width: 100%; margin-top:-30px">
+                <div class="alert alert-danger" role="alert" style="color:rgb(0, 0, 0); width: 100%; margin-top:-30px">
                     <p style="">{{ Session::get('error') }}</p>
                 </div>
             @endif
@@ -86,7 +102,7 @@
                 </div>
 
                 <div class="remember-me">
-                    <label for="remember">Remember Me</label>
+                    <label for="remember">Remember me</label>
                     <input type="checkbox" id="remember" name="remember">
                 </div>
                 <a href="{{ route('forgetPassword') }}" class="forgot">Forgot Password?</a>

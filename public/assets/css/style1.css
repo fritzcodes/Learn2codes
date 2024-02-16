@@ -3,6 +3,7 @@
 
     position: fixed;
     display: fixed;
+    flex-direction: column;
     margin-top: 7px;
     margin-left: 5%;
     top: 0px;
@@ -16,8 +17,10 @@
     box-shadow: -15px 10px 2px rgba(0, 0, 0, 0.3);    
     backdrop-filter: blur(20px);        
     z-index: 1; 
+    
 
 }
+
 
 .glass1 h2 {
     font-family: 'Orbitron', sans-serif;
@@ -33,7 +36,7 @@
     color: #ffffff;
     width: 85%;
     max-width: 85%; 
-    display: flex;
+    display: fixed;
     margin-top: 55px;
     padding-right: 15px;
     padding-left: 15px;
@@ -44,14 +47,16 @@
 
 .password-container {
     position: relative;
-    display: flex;
+    display: fixed;
     align-items: center;
-    margin-top: 11%;
+    margin-top: 16%;
+    width: 93%;
 }
 .password-container1 {
     position: relative;
-    display: flex;
+    display: fixed;
     align-items: center;
+    width: 93%;
     
 }
 

@@ -59,7 +59,7 @@
         <li><a href="startmenu">Home</a></li>
         <li><a href="#forums">Forums</a></li>
         <li><a href="Playground">Playground</a></li>
-        <li><a href="#modules">Modules</a></li>
+        <li><a href="moduleLanguage">Modules</a></li>
         <li><a href="#leaderboard">Leaderboard</a></li>
         {{-- <button class="login-btn" href="{{ route('logout') }}" >Logout</button> --}}
         <li><a class="logout-btn" href="{{ route('logout') }}">Logout</a></li>
@@ -104,8 +104,8 @@
            
 </section>
 
-<script type="text/javascript" src="js/headermenu.js"></script>
-<script src="js/Progress.js"></script>
+<script type="text/javascript" src="assets/js/headermenu.js"></script>
+<script src="assets/js/Progress.js"></script>
 <script>document.getElementById('menu-icon').addEventListener('click', function () {
   document.querySelector('.navbar').classList.toggle('open');
 });

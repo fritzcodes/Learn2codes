@@ -78,34 +78,34 @@ class ProfileController extends Controller
     // }
 
 
-    // public function changePassword(Request $request)
-    // {
-    //     if (!Hash::check($request->current_password, Auth::user()->password)) {
-    //         $msg = "error";
-    //         return response()->json($msg);
-    //     }
+    public function changePasswords(Request $request)
+    {
+        if (!Hash::check($request->current_password, Auth::user()->password)) {
+            $msg = "error";
+            return response()->json($msg);
+        }
 
-    //     $data = $request->validate([
-    //         'password' => 'required|string|min:8',
-    //         'confirm_password' => 'required|string|same:password',
-    //     ], [
-    //         'confirm_password.same' => 'The new password and confirmation password do not match.',
-    //     ]);
+        $data = $request->validate([
+            'password' => 'required|string|min:8',
+            'confirm_password' => 'required|string|same:password',
+        ], [
+            'confirm_password.same' => 'The new password and confirmation password do not match.',
+        ]);
 
-    //     $hashedPassword['password'] = Hash::make($data['password']);
-
-
-    //     $user = Auth::user();
+        $hashedPassword['password'] = Hash::make($data['password']);
 
 
-    //     if ($user->update($hashedPassword)) {
-    //         $msg = 'success';
-    //     } else {
-    //         $msg = "error";
-    //     }
+        $user = Auth::user();
 
-    //     return response()->json($msg);
-    // }
+
+        if ($user->update($hashedPassword)) {
+            $msg = 'success';
+        } else {
+            $msg = "error";
+        }
+
+        return response()->json($msg);
+    }
 
 
     public function edit(Request $request): View
@@ -113,6 +113,9 @@ class ProfileController extends Controller
         return view('frontend.profile.profile-edit', [
             'user' => $request->user(),
         ]);
+        // return view('frontend.profile.editProfile', [
+        //     'user' => $request->user(),
+        // ]);
     }
 
 
@@ -124,6 +127,7 @@ class ProfileController extends Controller
         $user = Auth::user();
         $data = $request->validated();
 
+        
 
         if ($request->hasFile('profile_photo')) {
             $image = $request->file('profile_photo');

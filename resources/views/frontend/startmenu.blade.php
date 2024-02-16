@@ -98,7 +98,7 @@
             </div>
 
             <div class="content-container3">
-                <a href="#modules" class="content-link">
+                <a href="{{ route('moduleLanguage') }}" class="content-link">
                     <img src="assets/images/module-btn.svg" alt="Modules" id="module">
                 </a>
             </div>

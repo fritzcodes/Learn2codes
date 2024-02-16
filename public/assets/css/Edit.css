@@ -260,24 +260,7 @@
 
 
 
-.profile-icon {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    display: flex;
-    margin-left: 34%;
-    margin-top: -25px;
-    border-radius: 60%;
-    background-color: lightgray;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: 2px solid black;
-    background: url("../assets/user.png");
-    background-size: 102%;
-    background-repeat: no-repeat;
-    
-}
+
 .profile-icon:hover {
     position: absolute;	    
     border: 2px solid #00FF7F; /* Add a border when hovered */
@@ -292,21 +275,7 @@
     
     }
 
-.cancel-button {
-    position: absolute;
-    display: block; /* Change from none to block */
-    margin-top: -30px;
-    margin-bottom: 105px;
-    cursor: pointer;
-    margin-left: 480px;
-    margin-right: 600px;
-    padding: 12px;
-    text-align: center;
-    border-radius: 20px;
-    background: url('../assets/close.png');
-    background-size: cover;
-   
-}
+
 
 .cancel-button:hover {
     position: absolute;	  

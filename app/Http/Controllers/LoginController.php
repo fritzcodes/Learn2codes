@@ -28,6 +28,7 @@ class LoginController extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:users,email',
             'username' => 'required|unique:users,username',
+            'password' => 'required|min:8|confirmed',
         ]);
         
         if ($validator->fails()) {
@@ -42,7 +43,9 @@ class LoginController extends Controller
                 return back()->with('error', 'Username already exists');
             }
             
+            
         }
+        
         
         // If there are other validation failures, you can handle them here
         
@@ -60,7 +63,7 @@ class LoginController extends Controller
 
         $user->save();
 
-        return redirect()->to(route('login'))->with("success","Register successfully");
+        return redirect()->to(route('register'))->with("success","Register successfully");
     }
 
     public function login()

@@ -15,6 +15,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    {{-- <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
         body {
@@ -29,6 +36,42 @@
             z-index: -1;
             /* Behind other content */
             background-size: cover;
+        }
+
+        .profile-icon {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            margin-left: 34%;
+            margin-top: -25px;
+            border-radius: 60%;
+            background-color: lightgray;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 2px solid black;
+            background: url("../assets/images/avatar.png");
+            background-size: 102%;
+            background-repeat: no-repeat;
+
+        }
+
+        .cancel-button {
+            position: absolute;
+            display: block;
+            /* Change from none to block */
+            margin-top: -30px;
+            margin-bottom: 105px;
+            cursor: pointer;
+            margin-left: 480px;
+            margin-right: 600px;
+            padding: 12px;
+            text-align: center;
+            border-radius: 20px;
+            background: url('../assets/images/close.png');
+            background-size: cover;
+
         }
     </style>
 
@@ -59,7 +102,7 @@
             <li><a href="startmenu">Home</a></li>
             <li><a href="#forums">Forums</a></li>
             <li><a href="Playground">Playground</a></li>
-            <li><a href="#modules">Modules</a></li>
+            <li><a href="moduleLanguage">Modules</a></li>
             <li><a href="#leaderboard">Leaderboard</a></li>
             {{-- <button class="login-btn" href="{{ route('logout') }}" >Logout</button> --}}
             <li><a class="logout-btn" href="{{ route('logout') }}">Logout</a></li>
@@ -74,35 +117,38 @@
         <body>
 
             <div class="heading">Edit Profile</div>
-            <div class="heading">Edit Profile</div>
-            <div class="headline">______</div>
+
+            <div class="headline"> ______</div>
             <div class="profile-icon" onclick="openFileInput()">
-                <span></span>
+                <img style="width:100%; height:100%; border-radius:50%"
+                    src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : '../assets/images/avatar.png' }}"
+                    alt="">
             </div>
 
-            <form method="post" enctype="multipart/form-data" id="formData" action="/profile-edit">
+            <form method="post" enctype="multipart/form-data" id="formData">
                 @csrf
-
-                <input type="file" class="profile-image" accept="image/*" onchange="previewImage()"  />
+                <input type="file" id="fileInput" style="display: none;" onchange="handleFileSelect(event)"
+                    accept="image/*" name="profile_photo">
+                <input type="file" class="profile-image" accept="image/*" onchange="previewImage()">
                 <div class="cancel-button" onclick="cancelUpload()"></div>
-                </div>
-				
+
+
 
                 <label class="label1" for="firstname">First Name:</label>
-                <input class="firstname" type="text" id="firstname" placeholder="First Name?"
-                    value="{{ Auth::user()->fname }}" name="name" required>
+                <input class="firstname" type="text" id="fname" placeholder="First Name?"
+                    value="{{ Auth::user()->fname }}" name="fname" required>
 
                 <label class="label2" for="lastname">Last Name:</label>
-                <input class="lastname" type="text" id="name" placeholder="Last Name?"
-                    value="{{ Auth::user()->lname }}" name="name" required>
+                <input class="lastname" type="text" id="lname" placeholder="Last Name?"
+                    value="{{ Auth::user()->lname }}" name="lname" required>
                 <br>
                 <label class="label3" for="course">Course:</label>
                 <input class="course" type="text" id="course" placeholder="Course?"
-                    value="{{ Auth::user()->course }}" name="course" required>>
+                    value="{{ Auth::user()->course }}" name="course" required>
 
 
                 <label class="label4"for="Years">Year Level:</label>
-                <select class="Years" id="Years" onchange="showYear()">
+                <select class="Years" id="year" name="year">
                     <option class="option1" value="{{ Auth::user()->year }}">---Select Year---</option>
                     <option class="option1" value="1st Year" {{ Auth::user()->year == '1st Year' ? 'selected' : '' }}>
                         1st Year</option>
@@ -118,12 +164,13 @@
                     value="{{ Auth::user()->username }}" name="username" required>
 
                 <label class="label6" for="Email">Email:</label>
-                <input class="Email" type="text" id="Email" placeholder="Your Email?"
-                    value="{{ Auth::user()->email }}" name="email">
+                <input class="Email" type="email" id="Email" placeholder="Your Email?"
+                      value="{{ Auth::user()->email }}" name="email">
+
                 <input type="hidden" name="id" value="{{ Auth::user()->id }}" required>
 
 
-                <button type="submit" class="submit-button">Save</button>
+                <button type="button" class="submit-button" id="btnSubmit">Save</button>
                 <button class="reset-button" onclick="resetForm()">Reset</button>
 
                 <!-- Verification Message -->
@@ -132,6 +179,109 @@
                 </div>
             </form>
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        // var bottomReached = false;
+
+        // window.onscroll = function() {
+
+        //     var scrollHeight = document.documentElement.scrollHeight;
+        //     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        //     var clientHeight = document.documentElement.clientHeight;
+
+
+        //     if (!bottomReached && scrollTop + clientHeight >= scrollHeight - 10) {
+
+        //         bottomReached = true;
+        //         $('#pb').css('width', '70%')
+        //         $('#pb').html('70%')
+        //     }
+        // };
+
+
+
+
+        $('#btnSubmit').click(function() {
+            const form = document.getElementById('formData');
+            const formData = new FormData(form);
+            $.ajax({
+                url: '/update',
+                method: 'post',
+                data: formData,
+                enctype: 'multipart/form-data',
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+
+                beforeSend: function() {
+                    Swal.fire({
+                        title: 'Pls Wait...',
+                        didOpen: () => {
+
+                            Swal.showLoading()
+                        }
+                    })
+                },
+                success: function(data) {
+                    if (data == "success") {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Updated Sucessfully',
+
+                        }).then(res => {
+                            window.location.reload();
+                        })
+                    } else {
+                        console.log(data);
+                    }
+                },
+                error: function(xhr) {
+                    Swal.close();
+                    const errors = JSON.parse(xhr.responseText);
+
+
+                    const errorMessages = Object.values(errors.errors).flat();
+
+                    errorMessages.map(item => {
+                        toastr.options = {
+                            closeButton: true,
+                            progressBar: true,
+                            showMethod: 'slideDown', // Define the show animation
+                            hideMethod: 'slideUp', // Define the hide animation
+                            timeOut: 5000
+                        };
+                        toastr.error(item, 'Error')
+                    });
+                }
+
+            });
+
+        })
+
+        function openFileInput() {
+            document.getElementById('fileInput').click();
+        }
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            // Do something with the selected file, such as displaying preview or uploading it.
+            // Example:
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgElement = document.querySelector('.profile-icon img');
+                    imgElement.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+
+    <script type="text/javascript" src="assets/js/headermenu.js"></script>
 
 </body>
 
