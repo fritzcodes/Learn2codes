@@ -9,6 +9,10 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\AdminController\AddQuestionController;
+use App\Http\Controllers\AdminController\Dashboard;
+use App\Http\Controllers\AdminController\DashboardController;
+use App\Http\Controllers\AdminController\LeaderboardController;
+use App\Http\Controllers\AdminController\ManageUserController;
 use App\Http\Controllers\ExerciseControllers;
 use App\Http\Controllers\ModulesController;
 use Illuminate\Http\Request;
@@ -39,7 +43,9 @@ Route::get('/', function () {
     Route::get('/login', [LoginController::class, 'login'])->name('login');
     Route::post('/login', [LoginController::class, 'loginPost'])->name('login');
 
-    Route::get('/admin/index', [AddQuestionController::class, 'Index'])->name('index');
+
+    //Admin
+    Route::get('/admin/question', [AddQuestionController::class, 'Index'])->name('Question');
     Route::post('/admin/addQuestion', [AddQuestionController::class, 'addQuestion'])->name('addQuestion');
     Route::post('/admin/deleteQuestion', [AddQuestionController::class, 'deleteQuestion'])->name('deleteQuestion');
     Route::get('/admin/getQuizEasy', [AddQuestionController::class, 'getQuiz'])->name('getQuiz');
@@ -57,6 +63,12 @@ Route::get('/', function () {
     Route::get('/admin/getQuizEasyPython', [AddQuestionController::class, 'getQuizEasyPython'])->name('getQuizEasyPython');
     Route::get('/admin/getQuizMediumPython', [AddQuestionController::class, 'getQuizMediumPython'])->name('getQuizMediumPython');
     Route::get('/admin/getQuizHardPython', [AddQuestionController::class, 'getQuizHardPython'])->name('getQuizHardPython');
+
+    Route::get('/admin/dashboard', [DashboardController::class,'Index'])->name('Dashboard');
+    Route::get('/admin/manageUser', [ManageUserController::class,'Index'])->name('ManageUser');
+    Route::get('/admin/leaderboard', [LeaderboardController::class,'Index'])->name('Leaderboard');
+
+
 
     
     //MODULE
