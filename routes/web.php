@@ -18,6 +18,7 @@ use App\Http\Controllers\ModulesController;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
+use App\Http\Controllers\AdminController\LanguageController;
 
 
 
@@ -32,11 +33,15 @@ use Illuminate\Contracts\View\View;
 |
 */
 
-
+Route::get('/admin/language', function () {
+    return view('frontend.admin.language');
+})->name('Language');
 Route::get('/', function () {
     return view('landing');
 });
- 
+
+
+Route::post('/admin/AddLanguage', [LanguageController::class, 'AddLanguage'])->name('AddLanguage');
 
     Route::get('/register', [LoginController::class, 'register'])->name('register');
     Route::post('/register', [LoginController::class, 'registerPost'])->name('register');
