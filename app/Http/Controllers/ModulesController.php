@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 use Illuminate\View\View;
 
 use Illuminate\Http\Request;
-
+use App\Models\prog_language;
 class ModulesController extends Controller
 {
     public function index(): View
     {
-        return view('frontend.modules.moduleLanguage');
+        $data = prog_language::all();
+        return view('frontend.modules.moduleLanguage', compact('data'));
     }   
 
     public function JavaModuleDefault(): View
     {
-        return view('frontend.modules.java.java_Default');
+        return view('frontend.modules.module');
        
     }
 

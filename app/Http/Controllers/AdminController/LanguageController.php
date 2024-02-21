@@ -11,6 +11,8 @@ class LanguageController extends Controller
 {
     public function Index()
     {
+        $data = prog_language::all();
+        return View('frontend.admin.language', compact('data'));
     }
 
     public function AddLanguage(LanguageAddRequest $request)
@@ -30,5 +32,13 @@ class LanguageController extends Controller
         $language->language = $request->language;
         $language->save();
         return redirect()->back()->with('message', 'Language added successfully!');
+    }
+    public function UpdateLanguage($id)
+    {
+        
+    }
+    public function DeleteLanguage($id)
+    {
+
     }
 }

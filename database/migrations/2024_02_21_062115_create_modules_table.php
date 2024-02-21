@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('content');
-            $table->string('exercise');
+            $table->longText('content');
+            $table->string('trycode');
             $table->string('language');
+            $table->string('order')->nullable();
             $table->timestamps();
         });
     }

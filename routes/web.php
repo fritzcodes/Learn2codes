@@ -19,6 +19,10 @@ use App\Http\Controllers\ModulesController;
 use Illuminate\Http\Request;
 //use App\Models\User;
 use Illuminate\Contracts\View\View;
+use App\Http\Middleware\User;
+use App\Http\Middleware\Admin;
+use App\Http\Controllers\AdminController\LanguageController;
+use App\Http\Controllers\AdminController\ModuleController;
 
 
 
@@ -33,13 +37,15 @@ use Illuminate\Contracts\View\View;
 |
 */
 
-Route::get('/admin/language', function () {
-    return view('frontend.admin.language');
-})->name('Language');
+
 Route::get('/', function () {
     return view('landing');
 });
- 
+Route::get('/admin/language', [LanguageController::class, 'Index'])->name('Language');
+Route::post('/admin/AddLanguage', [LanguageController::class, 'AddLanguage'])->name('AddLanguage');
+Route::post('/admin/UpdateLanguage', [LanguageController::class, 'UpdateLanguage'])->name('UpdateLanguage');
+Route::post('/admin/DeleteLanguage', [LanguageController::class, 'DeleteLanguage'])->name('DeleteLanguage');
+
 
  
     //User LOGIN/REGISTER
@@ -80,8 +86,8 @@ Route::get('/', function () {
 // Admin routes
 Route::middleware(['auth:sanctum', Admin::class, 'verified'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class,'Index'])->name('Dashboard');
-
-
+    Route::get('/admin/addModule', [ModuleController::class,'Index'])->name('addModule');
+    Route::post('/admin/addNewModule', [ModuleController::class,'addModule'])->name('addNewModule');
 
     Route::get('/admin/question', [AddQuestionController::class, 'Index'])->name('Question');
     Route::post('/admin/addQuestion', [AddQuestionController::class, 'addQuestion'])->name('addQuestion');
@@ -241,7 +247,7 @@ Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () 
     
       //MODULE
       Route::get('/moduleLanguage', [ModulesController::class, 'Index'])->name('moduleLanguage');
-      Route::get('/java_Default', [ModulesController::class, 'JavaModuleDefault'])->name('JavaDefault');
+      Route::get('/module', [ModulesController::class, 'JavaModuleDefault'])->name('JavaDefault');
       Route::get('/java_Intro', [ModulesController::class, 'JavaModuleIntro'])->name('JavaIntro');
       Route::get('/java_Install', [ModulesController::class, 'JavaModuleInstall'])->name('JavaInstall');
       Route::get('/java_Syntax', [ModulesController::class, 'JavaModuleSyntax'])->name('JavaSyntax');
