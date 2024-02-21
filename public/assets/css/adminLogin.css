@@ -1,0 +1,565 @@
+    /* Reset and basic styling */
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Orbitron', sans-serif;
+        text-decoration: none;
+        list-style: none;
+    }
+
+    :root{ /*---font and color defaults --*/
+        --bg-color: #fff;
+        --text-color: #221341;
+        --second-color: #5a7184;
+        --main-color: #6e54fa;
+        --big-font: 3rem;
+        --h2-font: 1.5rem;
+        --p-font: 1rem;
+    }
+
+    header {    
+        padding: 20px 2%;
+        position: fixed;
+        top:0;
+        right: 0;
+        width: 100%;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: transparent;
+
+    }
+
+    #back-btn{
+        color: var(--bg-color);
+        font-size: 60px;
+        z-index: 10001;
+        cursor: pointer;
+        display: block;
+    }
+
+    .navbar a {
+        color: var(--bg-color);
+        font-size: var(--p-font);
+        font-weight: 500;
+        padding: 10px 22px;
+        border-radius: 4px;
+        transition: ease .40s;
+        display: block;
+        margin: 1.2rem 0;
+    }
+
+    .navbar a:hover {
+        background: var(--bg-color);
+        color: var(--text-color);
+        box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
+        border-radius: 4px;
+        transition: ease .40s;
+    }
+
+
+    .profile button{
+        display: flex;
+        color: var(--bg-color);
+        border-style: unset;
+        background: transparent;
+        cursor: pointer;
+        align-items: center;
+        text-align: left;
+    }
+
+    .sticky {
+        background: var(--bg-color);
+        padding: 10px 5%;
+        box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    }
+    
+    .sticky #back-btn {
+        color: var(--text-color);
+    }
+    
+    .sticky #menu-icon {
+        color: var(--text-color);
+    }
+
+    .profile h3{
+        margin-left: 10px;
+        white-space: nowrap; 
+        overflow: hidden;
+        max-width: 300px;
+        text-overflow: ellipsis; 
+        scroll-behavior: unset;
+      }
+
+    .avatar{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    #menu-icon {
+        color: var(--bg-color);
+        font-size: 50px;
+        z-index: 10001;
+        cursor: pointer;
+        display: block;
+    }
+
+    .login-btn{
+        margin-top: 20px;
+        padding: 10px 10%;
+        flex-shrink: 0;
+        border-radius: 35.07px;
+        background: #7DF160;
+    }
+
+    .login-btn:hover{
+        cursor: pointer;
+        background: #ddd;
+        box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
+    }
+
+    .login-btn:active{
+        background: var(--bg-color);
+        color: var(--text-color);
+    }
+
+    .navbar {
+        align-content: center;
+        align-items: center;
+        text-align: center;
+        position: absolute;
+        top: 0;
+        right: -100%;
+        width: 35%;
+        height: 100vh;
+        background: #000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 60px 0%;
+        transition: 0.5s all;
+    }
+
+    .open {
+        right: 0;
+    }
+
+    .list {
+        width: 50%;
+        margin-top: 100px;     
+    }
+
+    body {
+        text-align: center;
+        width: 100%;
+        min-height: 100vh;
+        background: url('backlogin.png');
+        color: var(--text-color);
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+        z-index: -1; /* Behind other content */
+        background-size: cover;
+        animation: animateBackground 20s linear infinite; /* Adjust as needed */
+    }
+
+    @keyframes animateBackground {
+        0% {
+        background-position: 0 0;
+        }
+        100% {
+        background-position: 100% 100%;
+        }
+    }
+
+    .space-background { 
+        top: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+        position: relative;
+        border-radius: 35.066px;
+        border: 1px solid #FFDCDC;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(6px);  
+    
+    }
+
+/*----------- Content Section------------ */
+    .logo img{
+        width: 80px;
+        height: 80px;
+        margin-top: 20px;
+        color: var(--text-color);
+    }
+
+    .title{
+        color: var(--bg-color);
+        padding: 30px 0;
+        font-size: var(--h2-font);
+        text-align: justify;
+    }
+
+    .content-container1{
+        padding: 0 5%;
+        text-align: right;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .typeinput {
+        padding: 5px 0;
+    }
+
+    .typeinput input{
+        background: rgba(0, 0, 0, 0.3);
+        border-style: none;
+        text-indent: 7px;
+        border-radius: 5px;
+        width: 100%;
+        height: 50px;
+        font-size: 18px;
+        color: var(--bg-color);
+    }
+
+    .typeinput input:focus {
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+    .logbutton {
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    #login{
+        font-size: var(--p-font);
+        border-radius: 5px;
+        background-color: #680586;
+        color: var(--bg-color);
+        width: 100%;
+        height: 50px;
+    }
+
+    #login:hover{
+        background-color: #221341;
+        cursor: pointer;
+    }
+
+    .forgot {
+        margin-bottom: 20px;
+        text-align: center; 
+    }
+
+    .forgot a {
+        color: var(--main-color);
+    }
+
+    .forgot a:hover {
+        text-decoration-line: underline;
+        cursor: pointer;
+    }
+
+
+
+
+
+    @media (max-width: 1300px) {
+
+    header {
+        padding: 17px 3%;
+        transition: .2s;
+    }
+
+    .profile h2{
+        width: 140px; 
+    }
+
+    .space-background { 
+        top: 150px;
+        width: 50%;
+ 
+    
+    }
+
+
+    }
+
+    @media (max-width: 1060px) {
+
+    #menu-icon {
+        display: block;
+    }
+
+    .profile h2{
+        width: 100px; 
+    }
+
+    .space-background { 
+        top: 100px;
+        width: 40%;
+    }
+
+
+    }
+
+    @media (max-width: 860px) {
+        #menu-icon {
+            display: block;
+        }
+    
+        .profile h2{
+            width: 100px; 
+        }
+
+        .space-background { 
+            top: 290px;
+            width: 60%;
+        }
+
+        :root{ /*---font and color defaults --*/
+            --h2-font: 1.2rem;
+            --p-font: 1rem;
+        }
+
+        .title h2 {
+            font-size: var(--h2-font);
+        }
+
+        .title p {
+            font-size: var(--p-font);
+        }
+        
+    
+        }  
+
+
+
+    @media (max-width: 540px) {
+    body {
+        padding: 0px 0%;
+        animation: paused;
+    }
+
+    .profile h2{
+        width: 170px; 
+    }
+
+    .navbar {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: #000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 80px 0%;
+        transition: 0.5s all;
+    }
+
+    .open {
+        right: 0;
+    }
+
+    .list {
+        width: 70%;
+        margin-bottom: 12px;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .space-background { 
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        border-radius: 0px;
+    }
+
+    .content-container1 {
+        padding:  100px 10%;
+        text-align: center;
+    }
+
+    :root{ /*---font and color defaults --*/
+        --h2-font: 2.5rem;
+        --p-font: 1.5rem;
+    }
+
+    .title h2 {
+        font-size: var(--h2-font);
+    }
+
+    .title p {
+        font-size: var(--p-font);
+    }
+
+    .title {
+        padding: 100px 0;
+    }
+
+    .logo img{
+        display: none;
+    }
+
+
+    }
+
+
+    @media (max-width: 376px) {
+    body {
+        animation: paused;
+    }
+
+    .profile h2{
+        width: 170px; 
+    }
+
+    .navbar {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: #000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 80px 0%;
+        transition: 0.5s all;
+    }
+
+    .open {
+        right: 0;
+    }
+
+    .list {
+        width: 70%;
+        margin-bottom: 12px;
+    }
+
+    :root{ /*---font and color defaults --*/
+        --h2-font: 2rem;
+        --p-font: 1rem;
+    }
+
+    .title h2 {
+        font-size: var(--h2-font);
+    }
+
+    .title p {
+        font-size: var(--p-font);
+    }
+
+
+
+
+    }
+
+
+    @media (max-width: 280px) {
+    body {
+        animation: paused;
+    }
+
+    .profile h2{
+        width: 170px; 
+    }
+
+    .typeinput input {
+        font-size: 14px;
+    }
+
+
+    }
+
+
+    @media (min-height: 1024px) {
+
+    .profile h2{
+        width: 170px; 
+    }
+
+    .navbar {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        width: 50%;
+        height: 100vh;
+        background: #000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 80px 0%;
+        transition: 0.5s all;
+    }
+
+    .open {
+        right: 0;
+    }
+
+    .list {
+        width: 70%;
+        margin-bottom: 12px;
+    }
+
+    :root {
+    --h2-font: 2.5rem;
+    --p-font: 1.5rem;
+    transition: .2s;
+
+    }
+
+ 
+
+    }
+
+    @media (min-height: 1300px) {
+
+    .profile h2{
+        width: 170px; 
+    }
+
+    .navbar {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        width: 50%;
+        height: 100vh;
+        background: #000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 80px 0%;
+        transition: 0.5s all;
+    }
+
+    .open {
+        right: 0;
+    }
+
+    .list {
+        width: 70%;
+        margin-bottom: 12px;
+    }
+
+    .space-background { 
+        top: 400px;
+        width: 70%;
+ 
+    
+    }
+
+    }
+
+
+

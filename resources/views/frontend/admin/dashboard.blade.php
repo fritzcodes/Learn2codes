@@ -17,13 +17,25 @@
             </div>
             <i class="bx bx-menu" id="btn"></i>
         </div>
+
+
         <div class="user">
+
+            @if (Auth::check() && Auth::user()->profile_photo)
+            <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
+                alt="user" class="user-img">
+        @else
+            <!-- Placeholder image or default avatar -->
             <img src="../assets/images/avatar.png" alt="user" class="user-img">
+        @endif
+            {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
             <div>
-                <p class="username">David Matthew Borromeo</p>
+                <p class="username">{{ Auth::user()->email }}</p>
                 <p>Admin</p>
             </div>
         </div>
+
+
         <ul>
             <li>
                 <a target="_top" href="{{ route('Dashboard') }}" class='active'>
@@ -70,13 +82,13 @@
                 </a>
             </li>
             <li class="Logout">
-                <a target="_top" href="#">
+                <a target="_top" href="{{ route('adminLogout') }}">
                     <i class="bx bxs-exit"></i>
                     <span class="nav-item">Logout</span>
                 </a>
             </li>
         </ul>  
-
+       
     </div>
 
 <!-- -----------MAIN CONTENT------------ -->
@@ -126,6 +138,5 @@
     <script src="../assets/js/admin/admin.js" async></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <script src="../assets/js/admin/chartsJS.js"></script>
-
 </body>
 </html>
