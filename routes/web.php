@@ -19,8 +19,6 @@ use App\Http\Controllers\ModulesController;
 use Illuminate\Http\Request;
 //use App\Models\User;
 use Illuminate\Contracts\View\View;
-use App\Http\Middleware\User;
-use App\Http\Middleware\Admin;
 
 
 
@@ -35,11 +33,13 @@ use App\Http\Middleware\Admin;
 |
 */
 
-
+Route::get('/admin/language', function () {
+    return view('frontend.admin.language');
+})->name('Language');
 Route::get('/', function () {
     return view('landing');
 });
-
+ 
 
  
     //User LOGIN/REGISTER
