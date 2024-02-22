@@ -17,13 +17,22 @@
                 </div>
                 <i class="bx bx-menu" id="btn"></i>
             </div>
+
             <div class="user">
+                @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
+                <img src="{{Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photoo) : 'assets/images/avatar.png' }}"
+                    alt="user" class="user-img">
+            @else
+                <!-- Placeholder image or default avatar -->
                 <img src="../assets/images/avatar.png" alt="user" class="user-img">
+            @endif
+                {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
                 <div>
-                    <p class="username">David Matthew Borromeo</p>
+                    <p class="username">{{ Auth::guard('admin')->user()->email }}</p>
                     <p>Admin</p>
                 </div>
             </div>
+
             <ul>
                 <li>
                     <a target="_top" href="{{ route('Dashboard') }}">
@@ -69,12 +78,12 @@
                         <span class="nav-item">Badge</span>
                     </a>
                 </li>
-                <li class="Logout">
-                    <a target="_top" href="#">
-                        <i class="bx bxs-exit"></i>
-                        <span class="nav-item">Logout</span>
-                    </a>
-                </li>
+            <li class="Logout">
+                <a target="_top" href="{{ route('adminLogout') }}">
+                    <i class="bx bxs-exit"></i>
+                    <span class="nav-item">Logout</span>
+                </a>
+            </li>
             </ul>  
 
         </div>

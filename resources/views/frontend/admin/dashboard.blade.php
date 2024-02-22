@@ -20,9 +20,8 @@
 
 
         <div class="user">
-
-            @if (Auth::check() && Auth::user()->profile_photo)
-            <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
+            @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
+            <img src="{{Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photoo) : 'assets/images/avatar.png' }}"
                 alt="user" class="user-img">
         @else
             <!-- Placeholder image or default avatar -->
@@ -30,7 +29,7 @@
         @endif
             {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
             <div>
-                <p class="username">{{ Auth::user()->email }}</p>
+                <p class="username">{{ Auth::guard('admin')->user()->email }}</p>
                 <p>Admin</p>
             </div>
         </div>
