@@ -99,67 +99,30 @@
             </div>
             <table class="manage-user">
                 <thead>
-                    <td>Username</td>
+                    <td>User ID</td>
                     <td>FirstName</td>
                     <td>LastName</td>  
-                    <td>Email</td>
-                    <td>Phone</td>
-                    <td>Reg-Date</td>
+                    <td>Username</td>
+                    <td>Year</td>
+                    <td>Course</td>
                     <td>Action</td>         
                 </thead>
                 <tbody>
+                    @foreach($user as $use )
                     <tr>
-                        <td>Anita Maxx Wynn</td>
-                        <td>David Matthew</td>
-                        <td>Borromeo</td>
-                        <td>balagbagdavid@outcook.com</td>
-                        <td>09999999999</td>
-                        <td>02/11/24</td>
+                        <td>{{$use['id']}}</td>
+                        <td>{{$use['fname']}}</td>
+                        <td>{{$use['lname']}}</td>
+                        <td>{{$use['username']}}</td>
+                        <td>{{$use['year']}}</td>
+                        <td>{{$use['course']}}</td>
                         <td class="ved">
                             <i class="bx bxs-show"></i>
                             <i class="bx bxs-edit"></i>
                             <i class="bx bxs-trash"></i>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Anita Maxx Wynn</td>
-                        <td>David Matthew</td>
-                        <td>Borromeo</td>
-                        <td>balagbagdavid@outcook.com</td>
-                        <td>09999999999</td>
-                        <td>02/11/24</td>
-                        <td class="ved">
-                            <i class="bx bxs-show"></i>
-                            <i class="bx bxs-edit"></i>
-                            <i class="bx bxs-trash"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Anita Maxx Wynn</td>
-                        <td>David Matthew</td>
-                        <td>Borromeo</td>
-                        <td>balagbagdavid@outcook.com</td>
-                        <td>09999999999</td>
-                        <td>02/11/24</td>
-                        <td class="ved">
-                            <i class="bx bxs-show"></i>
-                            <i class="bx bxs-edit"></i>
-                            <i class="bx bxs-trash"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Anita Maxx Wynn</td>
-                        <td>David Matthew</td>
-                        <td>Borromeo</td>
-                        <td>balagbagdavid@outcook.com</td>
-                        <td>09999999999</td>
-                        <td>02/11/24</td>
-                        <td class="ved">
-                            <i class="bx bxs-show"></i>
-                            <i class="bx bxs-edit"></i>
-                            <i class="bx bxs-trash"></i>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
