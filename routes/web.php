@@ -247,7 +247,7 @@ Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () 
     
       //MODULE
       Route::get('/moduleLanguage', [ModulesController::class, 'Index'])->name('moduleLanguage');
-      Route::get('/module', [ModulesController::class, 'JavaModuleDefault'])->name('JavaDefault');
+      Route::get('/module/{id}', [ModulesController::class, 'JavaModuleDefault'])->name('JavaDefault');
       Route::get('/java_Intro', [ModulesController::class, 'JavaModuleIntro'])->name('JavaIntro');
       Route::get('/java_Install', [ModulesController::class, 'JavaModuleInstall'])->name('JavaInstall');
       Route::get('/java_Syntax', [ModulesController::class, 'JavaModuleSyntax'])->name('JavaSyntax');

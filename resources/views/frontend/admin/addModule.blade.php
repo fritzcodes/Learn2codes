@@ -43,16 +43,29 @@
         <textarea name="trycode" cols="50" rows="10"></textarea>
         <input type="submit" value="Add module">
     </form>
-    @foreach ($data2 as $item)
-        {!! $item->content !!}
-    @endforeach
+    
 
     <script>
-        $('#summernote').summernote({
-            placeholder: 'Add Module Here...',
-            tabsize: 2,
-            height: 100
-        });
+        // Initialize Summernote with customized toolbar
+// Initialize Summernote with customized toolbar
+$('#summernote').summernote({
+    placeholder: 'Add Module Here...',
+    tabsize: 2,
+    height: 100,
+    toolbar: [
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['fontsize', ['fontsize']], // Add font size dropdown to the toolbar
+        ['fontname', ['fontname']], // Add font family dropdown to the toolbar
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['height', ['height']],
+        ['insert', ['link']],
+        ['view', ['fullscreen', 'codeview']]
+    ],
+    fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana']
+});
+
+
+        
     </script>
 </body>
 

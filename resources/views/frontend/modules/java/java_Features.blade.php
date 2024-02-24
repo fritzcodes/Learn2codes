@@ -79,7 +79,7 @@
     <div class="sidenav">
       <h2>Java Tutorial</h2>
       <br>
-      <a target="_top" href="{{ route('JavaDefault') }}">Learn Java</a>
+
       <a target="_top" href="{{ route('JavaIntro') }}">Java Introduction</a>
       <a target="_top" href="{{ route('JavaInstall') }}">Java Installation</a>
       <a target="_top" href="{{ route('JavaSyntax') }}">Java Syntax</a>

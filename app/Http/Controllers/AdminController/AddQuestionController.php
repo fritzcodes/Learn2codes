@@ -5,13 +5,15 @@ namespace App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Quizzes;
+use App\Models\prog_language;
 
 class AddQuestionController extends Controller
 {
     public function Index()
     {
         $questions = Quizzes::all();
-        return View('frontend.admin.addQuestion', compact('questions'));
+        $progLanguage = prog_language::all();
+        return View('frontend.admin.addQuestion', compact('questions', 'progLanguage'));
     }
 
     public function addQuestion(Request $request)

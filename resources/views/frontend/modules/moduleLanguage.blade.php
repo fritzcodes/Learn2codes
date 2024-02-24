@@ -99,7 +99,7 @@
                 <i id="left" class="bx bx-chevron-left"></i>
                 <ul class="carousel">
                     @foreach ($data as $item)
-                        <a href="{{ route('JavaDefault') }}"><img src="../images/{{ $item->picture }}" alt="img"
+                        <a href="/module/{{ $item->language }}"><img src="../images/{{ $item->picture }}" alt="img"
                                 draggable="false"></a>
                     @endforeach
                 </ul>

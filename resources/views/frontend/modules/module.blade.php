@@ -58,11 +58,10 @@
                 <button><a href="{{ route('profile') }}" class="profile-link">
 
                         @if (Auth::check() && Auth::user()->profile_photo)
-                            <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : '../assets/images/avatar.png' }}"
-                                alt="Profile Photo" class="avatar">
+                        <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : '../assets/images/avatar.png' }}" alt="Profile Photo" class="avatar">
                         @else
-                            <!-- Placeholder image or default avatar -->
-                            <img src="../assets/images/avatar.png" alt="Default Avatar" class="avatar">
+                        <!-- Placeholder image or default avatar -->
+                        <img src="../assets/images/avatar.png" alt="Default Avatar" class="avatar">
                         @endif
                         <h2>{{ Auth::user()->username }}</h2>
                     </a></button>
@@ -82,54 +81,48 @@
     <section class="space-background">
 
         <div class="sidenav">
-            <h2>Java Tutorial</h2>
-            <br>
-            <a target="_top" href="{{ route('JavaDefault') }}"class="active">Learn Java</a>
+            <h2>{{ $id }} Tutorial</h2>
+            @foreach ($data as $item)
+                <a target="_top" href="#{{ $loop->index + 1 }}">{{ $item->title }} </a>
+            @endforeach
 
-            <br>
-            <br>
-            <h2>Java Methods</h2>
-            <br>
-            <a target="_top" href="{{ route('JavaFeatures') }}">JavaScript Features
-            </a>
-            <a target="_top"
-                href="E:\INSTALL\PROGRAM\htdocs\MODULES\system\java_Module\topics\java_dis.html">Disadvantages of
-                JavaScript
-            </a>
-            <br>
-            <br>
-            <h2>Variables and Data Types</h2>
-            <a target="_top" href="E:\INSTALL\PROGRAM\htdocs\MODULES\system\java_Module\topics\java_bb.html"> The
-                Building Blocks
-            </a>
-            <a target="_top" href="E:\INSTALL\PROGRAM\htdocs\MODULES\system\java_Module\topics\java_bb.html"> The
-                Functional Mechanism of JavaScript
-            </a>
-            <a target="_top" href="E:\INSTALL\PROGRAM\htdocs\MODULES\system\java_Module\topics\java_csmd.html"> Making
-                Decisions
-            </a>
-            <a target="_top" href="E:\INSTALL\PROGRAM\htdocs\MODULES\system\java_Module\topics\java_teje.html"> The
-                Engines of JavaScript Execution
+           
 
-            </a>
         </div>
 
 
 
 
         <div class="content">
-
             <div id="main">
-
-                <h2>Main Content</h2>
-                <p>This is the main content area. Replace this with your actual content.</p>
-
             </div>
         </div>
     </section>
 
     <script type="text/javascript" src="../assets/js/headermenu.js"></script>
+    <script>
+       
+       function updateContent() {
+        var fragment = window.location.hash;
+        var number = fragment.substring(1);
+        var newIndex = parseInt(number) - 1;
+        var data = {!! json_encode($data) !!}; 
+        var content = data[newIndex].content;
+        document.getElementById('main').innerHTML = content;
+    }
 
+    // Function to execute updateContent when the hash changes
+    function onHashChange() {
+        // Execute updateContent whenever the hash changes
+        window.addEventListener('hashchange', updateContent);
+    }
+
+    // Call onHashChange to start listening for hash changes
+    onHashChange();
+
+    // Call updateContent initially to update content based on the initial hash
+    updateContent();
+    </script>
 </body>
 
 </html>

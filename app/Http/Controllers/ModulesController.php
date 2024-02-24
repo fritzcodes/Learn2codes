@@ -5,6 +5,7 @@ use Illuminate\View\View;
 
 use Illuminate\Http\Request;
 use App\Models\prog_language;
+use App\Models\Module;
 class ModulesController extends Controller
 {
     public function index(): View
@@ -13,10 +14,13 @@ class ModulesController extends Controller
         return view('frontend.modules.moduleLanguage', compact('data'));
     }   
 
-    public function JavaModuleDefault(): View
+    public function JavaModuleDefault($id): View
     {
-        return view('frontend.modules.module');
-       
+        $data = Module::where('language', $id)
+        ->get();
+
+        return view('frontend.modules.module', compact('data', 'id'));
+
     }
 
     public function JavaModuleIntro(): View
