@@ -130,7 +130,7 @@ Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () 
     Route::get('/Playground', function () {
         return view('frontend.playground');
     })->name('Playground');
-
+    Route::get('/quiz', [QuizController::class,'quizIndex'])->name('quizIndex');
         //profile
         Route::get('/profile', [ProfileController::class, 'Index'])->name('profile');
         Route::post('/update', [ProfileController::class, 'update'])->name('update');
@@ -149,7 +149,7 @@ Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () 
         Route::get('/pythonDiff', [QuizController::class, 'PythonDifficulty'])->name('pythonDiff');
         Route::get('/javaDiff', [QuizController::class, 'JavaDifficulty'])->name('javaDiff');
         Route::get('/csharpDiff', [QuizController::class, 'CsharpDifficulty'])->name('csharpDiff');
-        Route::get('/c++Diff', [QuizController::class, 'CplusDifficulty'])->name('c++Diff');
+        Route::get('/quiz/{id}', [QuizController::class, 'quizzes'])->name('quizzes');
                 
     //java quiz items
     Route::get('/javaItemEasy', [QuizController::class, 'JavaItemEasy'])->name('javaEasy');

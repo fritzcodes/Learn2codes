@@ -87,10 +87,10 @@
      <div class="content-section">
       <i id="left" class="bx bx-chevron-left"></i>
         <ul class="carousel">
+          @foreach($data as $item)
+          <a href="/quiz/{{$item->language}}"><img src="/images/{{$item->picture}}" alt="img" draggable="false"></a>
+          @endforeach
           <a href="{{ route('javaDiff') }}"><img src="assets/images/java.svg" alt="img" draggable="false"></a>
-          <a href="{{ route('pythonDiff') }}"><img src="assets/images/python.svg" alt="img" draggable="false"></a>
-          <a href="{{ route('csharpDiff') }}"><img src="assets/images/csharp.svg" alt="img" draggable="false"></a>
-          <a href="{{ route('c++Diff') }}"><img src="assets/images/cpp.svg" alt="img" draggable="false"></a>
       </ul>
       <i id="right" class="bx bx-chevron-right"></i>
     </div>
