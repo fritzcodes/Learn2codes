@@ -84,10 +84,16 @@ Route::post('/admin/DeleteLanguage', [LanguageController::class, 'DeleteLanguage
 
     
 // Admin routes
-Route::middleware(['auth:sanctum', Admin::class, 'verified'])->group(function () {
+Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class,'Index'])->name('Dashboard');
+    Route::post('/admin/changeOrder', [ModuleController::class,'changeOrder'])->name('changeOrder');
+    Route::get('/admin/languageModule/{id}', [ModuleController::class,'languageModule'])->name('languageModule');
     Route::get('/admin/addModule', [ModuleController::class,'Index'])->name('addModule');
     Route::post('/admin/addNewModule', [ModuleController::class,'addModule'])->name('addNewModule');
+    Route::get('/admin/viewModule/{id}', [ModuleController::class,'viewModule'])->name('viewModule');
+    Route::post('/admin/updateModule', [ModuleController::class,'updateModule'])->name('updateModule');
+
+
 
     Route::get('/admin/question', [AddQuestionController::class, 'Index'])->name('Question');
     Route::post('/admin/addQuestion', [AddQuestionController::class, 'addQuestion'])->name('addQuestion');

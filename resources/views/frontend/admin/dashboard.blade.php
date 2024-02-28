@@ -95,7 +95,7 @@
     <div class="cardBox">
         <div class="card">
             <div>
-                <div class="numbers">111</div>
+                <div class="numbers">{{ $totalUsers }}</div>
                 <div class="cardName">Users</div>
             </div>
 
