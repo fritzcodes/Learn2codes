@@ -37,7 +37,9 @@ use App\Http\Controllers\AdminController\ModuleController;
 |
 */
 
-
+Route::get('/trycode', function () {
+    return view('frontend.admin.trycode');
+});
 Route::get('/', function () {
     return view('landing');
 });
