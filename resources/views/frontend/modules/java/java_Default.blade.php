@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Java Home</title>
+  <title>Java Module</title>
   <link rel="stylesheet" href="../assets/css/java_Module.css">
 
 <link rel="stylesheet"
@@ -44,7 +44,7 @@
 <body>
 
   <header>
-    <a href="moduleLanguage" class="bx bx-chevron-left" id="back-btn"></a>
+    <a href="/moduleLanguage" class="bx bx-chevron-left" id="back-btn"></a>
     <div class="bx bx-menu" id="menu-icon"></div>
 
     <ul class="navbar">
@@ -77,8 +77,8 @@
 <section class="space-background">
 
   <div class="sidenav">
-    <h2>Java Tutorial</h2>
-    <br>
+    <h2>Java Module</h2>
+    {{-- <br>
     <a target="_top" href="{{ route('JavaDefault') }}"class="active">Learn Java</a>
     <a target="_top" href="{{ route('JavaIntro') }}">Java Introduction</a>
     <a target="_top" href="{{ route('JavaInstall') }}">Java Installation</a>
@@ -104,19 +104,19 @@
         <a target="_top" href="E:\INSTALL\PROGRAM\htdocs\MODULES\system\java_Module\topics\java_teje.html"> The Engines of JavaScript Execution
 
         </a>
-      </div>
+      </div> --}}
     
 
 
 
-  <div class="content">
+  {{-- <div class="content"> --}}
 
-    <div id="main">
+    {{-- <div id="main">
   
       <h2>Main Content</h2>
       <p>This is the main content area. Replace this with your actual content.</p>
   
-    </div>
+    </div> --}}
   </div>
 </section>
 

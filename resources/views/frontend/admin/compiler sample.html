@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JDoodle API Example</title>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script>
+        // JDoodle API endpoint
+        const apiUrl = 'https://api.jdoodle.com/v1/execute';
+        const proxyCors = 'https://cors-anywhere.herokuapp.com/'; // Use the CORS Anywhere proxy URL
+
+        // JDoodle API credentials
+        const clientId = '32f224b81f2285a32539cfcfa3ff8f10';
+        const clientSecret = '18bdc060d245fea5b0e480919ce01b1cd0e9121d72c94ab04578a98f2be09b2';
+
+        // Code to execute (Java "Hello, World!" program)
+        const code = `
+            public class Main {
+                public static void main(String[] args) {
+                    System.out.println("Hello, World!");
+                }
+            }
+        `;
+
+        // Data object for API request
+        const requestData = {
+            clientId,
+            clientSecret,
+            script: code,
+            language: 'java',
+            versionIndex: '3' // Choose the appropriate version index
+        };
+
+        // Make a POST request to the JDoodle API via CORS Anywhere proxy
+        fetch(proxyCors + apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Display the output
+            document.getElementById('output').innerText = data.output || data.error || 'Unknown error occurred';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    </script>
+</body>
+</html>

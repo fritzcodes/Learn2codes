@@ -104,11 +104,11 @@
 
 
     <div class="main-content" id="content1">        <!------------------------------------------ dashboard -->  
-        <form action="/admin/AddLanguage" method="post" enctype="multipart/form-data">
+        <form action="/admin/AddQuizLanguage" method="post" enctype="multipart/form-data">
             @csrf
            <div class="form">
                <div class="langpicDiv">
-                   <label for="ops" id="option">Add Language</label>
+                   <label for="ops" id="option">Add Quiz Language</label>
                    <br>
                    <input type="text" name="language" id="language" placeholder="Language">
                    <input type="file" name="picture" id="picture" accept="image/*, .svg">

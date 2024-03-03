@@ -23,8 +23,7 @@ use App\Http\Middleware\User;
 use App\Http\Middleware\Admin;
 use App\Http\Controllers\AdminController\LanguageController;
 use App\Http\Controllers\AdminController\ModuleController;
-
-
+use App\Http\Controllers\AdminController\QuizLanguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +47,11 @@ Route::post('/admin/AddLanguage', [LanguageController::class, 'AddLanguage'])->n
 Route::post('/admin/UpdateLanguage', [LanguageController::class, 'UpdateLanguage'])->name('UpdateLanguage');
 Route::post('/admin/DeleteLanguage', [LanguageController::class, 'DeleteLanguage'])->name('DeleteLanguage');
 
+
+Route::get('/admin/quizLanguage', [QuizLanguageController::class, 'Index'])->name('QuizLanguage');
+Route::post('/admin/AddQuizLanguage', [QuizLanguageController::class, 'AddQuizLanguage'])->name('AddQuizLanguage');
+Route::post('/admin/UpdateLanguage', [QuizLanguageController::class, 'UpdateLanguage'])->name('UpdateLanguage');
+Route::post('/admin/DeleteLanguage', [QuizLanguageController::class, 'DeleteLanguage'])->name('DeleteLanguage');
 
  
     //User LOGIN/REGISTER
@@ -86,10 +90,17 @@ Route::post('/admin/DeleteLanguage', [LanguageController::class, 'DeleteLanguage
 
     
 // Admin routes
-Route::middleware(['auth:sanctum', Admin::class, 'verified'])->group(function () {
+Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class,'Index'])->name('Dashboard');
+    Route::post('/admin/changeOrder', [ModuleController::class,'changeOrder'])->name('changeOrder');
+    Route::get('/admin/languageModule/{id}', [ModuleController::class,'languageModule'])->name('languageModule');
     Route::get('/admin/addModule', [ModuleController::class,'Index'])->name('addModule');
     Route::post('/admin/addNewModule', [ModuleController::class,'addModule'])->name('addNewModule');
+    Route::get('/admin/viewModule/{id}', [ModuleController::class,'viewModule'])->name('viewModule');
+    Route::post('/admin/updateModule', [ModuleController::class,'updateModule'])->name('updateModule');
+
+
+    
 
     Route::get('/admin/question', [AddQuestionController::class, 'Index'])->name('Question');
     Route::post('/admin/addQuestion', [AddQuestionController::class, 'addQuestion'])->name('addQuestion');
@@ -126,7 +137,7 @@ Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () 
     Route::get('/Playground', function () {
         return view('frontend.playground');
     })->name('Playground');
-
+    Route::get('/quiz', [QuizController::class,'quizIndex'])->name('quizIndex');
         //profile
         Route::get('/profile', [ProfileController::class, 'Index'])->name('profile');
         Route::post('/update', [ProfileController::class, 'update'])->name('update');
@@ -145,7 +156,7 @@ Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () 
         Route::get('/pythonDiff', [QuizController::class, 'PythonDifficulty'])->name('pythonDiff');
         Route::get('/javaDiff', [QuizController::class, 'JavaDifficulty'])->name('javaDiff');
         Route::get('/csharpDiff', [QuizController::class, 'CsharpDifficulty'])->name('csharpDiff');
-        Route::get('/c++Diff', [QuizController::class, 'CplusDifficulty'])->name('c++Diff');
+        Route::get('/quiz/{id}', [QuizController::class, 'quizzes'])->name('quizzes');
                 
     //java quiz items
     Route::get('/javaItemEasy', [QuizController::class, 'JavaItemEasy'])->name('javaEasy');
@@ -248,12 +259,12 @@ Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () 
     Route::get('/csharpQuizHard30', [QuizController::class, 'CsharpQuizHard30'])->name('C#Hard30');
     
       //MODULE
-      Route::get('/moduleLanguage', [ModulesController::class, 'Index'])->name('moduleLanguage');
+      Route::get('/module/moduleLanguage', [ModulesController::class, 'Index'])->name('moduleLanguage');
       Route::get('/module/{id}', [ModulesController::class, 'JavaModuleDefault'])->name('JavaDefault');
-      Route::get('/java_Intro', [ModulesController::class, 'JavaModuleIntro'])->name('JavaIntro');
-      Route::get('/java_Install', [ModulesController::class, 'JavaModuleInstall'])->name('JavaInstall');
-      Route::get('/java_Syntax', [ModulesController::class, 'JavaModuleSyntax'])->name('JavaSyntax');
-      Route::get('/java_Features', [ModulesController::class, 'JavaModuleFeatures'])->name('JavaFeatures');
+    //   Route::get('/java_Intro', [ModulesController::class, 'JavaModuleIntro'])->name('JavaIntro');
+    //   Route::get('/java_Install', [ModulesController::class, 'JavaModuleInstall'])->name('JavaInstall');
+    //   Route::get('/java_Syntax', [ModulesController::class, 'JavaModuleSyntax'])->name('JavaSyntax');
+    //   Route::get('/java_Features', [ModulesController::class, 'JavaModuleFeatures'])->name('JavaFeatures');
     
     Route::get('/javaExercise', [ExerciseControllers::class, 'Index'])->name('javaExe');
 });

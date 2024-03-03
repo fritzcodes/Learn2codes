@@ -18,47 +18,39 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 </head>
 
+
+<style>
+    body{
+        background-color: rgb(255, 174, 22);
+    }
+</style>
+
+
+
 <body>
-    @if (session()->has('message'))
+    @if (session()->has('msg'))
         <div class="alert alert-success">
-            {{ session('message') }}
+            {{ session('msg') }}
         </div>
     @endif
 
-    <form method="post" action="/admin/addNewModule">
+    <form method="post" action="/admin/updateModule">
         @csrf
+        <input type="hidden" name="id" value="{{$modules->id}}">
         Title
-        <input type="text" name="title" id="">
+        <input type="text" name="title" id="" value="{{$modules->title}}">
+
         Language
-        <select name="language" id="">
-            <option value="">--Select a Language--</option>
-            @foreach ($data as $item)
-                <option value="{{ $item->language }}">{{ $item->language }}</option>
-            @endforeach
-        </select>
+        <input type="text" value="{{$modules->language}}" name="language" readonly>
         <div style="width: 1000px">
-            <textarea id="summernote" name="content"></textarea>
+            <textarea id="summernote" name="content">{{$modules->content}}</textarea>
         </div>
         Example Code:
-        <textarea name="trycode" cols="50" rows="10"></textarea>
-        <input type="submit" value="Add module">
+        <textarea name="trycode" cols="50" rows="10">{{$modules->trycode}}</textarea>
+        <input type="submit" value="Update">
     </form>
 
-    <table>
-        <tr>
-            <th>Language</th>
-            <th>Action</th>
-        </tr>
-
-        @foreach ($data as $item)
-            <tr>
-                <td>{{ $item->language }}</td>
-                <td><a href="/admin/languageModule/{{ $item->language }}"><button>View</button></a></td>
-            </tr>
-        @endforeach
-
-
-    </table>
+  
 
     <script>
         // Initialize Summernote with customized toolbar

@@ -4,21 +4,25 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use App\Models\prog_language;
 use App\Http\Requests\Module;
 use App\Models\Module as ModuleTable;
+use App\Http\Requests\UpdateModuleRequest;
 
 class ModuleController extends Controller
 {
-    public function Index(){
+    public function Index()
+    {
         $data = prog_language::all();
         $data2 = ModuleTable::all();
         return view('frontend.admin.addModule', compact('data', 'data2'));
     }
-    public function AddModule(Module $request){
+    public function AddModule(Module $request)
+    {
         $module = new ModuleTable();
         $data = $request->validated();
-        
+
         $module->title = $request->title;
         $module->content = $request->content;
         $module->language = $request->language;
@@ -26,6 +30,41 @@ class ModuleController extends Controller
 
         $module->save();
         return redirect()->back()->with('message', 'Module Added');
+    }
+
+    public function languageModule()
+    {
+        $data = ModuleTable::orderBy('order')->get();
+        return view('frontend.admin.languageModule', compact('data'));
+    }
+
+    public function changeOrder(Request $request)
+    {
+        $order = $request->input('order');
+        $datas['success'] = false;
+        foreach ($order as $index => $itemId) {
+            ModuleTable::where('id', $itemId)->update(['order' => intval($index) + 1]);
+            $datas = true;
+        }
+
+        return response()->json($datas);
+    }
+
+
+    public function viewModule($id)
+    {
+        $modules = ModuleTable::where('id', $id)->first(); 
+        return view('frontend.admin.viewModule', compact('modules'));
+    }
+
+    public function updateModule(UpdateModuleRequest $request)
+    {
+        $data = $request->validated();
+        if(ModuleTable::where('id', $request->id)->update($data)){
+            return back()->with('msg', "Module Updated");
+        }else{
+            return back()->with('msg', "Something went wrong.");
+        }
         
     }
 }

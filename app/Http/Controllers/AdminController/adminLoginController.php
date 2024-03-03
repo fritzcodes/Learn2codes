@@ -33,11 +33,10 @@ class adminLoginController extends Controller
 
         if (Auth::guard('admin')->attempt($credetials)) {
             $userId = Auth::guard('admin')->id();
-
             return redirect()->route('Dashboard')->with('success', 'Login Success');
         } else {
 
-            return redirect()->route('AdminLogin')->with("error", "Wrong Email or Passwordsss.");
+            return redirect()->route('AdminLogin')->with("error", "Wrong Email or Passwords.");
         }
     }
 
