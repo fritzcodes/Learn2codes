@@ -92,7 +92,7 @@
 
         <div class="content-container1">
 
-          <a href="{{ route('JavaEasy10') }}" id="items"><h1>10 Items</h1>
+          <a href="/quizItem" id="items"><h1>10 Items</h1>
           </a>
 
           <a href="{{ route('JavaEasy15') }}" id="items"><h1>15 Items</h1>

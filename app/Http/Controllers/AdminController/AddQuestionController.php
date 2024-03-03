@@ -47,7 +47,7 @@ class AddQuestionController extends Controller
             ->get();
         return response()->json($question);
 
-        return back()->with('success', 'Deleted');
+        // return back()->with('success', 'Deleted');
     }
 
     public function getQuizMediumJava()// this is java Medium
@@ -57,7 +57,7 @@ class AddQuestionController extends Controller
             ->get();
         return response()->json($question);
 
-        return back()->with('success', 'Deleted');
+        // return back()->with('success', 'Deleted');
     }
 
     public function getQuizHardJava()// this is java Hard

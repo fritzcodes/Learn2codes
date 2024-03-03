@@ -42,6 +42,7 @@ Route::get('/trycode', function () {
 Route::get('/', function () {
     return view('landing');
 });
+Route::get('/admin/getQuiz', [AddQuestionController::class, 'getQuiz'])->name('getQuiz');
 Route::get('/admin/language', [LanguageController::class, 'Index'])->name('Language');
 Route::post('/admin/AddLanguage', [LanguageController::class, 'AddLanguage'])->name('AddLanguage');
 Route::post('/admin/UpdateLanguage', [LanguageController::class, 'UpdateLanguage'])->name('UpdateLanguage');
@@ -105,7 +106,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/question', [AddQuestionController::class, 'Index'])->name('Question');
     Route::post('/admin/addQuestion', [AddQuestionController::class, 'addQuestion'])->name('addQuestion');
     Route::post('/admin/deleteQuestion', [AddQuestionController::class, 'deleteQuestion'])->name('deleteQuestion');
-    Route::get('/admin/getQuizEasy', [AddQuestionController::class, 'getQuiz'])->name('getQuiz');
+    
     Route::get('/admin/getQuizMediumJava', [AddQuestionController::class, 'getQuizMediumJava'])->name('getQuizMediumJava');
     Route::get('/admin/getQuizHardJava', [AddQuestionController::class, 'getQuizHardJava'])->name('getQuizHardJava');
 
@@ -154,9 +155,9 @@ Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () 
       //quiz 
         Route::get('/selectLanguage', [QuizController::class, 'Index'])->name('Language');
         Route::get('/pythonDiff', [QuizController::class, 'PythonDifficulty'])->name('pythonDiff');
-        Route::get('/javaDiff', [QuizController::class, 'JavaDifficulty'])->name('javaDiff');
+        Route::get('/languageDiff', [QuizController::class, 'languageDiff'])->name('languageDiff');
         Route::get('/csharpDiff', [QuizController::class, 'CsharpDifficulty'])->name('csharpDiff');
-        Route::get('/quiz/{id}', [QuizController::class, 'quizzes'])->name('quizzes');
+        Route::get('/quiz/{id}', [QuizController::class, 'quizIndex'])->name('quizIndex');
                 
     //java quiz items
     Route::get('/javaItemEasy', [QuizController::class, 'JavaItemEasy'])->name('javaEasy');
@@ -164,8 +165,8 @@ Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () 
     Route::get('/javaItemHard', [QuizController::class, 'JavaItemHard'])->name('javaHard');
     
     // quiz java easy
-    Route::get('/javaQuizEasy10', [QuizController::class, 'JavaQuizEasy10'])->name('JavaEasy10');
-    Route::get('/javaQuizEasy15', [QuizController::class, 'JavaQuizEasy15'])->name('JavaEasy15');
+    Route::get('/quiz/{id}/{diff}', [QuizController::class, 'quizItem'])->name('quizItem');
+    Route::get('quiz/{id}/{diff}/{item}', [QuizController::class, 'StartQuiz'])->name('JavaQuizEasy15');
     Route::get('/javaQuizEasy20', [QuizController::class, 'JavaQuizEasy20'])->name('JavaEasy20');
     Route::get('/javaQuizEasy30', [QuizController::class, 'JavaQuizEasy30'])->name('JavaEasy30');
     

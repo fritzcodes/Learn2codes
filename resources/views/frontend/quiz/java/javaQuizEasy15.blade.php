@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Java Quiz</title>
-    <link rel="stylesheet" href="assets/css/quizContent.css">
+    <link rel="stylesheet" href="/assets/css/quizContent.css">
 
     
     <link rel="stylesheet"
@@ -108,10 +108,10 @@
     </div>
 
     <!-- Inside this JavaScript file I've inserted Questions and Options only -->
-    <script src="assets/js/Java/javaQueeasy15.js"></script>
+    <script src="/assets/js/Java/javaQueeasy15.js"></script>
 
     <!-- Inside this JavaScript file I've coded all Quiz Codes -->
-    <script src="assets/js/Java/quizContenteasy.js"></script>
+    <script src="/assets/js/Java/quizContenteasy.js"></script>
 
 </body>
 </html>

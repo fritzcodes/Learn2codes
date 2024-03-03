@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Select Difficulty</title>
-  <link rel="stylesheet" href="assets/css/quizDiff.css">
+  <link rel="stylesheet" href="/assets/css/quizDiff.css">
 
 <link rel="stylesheet"
    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -85,18 +85,18 @@
       
      <div class="content-section">
         <a>
-        <img src="assets/images/java_diff.svg" alt="Quizzes" id="logo">
+        <img src="/images/{{$data->picture}}" alt="Quizzes" id="logo">
         </a>
 
         <div class="content-container1">
 
-          <a href="{{ route('javaEasy') }}" id="easy"><h1>Easy</h1>
+          <a href="/quiz/{{urlencode($id)}}/easy" id="easy"><h1>Easy</h1>
           </a>
 
-          <a href="{{ route('javaMedium') }}" id="medium"><h1>Medium</h1>
+          <a href="/quiz/{{urlencode($id)}}/medium" id="medium"><h1>Medium</h1>
           </a>
 
-          <a href="{{ route('javaHard') }}" id="hard"><h1>Hard</h1>
+          <a href="/quiz/{{urlencode($id)}}/hard" id="hard"><h1>Hard</h1>
           </a>
 
         </div>

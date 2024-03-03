@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Select Items</title>
-  <link rel="stylesheet" href="assets/css/quizItem.css">
+  <link rel="stylesheet" href="/assets/css/quizItem.css">
 
 <link rel="stylesheet"
    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -45,7 +45,7 @@
 <body>
 
   <header>
-    <a href="{{ route('javaDiff') }}" class="bx bx-chevron-left" id="back-btn"></a>
+    <a href="" class="bx bx-chevron-left" id="back-btn"></a>
     <div class="bx bx-menu" id="menu-icon"></div>
 
     <ul class="navbar">
@@ -87,21 +87,21 @@
      <div> 
      <div class="content-section">
         <a>
-        <img src="assets/images/java_diff.svg" alt="Java" id="logo">
+          <img src="/images/{{$data->picture}}" alt="Java" id="logo">
         </a>
 
         <div class="content-container1">
 
-          <a href="{{ route('JavaEasy10') }}" id="items"><h1>10 Items</h1>
+          <a href="/quiz/{{$id}}/{{$diff}}/10" id="items"><h1>10 Items</h1>
           </a>
 
-          <a href="{{ route('JavaEasy15') }}" id="items"><h1>15 Items</h1>
+          <a href="/quiz/{{$id}}/{{$diff}}/15" id="items"><h1>15 Items</h1>
           </a>
 
-          <a href="{{ route('JavaEasy20') }}" id="items"><h1>20 Items</h1>
+          <a href="/quiz/{{$id}}/{{$diff}}/20" id="items"><h1>20 Items</h1>
           </a>
 
-          <a href="{{ route('JavaEasy30') }}" id="items"><h1>30 Items</h1>
+          <a href="/quiz/{{$id}}/{{$diff}}/30" id="items"><h1>30 Items</h1>
           </a>
 
         </div>

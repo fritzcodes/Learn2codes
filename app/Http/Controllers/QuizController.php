@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
-use App\Models\quiz_languages;
+use App\Models\prog_language;
 
 
 class QuizController extends Controller
@@ -11,15 +11,16 @@ class QuizController extends Controller
     /**
      * Display the about form.
      */
-    public function Index(): View
+    public function Index()
     {
-        $data = quiz_languages::all();
+        $data = prog_language::all();
         return view('frontend.quiz.selectLanguage', compact('data'));
     }
 
-    public function quizIndex(): View
+    public function quizIndex($id)
     {
-        return view('frontend.quiz.quiz');
+        $data = prog_language::where('language', $id )->first();
+        return view('frontend.quiz.java.javaDiff', compact('data'))->with('id', $id);
     }
 
 
@@ -27,7 +28,7 @@ class QuizController extends Controller
     
 
 //java Quiz Easy
-    public function JavaDifficulty(): View
+    public function languageDiff(): View
     {
         return view('frontend.quiz.java.javaDiff');
        
@@ -40,15 +41,17 @@ class QuizController extends Controller
       
     }
 
-    public function JavaQuizEasy10(): View
+    public function quizItem($id, $diff): View
     {
-        return view('frontend.quiz.java.javaQuizEasy10');
+        $data = prog_language::where('language', $id )->first();
+        return view('frontend.quiz.quiz', compact('data'))->with('id', $id)->with('diff', $diff);
       
     }
 
     
-    public function JavaQuizEasy15(): View
+    public function StartQuiz($id, $diff, $item): View
     {
+        $data = prog_language::where('language', $id )->first();
         return view('frontend.quiz.java.javaQuizEasy15');
       
     }
