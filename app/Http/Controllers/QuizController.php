@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
-use App\Models\prog_language;
+use App\Models\quiz_languages;
 
 
 class QuizController extends Controller
@@ -13,7 +13,7 @@ class QuizController extends Controller
      */
     public function Index(): View
     {
-        $data = prog_language::all();
+        $data = quiz_languages::all();
         return view('frontend.quiz.selectLanguage', compact('data'));
     }
 
@@ -21,6 +21,7 @@ class QuizController extends Controller
     {
         return view('frontend.quiz.quiz');
     }
+
 
 
     

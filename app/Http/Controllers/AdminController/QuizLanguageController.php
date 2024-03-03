@@ -5,24 +5,24 @@ namespace App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\LanguageAddRequest;
-use App\Models\prog_language;
+use App\Models\quiz_languages;
 
 
-class LanguageController extends Controller
+class QuizLanguageController extends Controller
 {
     public function Index()
     {
-        $data = prog_language::all();
-        return View('frontend.admin.language', compact('data'));
+        $data = quiz_languages::all();
+        return View('frontend.admin.quizLanguage', compact('data'));
     }
 
-    public function AddLanguage(LanguageAddRequest $request)
+    public function AddQuizLanguage(LanguageAddRequest $request)
     {
-        $language = new prog_language();
+        $language = new quiz_languages();
         $data = $request->validated();
 
         if ($request->hasFile('picture')) {
-            $language = new prog_language();
+            $language = new quiz_languages();
             $image = $request->file('picture');
             $filename = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('images'), $filename);
@@ -32,7 +32,7 @@ class LanguageController extends Controller
 
         $language->language = $request->language;
         $language->save();
-        return redirect()->back()->with('message', 'Language added successfully!');
+        return redirect()->back()->with('message', 'Quiz Language added successfully!');
     }
     public function UpdateLanguage($id)
     {

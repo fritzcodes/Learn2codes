@@ -81,7 +81,7 @@
     <section class="space-background">
 
         <div class="sidenav">
-            <h2>{{ $id }} Tutorial</h2>
+            <h2>{{ $id }} Module</h2>
             @foreach ($data as $item)
                 <a target="_top" href="#{{ $loop->index + 1 }}">{{ $item->title }} </a>
             @endforeach

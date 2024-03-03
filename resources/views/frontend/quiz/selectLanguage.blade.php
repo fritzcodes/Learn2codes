@@ -90,7 +90,7 @@
           @foreach($data as $item)
           <a href="/quiz/{{$item->language}}"><img src="/images/{{$item->picture}}" alt="img" draggable="false"></a>
           @endforeach
-          <a href="{{ route('javaDiff') }}"><img src="assets/images/java.svg" alt="img" draggable="false"></a>
+          {{-- <a href="{{ route('javaDiff') }}"><img src="assets/images/java.svg" alt="img" draggable="false"></a> --}}
       </ul>
       <i id="right" class="bx bx-chevron-right"></i>
     </div>
