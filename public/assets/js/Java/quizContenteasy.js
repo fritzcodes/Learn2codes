@@ -27,11 +27,11 @@ continue_btn.onclick = ()=>{
     shuffleArray(questions); // Shuffle the questions    
     showQuetions(0); //calling showQestions function
     queCounter(1); //passing 1 parameter to queCounter
-    startTimer(15); //calling startTimer function
+    startTimer(difficulty == "easy" ? 15 : difficulty == "medium" ? 30 : 60); //calling startTimer function
     startTimerLine(0); //calling startTimerLine function
 }
 
-let timeValue =  15;
+let timeValue =  difficulty == "easy" ? 15 : difficulty == "medium" ? 30 : 60;
 let que_count = 0;
 let que_numb = 1;
 let userScore = 0;
@@ -47,7 +47,7 @@ const quit_quiz = result_box.querySelector(".buttons .quit");
 restart_quiz.onclick = ()=>{
     quiz_box.classList.add("activeQuiz"); //show quiz box
     result_box.classList.remove("activeResult"); //hide result box
-    timeValue = 15; 
+    timeValue = difficulty == "easy" ? 15 : difficulty == "medium" ? 30 : 60; 
     que_count = 0;
     que_numb = 1;
     userScore = 0;
@@ -197,7 +197,7 @@ function startTimer(time){
 }
 
 function startTimerLine(time){
-    counterLine = setInterval(timer, 29);
+    counterLine = setInterval(timer, difficulty == "easy" ? 29 : difficulty == "medium" ? 56 : 111);
     function timer(){
         time += 1; //upgrading time value with 0.53
         time_line.style.width = time + "px"; //increasing width of time_line with px by time value

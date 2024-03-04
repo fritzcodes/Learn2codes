@@ -40,11 +40,15 @@ class AddQuestionController extends Controller
         return back()->with('success', 'Deleted');
     }
 
-    public function getQuiz() //this is Java Easy
+    public function getQuiz($id, $diff, $item) //this is Java Easy
     {
-        $question = Quizzes::where('language', 'java')
-            ->where('level', 'easy')
+       
+        $question = Quizzes::where('language', $id)
+            ->where('level', $diff)
+            ->limit($item)
             ->get();
+
+        
         return response()->json($question);
 
         // return back()->with('success', 'Deleted');

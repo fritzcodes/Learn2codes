@@ -42,7 +42,7 @@ Route::get('/trycode', function () {
 Route::get('/', function () {
     return view('landing');
 });
-Route::get('/admin/getQuiz', [AddQuestionController::class, 'getQuiz'])->name('getQuiz');
+Route::get('/admin/getQuiz/{id}/{diff}/{item}', [AddQuestionController::class, 'getQuiz'])->name('getQuiz');
 Route::get('/admin/language', [LanguageController::class, 'Index'])->name('Language');
 Route::post('/admin/AddLanguage', [LanguageController::class, 'AddLanguage'])->name('AddLanguage');
 Route::post('/admin/UpdateLanguage', [LanguageController::class, 'UpdateLanguage'])->name('UpdateLanguage');

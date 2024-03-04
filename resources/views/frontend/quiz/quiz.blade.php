@@ -81,7 +81,7 @@
       </div>
 
       <div id="subtitle">
-        <h2>Easy</h2>
+        <h2>{{ $diff }}</h2>
       </div>
       
      <div> 
@@ -92,16 +92,16 @@
 
         <div class="content-container1">
 
-          <a href="/quiz/{{$id}}/{{$diff}}/10" id="items"><h1>10 Items</h1>
+          <a href="/quiz/{{urlencode($id)}}/{{$diff}}/10" id="items"><h1>10 Items</h1>
           </a>
 
-          <a href="/quiz/{{$id}}/{{$diff}}/15" id="items"><h1>15 Items</h1>
+          <a href="/quiz/{{urlencode($id)}}/{{$diff}}/15" id="items"><h1>15 Items</h1>
           </a>
 
-          <a href="/quiz/{{$id}}/{{$diff}}/20" id="items"><h1>20 Items</h1>
+          <a href="/quiz/{{urlencode($id)}}/{{$diff}}/20" id="items"><h1>20 Items</h1>
           </a>
 
-          <a href="/quiz/{{$id}}/{{$diff}}/30" id="items"><h1>30 Items</h1>
+          <a href="/quiz/{{urlencode($id)}}/{{$diff}}/30" id="items"><h1>30 Items</h1>
           </a>
 
         </div>

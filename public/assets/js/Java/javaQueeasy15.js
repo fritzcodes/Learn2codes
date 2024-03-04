@@ -16,13 +16,21 @@ console.log('Language:', language); // Output: Java
 console.log('Difficulty:', difficulty); // Output: easy
 console.log('Number:', number); // Output: 10
 
+var formData = new FormData();
+
+formData.append('language', language);
+formData.append('difficulty', difficulty);
+formData.append('number', number);
+
 $.ajax({
-    url: '/admin/getQuiz',
+    url: `/admin/getQuiz/${language}/${difficulty}/${number}`,
     type: 'GET',
-    data: {language: language, difficulty:difficulty, number:number},
+    data: formData,
+    processData: false, // Prevent jQuery from processing the data
+    contentType: false,
     success: function(data) {
         // Populate questions array with the fetched data
-        questions = data.slice(0, 15).map(function(item) {
+        questions = data.map(function(item) {
             return {
                 numb: item.id,
                 question: item.question,

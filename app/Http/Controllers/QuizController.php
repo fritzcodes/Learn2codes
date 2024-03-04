@@ -50,9 +50,9 @@ class QuizController extends Controller
 
     
     public function StartQuiz($id, $diff, $item): View
-    {
+    {   
         $data = prog_language::where('language', $id )->first();
-        return view('frontend.quiz.java.javaQuizEasy15');
+        return view('frontend.quiz.java.javaQuizEasy15')->with('diff', $diff)->with('id', $id);
       
     }
 

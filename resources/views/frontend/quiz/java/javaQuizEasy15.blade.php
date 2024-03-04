@@ -50,7 +50,7 @@
     <div class="info_box">
         <div class="info-title"><span>Quiz Rules</span></div>
         <div class="info-list">
-            <div class="info">1. You will have only <span>15 seconds</span> per each question.</div>
+            <div class="info">1. You will have only <span>{{ $diff == "easy" ? 15 : ($diff == "medium" ? 30 : 60) }} seconds</span> per each question.</div>
             <div class="info">2. Once you select your answer, it can't be undone.</div>
             <div class="info">3. You can't select any option once time goes off.</div>
             <div class="info">4. You can't exit from the Quiz while you're playing.</div>
@@ -66,10 +66,12 @@
     <!-- Quiz Box -->
     <div class="quiz_box">
         <header>
-            <div class="title">Java: Easy</div>
+            <div class="title">{{ $id . ': ' . $diff }}</div>
             <div class="timer">
                 <div class="time_left_txt">Time Left</div>
-                <div class="timer_sec">15</div>
+                <div class="timer_sec">
+                {{ $diff == "easy" ? 15 : ($diff == "medium" ? 30 : 60) }}
+                </div>
             </div>
             <div class="time_line"></div>
         </header>
