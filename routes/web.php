@@ -16,6 +16,7 @@ use App\Http\Controllers\AdminController\LeaderboardController;
 use App\Http\Controllers\AdminController\ManageUserController;
 use App\Http\Controllers\ExerciseControllers;
 use App\Http\Controllers\ModulesController;
+use App\Http\Controllers\AdminController\ExerciseController;
 use Illuminate\Http\Request;
 //use App\Models\User;
 use Illuminate\Contracts\View\View;
@@ -125,7 +126,8 @@ Route::middleware(['auth:admin'])->group(function () {
     
     Route::get('/admin/manageUser', [ManageUserController::class,'Index'])->name('ManageUser');
     Route::get('/admin/leaderboard', [LeaderboardController::class,'Index'])->name('Leaderboard');
-
+    Route::get('/admin/exercise', [ExerciseController::class, 'Index'])->name('addExercise');
+    Route::post('/admin/addExercise', [ExerciseController::class, 'addExercise'])->name('addExercise');
 
 });
 

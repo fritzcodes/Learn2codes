@@ -22,7 +22,7 @@
     padding: 90px 10%;
     width: 100%;
     height: 100vh;
-    background: url("assets/images/backquiz.svg");
+    background: url("/assets/images/backquiz.svg");
     color: var(--text-color);
     overflow-x: hidden; /* Prevent horizontal scrolling */
     z-index: -1; /* Behind other content */
@@ -58,7 +58,7 @@
                             alt="Profile Photo" class="avatar">
                     @else
                         <!-- Placeholder image or default avatar -->
-                        <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
+                        <img src="/assets/images/avatar.png" alt="Default Avatar" class="avatar">
                     @endif
                     <h2>{{ Auth::user()->username }}</h2>
                 </a></button>
@@ -108,7 +108,7 @@
     </div>
   </section>
 
-<script type="text/javascript" src="assets/js/headermenu.js"></script>
+<script type="text/javascript" src="/assets/js/headermenu.js"></script>
 
 </body>
 </html>

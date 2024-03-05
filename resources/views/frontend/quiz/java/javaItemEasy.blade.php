@@ -22,7 +22,7 @@
     padding: 90px 10%;
     width: 100%;
     height: 100vh;
-    background: url("assets/images/backquiz.svg");
+    background: url("../assets/images/backquiz.svg");
     color: var(--text-color);
     overflow-x: hidden; /* Prevent horizontal scrolling */
     z-index: -1; /* Behind other content */
