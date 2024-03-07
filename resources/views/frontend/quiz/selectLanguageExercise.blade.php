@@ -49,7 +49,7 @@
 <body>
 
     <header>
-        <a onclick="window.history.back()" class="bx bx-chevron-left" id="back-btn"></a>
+        <a href="/playground" class="bx bx-chevron-left" id="back-btn"></a>
         <div class="bx bx-menu" id="menu-icon"></div>
 
         <ul class="navbar">
