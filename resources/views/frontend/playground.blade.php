@@ -83,7 +83,7 @@
         </div>
 
         <div class="content-container2">
-          <a href="{{ route('javaExe') }}" class="content-link"> 
+          <a href="/exercise/selectLanguage" class="content-link"> 
             <img src="assets/images/exercise-btn.svg" alt="Exercises" id="exercises">
           </a>
         </div>

@@ -211,6 +211,14 @@ function showIncorrect() {
   incorrect.style.display = "block";
 }
 
+function showScore() {
+  const incorrect = document.getElementById("showScore");
+  const currentQuiz = document.getElementById("quiz-container-" + currentQuestion);
+
+  currentQuiz.style.display = "none";
+  incorrect.style.display = "block";
+}
+
 function nextQuestion1() {
   const congratulations = document.getElementById("congratulations");
   const incorrect = document.getElementById("incorrect");

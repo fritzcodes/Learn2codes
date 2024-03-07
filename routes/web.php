@@ -156,6 +156,7 @@ Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () 
         
       //quiz 
         Route::get('/selectLanguage', [QuizController::class, 'Index'])->name('Language');
+        Route::get('/exercise/selectLanguage', [ExerciseControllers::class, 'selectLanguage'])->name('selectLanguage');
         Route::get('/pythonDiff', [QuizController::class, 'PythonDifficulty'])->name('pythonDiff');
         Route::get('/languageDiff', [QuizController::class, 'languageDiff'])->name('languageDiff');
         Route::get('/csharpDiff', [QuizController::class, 'CsharpDifficulty'])->name('csharpDiff');
@@ -269,7 +270,7 @@ Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () 
     //   Route::get('/java_Syntax', [ModulesController::class, 'JavaModuleSyntax'])->name('JavaSyntax');
     //   Route::get('/java_Features', [ModulesController::class, 'JavaModuleFeatures'])->name('JavaFeatures');
     
-    Route::get('/javaExercise', [ExerciseControllers::class, 'Index'])->name('javaExe');
+    Route::get('/exercise/{id}', [ExerciseControllers::class, 'Index'])->name('exerciseQuiz');
 });
 
 

@@ -14,16 +14,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="assets/css/Exercise.css">
+    <link rel="stylesheet" href="/assets/css/Exercise.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    
+
     <style>
         body {
 
             padding: 90px 10%;
             width: 100%;
             height: 100vh;
-            background: url("assets/images/bg.svg");
+            background: url("/assets/images/bg.svg");
             background-repeat: no-repeat;
             background-attachment: fixed;
             overflow: hidden;
@@ -51,28 +51,28 @@
         </div>
         <button onclick="checkAnswers()">Submit</button>
 
-        <p class="additional-info">1 of 10 Questions</p>
+        <p style="color:white; font-family:Arial, Helvetica, sans-serif; margin-left:40px"><span id="itemNumber">1</span> of 10 Questions</p>
     </div>
 
 
     <div id="congratulations">
-        <img src="assets/images/confe2.svg" alt="Left Image"
+        <img src="/assets/images/confe2.svg" alt="Left Image"
             style="position: absolute; left: 125px; top: 20%; transform: translateY(-50%); width: 120px;">
-        <img src="assets/images/confet.svg" alt="Right Image"
+        <img src="/assets/images/confet.svg" alt="Right Image"
             style="position: absolute; right: 125px; top: 20%; transform: translateY(-50%); width: 120px;">
         <h2>CORRECT!</h2>
         <div class="correct-container">
-            <p class="correct-answer" > <code id="correctAns"> {!! $data['0']->content !!} </code></p>
+            <p class="correct-answer"> <code id="correctAns"> {!! $data['0']->content !!} </code></p>
         </div>
         <button class="next-btn submitBtn"> Next>> </button>
 
-        <p class="additional-info2">1 of 10 Questions</p>
+        
     </div>
 
     <div id="incorrect">
-        <img src="assets/images/robo1.svg" alt="Right Image"
+        <img src="/assets/images/robo1.svg" alt="Right Image"
             style="position: absolute; right: 125px; top: 20%; transform: translateY(-50%); width: 100px;">
-        <img src="assets/images/robo2.svg" alt="Left Image"
+        <img src="/assets/images/robo2.svg" alt="Left Image"
             style="position: absolute; left: 125px; top: 20%; transform: translateY(-50%); width: 100px;">
         <h2>INCORRECT!</h2>
         <div class="incorrect-ans">
@@ -80,17 +80,29 @@
         </div>
         <button class="skip-btn submitBtn" id="submitBtn"> Next>> </button>
 
-        <p class="additional-info3">1 of 10 Questions</p>
+        
     </div>
 
+    <div id="showScore" style="display: none">
+        <img src="/assets/images/confe2.svg" alt="Left Image"
+            style="position: absolute; left: 125px; top: 20%; transform: translateY(-50%); width: 120px;">
+        <img src="/assets/images/confet.svg" alt="Right Image"
+            style="position: absolute; right: 125px; top: 20%; transform: translateY(-50%); width: 120px;">
+        <h2>Your Score</h2>
+        <div class="correct-containers">
+            <p class="correct-answers"> <code id="scoreShow"> </code></p>
+        </div>
+        <button class="next-btn submitBtns"> Next>> </button>
 
+    </div>
 
-    <script src="assets/js/Exercise.js"></script>
+    <script src="/assets/js/Exercise.js"></script>
     <script>
         var score = 0;
         var answers = [];
-        function underlineRel(){
-          
+
+        function underlineRel() {
+
             var fillInBlanks = document.querySelectorAll("#exerciseContent u");
             fillInBlanks.forEach(function(uTag, index) {
 
@@ -113,11 +125,12 @@
             });
         }
         underlineRel();
+
         function checkAnswers() {
-      
+
             var correctAnswers = answers;
             var userAnswers = [];
-console.log(answers);
+            console.log(answers);
             var textBoxes = document.querySelectorAll("input[type='text']");
             textBoxes.forEach(function(textBox) {
                 var index = parseInt(textBox.getAttribute("data-index"));
@@ -153,33 +166,36 @@ console.log(answers);
             var incorrectAns = document.getElementById('incorrectAns');
             var submitButton = document.getElementById('submitBtn');
             var incorrect = document.getElementById('incorrect');
+            var correct = document.getElementById('congratulations');
             var quiz = document.getElementById('quiz-container-1');
 
 
-            // Event listener for the submit button
-            submitButton.addEventListener('click', function() {
-              console.log("asdkh");
-                // Increment dataIndex
-                dataIndex++;
+            $('.submitBtn').click(function() {
 
-                // Check if dataIndex exceeds dataLength
+                dataIndex++;
+                $('#itemNumber').html(dataIndex + 1);
+
                 if (dataIndex >= dataLength) {
-                    
-                }else{
-                  exerciseContent.innerHTML = data[dataIndex].content;
-                  correctAns.innerHTML = data[dataIndex].content;
-                  incorrectAns.innerHTML = data[dataIndex].content;
-                  console.log(data[dataIndex].content);
+
+                } else {
+                    exerciseContent.innerHTML = data[dataIndex].content;
+                    correctAns.innerHTML = data[dataIndex].content;
+                    incorrectAns.innerHTML = data[dataIndex].content;
+                    console.log(data[dataIndex].content);
                 }
 
                 // Update content of exerciseContent
-               
+
                 incorrect.style.display = "none";
                 quiz.style.display = "block";
-                answers = []; 
+                correct.style.display = "none";
+                answers = [];
                 underlineRel();
-                
-            });
+
+
+            })
+
+
         });
     </script>
 
