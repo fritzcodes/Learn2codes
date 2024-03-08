@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Java Home</title>
     <link rel="stylesheet" href="../assets/css/java_Module.css">
 
@@ -15,6 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <style>
         body {
@@ -83,45 +85,96 @@
         <div class="sidenav">
             <h2>{{ $id }} Module</h2>
             @foreach ($data as $item)
-                <a target="_top" href="#{{ $loop->index + 1 }}">{{ $item->title }} </a>
+            <a target="_top" href="#{{ $loop->index + 1 }}">{{ $item->title }} </a>
             @endforeach
 
-           
+
 
         </div>
 
 
 
 
-        <div class="content">
+        <div class="content" id="content">
             <div id="main">
+
             </div>
         </div>
     </section>
 
     <script type="text/javascript" src="../assets/js/headermenu.js"></script>
     <script>
-       
-       function updateContent() {
-        var fragment = window.location.hash;
-        var number = fragment.substring(1);
-        var newIndex = parseInt(number) - 1;
-        var data = {!! json_encode($data) !!}; 
-        var content = data[newIndex].content;
-        document.getElementById('main').innerHTML = content;
-    }
+        var bottomReached = false;
+        // Get the pathname from the URL
+        const pathname = window.location.pathname;
 
-    // Function to execute updateContent when the hash changes
-    function onHashChange() {
-        // Execute updateContent whenever the hash changes
-        window.addEventListener('hashchange', updateContent);
-    }
+        // Split the pathname by '/'
+        const parts = pathname.split('/');
 
-    // Call onHashChange to start listening for hash changes
-    onHashChange();
+        // Extract the module, language, and number
+        const module = parts[1];
+        const language = parts[2];
+        const number = window.location.hash;
+        const activity = module + ", " + language + "," + number;
+        
 
-    // Call updateContent initially to update content based on the initial hash
-    updateContent();
+        document.getElementById('content').onscroll = function() {
+            var scrollHeight = document.documentElement.scrollHeight;
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            var clientHeight = document.documentElement.clientHeight;
+            // Get the pathname from the URL
+           
+
+            if (!bottomReached && scrollTop + clientHeight >= scrollHeight - 10) {
+                var formData = new FormData();
+                bottomReached = true;
+                const csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+                formData.append('activity', activity);
+                formData.append('language', language);
+                formData.append('points', 1);
+
+
+                $.ajax({
+                    url: '/exp',
+                    method: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    processData: false, // Important: Do not process FormData
+                    contentType: false,
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken // Include CSRF token in the headers
+                    },
+                    success: function(data) {
+                        console.log(data);
+                    },
+                    error: function(xhr) {
+                        alert(xhr.responseText);
+                    }
+                })
+            }
+        };
+
+        function updateContent() {
+            var fragment = window.location.hash;
+            var number = fragment.substring(1);
+            var newIndex = parseInt(number) - 1;
+            var data = {!!json_encode($data) !!};
+            var content = data[newIndex].content;
+            document.getElementById('main').innerHTML = content;
+        }
+
+        // Function to execute updateContent when the hash changes
+        function onHashChange() {
+            // Execute updateContent whenever the hash changes
+            window.addEventListener('hashchange', updateContent);
+        }
+
+        // Call onHashChange to start listening for hash changes
+        onHashChange();
+
+        // Call updateContent initially to update content based on the initial hash
+        updateContent();
     </script>
 </body>
 

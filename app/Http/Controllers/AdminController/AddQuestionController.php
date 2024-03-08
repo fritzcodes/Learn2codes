@@ -45,6 +45,7 @@ class AddQuestionController extends Controller
        
         $question = Quizzes::where('language', $id)
             ->where('level', $diff)
+            ->inRandomOrder()
             ->limit($item)
             ->get();
 
