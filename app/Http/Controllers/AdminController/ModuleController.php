@@ -32,9 +32,11 @@ class ModuleController extends Controller
         return redirect()->back()->with('message', 'Module Added');
     }
 
-    public function languageModule()
+    public function languageModule($id)
     {
-        $data = ModuleTable::orderBy('order')->get();
+        $data = ModuleTable::orderBy('order')
+        ->where('language', $id)
+        ->get();
         return view('frontend.admin.languageModule', compact('data'));
     }
 
