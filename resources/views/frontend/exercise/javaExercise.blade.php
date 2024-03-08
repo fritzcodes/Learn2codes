@@ -49,7 +49,7 @@
     @else
         <div class="quiz-container" id="quiz-container-1">
             <h2> {!! $data['0']->language !!} Exercise </h2>
-            <p id="question-1">Insert the missing part of the code below to output "Hello World".</p>
+            <p id="question-1">Insert the missing part to complete the code.</p>
             <div class="code-container">
                 <code id="exerciseContent">{!! $data['0']->content !!}
                     {{-- public class MyClass {<br> 
