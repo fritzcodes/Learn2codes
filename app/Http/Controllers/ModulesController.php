@@ -17,6 +17,7 @@ class ModulesController extends Controller
     public function JavaModuleDefault($id): View
     {
         $data = Module::where('language', $id)
+        ->orderBy('order')
         ->get();
 
         return view('frontend.modules.module', compact('data', 'id'));

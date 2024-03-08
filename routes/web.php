@@ -25,7 +25,7 @@ use App\Http\Middleware\Admin;
 use App\Http\Controllers\AdminController\LanguageController;
 use App\Http\Controllers\AdminController\ModuleController;
 use App\Http\Controllers\AdminController\QuizLanguageController;
-
+use App\Http\Controllers\ExpController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -141,6 +141,7 @@ Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () 
         return view('frontend.playground');
     })->name('Playground');
     Route::get('/quiz', [QuizController::class,'quizIndex'])->name('quizIndex');
+    Route::post('/exp', [ExpController::class,'Index'])->name('expIndex');
         //profile
         Route::get('/profile', [ProfileController::class, 'Index'])->name('profile');
         Route::post('/update', [ProfileController::class, 'update'])->name('update');
