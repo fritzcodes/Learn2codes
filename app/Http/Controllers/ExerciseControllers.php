@@ -10,6 +10,7 @@ class ExerciseControllers extends Controller
 {
     public function Index($id)
     {
+        
         $data = Exercise::where('language', $id)->LIMIT('10')->get();
         return view('frontend.exercise.javaExercise', compact('data'));
     }
