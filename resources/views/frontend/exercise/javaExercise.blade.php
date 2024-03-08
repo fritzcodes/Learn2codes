@@ -48,7 +48,7 @@
     </script>
     @else
         <div class="quiz-container" id="quiz-container-1">
-            <h2>Exercise 1</h2>
+            <h2> {!! $data['0']->language !!} Exercise </h2>
             <p id="question-1">Insert the missing part of the code below to output "Hello World".</p>
             <div class="code-container">
                 <code id="exerciseContent">{!! $data['0']->content !!}
