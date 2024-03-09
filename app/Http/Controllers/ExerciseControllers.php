@@ -9,9 +9,8 @@ use App\Models\prog_language;
 class ExerciseControllers extends Controller
 {
     public function Index($id)
-    {
-        
-        $data = Exercise::where('language', $id)->LIMIT('10')->get();
+    { 
+        $data = Exercise::where('language', $id)->inRandomOrder()->limit(10)->get();
         return view('frontend.exercise.javaExercise', compact('data'));
     }
 

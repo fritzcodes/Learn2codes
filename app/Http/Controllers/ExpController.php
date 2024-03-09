@@ -25,11 +25,9 @@ class ExpController extends Controller
             ->first();
 
         if ($find) {
-            if ($find->points < $request->points) {
                 $experience->where('activity', $find->activity)
                     ->where('user_id', $find->user_id)
-                    ->update(['points' => $request->points]);
-            }
+                    ->update(['points' => intval($find->points + $request->points)]);
         } else {
             $experience->save();
         }
