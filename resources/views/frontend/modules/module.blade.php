@@ -161,7 +161,9 @@
             var newIndex = parseInt(number) - 1;
             var data = {!!json_encode($data) !!};
             var content = data[newIndex].content;
-            document.getElementById('main').innerHTML = content;
+            var addcontent = data[newIndex].trycode == "" ? '' : content + '<br><br> <h2>Example Code</h2>' 
+            + '<pre>' + data[newIndex].trycode + `</pre><br><br><button><a href="/trycode/`+data[newIndex].id+`">Try Code</a></button>`;
+            document.getElementById('main').innerHTML = addcontent;
         }
 
         // Function to execute updateContent when the hash changes

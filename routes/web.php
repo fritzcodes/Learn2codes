@@ -26,6 +26,7 @@ use App\Http\Controllers\AdminController\LanguageController;
 use App\Http\Controllers\AdminController\ModuleController;
 use App\Http\Controllers\AdminController\QuizLanguageController;
 use App\Http\Controllers\ExpController;
+use App\Http\Controllers\TryCodeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,9 +38,7 @@ use App\Http\Controllers\ExpController;
 |
 */
 
-Route::get('/trycode', function () {
-    return view('frontend.admin.trycode');
-});
+Route::get('/trycode/{id}', [TryCodeController::class,'Index'])->name('trycode');
 Route::get('/', function () {
     return view('landing');
 });

@@ -25,7 +25,8 @@ class Module extends FormRequest
             'title' => ['required', 'string'],
             'content' => ['required', 'string'],
             'language' => ['required', 'string'],
-            'trycode' => ['string']
+            'trycode' => ['nullable', 'string'],
+            'filename' => ['nullable', 'string'],
         ];
     }
 }

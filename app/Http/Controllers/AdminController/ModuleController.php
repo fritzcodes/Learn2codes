@@ -27,6 +27,7 @@ class ModuleController extends Controller
         $module->content = $request->content;
         $module->language = $request->language;
         $module->trycode = $request->trycode;
+        $module->filename = $request->filename;
 
         $module->save();
         return redirect()->back()->with('message', 'Module Added');
