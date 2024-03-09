@@ -47,12 +47,12 @@
         })
     </script>
     @else
-    <div class="quiz-container" id="quiz-container-1">
-        <h2>Exercise 1</h2>
-        <p id="question-1">Insert the missing part of the code below to output "Hello World".</p>
-        <div class="code-container">
-            <code id="exerciseContent">{!! $data['0']->content !!}
-                {{-- public class MyClass {<br> 
+        <div class="quiz-container" id="quiz-container-1">
+            <h2> {!! $data['0']->language !!} Exercise </h2>
+            <p id="question-1">Insert the missing part to complete the code.</p>
+            <div class="code-container">
+                <code id="exerciseContent">{!! $data['0']->content !!}
+                    {{-- public class MyClass {<br> 
     public static void main(String[] args) { 
       <span class="underline" id="underline1" data-answer="System" onclick="activateUnderline(this)"></span>.
       <span class="underline" id="underline2" data-answer="out" onclick="activateUnderline(this)"></span>.
