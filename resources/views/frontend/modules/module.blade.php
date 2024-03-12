@@ -51,27 +51,27 @@
 <body>
 
     <header>
-        <a href="moduleLanguage" class="bx bx-chevron-left" id="back-btn"></a>
+        <a href="{{ route('moduleLanguage') }}" class="bx bx-chevron-left" id="back-btn"></a>
         <div class="bx bx-menu" id="menu-icon"></div>
 
         <ul class="navbar">
 
             <ul class="profile">
                 <button><a href="{{ route('profile') }}" class="profile-link">
-
                         @if (Auth::check() && Auth::user()->profile_photo)
-                        <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : '../assets/images/avatar.png' }}" alt="Profile Photo" class="avatar">
+                            <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : '../assets/images/avatar.png' }}"
+                                alt="Profile Photo" class="avatar">
                         @else
-                        <!-- Placeholder image or default avatar -->
-                        <img src="../assets/images/avatar.png" alt="Default Avatar" class="avatar">
+                            <!-- Placeholder image or default avatar -->
+                            <img src="../assets/images/avatar.png" alt="Default Avatar" class="avatar">
                         @endif
                         <h2>{{ Auth::user()->username }}</h2>
                     </a></button>
             </ul>
 
-            <li><a href="startmenu">Home</a></li>
+            <li><a href="{{ route('startmenu') }}">Home</a></li>
             <li><a href="#forums">Forums</a></li>
-            <li><a href="Playground">Playground</a></li>
+            <li><a href="{{ route('Playground') }}">Playground</a></li>
             <li><a href="moduleLanguage">Modules</a></li>
             <li><a href="#leaderboard">Leaderboard</a></li>
             <li><a class="logout-btn" href="{{ route('logout') }}">Logout</a></li>
@@ -85,7 +85,7 @@
         <div class="sidenav">
             <h2>{{ $id }} Module</h2>
             @foreach ($data as $item)
-            <a target="_top" href="#{{ $loop->index + 1 }}">{{ $item->title }} </a>
+                <a target="_top" href="#{{ $loop->index + 1 }}">{{ $item->title }} </a>
             @endforeach
 
 
@@ -116,14 +116,14 @@
         const language = parts[2];
         const number = window.location.hash;
         const activity = module + ", " + language + "," + number;
-        
+
 
         document.getElementById('content').onscroll = function() {
             var scrollHeight = document.documentElement.scrollHeight;
             var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             var clientHeight = document.documentElement.clientHeight;
             // Get the pathname from the URL
-           
+
 
             if (!bottomReached && scrollTop + clientHeight >= scrollHeight - 10) {
                 var formData = new FormData();
@@ -159,12 +159,22 @@
             var fragment = window.location.hash;
             var number = fragment.substring(1);
             var newIndex = parseInt(number) - 1;
-            var data = {!!json_encode($data) !!};
+            var data = {!! json_encode($data) !!};
             var content = data[newIndex].content;
-            var addcontent = data[newIndex].trycode == "" ? '' : content + '<br><br> <h2>Example Code</h2>' 
-            + '<pre>' + data[newIndex].trycode + `</pre><br><br><button><a href="/trycode/`+data[newIndex].id+`">Try Code</a></button>`;
+            var trycode = data[newIndex].trycode;
+            var addcontent = content;
+
+            if (trycode !== null && trycode.trim() !== "") {
+                addcontent += '<br><br> <h2>Example Code</h2>' +
+                    '<pre>' + trycode + '</pre><br><br><button><a href="/trycode/' + data[newIndex].id +
+                    '">Try Code</a></button>';
+            }
+
             document.getElementById('main').innerHTML = addcontent;
         }
+
+
+
 
         // Function to execute updateContent when the hash changes
         function onHashChange() {
