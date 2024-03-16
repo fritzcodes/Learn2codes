@@ -51,6 +51,9 @@
             <h1>Play!<br><span style="color: #8367AB;">CODE!</span></h1>
             <p>Gamified Coding Platform for Everyone!</p>
             @if (session('id'))
+
+                <?php session_start(); $_SESSION['L2C_id'] = session('id');?> <!-- This line is for the Webgame to work Properly-->
+
                 <a href="{{ route('startmenu') }}" class="start-btn"><img src="assets/images/start.svg"></a>
             @else
                 <a href="{{ route('login') }}" class="start-btn"><img src="assets/images/start.svg"></a>
