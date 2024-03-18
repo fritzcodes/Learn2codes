@@ -26,6 +26,7 @@ use App\Http\Controllers\AdminController\LanguageController;
 use App\Http\Controllers\AdminController\ModuleController;
 use App\Http\Controllers\AdminController\QuizLanguageController;
 use App\Http\Controllers\ExpController;
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\TryCodeController;
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,9 @@ use App\Http\Controllers\TryCodeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/forum', [ForumController::class,'Index'])->name('forum');
+
 
 Route::get('/trycode/{id}', [TryCodeController::class,'Index'])->name('trycode');
 Route::get('/', function () {

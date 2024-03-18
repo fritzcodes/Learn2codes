@@ -83,10 +83,21 @@
 	<div class="percentage2">Exercise experience gain is: </div>
 	<div class="exer">0</div>
    
-        <div class="label3">Quizzes</div>
-        <p class="linelabel3">__________________________________________</p>
-	<div class="percentage3">Quizzes experience gain is: </div>
-	<div class="quiz">0</div>
+  <div class="label3">Quizzes</div>
+  <p class="linelabel3">__________________________________________</p>
+  <div class="percentage3">Quizzes experience gain is: </div>
+  
+  @if(count($totalPointsByLanguage) > 0)
+  @foreach($totalPointsByLanguage as $item)
+         
+              <div class="quiz">{{ $item->total_points }}</div>
+       <br>
+      @endforeach
+  @else
+      <div class="quiz">No data available</div>
+  @endif
+  
+
 
 	<div class="rectangle-15">
         <p class="Experience">Progress Experience</p>
@@ -105,7 +116,7 @@
 </section>
 
 <script type="text/javascript" src="assets/js/headermenu.js"></script>
-<script src="assets/js/Progress.js"></script>
+{{-- <script src="assets/js/Progress.js"></script> --}}
 <script>document.getElementById('menu-icon').addEventListener('click', function () {
   document.querySelector('.navbar').classList.toggle('open');
 });

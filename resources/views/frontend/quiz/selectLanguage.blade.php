@@ -43,7 +43,7 @@
 <body>
 
     <header>
-        <a href="startmenu" class="bx bx-chevron-left" id="back-btn"></a>
+        <a href="/startmenu" class="bx bx-chevron-left" id="back-btn"></a>
         <div class="bx bx-menu" id="menu-icon"></div>
 
         <ul class="navbar">
@@ -62,9 +62,9 @@
                     </a></button>
             </ul>
 
-            <li><a href="startmenu">Home</a></li>
+            <li><a href="/startmenu">Home</a></li>
             <li><a href="#forums">Forums</a></li>
-            <li><a href="Playground">Playground</a></li>
+            <li><a href="/Playground">Playground</a></li>
             <li><a href="#modules">Modules</a></li>
             <li><a href="#leaderboard">Leaderboard</a></li>
             <li><a class="logout-btn" href="{{ route('logout') }}">Logout</a></li>

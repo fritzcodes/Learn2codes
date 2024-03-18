@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Java Home</title>
+    <title>Module</title>
     <link rel="stylesheet" href="../assets/css/java_Module.css">
 
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -51,7 +51,7 @@
 <body>
 
     <header>
-        <a href="{{ route('moduleLanguage') }}" class="bx bx-chevron-left" id="back-btn"></a>
+        <a href="/module/moduleLanguage" class="bx bx-chevron-left" id="back-btn"></a>
         <div class="bx bx-menu" id="menu-icon"></div>
 
         <ul class="navbar">
@@ -70,9 +70,9 @@
             </ul>
 
             <li><a href="{{ route('startmenu') }}">Home</a></li>
-            <li><a href="#forums">Forums</a></li>
+            <li><a href="/forums">Forums</a></li>
             <li><a href="{{ route('Playground') }}">Playground</a></li>
-            <li><a href="moduleLanguage">Modules</a></li>
+            <li><a href="/moduleLanguage">Modules</a></li>
             <li><a href="#leaderboard">Leaderboard</a></li>
             <li><a class="logout-btn" href="{{ route('logout') }}">Logout</a></li>
 

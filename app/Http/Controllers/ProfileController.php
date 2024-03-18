@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
+use App\Models\Experience;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
+
 
 class ProfileController extends Controller
 {
@@ -193,10 +198,22 @@ class ProfileController extends Controller
     }
 
 
-    public function Myprogress(): View
-    {
-        return view('frontend.profile.profile-progress');
-    }
+public function Myprogress(): View
+{
+    // Fetch all experiences grouped by language and calculate total points for each language
+    $totalPointsByLanguage = Experience::select('language', DB::raw('SUM(points) as total_points'))
+        ->groupBy('language')
+        ->get();
+
+// Log the total points by language for debugging
+Log::info('Total Points by Language: ' . json_encode($totalPointsByLanguage));
+
+
+    
+
+    // Pass the total points by language to the view
+    return view('frontend.profile.profile-progress', ['totalPointsByLanguage' => $totalPointsByLanguage]);
+}
 
 
     public function Search(): View

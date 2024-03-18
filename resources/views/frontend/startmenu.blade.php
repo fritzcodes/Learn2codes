@@ -104,7 +104,7 @@
             </div>
 
             <div class="content-container4">
-                <a href="#" class="content-link">
+                <a href="/forum" class="content-link">
                     <img src="assets/images/forums-btn.svg" alt="forum" id="forum">
                 </a>
             </div>
