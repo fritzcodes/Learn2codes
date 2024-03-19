@@ -31,6 +31,16 @@
             overflow: hidden;
             background-size: cover;
         }
+        .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5%;
+}
+
+.button-container button {
+    margin-right: 10px; /* Adjust the spacing between buttons as needed */
+}
+
     </style>
 </head>
 
@@ -96,9 +106,12 @@
         <img src="/assets/images/confet.svg" alt="Right Image" style="position: absolute; right: 125px; top: 20%; transform: translateY(-50%); width: 120px;">
         <h2>Your Score</h2>
         <div class="correct-containers">
-            <p class="correct-answers"> <code id="scoreShow"> </code></p>
+            <p class="correct-answers"> <code id="scoreShow" style="margin-left:47%; font-size:70px;"> </code></p>
         </div>
-        <button class="next-btn submitBtns"><a href=""> Back</a></button>
+        <div class="button-container">
+            <button class="next-btn submitBtns" style="margin-right: 7%"><a href="">Try again</a></button>
+            <button class="next-btn submitBtns"><a href="/exercise/selectLanguage">Quit</a></button>
+        </div>
 
     </div>
 
@@ -167,7 +180,7 @@
             const parts = url.split('/');
             const id = parts[parts.length - 1];
             const cat = parts[parts.length - 2];
-            const activity = id + ", " + cat;
+            const activity = cat + ", " + id;
             var dataIndex = 0;
             var dataLength = {!!json_encode(count($data)) !!}; // Get the length of $data
             var data = {!!json_encode($data) !!};

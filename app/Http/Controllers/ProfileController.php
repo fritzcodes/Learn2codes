@@ -12,11 +12,12 @@ use Illuminate\View\View;
 use App\Models\Experience;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-
+use App\Models\prog_language;
 
 
 class ProfileController extends Controller
 {
+
     /**
      * Display the user's profile form.
      */
@@ -127,12 +128,12 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update (ProfileUpdateRequest $request)
+    public function update(ProfileUpdateRequest $request)
     {
         $user = Auth::user();
         $data = $request->validated();
 
-        
+
 
         if ($request->hasFile('profile_photo')) {
             $image = $request->file('profile_photo');
@@ -160,7 +161,7 @@ class ProfileController extends Controller
         return view('frontend.profile.changepassword');
     }
 
-        // public function changePassword(Request $request)
+    // public function changePassword(Request $request)
     // {
     //     if (!Hash::check($request->current_password, Auth::user()->password)) {
     //         $msg = "error";
@@ -194,32 +195,55 @@ class ProfileController extends Controller
 
     public function Badge(): View
     {
-        return view('frontend.profile.profile-badge');
+        $data = prog_language::All();
+        return view('frontend.profile.profile-badge', compact('data'));
     }
 
 
-public function Myprogress(): View
-{
-    // Fetch all experiences grouped by language and calculate total points for each language
-    $totalPointsByLanguage = Experience::select('language', DB::raw('SUM(points) as total_points'))
-        ->groupBy('language')
-        ->get();
+    public function Myprogress(): View
+    {
+        function extractFirstWordEndingWithComma($inputString)
+        {
+            $pattern = '/^\s*([^,]+),/';
 
-// Log the total points by language for debugging
-Log::info('Total Points by Language: ' . json_encode($totalPointsByLanguage));
+            if (preg_match($pattern, $inputString, $matches)) {
+                return trim($matches[1]);
+            } else {
+                return null;
+            }
+        }
+
+        // Fetch all experiences grouped by language and calculate total points for each language
+        $userId = Auth::user()->id;
+        $exp = Experience::where('user_id', $userId)->get();
+        if (count($exp) > 0) {
+            $quizPoints = 0;
+            $modulePoints = 0;
+            $exercisePoints = 0;
+            foreach ($exp as $item) {
+                $act = extractFirstWordEndingWithComma($item->activity);
+                if ($act == "quiz") {
+                    $quizPoints += intval($item->points);
+                }
+                if ($act == "module") {
+                    $modulePoints += intval($item->points);
+                }
+                if ($act == "exercise") {
+                    $exercisePoints += intval($item->points);
+                }
+            }
+        } else {
+            $points = 0;
+        }
+
+        return view('frontend.profile.profile-progress', compact('quizPoints', 'modulePoints', 'exercisePoints'));
+    }
 
 
-    
-
-    // Pass the total points by language to the view
-    return view('frontend.profile.profile-progress', ['totalPointsByLanguage' => $totalPointsByLanguage]);
-}
 
 
     public function Search(): View
     {
         return view('frontend.profile.badge-search');
     }
-
 }
-

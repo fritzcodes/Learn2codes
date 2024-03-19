@@ -83,6 +83,10 @@ class LoginController extends Controller
             $userId = Auth::id();
             $request->session()->put('id', $userId);
 
+            #Vanilla PHP -- For the Game to work
+            session_start();
+            $_SESSION["L2C_id"] = $userId;
+
             return redirect('landing')->with('success', 'Login Success');
         } else {
             
@@ -94,6 +98,11 @@ class LoginController extends Controller
     {
         Auth::logout();
         session()->forget('id');
+
+        #vanila php side -- For the Game to work
+        session_start();
+        session_unset();
+        session_destroy();
 
         return redirect('login');
     }

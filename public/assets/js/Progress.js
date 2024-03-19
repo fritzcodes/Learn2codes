@@ -47,14 +47,14 @@ setTimeout(() => {
 }, 1000);
 
 // Example: Update exer after a certain time
-setTimeout(() => {
-    updateexer(10);
-}, 1000);
+// setTimeout(() => {
+//     updateexer(10);
+// }, 1000);
 
 // Example: Update quiz after a certain time
-setTimeout(() => {
-    updatequiz(35);
-}, 1000);
+// setTimeout(() => {
+//     updatequiz(35);
+// }, 1000);
 
 // Function to check the label based on the percentage
 function checkLabel(percentage) {

@@ -171,7 +171,7 @@ function showResult() {
     const id = parts[parts.length - 3];
     const difficulty = parts[parts.length - 2];
     const items = parts[parts.length - 1];
-    const activity = id + ", " + difficulty + ", " + items;
+    const activity = "quiz" + ", " + difficulty + ", " + items;
 
     const customFormData = {
         id: id,
