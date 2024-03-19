@@ -38,7 +38,9 @@ use App\Http\Controllers\TryCodeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/ha', function () {
+    return "HAHAHA";
+});
 Route::get('/forum', [ForumController::class,'Index'])->name('forum');
 
 
