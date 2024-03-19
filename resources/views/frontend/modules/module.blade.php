@@ -51,7 +51,7 @@
 <body>
 
     <header>
-        <a href="/module/moduleLanguage" class="bx bx-chevron-left" id="back-btn"></a>
+        <a ></a>
         <div class="bx bx-menu" id="menu-icon"></div>
 
         <ul class="navbar">
