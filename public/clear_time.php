@@ -83,7 +83,7 @@
 
     #Set connection properties to database:
     $sql_host = "localhost";    #Where database is located
-    $sql_db = "homestead";      #Database Name ## Change on Final Implementation
+    $sql_db = "learn2code";      #Database Name ## Change on Final Implementation
     $sql_username = "root";     #Login username on DB
     $sql_password = "";         #Login password on DB
 

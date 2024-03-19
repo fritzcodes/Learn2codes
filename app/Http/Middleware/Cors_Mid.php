@@ -4,19 +4,25 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Response;
 
 class cors_mid
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        return $next($request)
-			->header('Cross-Origin-Embedder-Policy', 'require-corp')
-			->header('Cross-Origin-Opener-Policy', 'same-origin');
+        $response = $next($request);
+
+        return $response->withHeaders([
+            'Cross-Origin-Embedder-Policy' => 'require-corp',
+            'Cross-Origin-Opener-Policy' => 'same-origin'
+        ]);
     }
 }
+
