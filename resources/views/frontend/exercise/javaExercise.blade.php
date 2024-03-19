@@ -180,7 +180,7 @@
             const parts = url.split('/');
             const id = parts[parts.length - 1];
             const cat = parts[parts.length - 2];
-            const activity = id + ", " + cat;
+            const activity = cat + ", " + id;
             var dataIndex = 0;
             var dataLength = {!!json_encode(count($data)) !!}; // Get the length of $data
             var data = {!!json_encode($data) !!};
