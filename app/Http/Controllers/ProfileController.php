@@ -13,7 +13,8 @@ use App\Models\Experience;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Models\prog_language;
-
+use App\Models\ClaimedBadge;
+use App\Http\Requests\UpdateBadgeRequest;
 
 class ProfileController extends Controller
 {
@@ -195,8 +196,16 @@ class ProfileController extends Controller
 
     public function Badge(): View
     {
+        $id = Auth::user()->id;
         $data = prog_language::All();
-        return view('frontend.profile.profile-badge', compact('data'));
+        $exp = Experience::where('user_id', $id)->get();
+        $claimed = ClaimedBadge::where('user_id', $id)->get();
+        return view('frontend.profile.profile-badge', compact('data', 'exp', 'id', 'claimed'));
+    }
+    public function updateBadge(UpdateBadgeRequest $request){
+        $data = $request->validated();
+        ClaimedBadge::create($data);
+        return response()->json($request);
     }
 
 
@@ -244,6 +253,16 @@ class ProfileController extends Controller
 
     public function Search(): View
     {
-        return view('frontend.profile.badge-search');
+        $claimed = prog_language::whereIn('language', function($query) {
+            $query->select('language')
+            ->where('user_id', Auth::user()->id)
+            ->from('claimed_badges');
+        })->get();
+        $notClaimed = prog_language::whereNotIn('language', function($query) {
+            $query->select('language')
+            ->where('user_id', Auth::user()->id)
+            ->from('claimed_badges');
+        })->get();
+        return view('frontend.profile.badge-search', compact('claimed', 'notClaimed'));
     }
 }

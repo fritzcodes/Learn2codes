@@ -28,7 +28,12 @@ const imageUrlsTab3 = [
 const badgePercentages = [100, 100, 100, 100, 10, 0]; // Example percentage values for each badge
 const badgePercentagesTab3 = [50, 75, 20, 90, 30, 10]; // Example percentage values for tab 3 badges
 
-const fetchAndDisplayImages = () => {
+const fetchAndDisplayImages = (claimed) => {
+  const claimedB = [];
+  claimed.forEach(element => {
+    claimedB.push(element.picture)
+  });
+  console.log(claimedB)
   const tabs = ['tab1', 'tab2', 'tab3'];
 
   tabs.forEach((tab) => {
@@ -40,7 +45,7 @@ const fetchAndDisplayImages = () => {
       currentImageUrls = imageUrlsTab1;
       currentBadgePercentages = badgePercentages;
     } else if (tab === 'tab2') {
-      currentImageUrls = imageUrlsTab2;
+      currentImageUrls = '/images/' + claimedB;
       currentBadgePercentages = badgePercentages;
     } else if (tab === 'tab3') {
       currentImageUrls = imageUrlsTab3;
@@ -87,6 +92,6 @@ const fetchAndDisplayImages = () => {
   });
 };
 
-window.onload = () => {
-  setTimeout(fetchAndDisplayImages, 1600);
-};
+// window.onload = () => {
+//   setTimeout(fetchAndDisplayImages, 1600);
+// };
