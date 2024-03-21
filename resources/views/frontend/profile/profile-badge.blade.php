@@ -89,9 +89,9 @@
                     <div class="percentage">
                         <p>{{ $percentage >= 100? '100' : $percentage  }}%</p>
                     </div>
-                   
+                    <?php $met = true ?>
                     @foreach ($claimed as $claimedBadge)
-                        <?php $met = true ?>
+                        
                         @if ($claimedBadge->language == $item->language)
                             <button class="details-btn" onclick="showDetails('<?php echo $item->picture ?>', '<?php echo $item->language ?>')">View Details</button>
                             <?php $met = false; break; ?>
