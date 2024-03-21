@@ -202,7 +202,8 @@ class ProfileController extends Controller
         $claimed = ClaimedBadge::where('user_id', $id)->get();
         return view('frontend.profile.profile-badge', compact('data', 'exp', 'id', 'claimed'));
     }
-    public function updateBadge(UpdateBadgeRequest $request){
+    public function updateBadge(UpdateBadgeRequest $request)
+    {
         $data = $request->validated();
         ClaimedBadge::create($data);
         return response()->json($request);
@@ -225,25 +226,23 @@ class ProfileController extends Controller
         // Fetch all experiences grouped by language and calculate total points for each language
         $userId = Auth::user()->id;
         $exp = Experience::where('user_id', $userId)->get();
-        if (count($exp) > 0) {
-            $quizPoints = 0;
-            $modulePoints = 0;
-            $exercisePoints = 0;
-            foreach ($exp as $item) {
-                $act = extractFirstWordEndingWithComma($item->activity);
-                if ($act == "quiz") {
-                    $quizPoints += intval($item->points);
-                }
-                if ($act == "module") {
-                    $modulePoints += intval($item->points);
-                }
-                if ($act == "exercise") {
-                    $exercisePoints += intval($item->points);
+        $quizPoints = 0;
+        $modulePoints = 0;
+        $exercisePoints = 0;
+        foreach ($exp as $item)
+            if (count($exp) > 0) { {
+                    $act = extractFirstWordEndingWithComma($item->activity);
+                    if ($act == "quiz") {
+                        $quizPoints += intval($item->points);
+                    }
+                    if ($act == "module") {
+                        $modulePoints += intval($item->points);
+                    }
+                    if ($act == "exercise") {
+                        $exercisePoints += intval($item->points);
+                    }
                 }
             }
-        } else {
-            $points = 0;
-        }
 
         return view('frontend.profile.profile-progress', compact('quizPoints', 'modulePoints', 'exercisePoints'));
     }
@@ -253,15 +252,15 @@ class ProfileController extends Controller
 
     public function Search(): View
     {
-        $claimed = prog_language::whereIn('language', function($query) {
+        $claimed = prog_language::whereIn('language', function ($query) {
             $query->select('language')
-            ->where('user_id', Auth::user()->id)
-            ->from('claimed_badges');
+                ->where('user_id', Auth::user()->id)
+                ->from('claimed_badges');
         })->get();
-        $notClaimed = prog_language::whereNotIn('language', function($query) {
+        $notClaimed = prog_language::whereNotIn('language', function ($query) {
             $query->select('language')
-            ->where('user_id', Auth::user()->id)
-            ->from('claimed_badges');
+                ->where('user_id', Auth::user()->id)
+                ->from('claimed_badges');
         })->get();
         return view('frontend.profile.badge-search', compact('claimed', 'notClaimed'));
     }
