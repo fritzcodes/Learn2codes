@@ -171,7 +171,7 @@
 
 
                 <button type="button" class="submit-button" id="btnSubmit">Save</button>
-                <button class="reset-button" onclick="resetForm()">Reset</button>
+                {{-- <button class="reset-button" onclick="resetForm()">Reset</button> --}}
 
                 <!-- Verification Message -->
                 <div class="verification-message" id="verification-message" style="display: none;"> Save
