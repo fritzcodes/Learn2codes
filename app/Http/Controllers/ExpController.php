@@ -19,20 +19,24 @@ class ExpController extends Controller
             "points" => "required",
         ]);
         $data['user_id'] = Auth::user()->id;
+        $data['language'] = urldecode($request->language);
         $experience->fill($data);
         $find = Experience::where('activity', $request->activity)
             ->where('user_id', Auth::user()->id)
+            ->where('language', urldecode($request->language))
             ->first();
 
         if ($find) {
                 $experience->where('activity', $find->activity)
                     ->where('user_id', $find->user_id)
+                    ->where('language', urldecode($request->language))
                     ->update(['points' => intval($find->points + $request->points)]);
         } else {
+            
             $experience->save();
         }
 
 
-        return response()->json();
+        return response()->json(urldecode($request->language));
     }
 }

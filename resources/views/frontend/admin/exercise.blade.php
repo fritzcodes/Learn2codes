@@ -52,7 +52,7 @@
         @foreach ($data as $item)
             <tr>
                 <td>{{ $item->language }}</td>
-                <td><a href="/admin/languageModule/{{ $item->language }}"><button>View</button></a></td>
+                <td><a href="/admin/languageModule/{{ urlencode($item->language) }}"><button>View</button></a></td>
             </tr>
         @endforeach
 

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Learn2Code</title>
     <link rel="stylesheet" href="assets/css/Badges.css">
 
@@ -15,6 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
+
     <style>
         body {
             padding: 90px 10%;
@@ -43,11 +45,10 @@
                 <button><a href="{{ route('profile') }}" class="profile-link">
 
                         @if (Auth::check() && Auth::user()->profile_photo)
-                            <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
-                                alt="Profile Photo" class="avatar">
+                        <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}" alt="Profile Photo" class="avatar">
                         @else
-                            <!-- Placeholder image or default avatar -->
-                            <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
+                        <!-- Placeholder image or default avatar -->
+                        <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
                         @endif
                         <h2>{{ Auth::user()->username }}</h2>
                     </a></button>
@@ -73,54 +74,64 @@
 
             <!-- Badge 1 -->
             @foreach ($data as $item)
-                <div class="badge">
-                    <img src="/images/{{$item->picture}}" alt="Badge 1">
+
+                <?php $percentage = 0;
+                $language = $item->language;
+                ?>
+                @foreach ($exp as $exps)
+                    @if ($exps->language == $item->language)
+                    <?php $percentage += intval($exps->points) ?>
+                    @endif
+                @endforeach
+                <div class="badge {{ $percentage >= 100 ? '' : 'locked' }}">
+                    <img src="/images/{{$item->picture}}" alt="Badge 5">
                     <h3>{{$item->language}}</h3>
                     <div class="percentage">
-                        <p>100%</p>
+                        <p>{{ $percentage >= 100? '100' : $percentage  }}%</p>
                     </div>
-                    <button class="details-btn" onclick="showDetails(0)">View Details</button>
-                    <button class="claim-btn" onclick="claimBadge(0)" disabled  >Claim</button>
-                </div>
-                <div class="badge locked">
-                    <img src="assets/images/c.png" alt="Badge 5">
-                    <h3>C Rookie Badge</h3>
-                    <div class="percentage">
-                        <p>90%</p>
-                    </div>
-                    <button class="details-btn" onclick="showDetails(4)">View Details</button>
-                    <button class="claim-btn" onclick="claimBadge(4)">Claim</button>
-                </div>
-        
-            @endforeach
+                   
+                    @foreach ($claimed as $claimedBadge)
+                        <?php $met = true ?>
+                        @if ($claimedBadge->language == $item->language)
+                            <button class="details-btn" onclick="showDetails('<?php echo $item->picture ?>', '<?php echo $item->language ?>')">View Details</button>
+                            <?php $met = false; break; ?>
+                         @endif
+                       
+                    @endforeach
+                       @if ($met)
+                            <button class="claim-btn" onclick="claimBadge(<?php echo $percentage ?>, <?php echo $id ?>, '<?php echo  $language ?>')">Claim</button>
+                       @endif
+                    
 
+                </div>
 
 
             
-
-
-
-
-            <!-- Badge Details Popup -->
-            <div class="badge-details">
-                <div class="details-content">
-                    <button class="close-btn" onclick="closeDetails()">&times;</button>
-                    <h2>Badge Details</h2>
-                    <img src="" alt="Badge Image" class="details-image">
-                    <h3 class="details-title"></h3>
-                    <p class="details-description"></p>
-                    <div class="details-percentage"></div>
+                <!-- Badge Details Popup -->
+                <div class="badge-details">
+                    <div class="details-content">
+                        <button class="close-btn" onclick="closeDetails()">&times;</button>
+                        <h2>Badge Details</h2>
+                        <img src="" alt="Badge Image" class="details-image rounded-circle">
+                        
+                        <h3 class="details-title">{{ $item->language }}</h3>
+                        <p class="details-description"></p>
+                        <div class="details-percentage"></div>
+                    </div>
                 </div>
-            </div>
+            @endforeach
 
 
         </div>
         <a type="button" href="{{ route('badge.search') }}" class="btn-primary">Check My Badge</a>
 
     </section>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/headermenu.js"></script>
+
     <script type="text/javascript" src="assets/js/claim.js"></script>
+
 
 </body>
 
