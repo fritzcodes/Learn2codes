@@ -83,6 +83,7 @@
                     <?php $percentage += intval($exps->points) ?>
                     @endif
                 @endforeach
+                <?php $percentage = $percentage / 2 ?>
                 <div class="badge {{ $percentage >= 100 ? '' : 'locked' }}">
                     <img src="/images/{{$item->picture}}" alt="Badge 5">
                     <h3>{{$item->language}}</h3>

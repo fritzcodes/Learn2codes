@@ -99,12 +99,15 @@ Route::post('/reset-password', [ForgetPasswordManager::class, 'resetPasswordPost
 // Admin routes
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'Index'])->name('Dashboard');
+    Route::get('/admin/totalBadge', [DashboardController::class, 'totalBadge'])->name('totalBadge');
+    Route::get('/admin/totalExp', [DashboardController::class, 'totalExp'])->name('totalExp');
     Route::post('/admin/changeOrder', [ModuleController::class, 'changeOrder'])->name('changeOrder');
     Route::get('/admin/languageModule/{id}', [ModuleController::class, 'languageModule'])->name('languageModule');
     Route::get('/admin/addModule', [ModuleController::class, 'Index'])->name('addModule');
     Route::post('/admin/addNewModule', [ModuleController::class, 'addModule'])->name('addNewModule');
     Route::get('/admin/viewModule/{id}', [ModuleController::class, 'viewModule'])->name('viewModule');
     Route::post('/admin/updateModule', [ModuleController::class, 'updateModule'])->name('updateModule');
+
 
 
 
