@@ -90,11 +90,11 @@ Route::get('/about', function () {
 })->name('about');
 
 //game page route --THE GAME WEB PAGE--
-Route::middleware(['cors'])->group(function () {
+
     Route::get('/game', function () {
         return view('frontend.game');
     })->name('game');
-});
+
 
 Route::get('/forget-password', [ForgetPasswordManager::class, 'ForgetPassword'])->name('forgetPassword');
 Route::post('/forget-passwordpost', [ForgetPasswordManager::class, 'ForgetPasswordPost'])->name('forget.password.post');
