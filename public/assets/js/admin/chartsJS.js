@@ -68,7 +68,7 @@ $.ajax({
         labels: labels,
         datasets: [
           {
-            label: "Total EXP",
+            label: "Top 1",
             data: datas,
             backgroundColor: [
               'rgb(200, 200, 200)',  //java 1        
