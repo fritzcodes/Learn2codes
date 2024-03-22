@@ -88,7 +88,7 @@
                     <h3>{{$item->language}}</h3>
                     <div class="percentage">
                         <p>{{ $percentage >= 100? '100' : $percentage  }}%</p>
-                    </div>
+                    </div>       
                     <?php $met = true ?>
                     @foreach ($claimed as $claimedBadge)
                         
