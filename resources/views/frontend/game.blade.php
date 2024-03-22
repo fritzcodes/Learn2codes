@@ -1,3 +1,7 @@
+<?php
+$htmlContent = file_get_contents(public_path('web8000/game.html'));
+echo $htmlContent; ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,8 +20,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
     <title>Game</title>
 </head>
-<?php
- header("Access-Control-Allow-Origin: *"); ?>
 
 <body style="background-image: url(assets/images/backg.svg)">
 
