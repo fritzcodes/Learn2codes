@@ -8,6 +8,7 @@
         if($_SERVER["REQUEST_METHOD"] === "OPTIONS"){
             header("Access-Control-Allow-Methods: POST, OPTIONS"); # Only allow these kinds of connections
             header("Access-Control-Allow-Headers: Authorization, Content-Type, Accept, Origin, cache-control");
+            #"Access-Control-Allow-Headers: Authorization, Content-Type, Accept, Origin, cache-control"
             http_response_code(200); #Report that they are good to make request now
             die; #Quit here until they send a followup!
         }
@@ -160,7 +161,7 @@
                 
                 print_response($data);
 	        }else{
-		        print_response("no_UserID");
+		        print_response(); #Do Nothing because the game will detect that there is no UserID logged in
 	        }
             break;
         
@@ -178,7 +179,17 @@
             print_response();
 
             break;
+        
+        case "update_Progress":
 
+            $template = "UPDATE `cleartime` SET `progress` = :levelnumber WHERE `playerID` = :id";
+            $sth = $pdo -> prepare($template);
+            $sth -> execute(["levelnumber" => $json['levelnumber'], "id" => $json['player_ID']]);
+            
+            print_response();
+            
+            break;
+        
         #Get Score to Table
         case "get_level_1_ClearTime":
 
@@ -363,10 +374,9 @@
             if(!verify_nonce($pdo)){
                 die;
             }
-
             #check that we were given a time and playerID:
             check_for_missing_data($json); #for general usecase
-
+            
             // if (!isset($json['time'])){
             //     print_response([], "missing_time");
             //     die;
@@ -380,6 +390,7 @@
             #Make sure our PlayerId is under 24 characters: Might modify this since
             #PlayerID is Unique
             $player_ID = $json['playerID'];
+
             // if (strlen($player_ID) > 24){
             //    $player_ID = substr($player_ID, 24);
             //}
