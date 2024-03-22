@@ -89,13 +89,6 @@ Route::get('/about', function () {
     return view('frontend.about');
 })->name('about');
 
-//game page route --THE GAME WEB PAGE--
-
-    Route::get('/game', function () {
-        return view('frontend.game');
-    })->name('game');
-
-
 Route::get('/forget-password', [ForgetPasswordManager::class, 'ForgetPassword'])->name('forgetPassword');
 Route::post('/forget-passwordpost', [ForgetPasswordManager::class, 'ForgetPasswordPost'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgetPasswordManager::class, 'resetPassword'])->name('reset.password');
