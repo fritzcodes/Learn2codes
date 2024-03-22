@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
+    
 
     <style>
         body {
@@ -53,7 +54,7 @@
     <header>
         <a href="/" class="bx bx-chevron-left" id="back-btn"></a>
         <div class="bx bx-menu" id="menu-icon"></div>
-
+    
         <ul class="navbar">
 
             <ul class="profile">
