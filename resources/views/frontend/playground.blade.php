@@ -89,7 +89,7 @@
         </div>
 
         <div class="content-container3">
-          <a href="#gamified" class="content-link">
+          <a href="/game/" class="content-link">
             <img src="assets/images/gamified-btn.svg" alt="Gamified" id="gamified">
           </a>
         </div>
