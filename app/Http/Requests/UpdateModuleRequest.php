@@ -25,7 +25,7 @@ class UpdateModuleRequest extends FormRequest
             'title' => ['required', 'string'],
             'content' => ['required', 'string'],
             'language' => ['required', 'string'],
-            'trycode' => ['required', 'string']
+            'trycode' => ['nullable', 'string']
         ];
     }
 }
