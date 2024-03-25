@@ -31,6 +31,52 @@
             background-size: cover;
 
         }
+        .chartMenu {
+        width: 60vw;
+        height: 40px;
+        background: #1A1A1A;
+        color: rgba(54, 162, 235, 1);
+      }
+      .chartMenu p {
+        padding: 10px;
+        font-size: 20px;
+      }
+      .chartCard {
+        width: 56vw;
+        height: calc(100vh - 40px);
+        background:;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .chartBox {
+        width: 350px;
+        padding: 20px;
+        border-radius: 20px;
+        border: solid 3px rgb(5, 5, 5);
+        background:;
+        position: relative;
+         background: radial-gradient(closest-side,
+             rgba(255, 152, 152, 0.21) 89.11721110343933%,
+             rgba(251, 25, 242, 0.03) 100%);
+         border-radius: 10px;
+         border-width: 1px;
+         border-style: solid;
+         border-image: linear-gradient(180deg,
+             rgba(255, 220, 220, 1) 99.98999834060669%,
+             rgba(254, 226, 226, 0) 100%);
+         border-image-slice: 1;
+         border: solid #333;
+         width: 500px;
+         height: 250px;
+         position: relative;
+         margin-top: 7px;
+         margin-left: 100%;
+         backdrop-filter: blur(6px);
+         margin-bottom: 30%
+       }    
+        
+      
     </style>
 
 
@@ -94,7 +140,7 @@
 
 
 
-        <div class="rectangle-15">
+        {{-- <div class="rectangle-15">
             <p class="Experience">Progress Experience</p>
             <div class="gauge">
                 <div class="progress">
@@ -105,11 +151,22 @@
 
                 </div>
                 <p class="label"></p>
-            </div>
+            </div> --}}
+
+            <div class="chartCard">
+                <div class="chartBox">
+                  <canvas id="myChart"></canvas>
+                  <div>
+                  <div class="percentage">0</div>
+                  <p class="label"></p>
+                </div>
+
+              </div>
 
 
     </section>
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+    
     <script type="text/javascript" src="assets/js/headermenu.js"></script>
     <script src="assets/js/Progress.js"></script>
     <script>
@@ -131,6 +188,159 @@
             updatemodula({{$modulePoints}});
         }, 1000);
     </script>
+
+<script>
+    // setup 
+    const data = {
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      datasets: [{
+        label: 'Weekly Sales',
+        data: [250, 250, 250, 250, 250, 250, 250],
+        backgroundColor: [
+        
+          'rgba(255, 165, 0, 1)'
+        ],
+        borderColor: [
+          
+          'rgba(0, 0, 0, 7)'
+        ],
+        borderWidth: 1.5,
+        circumference:180,
+        rotation:270,
+        cutout: '80%',
+        needleValue:''
+      }]
+    };
+
+    const gaugeNeedle = {
+        id: 'gaugeNeedle',
+        afterDatasetsDraw (chart, args, plugins) {
+            const { ctx, data } = chart;
+
+            ctx.save();
+            const xCenter = chart.getDatasetMeta(0).data[0].x;
+            const yCenter = chart.getDatasetMeta(0).data[0].y;
+            const outerRadius =  chart.getDatasetMeta(0).data[0].outerRadius;
+            const innerRadius =  chart.getDatasetMeta(0).data[0].innerRadius;
+            const widthSlice = (outerRadius - innerRadius) /2;
+            const radius = 15;
+            const angle = Math.PI / 100;
+
+            const needleValue = data.datasets[0].needleValue;
+            const dataTotal = data.datasets[0].data.reduce((a, b) => a + b, 0);
+            const circumference =((chart.getDatasetMeta(0).data[0].circumference / Math.PI) / data.datasets[0].data[0]) * needleValue;
+
+
+            ctx.translate(xCenter, yCenter);
+            ctx.rotate(Math.PI * (circumference + 1.5))
+
+            ctx.beginPath();
+            ctx.strokeStyle = 'black';
+            ctx.fillStyle = 'black';
+            ctx.lineWidth = 1;
+            ctx.moveTo(0 - radius, 0);
+            ctx.lineTo(0, 0 -innerRadius - widthSlice);
+            ctx.lineTo(0 + radius, 0);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.fill();
+            
+
+
+            //dot
+
+            ctx.beginPath();
+            ctx.arc(0,0, radius, 0, angle * 360, false)
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+
+    //gaugeFlowMeter Plugin block
+    const gaugeFlowMeter = { id: 'gaugeFlowMeter', afterDatasetsDraw(chart, args, plugins){ const {ctx, data} = chart;
+
+    ctx.save();
+    const needleValue = data.datasets[0].needleValue;
+    const xCenter = chart.getDatasetMeta(0).data[0].x;
+    const yCenter = chart.getDatasetMeta(0).data[0].y;
+
+    const circumference =((chart.getDatasetMeta(0).data[0].circumference / Math.PI) / data.datasets[0].data[0]) * needleValue;
+    const percentageValue = circumference * 100;
+
+
+        //flowMeter
+            ctx.font = 'bold 20px sans-serif';
+            ctx.fillStyle = 'black';
+            ctx.textAlign = 'center';
+            
+            ctx.fillText(`${percentageValue.toFixed(1)}Exp`, xCenter, yCenter + 50);
+            
+
+
+        }   
+    }
+    
+
+
+    //gaugeLabels plugins block
+    const gaugeLabels ={
+        id: 'gaugeLabels',
+        afterDatasetsDraw(chart, args, plugins) {
+            const { ctx, chartArea: {left, right} } = chart;
+            const xCenter = chart.getDatasetMeta(0).data[0].x;
+            const yCenter = chart.getDatasetMeta(0).data[0].y;
+
+            const outerRadius =  chart.getDatasetMeta(0).data[0].outerRadius;
+            const innerRadius =  chart.getDatasetMeta(0).data[0].innerRadius;
+            const widthSlice = (outerRadius - innerRadius) /2;
+
+            ctx.translate(xCenter, yCenter);
+            ctx.font = 'bold 10px sans-serif';
+            ctx.fillStyle = 'black';
+            ctx.textAlign = 'center';
+            ctx.fillText('',0 - innerRadius - widthSlice, 0 + 20);
+            ctx.fillText('',0 + innerRadius + widthSlice,0 + 20);
+
+            ctx.restore();
+        }
+
+    }
+
+
+    // config 
+    const config = {
+      type: 'doughnut',
+      data,
+      options: {
+        layout:{
+            padding: {
+                bottom:15
+            }
+        },
+        aspectRatio:2,
+        plugins:{
+            legend:{
+                display: false
+            },
+            tooltip:{
+                enabled:false
+            }
+        }
+      },
+      plugins: [gaugeNeedle, gaugeFlowMeter, gaugeLabels]
+    };
+
+    // render init block
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+
+    // Instantly assign Chart.js version
+    const chartVersion = document.getElementById('chartVersion');
+    chartVersion.innerText = Chart.version;
+    </script>
+
 </body>
 
 </html>
