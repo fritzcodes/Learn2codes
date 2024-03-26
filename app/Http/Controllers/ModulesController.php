@@ -39,7 +39,7 @@ class ModulesController extends Controller
         }
 
         $moduleCount = Module::whereIn('id', $moduleId)
-            ->where('language', 'Java')
+            ->where('language', $id)
             ->count();
 
         if (count($data) > 0) {

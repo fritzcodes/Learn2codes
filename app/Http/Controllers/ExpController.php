@@ -41,7 +41,7 @@ class ExpController extends Controller
         $data = Module::where('language', urldecode($request->language))
             ->orderBy('order')
             ->get();
-
+       
         $getModuleUser = Experience::where('user_id', Auth::user()->id)
             ->where('language', urldecode($request->language))
             ->get();
@@ -57,7 +57,7 @@ class ExpController extends Controller
         }
 
         $moduleCount = Module::whereIn('id', $moduleId)
-            ->where('language', 'Java')
+            ->where('language', urldecode($request->language))
             ->count();
 
         if (count($data) > 0) {
@@ -65,6 +65,6 @@ class ExpController extends Controller
         } else {
             $percent = 0; // To avoid division by zero error
         }
-        return response()->json([urldecode($percent), $request->activity]);
+        return response()->json([$percent, urldecode($request->activity)]);
     }
 }
