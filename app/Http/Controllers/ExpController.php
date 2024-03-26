@@ -7,6 +7,7 @@ use App\Models\Exercise;
 use Illuminate\Http\Request;
 use App\Models\Experience;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Module;
 
 class ExpController extends Controller
 {
@@ -37,6 +38,33 @@ class ExpController extends Controller
         }
 
 
-        return response()->json(urldecode($request->language));
+        $data = Module::where('language', urldecode($request->language))
+            ->orderBy('order')
+            ->get();
+
+        $getModuleUser = Experience::where('user_id', Auth::user()->id)
+            ->where('language', urldecode($request->language))
+            ->get();
+
+        $moduleId = [];
+
+        foreach ($getModuleUser as $item) {
+            $parts = explode(",", $item->activity);
+            $result = isset($parts[0]) ? trim($parts[0]) : "";
+            if ($result == "module") {
+                array_push($moduleId, isset($parts[2]) ? trim($parts[2]) : "");
+            }
+        }
+
+        $moduleCount = Module::whereIn('id', $moduleId)
+            ->where('language', 'Java')
+            ->count();
+
+        if (count($data) > 0) {
+            $percent = intval(($moduleCount / count($data)) * 100);
+        } else {
+            $percent = 0; // To avoid division by zero error
+        }
+        return response()->json([urldecode($percent), $request->activity]);
     }
 }
