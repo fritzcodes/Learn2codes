@@ -303,24 +303,24 @@ h2 {
 
        .percentage {
          position: absolute;
-         bottom: 48%;
+         bottom: 45%;
          left: 50%;
-         top: 120px;
+         top: 175px;
          transform: translateX(-45%);
-         font-size: 13px;
+         font-size: 20px;
          font-weight: bold;
-         color: #00FF00;
+         color: #080808;
          z-index: 400;
        }
 
 
        .label {
-         position: absolute;
-         margin-top: 190px;
-         margin-left: 25px;
+         position: center;
+         margin-top: 10%;
+         margin-left: 38%;
          font-family: "Comic Sans MS", cursive;
          font-weight: bold;
-         color: #333;
+         color: #000000;
          font-size: 22px;
        }
 

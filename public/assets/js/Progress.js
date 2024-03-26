@@ -18,9 +18,13 @@ function toggleMsg() {
     checkLabel(percentageText.textContent);
 }
 
-// Function to update the percentage
+// Function to update the percentage and needleValue
 function updatePercentage(percentage) {
     percentageText.textContent = percentage + 'xp';
+    // Set needleValue to the parsed integer value of percentage
+    data.datasets[0].needleValue = parseInt(percentage);
+    // Check the label based on the updated percentage
+    checkLabel(percentage);
 }
 
 // Define the functions to update modula, exer, and quiz
@@ -59,14 +63,18 @@ setTimeout(() => {
 // Function to check the label based on the percentage
 function checkLabel(percentage) {
     const xp = parseInt(percentage);
-    if (xp >= 200) {
+    if (xp >= 1000) {
         labelTxt.textContent = 'Master!';
-    } else if (xp >= 150) {
+    } else if (xp >= 600) {
         labelTxt.textContent = 'Excellent!';
-    } else if (xp >= 100) {
+    } else if (xp >= 400) {
+        labelTxt.textContent = 'Very Good!';
+    } else if (xp >= 200) {
         labelTxt.textContent = 'Good!';
-    } else if (xp >= 50) {
-        labelTxt.textContent = 'Not_bad!';
+    }else if (xp >= 0) {
+        labelTxt.textContent = 'Not Bad!';
     }
+    
     labelTxt.style.display = 'block';
 }
+
