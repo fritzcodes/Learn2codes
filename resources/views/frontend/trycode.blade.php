@@ -274,7 +274,7 @@
         var filename = "{!! $module->filename !!}";
         var trycode = `{!! htmlspecialchars_decode($module->trycode) !!}`;
         var language = `{!! htmlspecialchars_decode($module->language) !!}`;
-        const filteredLanguage = programmingLanguages.filter(languages => languages.name == language);
+        const filteredLanguage = programmingLanguages.filter(languages => languages.name.toUpperCase() === language.toUpperCase());
         var iFrame = document.getElementById('oc-editor');
         var title = document.getElementById('titleContent');
        
