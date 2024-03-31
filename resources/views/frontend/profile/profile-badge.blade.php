@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Learn2Code</title>
     <link rel="stylesheet" href="assets/css/Badges.css">
+    <link rel="shortcut icon" type="x-icon" href="assets/images/Logo.jpg">
 
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 

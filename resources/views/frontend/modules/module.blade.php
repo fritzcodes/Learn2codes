@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Module</title>
     <link rel="stylesheet" href="../assets/css/java_Module.css">
+    <link rel="shortcut icon" type="x-icon" href="../assets/images/Logo.jpg">
 
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
@@ -270,7 +271,7 @@
 
             <li><a href="{{ route('startmenu') }}">Home</a></li>
             <li><a href="/forums">Forums</a></li>
-            <li><a href="{{ route('Playground') }}">Playground</a></li>
+            <li><a href="/Playground">Playground</a></li>
             <li><a href="/moduleLanguage">Modules</a></li>
             <li><a href="#leaderboard">Leaderboard</a></li>
             <li><a class="logout-btn" href="{{ route('logout') }}">Logout</a></li>

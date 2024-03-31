@@ -7,6 +7,7 @@
     <title>Module</title>
 
     <link rel="stylesheet" href="../assets/css/moduleLang.css">
+    <link rel="shortcut icon" type="x-icon" href="../assets/images/Logo.jpg">
 
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">

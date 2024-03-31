@@ -6,7 +6,7 @@
   <title>Quizzes</title>
 
 <link rel="stylesheet" href="assets/css/selectLanguage.css">
-
+<link rel="shortcut icon" type="x-icon" href="assets/images/Logo.jpg">
 <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

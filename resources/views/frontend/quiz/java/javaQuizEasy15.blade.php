@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Java Quiz</title>
     <link rel="stylesheet" href="/assets/css/quizContent.css">
+    <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.jpg">
 
     
     <link rel="stylesheet"

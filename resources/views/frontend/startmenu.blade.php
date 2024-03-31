@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start Menu | Learn2Code</title>
     <link rel="stylesheet" href="assets/css/startmenu.css">
+    <link rel="shortcut icon" type="x-icon" href="assets/images/Logo.jpg">
 
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 

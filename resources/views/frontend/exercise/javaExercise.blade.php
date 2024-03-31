@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Code Exercise</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
@@ -16,6 +15,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="/assets/css/Exercise.css">
+    <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.jpg">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -104,9 +105,9 @@
     <div id="showScore" style="display: none">
         <img src="/assets/images/confe2.svg" alt="Left Image" style="position: absolute; left: 125px; top: 20%; transform: translateY(-50%); width: 120px;">
         <img src="/assets/images/confet.svg" alt="Right Image" style="position: absolute; right: 125px; top: 20%; transform: translateY(-50%); width: 120px;">
-        <h2>Your Score</h2>
+        <h2>You Got</h2>
         <div class="correct-containers">
-            <p class="correct-answers"> <code id="scoreShow" style="margin-left:47%; font-size:70px;"> </code></p>
+            <p class="correct-answers"> <code id="scoreShow" style="margin-left:47%; font-size:70px;"></code>XP</p>
         </div>
         <div class="button-container">
             <button class="next-btn submitBtns" style="margin-right: 7%"><a href="">Try again</a></button>

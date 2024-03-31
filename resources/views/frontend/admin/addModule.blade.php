@@ -37,7 +37,7 @@
         </div>
 
         Example Code:
-        <textarea name="trycode" id="trycode" cols="50" rows="10"></textarea><br>
+        <textarea name="trycode" id="trycode" cols="100" rows="10"></textarea><br>
         file Name: <span style="color:red"> Example: (Main.java)</span>
         <input type="text" name="filename" id="filename"><br>
         <input type="submit" value="Add module">

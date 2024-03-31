@@ -7,6 +7,7 @@
     <title>Learn2Code</title>
     <link rel="stylesheet" href="assets/css/password.css">
     <link rel="stylesheet" href="assets/css/ChangePassword.css">
+    <link rel="shortcut icon" type="x-icon" href="assets/images/Logo.jpg">
 
 
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Playground</title>
   <link rel="stylesheet" href="assets/css/playMenu.css">
+  <link rel="shortcut icon" type="x-icon" href="assets/images/Logo.jpg">
 
   <link rel="stylesheet"
   href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->longText('content');
-            $table->string('trycode')->nullable();
+            $table->longText('trycode')->nullable();
             $table->string('language');
             $table->string('filename')->nullable();
             $table->string('order')->nullable();
