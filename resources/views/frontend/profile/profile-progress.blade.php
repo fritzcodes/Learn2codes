@@ -171,9 +171,9 @@
     <script type="text/javascript" src="assets/js/headermenu.js"></script>
     <script src="assets/js/Progress.js"></script>
     <script>
-        document.getElementById('menu-icon').addEventListener('click', function() {
-            document.querySelector('.navbar').classList.toggle('open');
-        });
+        //document.getElementById('menu-icon').addEventListener('click', function() {
+           // document.querySelector('.navbar').classList.toggle('open');
+        //});
         setTimeout(() => {
             updateexer({{ $exercisePoints }});
         }, 1000);
