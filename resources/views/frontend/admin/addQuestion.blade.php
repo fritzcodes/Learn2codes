@@ -140,7 +140,7 @@
                 <div class="heading">
                     <h2>Quiz</h2>
                     <input class="search" placeholder="Search" id="search">
-                    <a href="#" class="action">View All</a>
+                    <a></a>
                 </div>
                 <table class="quiz">
                     <thead>
@@ -162,7 +162,6 @@
                                 <td>{{ $question->level }}</td>
                                 <td>{{ $question->option1 . ' | ' . $question->option2 . ' | ' . $question->option3 . ' | ' . $question->option4 }}</td>
                                 <td class="ved">
-                                    <i class="bx bxs-show"></i>
                                     <i class="bx bxs-edit"></i>
                                     <button type="submit" class="bx bxs-trash"></button>
                                 </td>

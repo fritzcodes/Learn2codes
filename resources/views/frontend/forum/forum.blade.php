@@ -13,14 +13,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
-    <script src="assets/js/forum.js" defer></script>
-    <script defer> let btn = document.querySelector('#menu-icon');
-        let navbar = document.querySelector('.content2');
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css" rel="stylesheet" />
 
-        btn.onclick = function () {
-        navbar.classList.toggle('active');
-        }
-    </script>
+    <script src="assets/js/forum.js" defer></script>
+    <script src="assets/js/insertimg.js" defer></script>
+    
 
     
 
@@ -35,31 +33,26 @@
       </li>
       <li>
         <div class="logo">
-          <img src="assets/images/Logo.jpg" alt="logo">
+          <img src="images/2 (1).jpg" alt="logo">
         </div>
       </li>
       <li>
-        <input type="search" id="search" placeholder="Search">              
+        <input type="search" id="search" placeholder="Search">  
+        <div>
+          <!--
+        <a href="" id="filter" class="notif-setting">
+            <i class="bx bx-dots-horizontal-rounded"></i>
+          </a>            
+          -->
+  
+                 
+          </div>            
       </li >
       <!--
       <li class="filter">
         <a class="bx bxs-filter-alt" id="filter">    
         </a>
-
-
-          <div id="filterModal" class="modal">
-          <div id="filter-content" class="filter-content">
-            <a href="#">Java</a>
-            <a href="#">Python</a>
-            <a href="#">Web Development</a>
-            <a href="#">Figma</a>
-            <a href="#">Game Development</a>
-            <a href="#">Javascript</a>
-            <a href="#">CSS</a>
-
-            
-          </div>
-        </div>    
+   
 
         
       </li>
@@ -69,38 +62,116 @@
   </div>
     <div class="right-btn">
       <a href="#" class="bx bxs-bell" id="notif"><span class="indicator"></span></a>
-      <div id="notifModal" class="modal">
-      
-        <!-- Modal content -->
-        <div id="notif-content" class="notif-content">
-          <!--<span class="close">&times;</span>-->
-          <div>
-            <h2>Notifications</h2>
-          </div>
-
-  
-        </div>
-      </div>
-
       <a href="#"><img src="/newForum/images/avatar.jpg" alt="user" class="avatar"></a>  
+
+      
     </div>
 
+    <div id="notifModal" class="modal">
+      <!-- Modal content -->
+      <div id="notif-content" class="notif-content">
+        <!--<span class="close">&times;</span>-->
+
+        <div class="notif-header">
+          <h2>Notifications</h2> 
+            <a href="#" id="notif-setting" class="notif-setting">
+              <i class="bx bx-dots-horizontal-rounded"></i>
+            </a>
+
+              <div id="notifsetModal">
+                <a href="#"><i class='bx bx-check'></i><p>Mark all as read</p></a>                
+                <a href="#"><i class='bx bxs-bell'></i><p>Open notifications</p></a> 
+                <a href="#"><i class='bx bxs-trash'></i><p>Clear all notifications</p></a> 
+              </div>
+
+        </div>
 
 
 
-    <!--
-    <ul class="navbar">
-      <ul class="profile">
-        <button onclick="document.location='#'"><li><img src="/newForum/images/avatar.jpg" alt="Avatar" class="avatar"></li>
-          <h3>Garen Damacia</h3></button>
-      </ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#forums">Forums</a></li>
-      <li><a href="C:\Users\David Matthew\OneDrive\Documents\david\playMenu\playMenu.html">Playground</a></li>
-      <li><a href="C:\Users\David Matthew\OneDrive\Documents\david\moduleLang\moduleLang.html">Modules</a></li>
-      <li><a href="#leaderboard">Leaderboard</a></li>
-      <button onclick="document.location='login'" class="login-btn" >Login</button>
-    </ul>-->
+
+            
+            <div class="notif-container" >
+            <a href="#" class="notification-item unread-notif">
+              <span class="unread"></span>
+                <img src="images/avatar.jpg" alt="Notification Icon" class="icon">
+                <div class="content">
+                  <h2 class="notification-item-user-block">
+                    <span class="notification-item-user-name">Kioh Samson</span> is watching your repository
+                  </h2>
+                    <span class="timestamp">3hrs ago</span>
+                </div>
+
+                <button data-target="settings1" type="button" class="notif-action">
+                    <i class="bx bx-dots-horizontal-rounded"></i>
+                </button>
+
+
+            </a>
+
+            <div class="notif-action-modal" id="settings1">
+              <a href="#"><i class='bx bx-check'><p>Mark as read</p></i></a>                
+              <a href="#"><i class='bx bxs-bell'><p>Remove</p></i></a> 
+            </div>
+          </div>
+
+          <div class="notif-container">
+            <a href="#" class="notification-item">
+                <img src="images/avatar.jpg" alt="Notification Icon" class="icon">
+                <div class="content">
+                  <h2 class="notification-item-user-block">
+                    <span class="notification-item-user-name">David Matthew Arsenal</span> is watching your repository
+                  </h2>
+                    <span class="timestamp">1 day ago</span>
+                </div>
+
+                <button data-target="settings2" type="button" class="notif-action">
+                    <i class="bx bx-dots-horizontal-rounded"></i>
+                </button>
+            </a>
+
+            <div class="notif-action-modal" id="settings2">
+              <a href="#"><i class='bx bx-check'><p>Mark as unread</p></i></a>                
+              <a href=""><i class='bx bxs-bell'><p>Remove</p></i></a> 
+            </div>
+          </div>
+          
+
+            <!--
+            <a href="#" class="notif-container">
+              <span class="unread"></span>
+
+                  <button data-target="settings1" type="button" class="notif-action">
+                      <i class="bx bx-dots-horizontal-rounded"></i>
+                  </button>
+
+                  <div class="notif-action-modal" id="settings1">
+                      <a href=""><i class='bx bx-check'><p>Mark as read</p></i></a>                
+                      <a href=""><i class='bx bxs-bell'><p>Remove</p></i></a> 
+                  </div>
+
+                   <img src="images/avatar.jpg" alt="">
+                    <div class="notification-list-user-block"><span class="notification-list-user-name">Kioh Samson</span> is watching your main repository
+                        <div class="notification-date">2 min ago</div> 
+                    </div> 
+
+            </a>
+            -->
+
+            <!-- WHEN NO NOTIF DISPLAYED THIS WILL SHOW UP-->
+            <div class="empty-state">
+              <i class='bx bx-wink-smile'></i>
+              <p>You're all caught up!</p>
+          </div>
+          
+          <div>
+            <a href="#" class="list-footer">
+                See previous notifications
+            </a>
+          </div>
+
+  </div>
+</div>
+
   </header>
 
 
@@ -108,14 +179,81 @@
 <!-- -----------MAIN CONTENT------------ -->
 <div class="main-content">   
 
-
   <div class="contents">
     <div class="feed">
       <div class="writeout">
         <div class="writein">
-          <a href="#"><h2>Write your thoughts...</h2></a>
+          <a href="#" id="createbtn"><h2>Write your thoughts...</h2></a>
         </div>
       </div>
+
+      <div id="postModal" class="modal">
+        <div class="modal-content">
+          <div class="createheader">
+          <h2>Create Post<span class="close">&times;</span></h2>
+          </div>
+
+            <hr>
+
+        <form id="postForm" action="/upload" method="post" enctype="multipart/form-data">
+            <div class="info-header">
+              <div>
+                <a href="#"class="profile-pic"><img src="/newForum/images/avatar.jpg" alt="Profile Picture" id="profile-pic"></a>
+              </div>
+    
+              <div class="post-info">
+                    <div class="first-name">
+                        <p><a href="#">David Matthew</a><span class="feelings" style="display: none;">is <img src="images/smiley.PNG" alt=""> feeling happy</span></p>
+                    </div>
+    
+                    <!--
+                   <div class="date">
+                      March 4, 2024
+                    </div>                      
+                    -->
+              </div>
+            </div>
+
+              <div class="postContent">
+
+                <div class="createcaption">
+                  <textarea id="textContent" name="textContent" placeholder="Type a caption here..."></textarea>
+                </div>
+              
+                <div class="photocontainer">
+                  <span class="photoclose">&times;</span>
+                    <input type="file" id="file-input" name="image" accept="image/png, image/jpeg" onchange="preview()" multiple>
+                  <label for="file-input">
+                    <i class='bx bx-upload'></i> &nbsp; Choose A Photo
+                  </label>
+                  <p id="num-of-files">
+                    No Files Chosen
+                  </p>  
+                <div id="photos">
+                    
+                </div>             
+                </div>
+              </div>
+
+              
+              
+              <div class="create-footer">
+                <div id="add-content" class="add-content">
+                  <a href="" class="photos" data-tooltip="Add Photos"><i class='bx bx-image-add'></i></a>
+                  <a href="" class="emotions" data-tooltip="Add Feelings"><i class='bx bxs-heart-circle'></i></a> 
+                  <a href="" class="snippet" data-tooltip="Insert Code"><i class='bx bx-code'></i></a>                
+                  <a href="" class="hashtag" data-tooltip="Add Hashtag"><i class='bx bx-link-alt'></i></a>                   
+                </div>
+
+                <button type="submit" id="postbtn">Post</button>                 
+              </div>
+  
+
+          </form>
+        </div>
+      </div>
+
+
 
       <div class="post">
         <div class="post-header">
@@ -134,8 +272,18 @@
             </div>
       
           <div class="post-setting">
-              <a href="#" ><i class="bx bx-dots-horizontal-rounded"></i></a>
+              <a href="#" id="post-setting"><i class="bx bx-dots-horizontal-rounded"></i>
+              </a>
+
+            <div id="postsetModal" class="modal">    
+                <a href=""><i class='bx bxs-trash' ></i><p>Delete</p></a>                
+                <a href=""><i class='bx bxl-instagram-alt'></i><p>Report</p></a>                           
+                  
+            </div>
+
           </div> 
+
+
         </div>
 
         <div class="post-content">
@@ -146,7 +294,7 @@
 
               <div class="tags">
                 <a href="#"><p>#Forums</p></a>
-                <a href="#"><p>#Java</p></a>
+                <a href="#"><p>#HTML</p></a>
                 <a href="#"><p>#Coding</p></a>
                 <a href="#"><p>#Forums</p></a>
             </div>
@@ -156,15 +304,15 @@
             <div class="code-name">
               <p>hello.java</p>
             </div>
-            <pre>
-<code>
-  public class Main {
-    public static void main(String[] args) {
-      System.out.println("Hello World");
-    }
-  }
-</code> 
-          </pre>
+                    <pre>
+        <code>
+          public class Main {
+            public static void main(String[] args) {
+              System.out.println("Hello World");
+            }
+          }
+        </code> 
+                  </pre>
           </div>
 
           <div class="image-gallery"> <!--where picture/s will displayed-->
@@ -188,24 +336,94 @@
             <a href="#"><i class=""></i></a>
             <p></p>
           </div>  -->
-          <div class="footer-btn" id="comment-btn">
-            <a href="#"><i class="bx bxs-message-rounded"></i></a>
-            <p>Comment</p>
-          </div>
+            <a href="#" class="footer-btn" id="comment-btn"><i class="bx bxs-message-rounded"></i>
+            <p>Comment</p>            
+            </a>
+            <a href="#" class="footer-btn" id="share-btn"><i class='bx bxs-share'></i>
+            <p>Share</p>            
+            </a>
+
+            <div id="shareModal" class="modal">
+              <div id="share-content" class="share-content">
+                <a href=""><i class='bx bxl-facebook'></i></a>
+                <a href=""><i class='bx bxl-instagram-alt'></i></a> 
+                <a href=""><i class='bx bxl-twitter'></i></a>                
+                <a href=""><i class='bx bx-link-alt'></i></a>                   
+
+              </div>
+            </div>
+
             
         </div>
 
-        <div class="main-comment-sec">  <!--comment section / hidden in default-->
+        <div class="main-comment-sec" id="main-comment-sec">  <!--comment section / hidden in default-->
             <div class="line">
               <hr>
             </div>          
 
-            <div class="filter-comment">
+            <div id="filter-comment">
               <a href="#" >All comments <i class="bx bx-chevron-down"></i></a>
             </div> 
 
+            <div id="filter-comment-modal">
+              <a href=""><i class='bx bx-check'></i><p>Newest</p></a>                
+            <a href=""><i class='bx bxs-bell'></i><p>All comments</p></a> 
+          </div>
+
           <div class="comment-sec"> 
+
+
+            <!-------------------------------------COMMENT BODY-->
+            <div class="comments">
+              
+              <div class="comment">
+                  <div class="user-info">
+                      <img src="images/avatar.jpg" alt="Profile Picture">
+                      <div class="user">Shenrick Remandaban</div> 
+                  </div>
+          
+                  <div class="content">I am good how are you.</div>
+          
+                  <div class="actions">
+                      <button>Like</button>
+                      <button onclick="toggleReply('replyInput1')">Reply</button>
+                      <button href="#">1h</button>
+                  </div>
+                  
+                  
+                  <div class="replies" id="repliesContainer1"></div> <!-- Replies container for comment 1 -->
+             
+                  <div class="reply-input" id="replyInput1">
+                    <textarea placeholder="Write a reply..."></textarea>
+                    <button onclick="postReply(this, 'repliesContainer1')">Reply</button>
+                  </div>
+                </div>
+          
+          
+              <div class="comment">
+                  <div class="user-info">
+                      <img src="images/avatar.jpg" alt="Profile Picture">
+                      <div class="user">Gian Isangga</div>
+                  </div>
+                  <div class="content">Thank you kid</div>
+                  <div class="actions">
+                      <button>Like</button>
+                      <button onclick="toggleReply('replyInput2')">Reply</button>
+                      <button href="#">2h</button>
+                    </div>
+                  <div class="reply-input" id="replyInput2">
+                      <textarea placeholder="Write a reply..."></textarea>
+                      <button onclick="postReply(this, 'repliesContainer2')">Reply</button>
+                  </div>
+                  <div class="replies" id="repliesContainer2"></div> <!-- Replies container for comment 2 -->
+              </div>
+          </div>
+
+
+
+            <!--
             <div class="comment-body">
+              
                 <div class="user-comment">  
                   <div>
                     <a href="#" class="profile-pic"><img src="/admin/avatar.jpg" alt="Profile Picture"></a>            
@@ -223,7 +441,7 @@
                           You see, everything was peachy until you tried to upload an image alongside some text through our fancy new form. The text?
                           It went through just fine. But the image? It vanished into thin air, like it was being swallowed by some digital black hole.
                           </p>
-                          <div class="comment-pic"> <!--where picture/s will displayed-->
+                          <div class="comment-pic"> 
                             <img src="/newForum/images/Technology.png" alt="Image 1">
                           </div>
                         </div>
@@ -246,6 +464,7 @@
                     <a href="#">edited</a>
                   </div>                    
                 </div>
+
 
                 <div class="reply-comment-body">
                 <div class="reply-comment">  
@@ -283,8 +502,10 @@
             </div>
       
             </div>
+          -->
 
-            <!--additional comment structure-->
+            <!------------------------------additional comment structure
+            
             <div class="comment-body">
               <div class="user-comment">  
                 <div>
@@ -353,100 +574,20 @@
           </div>
     
           </div>
-
-            <!-------------OUTDATED additional comment structure
-            <div class="comment-body">
-              <div>
-                <a href="#" class="profile-pic"><img src="/admin/avatar.jpg" alt="Profile Picture"></a>            
-              </div>
-
-                <div class="user-comment">  
-                  <div class="comment-container">
-
-                        <div class="fullname">
-                          <p><a href="#">David Matthew Borromeo</a><span id="author">Author</span></p>
-                        </div>
-                        
-                      <div class="comment">
-                        <p >Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                          Est, deserunt libero. Ex, a. Dolores maxime sequi debitis est, fugit magnam sint,
-                          praesentium quidem eos cumque error molestiae expedita recusandae ut.
-                        </p>
-                      </div>
-
-                  </div>
-                                
-                      <div class="comment-footer">
-                        <div class="edit">
-                          <a href="#">edit</a>
-                        </div>
-                        <div class="reply">
-                          <a href="#">reply</a>
-                        </div>
-                        <div class="time">
-                          <a href="#">2h</a>
-                        </div>
-                      </div>
-
-                      <div class="reply-comment-body">
-                        <div>
-                          <a href="#" class="profile-pic"><img src="/admin/avatar.jpg" alt="Profile Picture"></a>            
-                        </div>
-
-                        <div class="reply-comment">
-                          <div class="comment-container">
-                              <div class="fullname">
-                                <p><a href="#">David Matthew Borromeo</a></p>
-                              </div>
-
-                            <div class="comment">
-                              <p >Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                Est, deserunt libero. Ex, a. Dolores maxime sequi debitis est, fugit magnam sint,
-                                praesentium quidem eos cumque error molestiae expedita recusandae ut.
-                              </p>
-                            </div>
-                          </div>
-
-                            <div class="comment-footer">
-                              <div class="edit">
-                                <a href="#">edit</a>
-                              </div>
-                              <div class="reply">
-                                <a href="#">reply</a>
-                              </div>
-                              <div class="time">
-                                <a href="#">1m</a>
-                              </div>
-                              <div class="more-reply">
-                                <a href="#">view more replies</a>
-                              </div>
-                            </div>
-                        </div>
-
-                          <div class="comment-setting">
-                            <a href="#" ><i class="bx bx-dots-horizontal-rounded"></i></a>
-                          </div>
-
-                      </div>
-                </div>
-
-                      <div class="comment-setting">
-                        <a href="#" ><i class="bx bx-dots-horizontal-rounded"></i></a>
-                    </div>      
-
-            </div>  
-            -->
-        
+-->
+            
         </div>        
       </div>
     </div>
+
+    
    
   
 
   </div>
 
     <!-------------------sidebar content-->
-      <div class="content2" > 
+      <div class="content2" id="content2"> 
         <div class="sidebar">
           <ul class="main-menu">
           <li class="dropdown">
