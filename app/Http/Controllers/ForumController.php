@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
-
+use Illuminate\Support\Facades\Auth;
 
 class ForumController extends Controller
 {
@@ -12,7 +12,12 @@ class ForumController extends Controller
      */
     public function Index(): View
     {
-        return view('frontend.forum.forum');
+        $name = Auth::user();
+        return view('frontend.forum.forum', compact('name'));
+    }
+
+    public function store(){
+        
     }
 
 }

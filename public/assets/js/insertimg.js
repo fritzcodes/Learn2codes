@@ -28,3 +28,8 @@ function preview(){
   }
 
 }
+
+function insertCode(){
+  $('.codecontainer').toggle();
+
+}
