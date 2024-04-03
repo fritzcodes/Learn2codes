@@ -140,6 +140,7 @@ Route::middleware(['auth:admin'])->group(function () {
 
 // User routes
 Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () {
+    Route::post('/post-forum', [ForumController::class, 'store'])->name('storeForum');
     Route::get('/startmenu', function () {
         return view('frontend.startmenu');
     })->name('startmenu');

@@ -213,7 +213,8 @@
 
             <hr>
 
-            <form id="postForm" action="/upload" method="post" enctype="multipart/form-data">
+            <form id="postForm" action="/post-forum" method="post" enctype="multipart/form-data">
+              @csrf
               <div class="info-header">
                 <div>
                   <a href="#" class="profile-pic"><img src="/newForum/images/avatar.jpg" alt="Profile Picture" id="profile-pic"></a>
@@ -235,12 +236,12 @@
               <div class="postContent">
 
                 <div class="createcaption">
-                  <textarea id="textContent" name="content" placeholder="Type a caption here..."></textarea>
+                  <textarea id="textContent" name="content" placeholder="Type a caption here..." required></textarea>
                 </div>
 
                 <div class="photocontainer">
                   <span class="photoclose">&times;</span>
-                  <input type="file" id="file-input" name="image" accept="image/png, image/jpeg" onchange="preview()" multiple>
+                  <input type="file" id="file-input" name="image[]" accept="image/png, image/jpeg" onchange="preview()" multiple>
                   <label for="file-input">
                     <i class='bx bx-upload'></i> &nbsp; Choose A Photo
                   </label>
@@ -253,7 +254,7 @@
                 </div>
 
                 <div class="codecontainer">
-                <span class="codeclose" onclick="insertCode()">&times;</span>
+                  <span class="codeclose" onclick="insertCode()">&times;</span>
                   <div>
                     <h3>Insert code here</h3>
                     <textarea name="code" id="" rows="10" style="width: 100%; background-color:black; color:white"></textarea>
@@ -280,27 +281,27 @@
         </div>
 
 
-
+        @if(count($posts) > 0)
+        @foreach ($posts as $post)
         <div class="post">
           <div class="post-header">
             <div>
-              <a href="#" class="profile-pic"><img src="/newForum/images/avatar.jpg" alt="Profile Picture" id="profile-pic"></a>
+              <a href="#" class="profile-pic"><img src="{{ $post->user->profile_photo ? 'images/' . $post->user->profile_photo : 'assets/images/avatar.png' }}" alt="Profile Picture" id="profile-pic"></a>
             </div>
 
             <div class="post-info">
               <div class="first-name">
-                <p><a href="#">David Matthew</a><span class="feelings">is <img src="images/smiley.PNG" alt=""> feeling happy</span></p>
+                <p><a href="#">{{ $post->user->fname . " " . $post->user->lname }}</a><span class="feelings">is <img src="images/smiley.PNG" alt=""> feeling happy</span></p>
               </div>
 
               <div class="date">
-                March 4, 2024
+                {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $post->updated_at )->format('h:i a | M. d, Y') }}
               </div>
             </div>
-
+            @if ($post->user_id == $name->id)
             <div class="post-setting">
-              <a href="#" id="post-setting"><i class="bx bx-dots-horizontal-rounded"></i>
-              </a>
-
+              <button href="#" onclick="deletePost()" style="background-color: transparent; border:none"><i class="bx bx-dots-horizontal-rounded"></i>
+              </button>
               <div id="postsetModal" class="modal">
                 <a href=""><i class='bx bxs-trash'></i>
                   <p>Delete</p>
@@ -308,49 +309,68 @@
                 <a href=""><i class='bx bxl-instagram-alt'></i>
                   <p>Report</p>
                 </a>
-
               </div>
-
             </div>
-
+            @endif
 
           </div>
 
           <div class="post-content">
             <div class="caption">
-              <p>
-                This is an example post. Here you can add your text, images, or any other content you wish to share.
-              </p>
+              <!-- @php
+    $content = $post->content;
+    // Split the content by hashtags while maintaining line breaks
+    $parts = preg_split('/#(\w+)/', $content);
+@endphp
 
-              <div class="tags">
-                <a href="#">
-                  <p>#Forums</p>
-                </a>
-                <a href="#">
-                  <p>#HTML</p>
-                </a>
-                <a href="#">
-                  <p>#Coding</p>
-                </a>
-                <a href="#">
-                  <p>#Forums</p>
-                </a>
-              </div>
+@foreach ($parts as $part)
+    @if ($loop->first)
+    <pre>{{ $part }}</pre>
+    @else
+   
+        @if (strpos($part, "\n") === false)
+        <a href="/hash/{{ strtok($part, ' ') }}" class="hashtags">
+                <p>#{{ strtok($part, ' ') }}</p>
+            </a>
+            {{ substr($part, strpos($part, ' ') + 1) }}
+        @else
+            #{{ $part }}
+        @endif
+    @endif
+@endforeach -->
+
+              @php
+              $content = $post->content;
+
+              preg_match_all('/#(\w+)/', $content, $matches);
+
+              $hashtags = $matches[1];
+              foreach ($hashtags as $hashtag) {
+              $content = str_replace("#$hashtag", "<a href='$hashtag' class='hashtags'>#$hashtag</a>", $content);
+              }
+
+
+              @endphp
+              <pre>{!! $content !!}
+</pre>
+
             </div>
+
+
 
             <div class="code-snippet"> <!--where code will display-->
               <div class="code-name">
                 <p>hello.java</p>
               </div>
               <pre>
-        <code>
-          public class Main {
-            public static void main(String[] args) {
-              System.out.println("Hello World");
-            }
-          }
-        </code> 
-                  </pre>
+                <code>
+                  public class Main {
+                    public static void main(String[] args) {
+                      System.out.println("Hello World");
+                    }
+                  }
+                </code> 
+              </pre>
             </div>
 
             <div class="image-gallery"> <!--where picture/s will displayed-->
@@ -621,6 +641,11 @@
             </div>
           </div>
         </div>
+        @endforeach
+        @else
+        No posts yet
+        @endif
+
 
 
 
@@ -673,8 +698,6 @@
       </div>
 
     </div>
-
-
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
