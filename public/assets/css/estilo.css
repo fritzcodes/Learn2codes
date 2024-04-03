@@ -8,17 +8,10 @@
 	scroll-behavior: smooth;
 }
 
-body {
-    z-index: -1; /* Behind other content */
-    background-size: cover;
-	color: var(--text-color);
-	position: relative;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100vh;
+body {	
 	z-index: -1; /* Behind other content */
-	background: url("assts/imagesbackg.svg");
+	color: var(--text-color);
+	background: url("assets/images/backg.svg");
 	background-size: cover;
 	animation: animateBackground 60s linear infinite; /* Adjust as needed */
   }
@@ -95,14 +88,13 @@ header {
 }
 
 section{
-	padding: 20px 18%;
+	padding: 20px 10%;
 }
 
 .home{ /*------------------------------------*/
 	position: relative;
 	width: 100%;
 	height: 100vh;
-	background-size: cover;
 	display: grid;
 	grid-template-columns: repeat(1, 1fr);
 	align-items: center;
@@ -220,6 +212,7 @@ section{
 }
 
 .card {
+	background-color: #3498db;
 	padding: 80px 10%;
 	font-size: var(--h2-font);
 	color: var(--text-color);
@@ -230,23 +223,6 @@ section{
     position: sticky;
     top:15%;
     transition: transform 0.3s ease-in-out; /* Added transition property */
-}
-
-
-#progs {
-	background-repeat: no-repeat;
-}
-
-#ebook {
-	background-repeat: no-repeat;
-}
-
-#videos {
-	background-repeat: no-repeat;
-}
-
-#gotutor {
-	background-repeat: no-repeat;
 }
 
 .tutor h1 {
@@ -499,7 +475,6 @@ hr {
 	}
 
 	.card {
-
 		display: inline-grid;
 	    width: 265px;
 	    height: 530px;

@@ -94,28 +94,26 @@
     <!--tutorial section-->
     <section class="tutor" id="tutor">
         <div class="content">
-            <div class="card" id="progs" data-top="1" style="background-image:url(assets/images/progs.svg)">
+            <div class="card" id="progs" data-top="1">
                 <h3>Learn Languages</h3>
-                <p>hahahahaha</p>
+                <p>hahahahaha</p>  
             </div>
-            <div class="card" id="ebook" data-top="2" style="background-image:url(assets/images/ebooks.svg)">
+            <div class="card" id="ebook" data-top="2">
                 <h3>Tons of Programming E-Books</h3>
-                <p>hahahahaha</p>
+                <p>hahahahaha</p>  
             </div>
-            <div class="card" id="videos" data-top="3" style="background-image:url(assets/images/videos.svg)">
+            <div class="card" id="videos" data-top="3">
                 <h3>High Quality Video Tutorials</h3>
-                <p>hahahahaha</p>
+                <p>hahahahaha</p>  
             </div>
-            <div class="card" id="gotutor" data-top="4" style="background-image:url(assets/images/gotutor.svg)">
+            <div class="card" id="gotutor" data-top="4">
                 <h3>Start from the Basics</h3>
-                <p>hahahahaha</p>
-                <a href="#" class="tutor-btn"><img src="assets/images/playbtn.svg" width="150px"
-                        height="20%"></a>
+                <p>hahahahaha</p> 
+            </div> 
+                <div class="last" data-top="1">
             </div>
-        </div>
-        <div class="last" data-top="1">
-        </div>
-        </div>
+        </div> 
+
         <script src="assets/js/main.js"></script>
     </section>
 
