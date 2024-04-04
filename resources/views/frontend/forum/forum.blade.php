@@ -54,7 +54,7 @@
         </li>
         <li>
           <div class="logo">
-            <img src="images/2 (1).jpg" alt="logo">
+            <img src="assets/images/Logo.jpg" alt="logo">
           </div>
         </li>
         <li>
@@ -83,7 +83,16 @@
     </div>
     <div class="right-btn">
       <a href="#" class="bx bxs-bell" id="notif"><span class="indicator"></span></a>
-      <a href="#"><img src="/newForum/images/avatar.jpg" alt="user" class="avatar"></a>
+      <a href="#" class="profile-link">
+
+        @if (Auth::check() && Auth::user()->profile_photo)
+            <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
+                alt="Profile Photo" class="avatar">
+        @else
+            <!-- Placeholder image or default avatar -->
+            <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
+        @endif
+    </a>
 
 
     </div>
@@ -236,7 +245,15 @@
               @csrf
               <div class="info-header">
                 <div>
-                  <a href="#" class="profile-pic"><img src="/newForum/images/avatar.jpg" alt="Profile Picture" id="profile-pic"></a>
+                  <a href="#" class="profile-pic">
+                    @if (Auth::check() && Auth::user()->profile_photo)
+                    <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
+                        alt="Profile Picture" class="profile-pic">
+                @else
+                    <!-- Placeholder image or default avatar -->
+                    <img src="assets/images/avatar.png" alt="Profile Picture" class="profile-pic">
+                @endif
+                  </a>
                 </div>
 
                 <div class="post-info">
