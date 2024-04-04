@@ -144,6 +144,7 @@ Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () 
     Route::post('/comment/store', [CommentController:: class, 'store']);
     Route::post('/comment/storeReply', [CommentController:: class, 'storeReply']);
     Route::post('/post-forum', [ForumController::class, 'store'])->name('storeForum');
+    Route::post('/like-post', [ForumController::class, 'likePost']);
     Route::get('/startmenu', function () {
         return view('frontend.startmenu');
     })->name('startmenu');
