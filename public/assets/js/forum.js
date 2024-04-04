@@ -452,3 +452,32 @@ function postComment(comment, user_id, post_id) {
 
 }
 
+function likePost(id, user_id, post_id){
+  const request = {
+    user_id: user_id,
+    post_id: post_id
+  }
+  $.ajax({
+    url: '/like-post',
+    method: 'post',
+    dataType: 'json',
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    data: request,
+    success: function(data){
+      console.log(data);
+      if(data == "add"){
+        $('#likesCount' + post_id).text(parseInt($('#likesCount' + post_id).text() + 1));
+      }else{
+        $('#likesCount' + post_id).text(parseInt($('#likesCount' + post_id).text() - 1));
+        $('#likesCount' + post_id).text(0) ? $('#likesCount' + post_id).text('') : '';
+      }
+      $('#' + id).toggleClass('outlined-heart');
+    },
+    error: function(xhr){
+      alert(xhr.responseText);
+    }
+  })
+  
+}

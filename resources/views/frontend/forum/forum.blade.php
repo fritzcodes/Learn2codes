@@ -15,14 +15,29 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script src="assets/js/forum.js" defer></script>
   <script src="assets/js/insertimg.js" defer></script>
+  <style>
+    .outlined-heart {
+      color: black;
+      /* Set the color of the heart */
+      /* Set the size of the heart */
+      -webkit-text-stroke: 2px black;
+      /* Set the outline using CSS stroke */
+      -webkit-text-fill-color: transparent;
+      /* Make the interior of the heart transparent */
+    }
 
+    a:hover {
+      cursor: pointer;
+    }
+  </style>
 
 
 
@@ -395,6 +410,12 @@
             <a href="#"><i class=""></i></a>
             <p></p>
           </div>  -->
+            <p id="likesCount{{$post->id}}" class="footer-btn">{{ $post->likes_count == 0 ? '' :  $post->likes_count}}</p>
+            <a class="footer-btn" onclick="likePost('like{{$post->id}}', '{{$name->id}}', '{{$post->id}}')" style="text-align:left">
+
+              <i class="fa fa-heart {{ $post->like == null ? 'outlined-heart' : ''}}" id="like{{$post->id}}"></i>
+              <p>Like</p>
+            </a>
             <a class="footer-btn" onclick="showComment('main-comment-sec{{$post->id}}')"><i class="bx bxs-message-rounded"></i>
               <p>Comment</p>
             </a>
