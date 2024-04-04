@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Learn2Code</title>
   <link rel="stylesheet" href="assets/css/forum.css">
   <link rel="stylesheet" href="upload.css">
@@ -16,9 +17,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css" rel="stylesheet" />
-
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script src="assets/js/forum.js" defer></script>
   <script src="assets/js/insertimg.js" defer></script>
+
 
 
 
@@ -282,7 +286,7 @@
 
 
         @if(count($posts) > 0)
-        @foreach ($posts as $post)
+        @foreach ($posts as $index => $post)
         <div class="post">
           <div class="post-header">
             <div>
@@ -295,14 +299,15 @@
               </div>
 
               <div class="date">
-                {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $post->updated_at )->format('h:i a | M. d, Y') }}
+                <!-- \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $post->updated_at )->format('h:i a | M. d, Y')  -->
+                {{ \Illuminate\Support\Carbon::parse($post->created_at)->diffForHumans() }}
               </div>
             </div>
             @if ($post->user_id == $name->id)
             <div class="post-setting">
-              <button href="#" onclick="deletePost()" style="background-color: transparent; border:none"><i class="bx bx-dots-horizontal-rounded"></i>
+              <button href="#" onclick="deletePost(`postsetModal{{$post->id}}`)" style="background-color: transparent; border:none"><i class="bx bx-dots-horizontal-rounded"></i>
               </button>
-              <div id="postsetModal" class="modal">
+              <div id="postsetModal" class="modal postsetModal{{$post->id}}">
                 <a href=""><i class='bx bxs-trash'></i>
                   <p>Delete</p>
                 </a>
@@ -357,27 +362,23 @@
             </div>
 
 
-
+            @if ($post->code != null)
             <div class="code-snippet"> <!--where code will display-->
               <div class="code-name">
-                <p>hello.java</p>
+                <p> </p>
               </div>
-              <pre>
-                <code>
-                  public class Main {
-                    public static void main(String[] args) {
-                      System.out.println("Hello World");
-                    }
-                  }
-                </code> 
-              </pre>
+              <pre><code>{{ $post->code }}</code> </pre>
             </div>
+            @endif
 
-            <div class="image-gallery"> <!--where picture/s will displayed-->
-              <img class="post-pic" src="assets/images/animals.png" alt="Image 1">
-              <img class="post-pic" src="assets/images/feeling.PNG" alt="Image 2">
-              <img class="post-pic" src="assets/images/feel.png" alt="Image 3">
+            @if (count($post->images) > 0)
+            <div class="image-gallery">
+              @foreach ($post->images as $image)
+              <img class="post-pic" src="forums/{{$image->image}}" alt="Image 1">
+              @endforeach
             </div>
+            @endif
+
 
           </div>
 
@@ -394,7 +395,7 @@
             <a href="#"><i class=""></i></a>
             <p></p>
           </div>  -->
-            <a href="#" class="footer-btn" id="comment-btn"><i class="bx bxs-message-rounded"></i>
+            <a class="footer-btn" onclick="showComment('main-comment-sec{{$post->id}}')"><i class="bx bxs-message-rounded"></i>
               <p>Comment</p>
             </a>
             <a href="#" class="footer-btn" id="share-btn"><i class='bx bxs-share'></i>
@@ -414,7 +415,7 @@
 
           </div>
 
-          <div class="main-comment-sec" id="main-comment-sec"> <!--comment section / hidden in default-->
+          <div class="main-comment-sec" id="main-comment-sec{{ $post->id }}"> <!--comment section / hidden in default-->
             <div class="line">
               <hr>
             </div>
@@ -436,51 +437,65 @@
 
 
               <!-------------------------------------COMMENT BODY-->
-              <div class="comments">
-
+              <div class="comments" id="post{{ $post->id }}">
+                @if (count($post->comments) > 0)
+                @foreach ($post->comments as $comment)
                 <div class="comment">
                   <div class="user-info">
-                    <img src="images/avatar.jpg" alt="Profile Picture">
-                    <div class="user">Shenrick Remandaban</div>
+                    <img src="{{ $comment->user->profile_photo ? 'images/' . $comment->user->profile_photo : 'assets/images/avatar.png' }}" alt="Profile Picture">
+                    <div class="user">{{ $comment->user->fname . " " . $comment->user->lname}}</div>
                   </div>
 
-                  <div class="content">I am good how are you.</div>
+                  <div class="content">{{ $comment->comment }}</div>
 
                   <div class="actions">
                     <button>Like</button>
-                    <button onclick="toggleReply('replyInput1')">Reply</button>
-                    <button href="#">1h</button>
+                    <button onclick="toggleReply('replyInput{{$comment->id}}')">Reply</button>
+                    <button href="#">{{ \Illuminate\Support\Carbon::parse($comment->created_at)->diffForHumans() }}</button>
                   </div>
 
 
-                  <div class="replies" id="repliesContainer1"></div> <!-- Replies container for comment 1 -->
+                  <div class="replies" id="repliesContainer{{$comment->id}}">
+                    @if (count($comment->replies) > 0)
+                    @foreach ($comment->replies as $reply)
+                    <div class="reply-container reply nested-reply">
+                      <div class="user-info">
+                        <img src="{{ $reply->user->profile_photo ? 'images/' . $reply->user->profile_photo : 'assets/images/avatar.png' }}" alt="User Avatar" style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
+                        <div class="user">{{ $reply->user->fname . " " . $reply->user->lname }}</div>
+                      </div>
+                      <div class="content">{{ $reply->reply }}</div>
+                      <div class="actions">
+                        <button onclick="toggleReply('replyInputNested-{{$reply->id}}')">Reply</button>
+                        <button href="#">{{ \Illuminate\Support\Carbon::parse($reply->created_at)->diffForHumans() }}</button>
+                      </div>
+                      <div class="reply-input" id="replyInputNested-{{$reply->id}}" style="display:none;">
+                        <textarea placeholder="Write a reply..."></textarea>
+                        <button onclick="postReply(this, 'repliesContainer{{$comment->id}}', '{{$name->id}}', '{{$comment->id}}')">Rseply</button>
+                      </div>
+                      <div class="replies" id="nestedRepliesContainer-{{$reply->id}}"></div> <!-- Nested replies container -->
+                    </div>
+                    @endforeach
+                    @endif
+                  </div> <!-- Replies container for comment 1 -->
 
-                  <div class="reply-input" id="replyInput1">
+                  <div class="reply-input" id="replyInput{{$comment->id}}">
                     <textarea placeholder="Write a reply..."></textarea>
-                    <button onclick="postReply(this, 'repliesContainer1')">Reply</button>
+                    <button onclick="postReply(this, 'repliesContainer{{$comment->id}}', '{{$name->id}}', '{{$comment->id}}')">Rseply</button>
                   </div>
                 </div>
-
-
-                <div class="comment">
-                  <div class="user-info">
-                    <img src="images/avatar.jpg" alt="Profile Picture">
-                    <div class="user">Gian Isangga</div>
-                  </div>
-                  <div class="content">Thank you kid</div>
-                  <div class="actions">
-                    <button>Like</button>
-                    <button onclick="toggleReply('replyInput2')">Reply</button>
-                    <button href="#">2h</button>
-                  </div>
-                  <div class="reply-input" id="replyInput2">
-                    <textarea placeholder="Write a reply..."></textarea>
-                    <button onclick="postReply(this, 'repliesContainer2')">Reply</button>
-                  </div>
-                  <div class="replies" id="repliesContainer2"></div> <!-- Replies container for comment 2 -->
-                </div>
+                @endforeach
+                @endif
               </div>
 
+              <div class="" style="padding:12px">
+                <form action="/comment/store" method="POST" id="commentId{{$post->id}}">
+                  @csrf
+                  <textarea name="comment" id="comment{{$post->id}}" style="width:88%; height:50px; display:inline-block" placeholder="Add comment..." required></textarea>
+                  <input type="hidden" id="user_id{{ $post->id }}" value="{{ $name->id }}">
+                  <input type="hidden" id="postId{{ $post->id }}" value="{{ $post->id }}">
+                  <input type="button" id="btn{{ $post->id }}" onclick="postComment($('#comment{{$post->id}}').val(), $('#user_id{{$post->id}}').val(), $('#postId{{$post->id}}').val())" style="width:10%; display: inline-block; height:50px" value="Comment">
+                </form>
+              </div>
 
 
               <!--
@@ -700,7 +715,7 @@
     </div>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 

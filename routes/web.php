@@ -28,6 +28,7 @@ use App\Http\Controllers\AdminController\QuizLanguageController;
 use App\Http\Controllers\ExpController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\TryCodeController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -140,6 +141,8 @@ Route::middleware(['auth:admin'])->group(function () {
 
 // User routes
 Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () {
+    Route::post('/comment/store', [CommentController:: class, 'store']);
+    Route::post('/comment/storeReply', [CommentController:: class, 'storeReply']);
     Route::post('/post-forum', [ForumController::class, 'store'])->name('storeForum');
     Route::get('/startmenu', function () {
         return view('frontend.startmenu');

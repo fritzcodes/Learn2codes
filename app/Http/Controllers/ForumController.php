@@ -16,7 +16,10 @@ class ForumController extends Controller
     public function Index(): View
     {
         $name = Auth::user();
-        $posts = Post::with('images')->with('user')->get();
+        $posts = Post::with('images')
+        ->with('user')
+        ->with(['comments.user', 'comments.replies.user'])
+        ->get();
        return view('frontend.forum.forum', compact('name', 'posts'));
     }
 

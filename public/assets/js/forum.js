@@ -161,30 +161,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 //     COMMENT-SECTION DISPLAY/HIDE
-document.getElementById('comment-btn').addEventListener('click', function (e) {
+function showComment(post_id) {
   // Prevent the default anchor action
-  e.preventDefault();
 
-  var commentSection = document.getElementById('main-comment-sec');
-  if (commentSection.style.display === 'block') {
-    // hide the comment section
-    commentSection.style.display = 'none';
+  $('#' + post_id).toggle();
+  // if (commentSection.style.display === 'block') {
+  //   // hide the comment section
+  //   commentSection.style.display = 'none';
 
-    /*
-    // Update the anchor text
-    this.textContent = 'Hide Comments';
-    */
+  //   /*
+  //   // Update the anchor text
+  //   this.textContent = 'Hide Comments';
+  //   */
 
-  } else {
-    // show the comment section
-    commentSection.style.display = 'block';
+  // } else {
+  //   // show the comment section
+  //   commentSection.style.display = 'block';
 
-    /*
-    // Update the anchor text
-    this.textContent = 'Show Comments';
-    */
-  }
-});
+  //   /*
+  //   // Update the anchor text
+  //   this.textContent = 'Show Comments';
+  //   */
+  // }
+}
 
 
 // CREATE POST MODAL
@@ -241,8 +240,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 //      POST-SETTING MODAL
-function deletePost() {
-  $('#postsetModal').toggle();
+function deletePost(post_id) {
+  $('.' + post_id).toggle();
   // var modal = document.getElementById('postsetModal');
   // var toggleBtn = document.getElementById('post-setting');
   //   //e.preventDefault(); // Prevent default anchor behavior
@@ -340,38 +339,116 @@ document.getElementById('file-input').addEventListener('change', function (event
 
 // comment reply
 function toggleReply(replyId) {
-  var replyInput = document.getElementById(replyId);
-  replyInput.style.display = (replyInput.style.display === 'block') ? 'none' : 'block';
+  $('#' + replyId).toggle();
 }
 
-function postReply(button, containerId) {
+function postReply(button, containerId, user_id, comment_id) {
   var replyInput = button.parentElement.querySelector('textarea');
+console.log(containerId);
   var replyText = replyInput.value.trim();
+  const request = {
+    user_id: user_id,
+    comment_id: comment_id,
+    reply: replyText
+  }
   if (replyText !== '') {
-    var repliesContainer = document.getElementById(containerId);
-    var newReply = document.createElement('div');
-    newReply.classList.add('reply');
-    newReply.classList.add('nested-reply'); // Add class for nested replies
-    newReply.innerHTML = `<div class="reply-container">
-          <div class="user-info">
-              <img src="images/avatar.jpg" alt="User Avatar" style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
-              <div class="user">User</div>
-          </div>
-          <div class="content">${replyText}</div>
-          <div class="actions">
-              <button onclick="toggleReply('replyInputNested-${containerId}')">Reply</button>
-              <button href="#">1h</button>
-          </div>           
-          <div class="reply-input" id="replyInputNested-${containerId}" style="display:none;">
-              <textarea placeholder="Write a reply..."></textarea>
-              <button onclick="postReply(this, 'nestedRepliesContainer-${containerId}')">Reply</button>
-          </div>
-          <div class="replies" id="nestedRepliesContainer-${containerId}"></div> <!-- Nested replies container -->
-      </div>`;
-    repliesContainer.appendChild(newReply);
-    replyInput.value = '';
+    $.ajax({
+      url: '/comment/storeReply',
+      method: 'post',
+      dataType: 'json',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: request,
+      beforeSend: function () {
+        $(`#replyBtn${comment_id}`).prop('disabled', true);
+      },
+      success: function (data) {
+        console.log(data);
+        var repliesContainer = document.getElementById(containerId);
+        var newReply = document.createElement('div');
+        newReply.classList.add('reply');
+        newReply.classList.add('nested-reply'); // Add class for nested replies
+        newReply.innerHTML = `<div class="reply-container">
+              <div class="user-info">
+                  <img src="images/avatar.jpg" alt="User Avatar" style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
+                  <div class="user">${data.user.fname + ' ' + data.user.lname}</div>
+              </div>
+              <div class="content">${data.reply}</div>
+              <div class="actions">
+                  <button onclick="toggleReply('replyInputNested-${containerId}')">Reply</button>
+                  <button href="#">1h</button>
+              </div>           
+              <div class="reply-input" id="replyInputNested-${containerId}" style="display:none;">
+                  <textarea placeholder="Write a reply..."></textarea>
+                  <button onclick="postReply(this, 'nestedRepliesContainer-${containerId}')">Reply</button>
+              </div>
+              <div class="replies" id="nestedRepliesContainer-${containerId}"></div> <!-- Nested replies container -->
+          </div>`;
+        repliesContainer.appendChild(newReply);
+        replyInput.value = '';
+      }
+    })
+
   } else {
     alert('Please enter a reply.');
   }
+}
+
+function postComment(comment, user_id, post_id) {
+  const request = {
+    comment: comment,
+    user_id: user_id,
+    post_id: post_id
+  }
+  if (comment == "") {
+    alert("Comment must not be empty");
+  } else {
+    $.ajax({
+      url: '/comment/store',
+      method: 'post',
+      dataType: 'json',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: request,
+      beforeSend: function () {
+        $(`#btn${post_id}`).prop('disabled', true);
+      },
+      success: function (data) {
+        console.log(data);
+        $(`#comment${data.post_id}`).val('');
+        const newComment = `
+        <div class="comment">
+        <div class="user-info">
+          <img src=" ${data.user.profile_photo ? '/images/' + data.user.profile_photo : '/assets/images/avatar.png'}" alt="Profile Picture">
+          <div class="user">${data.user.fname + " " + data.user.lname}</div>
+        </div>
+
+        <div class="content">${data.comment}</div>
+
+        <div class="actions">
+          <button>Like</button>
+          <button onclick="toggleReply('replyInput${data.id}')">Reply</button>
+          <button href="#">${moment(data.created_at).fromNow()}</button>
+        </div>
+
+
+        <div class="replies" id="repliesContainer${data.id}"></div> <!-- Replies container for comment 1 -->
+
+        <div class="reply-input" id="replyInput${data.id}">
+          <textarea placeholder="Write a reply..."></textarea>
+          <button onclick="postReply(this, 'repliesContainer${data.id}', '${data.user.id}', '${data.id}')">Rseply</button>
+        </div>
+      </div>
+        `;
+
+
+        $(`#post${data.post_id}`).append(newComment);
+        $(`#btn${post_id}`).prop('disabled', false);
+      }
+    })
+  }
+
 }
 
