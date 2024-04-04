@@ -376,10 +376,10 @@ console.log(containerId);
               </div>
               <div class="content">${data.reply}</div>
               <div class="actions">
-                  <button onclick="toggleReply('replyInputNested-${containerId}')">Reply</button>
+                  <button onclick="toggleReply('replyInputNested-${data.id}')">Reply</button>
                   <button href="#">${moment(data.created_at).fromNow()}</button>
               </div>           
-              <div class="reply-input" id="replyInputNested-${containerId}" style="display:none;">
+              <div class="reply-input" id="replyInputNested-${data.id}" style="display:none;">
                   <textarea placeholder="Write a reply..."></textarea>
                   <button onclick="postReply(this, 'nestedRepliesContainer-${containerId}')">Reply</button>
               </div>
@@ -438,7 +438,7 @@ function postComment(comment, user_id, post_id) {
 
         <div class="reply-input" id="replyInput${data.id}">
           <textarea placeholder="Write a reply..."></textarea>
-          <button onclick="postReply(this, 'repliesContainer${data.id}', '${data.user.id}', '${data.id}')">Rseply</button>
+          <button onclick="postReply(this, 'repliesContainer${data.id}', '${data.user.id}', '${data.id}')">Reply</button>
         </div>
       </div>
         `;
