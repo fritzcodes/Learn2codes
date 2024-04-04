@@ -73,6 +73,10 @@ Route::post('/login', [LoginController::class, 'loginPost'])->name('login');
 Route::get('/admin/adminLogin', [adminLoginController::class, 'Index'])->name('AdminLogin');
 Route::post('/admin/adminLogin', [adminLoginController::class, 'adminLoginPost'])->name('AdminLogin');
 
+Route::get('/admin/createAccount', [adminLoginController::class, 'createAdmin'])->name('createAccount');
+Route::post('/admin/createAccount', [adminLoginController::class, 'createAccountPost'])->name('createAccount');
+
+
 Route::get('/', [TemplateController::class, 'index']);
 Route::delete('/logout', [LoginController::class, 'logout'])->name('logout');
 
