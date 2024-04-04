@@ -470,7 +470,7 @@
                       </div>
                       <div class="reply-input" id="replyInputNested-{{$reply->id}}" style="display:none;">
                         <textarea placeholder="Write a reply..."></textarea>
-                        <button onclick="postReply(this, 'repliesContainer{{$comment->id}}', '{{$name->id}}', '{{$comment->id}}')">Rseply</button>
+                        <button onclick="postReply(this, 'repliesContainer{{$reply->id . $comment->id}}', '{{$name->id}}', '{{$comment->id}}')">Rseply</button>
                       </div>
                       <div class="replies" id="nestedRepliesContainer-{{$reply->id}}"></div> <!-- Nested replies container -->
                     </div>

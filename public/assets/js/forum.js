@@ -371,13 +371,13 @@ console.log(containerId);
         newReply.classList.add('nested-reply'); // Add class for nested replies
         newReply.innerHTML = `<div class="reply-container">
               <div class="user-info">
-                  <img src="images/avatar.jpg" alt="User Avatar" style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
+                  <img src="${data.user.profile_photo ? '/images/' + data.user.profile_photo : '/assets/images/avatar.png'}" alt="User Avatar" style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
                   <div class="user">${data.user.fname + ' ' + data.user.lname}</div>
               </div>
               <div class="content">${data.reply}</div>
               <div class="actions">
                   <button onclick="toggleReply('replyInputNested-${containerId}')">Reply</button>
-                  <button href="#">1h</button>
+                  <button href="#">${moment(data.created_at).fromNow()}</button>
               </div>           
               <div class="reply-input" id="replyInputNested-${containerId}" style="display:none;">
                   <textarea placeholder="Write a reply..."></textarea>
