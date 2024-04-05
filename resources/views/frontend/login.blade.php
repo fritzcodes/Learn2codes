@@ -7,71 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Learn2Code</title>
     <link rel="shortcut icon" type="x-icon" href="assets/images/Logo.jpg">
-    <link rel="stylesheet" href="assets/css/style1.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="pr	econnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <style>
-        body {
-
-            background: url('assets/images/bglog.svg') no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-            padding: 0;
-            margin: 0;
-        }
-
-        .image2 {
-            position: fixed;
-            display: block;
-            height: auto;
-            width: 65%;
-            margin-top: 55px;
-            margin-left: 6px;
-            margin-right: auto;
-            background-color: transparent;
-            border: none;
-            box-shadow: none;
-            outline: none;
-
-        }
-        .alert {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 85%;
-            text-align: center;
-            padding: 10px;
-            background-color: #ee0505; /* Adjust the background color as needed */
-            color: #333; /* Adjust the text color as needed */
-            z-index: 1;
-        }
-
-        .alert.alert-error {
-            background-color: #ffaaaa; /* Adjust the error message color as needed */
-        }
-
-    </style>
 
 </head>
 
 <body>
-    <header>
 
-        <img class="image2 image-cover" src="assets/images/rocket.svg">
-
-        <div class="log-glass">
-            <h2>Login</h2>
-
+    <div class="logo">
+    <img src="assets/images/logo.jpg" alt="">
+    </div>
+    
+      <section class="space-background">
             @if (Session::has('error'))
-                <div class="alert alert-danger" role="alert" style="color:rgb(0, 0, 0); width: 100%; margin-top:-30px">
+                <div class="alert alert-danger" role="alert">
                     <p style="">{{ Session::get('error') }}</p>
                 </div>
             @endif
@@ -86,39 +38,47 @@
                         });
                     });
                 </script>
-            @endif
+            @endif   
 
-            <form action="{{ route('login') }}" method="POST" class="log-form">
-                @csrf
-                <input type="email" style="font-size: 16px" id="email" name="email" placeholder="Email"
-                    required="">
+            <form action="{{ route('login') }}" method="POST" class="log-form"> 
+            @csrf
+            
+                <div class="head">
+                  <a href="#" id="back-btn"><i class="bx bx-chevron-left"></i></a>
+                </div>       
 
-                <div class="log-pass">
-                    <input type="password" style="font-size: 16px" id="password" name="password" placeholder="Password"
-                        required="">
-                    <span class="pass-togg" onclick="togglePassword('password')">
-                        <img id="imageeye" src="assets/images/hidden.png" alt="not visible eye">
-
-                    </span>
+                <div class="title">
+                <h2>Learn2Code</h2>
+                <p>Login</p>
                 </div>
 
-                <div class="remember-me">
-                    <label for="remember">Remember me</label>
-                    <input type="checkbox" id="remember" name="remember">
+                <div class="typeinput">    
+                  <input required placeholder="Email" type="text" id="email" name="email">
                 </div>
-                <a href="{{ route('forgetPassword') }}" class="forgot">Forgot Password?</a>
-
-                <p class="glad"></p>
-                <br>
-                <br>
-                <button type="submit" style="justify-content: center;">Login</button>
-
-                <p class="para1">Don't have an account yet? <a href="register">SignUp</a></p>
-
-
-        </div>
-
-        </form>
+                <div class="typeinput">                  
+                  <input required placeholder="Password" type="password" id="password" name="password">
+                  <button class="showhide" type="button" onclick="togglePassword('password')">
+                    <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
+                  </button>
+                </div>
+                <div class="links">
+                    <div class="remember-me">
+                        <label for="remember">Remember me</label>
+                        <input type="checkbox" id="remember" name="remember">
+                    </div>
+                    <div class="forgot">
+                    <a href="{{ route('forgetPassword') }}">Forgot password?</a>
+                    </div>  
+                </div>
+                <div class="logbutton">
+                  <button type="submit" onclick="document.location='#'" id="login">Log In</button>
+                </div>
+                <div class="signing">
+                  <p>Create an account</p>
+                  <a href="register">Sign Up</a>
+                </div>
+            </form>
+      </section>
 
         <script>
             function togglePassword(inputId) {
@@ -127,10 +87,10 @@
 
                 if (passwordInput.type === 'password') {
                     passwordInput.type = 'text';
-                    imageeye.src = 'assets/images/view.png';
+                    imageeye.src = 'assets/images/hidden.png';
                 } else {
                     passwordInput.type = 'password';
-                    imageeye.src = 'assets/images/hidden.png';
+                    imageeye.src = 'assets/images/view.png';
                 }
             }
 
@@ -169,11 +129,6 @@
                 });
             });
         </script>
-
-
-
-    </header>
-
 
 </body>
 
