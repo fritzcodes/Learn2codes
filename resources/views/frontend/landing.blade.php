@@ -10,26 +10,18 @@
     <link rel="shortcut icon" type="x-icon" href="assets/images/Logo.jpg">
 
     <link rel="stylesheet" href="assets/css/estilo.css">
-
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
 
 </head>
 
 
-<body style="background-image:url(assets/images/backg.svg)">
+<body>
     <!--header-->
     <header>
-        <a href="#" class="logo">Learn2Code</a>
-        <div class="bx bx-menu" id="menu-icon"></div>
-        <ul class="navbar">
-            <li><a href="#home">Home</a></li>
+    <a href="#" class="logotext">Learn2Code</a>
+    <a href="#" class="logo"><img src="/assets/images/logo.jpg" alt=""></a>
+        <ul>
+            <li><a href="#home" class="active">Home</a></li>
             <li><a href="#gamified">Features</a></li>
             <li><a href="{{ route('about') }}">About</a></li>
             <div>
@@ -48,83 +40,83 @@
     </header>
 
     <!--Home section-->
-    <section class="home" id="home">
-        <div class="home-text">
-            <h1>Play!<br><span style="color: #8367AB;">CODE!</span></h1>
-            <p>Gamified Coding Platform for Everyone!</p>
+    <section>
+        <img src="assets/images/stars.png" id="stars"> 
+        <img src="assets/images/moon.png" id="moon"> 
+        <img src="assets/images/mountains_behind.png" id="mountains_behind">
+        <h2 id="text">Explore & Code</h2>
             @if (session('id'))
 
                 <?php session_start(); $_SESSION['L2C_id'] = session('id');?> <!-- This line is for the Webgame to work Properly-->
 
-                <a href="{{ route('startmenu') }}" class="start-btn"><img src="assets/images/start.svg"></a>
+                <a href="{{ route('startmenu') }}" id="btn"><img src="assets/images/start.svg"></a>
             @else
-                <a href="{{ route('login') }}" class="start-btn"><img src="assets/images/start.svg"></a>
+                <a href="{{ route('login') }}" id="btn"><img src="assets/images/start.svg"></a>
             @endif
-        </div>
+        <img src="assets/images/mountains_front.png" id="mountains_front">
     </section>
 
 
     <!--Gamified section-->
-    <section class="gamified" id="gamified">
+    <div class="sections" id="gamified">
         <div class="play">
-            <h1>Gamified Features</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book.</p>
-            <a href="#" class="play-btn"><img src="assets/images/playbtn.svg"></a>
+        <div class="description">
+            <h2>Gamified</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
         </div>
-    </section>
+        <img src="assets/images/qpic.svg">
+        </div>
+    </div>
 
 
     <!--quizzes section-->
-    <section class="quizzes" id="quizzes">
+    <div class="sections" id="quizzes">
         <div class="quiz">
-
-            <li>
-                <h1>Quiz</h1>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                    and scrambled it to make a type specimen book.</p>
-            </li>
             <img src="assets/images/qpic.svg">
+            <div class="description">
+                <h2>Programming Tests</h2>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            </div>
         </div>
-    </section>
+    </div>
 
 
     <!--tutorial section-->
-    <section class="tutor" id="tutor">
+    <div class="sections">
         <div class="content">
-            <div class="card" id="progs" data-top="1">
-                <h3>Learn Languages</h3>
-                <p>hahahahaha</p>  
+            <div class="card" data-top="1" style="background: url('assets/images/game4.png'); background-repeat: no-repeat;  background-size: cover; background-position: center;">
+                <div class="description">
+                    <h2>EXPLORE THE GAME</h2>
+                </div> 
             </div>
-            <div class="card" id="ebook" data-top="2">
-                <h3>Tons of Programming E-Books</h3>
-                <p>hahahahaha</p>  
+            <div class="card" data-top="2" style="background: url('assets/images/game2.png'); background-repeat: no-repeat;  background-size: cover; background-position: center;">
+                <div class="description">
+                    <h2>COMPLETE THE LEVELS</h2>
+                </div>
             </div>
-            <div class="card" id="videos" data-top="3">
-                <h3>High Quality Video Tutorials</h3>
-                <p>hahahahaha</p>  
+            <div class="card"  data-top="3" style="background: url('assets/images/game3.png'); background-repeat: no-repeat;  background-size: cover; background-position: center;">
+                <div class="description">
+                    <h2>LEARN BY EXPERIENCE</h2>
+                </div>
             </div>
-            <div class="card" id="gotutor" data-top="4">
-                <h3>Start from the Basics</h3>
-                <p>hahahahaha</p> 
+            <div class="card" i data-top="4" style="background: url('assets/images/game1.png'); background-repeat: no-repeat;  background-size: cover; background-position: center;">
+                <div class="description">
+                    <h2>PLAY & ENJOY</h2>
+                </div> 
             </div> 
                 <div class="last" data-top="1">
             </div>
         </div> 
 
         <script src="assets/js/main.js"></script>
-    </section>
+    </div>
 
     <footer>
         <div class=foot>
             <div>
                 <ul class="contact">
-                    <li><a href="#"><img src="assets/images/logo.svg"
-                                style="width: 200; height: 30px; align-content: center;"></a></li>
-                    <li><a href="#">L2code@gmail.com</a></li>
-                    <li><a href="#">+63612120211</a></li>
+                    <li><a href="#"><img src="assets/images/logo.jpg"></a></li>
+                </ul>
             </div>
 
             <div>
@@ -143,9 +135,7 @@
                 </ul>
             </div>
         </div>
-        <hr>
-
-        </hr>
+            <hr>
         <div class="socials">
 
             <ul class="textlogo">
@@ -153,19 +143,36 @@
             </ul>
 
             <ul class="socmed">
-                <li>follow us on:</li>
-                <li><a href="#"><img src="assets/images/fb.svg"
-                            style="width: 200; height: 30px; align-content: center;"></img></a></li>
-                <li><a href="#"><img src="assets/images/insta.svg"
-                            style="width: 200; height: 30px; align-content: center;"></img></a></li>
-                <li><a href="#"><img src="assets/images/gmail.svg"
-                            style="width: 200; height: 30px; align-content: center;"></img></a></li>
+                <li><p>follow us on:</p></li>
+                <li><a href="#"><img src="assets/images/fb.svg"></img></a></li>
+                <li><a href="#"><img src="assets/images/insta.svg"></img></a></li>
+                <li><a href="#"><img src="assets/images/gmail.svg"></img></a></li>
             </ul>
 
         </div>
     </footer>
 
-    <script type="text/javascript" src="assets/js/respo.js"></script>
+    <script>
+        let stars = document.getElementById('stars');
+        let moon = document.getElementById('moon');
+        let mountains_behind = document.getElementById('mountains_behind'); 
+        let text = document.getElementById('text');
+        let btn = document.getElementById('btn');
+        let mountains_front = document.getElementById('mountains_front');
+        let header = document.querySelector('header');
+
+        window.addEventListener('scroll' , function(){
+        let value = window.scrollY;
+        stars.style.left = value * 0.25 + 'px'; 
+        moon.style.top = value * 1.00 + 'px';
+        mountains_behind.style.top = value * 0.5 + 'px';
+        mountains_front.style.top = value * 0 + 'px';
+        text.style.marginRight = value * 5 + 'px';
+        text.style.marginTop = value * 1.5 + 'px';
+        btn.style.marginTop = value * 1.7 + 'px';   
+        header.style.top = value * 0.5 + 'px'; 
+    })
+</script>
 
 </body>
 
