@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Learn2Code</title>
   <link rel="stylesheet" href="assets/css/forum.css">
   <link rel="stylesheet" href="upload.css">
@@ -14,11 +15,29 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css" rel="stylesheet" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script src="assets/js/forum.js" defer></script>
   <script src="assets/js/insertimg.js" defer></script>
+  <style>
+    .outlined-heart {
+      color: black;
+      /* Set the color of the heart */
+      /* Set the size of the heart */
+      -webkit-text-stroke: 2px black;
+      /* Set the outline using CSS stroke */
+      -webkit-text-fill-color: transparent;
+      /* Make the interior of the heart transparent */
+    }
+
+    a:hover {
+      cursor: pointer;
+    }
+  </style>
 
 
 
@@ -35,7 +54,7 @@
         </li>
         <li>
           <div class="logo">
-            <img src="images/2 (1).jpg" alt="logo">
+            <img src="assets/images/Logo.jpg" alt="logo">
           </div>
         </li>
         <li>
@@ -64,7 +83,16 @@
     </div>
     <div class="right-btn">
       <a href="#" class="bx bxs-bell" id="notif"><span class="indicator"></span></a>
-      <a href="#"><img src="/newForum/images/avatar.jpg" alt="user" class="avatar"></a>
+      <a href="#" class="profile-link">
+
+        @if (Auth::check() && Auth::user()->profile_photo)
+            <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
+                alt="Profile Photo" class="avatar">
+        @else
+            <!-- Placeholder image or default avatar -->
+            <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
+        @endif
+    </a>
 
 
     </div>
@@ -213,10 +241,19 @@
 
             <hr>
 
-            <form id="postForm" action="/upload" method="post" enctype="multipart/form-data">
+            <form id="postForm" action="/post-forum" method="post" enctype="multipart/form-data">
+              @csrf
               <div class="info-header">
                 <div>
-                  <a href="#" class="profile-pic"><img src="/newForum/images/avatar.jpg" alt="Profile Picture" id="profile-pic"></a>
+                  <a href="#" class="profile-pic">
+                    @if (Auth::check() && Auth::user()->profile_photo)
+                    <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
+                        alt="Profile Picture" class="profile-pic">
+                @else
+                    <!-- Placeholder image or default avatar -->
+                    <img src="assets/images/avatar.png" alt="Profile Picture" class="profile-pic">
+                @endif
+                  </a>
                 </div>
 
                 <div class="post-info">
@@ -235,12 +272,12 @@
               <div class="postContent">
 
                 <div class="createcaption">
-                  <textarea id="textContent" name="content" placeholder="Type a caption here..."></textarea>
+                  <textarea id="textContent" name="content" placeholder="Type a caption here..." required></textarea>
                 </div>
 
                 <div class="photocontainer">
                   <span class="photoclose">&times;</span>
-                  <input type="file" id="file-input" name="image" accept="image/png, image/jpeg" onchange="preview()" multiple>
+                  <input type="file" id="file-input" name="image[]" accept="image/png, image/jpeg" onchange="preview()" multiple>
                   <label for="file-input">
                     <i class='bx bx-upload'></i> &nbsp; Choose A Photo
                   </label>
@@ -253,7 +290,7 @@
                 </div>
 
                 <div class="codecontainer">
-                <span class="codeclose" onclick="insertCode()">&times;</span>
+                  <span class="codeclose" onclick="insertCode()">&times;</span>
                   <div>
                     <h3>Insert code here</h3>
                     <textarea name="code" id="" rows="10" style="width: 100%; background-color:black; color:white"></textarea>
@@ -280,84 +317,100 @@
         </div>
 
 
-
+        @if(count($posts) > 0)
+        @foreach ($posts as $index => $post)
         <div class="post">
           <div class="post-header">
             <div>
-              <a href="#" class="profile-pic"><img src="/newForum/images/avatar.jpg" alt="Profile Picture" id="profile-pic"></a>
+              <a href="#" class="profile-pic"><img src="{{ $post->user->profile_photo ? 'images/' . $post->user->profile_photo : 'assets/images/avatar.png' }}" alt="Profile Picture" id="profile-pic"></a>
             </div>
 
             <div class="post-info">
               <div class="first-name">
-                <p><a href="#">David Matthew</a><span class="feelings">is <img src="images/smiley.PNG" alt=""> feeling happy</span></p>
+                <p><a href="#">{{ $post->user->fname . " " . $post->user->lname }}</a><span class="feelings">is <img src="images/smiley.PNG" alt=""> feeling happy</span></p>
               </div>
 
               <div class="date">
-                March 4, 2024
+                <!-- \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $post->updated_at )->format('h:i a | M. d, Y')  -->
+                {{ \Illuminate\Support\Carbon::parse($post->created_at)->diffForHumans() }}
               </div>
             </div>
-
+            @if ($post->user_id == $name->id)
             <div class="post-setting">
-              <a href="#" id="post-setting"><i class="bx bx-dots-horizontal-rounded"></i>
-              </a>
-
-              <div id="postsetModal" class="modal">
+              <button href="#" onclick="deletePost(`postsetModal{{$post->id}}`)" style="background-color: transparent; border:none"><i class="bx bx-dots-horizontal-rounded"></i>
+              </button>
+              <div id="postsetModal" class="modal postsetModal{{$post->id}}">
                 <a href=""><i class='bx bxs-trash'></i>
                   <p>Delete</p>
                 </a>
                 <a href=""><i class='bx bxl-instagram-alt'></i>
                   <p>Report</p>
                 </a>
-
               </div>
-
             </div>
-
+            @endif
 
           </div>
 
           <div class="post-content">
             <div class="caption">
-              <p>
-                This is an example post. Here you can add your text, images, or any other content you wish to share.
-              </p>
+              <!-- @php
+    $content = $post->content;
+    // Split the content by hashtags while maintaining line breaks
+    $parts = preg_split('/#(\w+)/', $content);
+@endphp
 
-              <div class="tags">
-                <a href="#">
-                  <p>#Forums</p>
-                </a>
-                <a href="#">
-                  <p>#HTML</p>
-                </a>
-                <a href="#">
-                  <p>#Coding</p>
-                </a>
-                <a href="#">
-                  <p>#Forums</p>
-                </a>
-              </div>
+@foreach ($parts as $part)
+    @if ($loop->first)
+    <pre>{{ $part }}</pre>
+    @else
+   
+        @if (strpos($part, "\n") === false)
+        <a href="/hash/{{ strtok($part, ' ') }}" class="hashtags">
+                <p>#{{ strtok($part, ' ') }}</p>
+            </a>
+            {{ substr($part, strpos($part, ' ') + 1) }}
+        @else
+            #{{ $part }}
+        @endif
+    @endif
+@endforeach -->
+
+              @php
+              $content = $post->content;
+
+              preg_match_all('/#(\w+)/', $content, $matches);
+
+              $hashtags = $matches[1];
+              foreach ($hashtags as $hashtag) {
+              $content = str_replace("#$hashtag", "<a href='$hashtag' class='hashtags'>#$hashtag</a>", $content);
+              }
+
+
+              @endphp
+              <pre>{!! $content !!}
+</pre>
+
             </div>
 
+
+            @if ($post->code != null)
             <div class="code-snippet"> <!--where code will display-->
               <div class="code-name">
-                <p>hello.java</p>
+                <p> </p>
               </div>
-              <pre>
-        <code>
-          public class Main {
-            public static void main(String[] args) {
-              System.out.println("Hello World");
-            }
-          }
-        </code> 
-                  </pre>
+              <pre><code>{{ $post->code }}</code> </pre>
             </div>
+            @endif
 
-            <div class="image-gallery"> <!--where picture/s will displayed-->
-              <img class="post-pic" src="assets/images/animals.png" alt="Image 1">
-              <img class="post-pic" src="assets/images/feeling.PNG" alt="Image 2">
-              <img class="post-pic" src="assets/images/feel.png" alt="Image 3">
+            @if (count($post->images) > 0)
+            <div class="image-gallery">
+              @foreach ($post->images as $image)
+              <img class="post-pic" src="forums/{{$image->image}}" alt="Image 1">
+              @endforeach
             </div>
+            @endif
+
 
           </div>
 
@@ -374,7 +427,13 @@
             <a href="#"><i class=""></i></a>
             <p></p>
           </div>  -->
-            <a href="#" class="footer-btn" id="comment-btn"><i class="bx bxs-message-rounded"></i>
+            <p id="likesCount{{$post->id}}" class="footer-btn">{{ $post->likes_count == 0 ? '' :  $post->likes_count}}</p>
+            <a class="footer-btn" onclick="likePost('like{{$post->id}}', '{{$name->id}}', '{{$post->id}}')" style="text-align:left">
+
+              <i class="fa fa-heart {{ $post->like == null ? 'outlined-heart' : ''}}" id="like{{$post->id}}"></i>
+              <p>Like</p>
+            </a>
+            <a class="footer-btn" onclick="showComment('main-comment-sec{{$post->id}}')"><i class="bx bxs-message-rounded"></i>
               <p>Comment</p>
             </a>
             <a href="#" class="footer-btn" id="share-btn"><i class='bx bxs-share'></i>
@@ -394,7 +453,7 @@
 
           </div>
 
-          <div class="main-comment-sec" id="main-comment-sec"> <!--comment section / hidden in default-->
+          <div class="main-comment-sec" id="main-comment-sec{{ $post->id }}"> <!--comment section / hidden in default-->
             <div class="line">
               <hr>
             </div>
@@ -416,51 +475,65 @@
 
 
               <!-------------------------------------COMMENT BODY-->
-              <div class="comments">
-
+              <div class="comments" id="post{{ $post->id }}">
+                @if (count($post->comments) > 0)
+                @foreach ($post->comments as $comment)
                 <div class="comment">
                   <div class="user-info">
-                    <img src="images/avatar.jpg" alt="Profile Picture">
-                    <div class="user">Shenrick Remandaban</div>
+                    <img src="{{ $comment->user->profile_photo ? 'images/' . $comment->user->profile_photo : 'assets/images/avatar.png' }}" alt="Profile Picture">
+                    <div class="user">{{ $comment->user->fname . " " . $comment->user->lname}}</div>
                   </div>
 
-                  <div class="content">I am good how are you.</div>
+                  <div class="content">{{ $comment->comment }}</div>
 
                   <div class="actions">
                     <button>Like</button>
-                    <button onclick="toggleReply('replyInput1')">Reply</button>
-                    <button href="#">1h</button>
+                    <button onclick="toggleReply('replyInput{{$comment->id}}')">Reply</button>
+                    <button href="#">{{ \Illuminate\Support\Carbon::parse($comment->created_at)->diffForHumans() }}</button>
                   </div>
 
 
-                  <div class="replies" id="repliesContainer1"></div> <!-- Replies container for comment 1 -->
+                  <div class="replies" id="repliesContainer{{$comment->id}}">
+                    @if (count($comment->replies) > 0)
+                    @foreach ($comment->replies as $reply)
+                    <div class="reply-container reply nested-reply">
+                      <div class="user-info">
+                        <img src="{{ $reply->user->profile_photo ? 'images/' . $reply->user->profile_photo : 'assets/images/avatar.png' }}" alt="User Avatar" style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
+                        <div class="user">{{ $reply->user->fname . " " . $reply->user->lname }}</div>
+                      </div>
+                      <div class="content">{{ $reply->reply }}</div>
+                      <div class="actions">
+                        <button onclick="toggleReply('replyInputNested-{{$reply->id}}')">Reply</button>
+                        <button href="#">{{ \Illuminate\Support\Carbon::parse($reply->created_at)->diffForHumans() }}</button>
+                      </div>
+                      <div class="reply-input" id="replyInputNested-{{$reply->id}}" style="display:none;">
+                        <textarea placeholder="Write a reply..."></textarea>
+                        <button onclick="postReply(this, 'repliesContainer{{$reply->id . $comment->id}}', '{{$name->id}}', '{{$comment->id}}')">Reply</button>
+                      </div>
+                      <div class="replies" id="nestedRepliesContainer-{{$reply->id}}"></div> <!-- Nested replies container -->
+                    </div>
+                    @endforeach
+                    @endif
+                  </div> <!-- Replies container for comment 1 -->
 
-                  <div class="reply-input" id="replyInput1">
+                  <div class="reply-input" id="replyInput{{$comment->id}}">
                     <textarea placeholder="Write a reply..."></textarea>
-                    <button onclick="postReply(this, 'repliesContainer1')">Reply</button>
+                    <button onclick="postReply(this, 'repliesContainer{{$comment->id}}', '{{$name->id}}', '{{$comment->id}}')">Reply</button>
                   </div>
                 </div>
-
-
-                <div class="comment">
-                  <div class="user-info">
-                    <img src="images/avatar.jpg" alt="Profile Picture">
-                    <div class="user">Gian Isangga</div>
-                  </div>
-                  <div class="content">Thank you kid</div>
-                  <div class="actions">
-                    <button>Like</button>
-                    <button onclick="toggleReply('replyInput2')">Reply</button>
-                    <button href="#">2h</button>
-                  </div>
-                  <div class="reply-input" id="replyInput2">
-                    <textarea placeholder="Write a reply..."></textarea>
-                    <button onclick="postReply(this, 'repliesContainer2')">Reply</button>
-                  </div>
-                  <div class="replies" id="repliesContainer2"></div> <!-- Replies container for comment 2 -->
-                </div>
+                @endforeach
+                @endif
               </div>
 
+              <div class="" style="padding:12px">
+                <form action="/comment/store" method="POST" id="commentId{{$post->id}}">
+                  @csrf
+                  <textarea name="comment" id="comment{{$post->id}}" style="width:88%; height:50px; display:inline-block" placeholder="Add comment..." required></textarea>
+                  <input type="hidden" id="user_id{{ $post->id }}" value="{{ $name->id }}">
+                  <input type="hidden" id="postId{{ $post->id }}" value="{{ $post->id }}">
+                  <input type="button" id="btn{{ $post->id }}" onclick="postComment($('#comment{{$post->id}}').val(), $('#user_id{{$post->id}}').val(), $('#postId{{$post->id}}').val())" style="width:10%; display: inline-block; height:50px" value="Comment">
+                </form>
+              </div>
 
 
               <!--
@@ -621,6 +694,11 @@
             </div>
           </div>
         </div>
+        @endforeach
+        @else
+        No posts yet
+        @endif
+
 
 
 
@@ -673,11 +751,9 @@
       </div>
 
     </div>
-
-
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 

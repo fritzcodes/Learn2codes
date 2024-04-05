@@ -28,6 +28,7 @@ use App\Http\Controllers\AdminController\QuizLanguageController;
 use App\Http\Controllers\ExpController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\TryCodeController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,6 +72,10 @@ Route::post('/login', [LoginController::class, 'loginPost'])->name('login');
 //addmin LOGIN
 Route::get('/admin/adminLogin', [adminLoginController::class, 'Index'])->name('AdminLogin');
 Route::post('/admin/adminLogin', [adminLoginController::class, 'adminLoginPost'])->name('AdminLogin');
+
+Route::get('/admin/createAccount', [adminLoginController::class, 'createAdmin'])->name('createAccount');
+Route::post('/admin/createAccount', [adminLoginController::class, 'createAccountPost'])->name('createAccount');
+
 
 Route::get('/', [TemplateController::class, 'index']);
 Route::delete('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -140,6 +145,10 @@ Route::middleware(['auth:admin'])->group(function () {
 
 // User routes
 Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () {
+    Route::post('/comment/store', [CommentController:: class, 'store']);
+    Route::post('/comment/storeReply', [CommentController:: class, 'storeReply']);
+    Route::post('/post-forum', [ForumController::class, 'store'])->name('storeForum');
+    Route::post('/like-post', [ForumController::class, 'likePost']);
     Route::get('/startmenu', function () {
         return view('frontend.startmenu');
     })->name('startmenu');
