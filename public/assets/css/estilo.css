@@ -161,14 +161,7 @@ height: 60px;
 border-radius: 40px;
 z-index: 9;
 transform: translateY(100px);
-animation: button-animation 2s infinite alternate;	
 }
-
-@keyframes button-animation {
-	from { filter: brightness(100%); }
-	to { filter: brightness(70%); }
-  }
-
 
 #btn:hover {
 	animation: none;
