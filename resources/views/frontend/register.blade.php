@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 
 </head>
-<body>
+<body style="background-image: url(assets/images/backlogin.png)";>
 
 <div class="logo">
     <img src="assets/images/logo.jpg" alt="">

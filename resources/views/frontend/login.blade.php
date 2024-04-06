@@ -15,7 +15,7 @@
 
 </head>
 
-<body>
+<body style="background-image: url(assets/images/backlogin.png);">
 
     <div class="logo">
     <img src="assets/images/logo.jpg" alt="">
@@ -63,15 +63,15 @@
                 </div>
                 <div class="links">
                     <div class="remember-me">
-                        <label for="remember">Remember me</label>
-                        <input type="checkbox" id="remember" name="remember">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Remember me</label>
                     </div>
                     <div class="forgot">
                     <a href="{{ route('forgetPassword') }}">Forgot password?</a>
                     </div>  
                 </div>
                 <div class="logbutton">
-                  <button type="submit" onclick="document.location='#'" id="login">Log In</button>
+                  <button type="submit" id="login">Log In</button>
                 </div>
                 <div class="signing">
                   <p>Create an account</p>

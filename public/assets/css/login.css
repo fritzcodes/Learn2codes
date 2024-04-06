@@ -28,19 +28,15 @@
         align-items: center; /* Center vertically */
         height: 100vh; /* Use full viewport height */
         margin: 0; /* Remove default body margin */
-        background: linear-gradient(-45deg, #210535, #f5d5e0, #430d4b);
-        background-size: 400% 400%;
-        animation: gradientShift 15s ease infinite;
+        background-size: cover;
+        animation: animateBackground 20s linear infinite; /* Adjust as needed */
           }
-          @keyframes gradientShift {
+          @keyframes animateBackground {
             0% {
-              background-position: 0% 50%;
-            }
-            50% {
-              background-position: 100% 50%;
+              background-position: 0 0;
             }
             100% {
-              background-position: 0% 50%;
+              background-position: 100% 100%;
             }
           }
     
@@ -213,6 +209,10 @@
         color: var(--text-color);
     }
 
+    .remember-me label {
+        font-size: var(--p-font);
+    }
+
     .forgot a {
         font-size: var(--p-font);
         color: var(--text-color);
@@ -274,6 +274,14 @@
 
         .space-background {
             width: 90%;
+        }
+
+        .typeinput input {
+            height: 35px;
+        }
+
+        #login {
+            height: 35px;
         }
 
 }
@@ -349,9 +357,7 @@
         }
 
         .space-background {
-            margin-left: auto;
-            margin-right: auto;
-            width: 70%;
+            width: 80%;
         }
  
 
@@ -376,9 +382,7 @@
         }
 
         .space-background {
-            margin-left: auto;
-            margin-right: auto;
-            width: 80%;
+            width: 85%;
         }
     }
 
