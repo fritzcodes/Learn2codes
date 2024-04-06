@@ -44,7 +44,7 @@
             @csrf
             
                 <div class="head">
-                  <a href="#" id="back-btn"><i class="bx bx-chevron-left"></i></a>
+                  <a href="/" id="back-btn"><i class="bx bx-chevron-left"></i></a>
                 </div>       
 
                 <div class="title">
