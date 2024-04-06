@@ -258,6 +258,13 @@
     color: var(--text-color);
 }
 
+/* Adjust the position of the error message */
+#passwordError {
+    color: var(--text-color);
+    display: none;
+    
+}
+
 /*-----------RESPONSIVENESS----------*/
 @media (max-width: 1024px) {
     :root{ /*---font and color defaults --*/
