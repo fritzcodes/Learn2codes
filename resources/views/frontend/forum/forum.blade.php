@@ -86,13 +86,12 @@
       <a href="#" class="profile-link">
 
         @if (Auth::check() && Auth::user()->profile_photo)
-            <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
-                alt="Profile Photo" class="avatar">
+        <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}" alt="Profile Photo" class="avatar">
         @else
-            <!-- Placeholder image or default avatar -->
-            <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
+        <!-- Placeholder image or default avatar -->
+        <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
         @endif
-    </a>
+      </a>
 
 
     </div>
@@ -247,12 +246,11 @@
                 <div>
                   <a href="#" class="profile-pic">
                     @if (Auth::check() && Auth::user()->profile_photo)
-                    <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
-                        alt="Profile Picture" class="profile-pic">
-                @else
+                    <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}" alt="Profile Picture" class="profile-pic">
+                    @else
                     <!-- Placeholder image or default avatar -->
                     <img src="assets/images/avatar.png" alt="Profile Picture" class="profile-pic">
-                @endif
+                    @endif
                   </a>
                 </div>
 
@@ -499,8 +497,19 @@
                     <div class="reply-container reply nested-reply">
                       <div class="user-info">
                         <img src="{{ $reply->user->profile_photo ? 'images/' . $reply->user->profile_photo : 'assets/images/avatar.png' }}" alt="User Avatar" style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
-                        <div class="user">{{ $reply->user->fname . " " . $reply->user->lname }}</div>
+                        <div class="user">{{ $reply->user->fname . " " . $reply->user->lname }}
+                        </div>
+
+
                       </div>
+                      @if ($reply->replyWithUser != null )
+                        <p class="content" style="font-size: 12px; font-style:italic">{{ $name->id == $reply->user->id ? 'You' : $reply->replyWithUser->user->fname }} replied to {{ $reply->replyWithUser->user->fname . ' ' . $reply->replyWithUser->user->lname }}</p> 
+                        <div style="background-color:rgba(255,255,255, .5)">
+                          <p class="content" style="font-size: 12px; color:gray; font-style:italic">{{ $reply->replyWithUser->reply}}</p>
+                        </div>
+                      @endif
+
+
                       <div class="content">{{ $reply->reply }}</div>
                       <div class="actions">
                         <button onclick="toggleReply('replyInputNested-{{$reply->id}}')">Reply</button>
@@ -508,9 +517,9 @@
                       </div>
                       <div class="reply-input" id="replyInputNested-{{$reply->id}}" style="display:none;">
                         <textarea placeholder="Write a reply..."></textarea>
-                        <button onclick="postReply(this, 'repliesContainer{{$reply->id . $comment->id}}', '{{$name->id}}', '{{$comment->id}}')">Reply</button>
+                        <button onclick="postReply(this, 'repliesContainer{{$comment->id}}', '{{$name->id}}', '{{$comment->id}}', '{{$reply->id}}')">Reply</button>
                       </div>
-                      <div class="replies" id="nestedRepliesContainer-{{$reply->id}}"></div> <!-- Nested replies container -->
+                      <div class="replies" id="nestedRepliesContainer-{{$comment->id}}"></div> <!-- Nested replies container -->
                     </div>
                     @endforeach
                     @endif

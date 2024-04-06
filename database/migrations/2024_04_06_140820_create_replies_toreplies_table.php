@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Reply;
+use App\Models\User;
 
 return new class extends Migration
 {
@@ -11,13 +13,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('replies', function (Blueprint $table) {
+        Schema::create('replies_toreplies', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->string('comment_id');
-            $table->string('reply');
-            $table->string('reply_id_reply')->nullable();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Reply::class)->constrained()->cascadeOnDelete();
+            $table->string('reply_content');
             $table->timestamps();
+
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('replies');
+        Schema::dropIfExists('replies_toreplies');
     }
 };

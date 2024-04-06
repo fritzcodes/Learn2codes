@@ -20,7 +20,9 @@ class CommentController extends Controller
     public function storeReply(ReplyRequest $request){
         $data = $request->validated();
         $reply = Reply::create($data);
-        $replyWithUser = Reply::with('user')->find($reply->id);
+        $replyWithUser = Reply::with('user')
+        ->with('replyWithUser')
+        ->find($reply->id);
         return response()->json($replyWithUser);
         
     }

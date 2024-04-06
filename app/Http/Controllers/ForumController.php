@@ -25,7 +25,10 @@ class ForumController extends Controller
             $query->where('id', $name->id);
         }])
         ->with(['comments.user', 'comments.replies.user'])
+        ->with('comments.replies.replyWithUser')
+        
         ->get();
+
        return view('frontend.forum.forum', compact('name', 'posts'));
     }
 
