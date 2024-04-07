@@ -477,12 +477,52 @@ function likePost(id, user_id, post_id){
     success: function(data){
       console.log(data);
       if(data == "add"){
-        $('#likesCount' + post_id).text(parseInt($('#likesCount' + post_id).text() + 1));
+       
+        if($('#likesCount' + post_id).text() == ""){
+          $('#likesCount' + post_id).text(parseInt(1));
+        }else{
+          $('#likesCount' + post_id).text(parseInt($('#likesCount' + post_id).text()) + 1);
+        }
       }else{
-        $('#likesCount' + post_id).text(parseInt($('#likesCount' + post_id).text() - 1));
-        $('#likesCount' + post_id).text(0) ? $('#likesCount' + post_id).text('') : '';
+        
+        if($('#likesCount' + post_id).text() == 1){
+          $('#likesCount' + post_id).text('')
+        }else{
+          $('#likesCount' + post_id).text(parseInt($('#likesCount' + post_id).text()) - 1);
+        }
+  
       }
       $('#' + id).toggleClass('outlined-heart');
+    },
+    error: function(xhr){
+      alert(xhr.responseText);
+    }
+  })
+  
+}
+
+function likeComment(id, user_id, comment_id){
+  const request = {
+    user_id: user_id,
+    comment_id: comment_id
+  }
+  $.ajax({
+    url: '/like-comment',
+    method: 'post',
+    dataType: 'json',
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    data: request,
+    success: function(data){
+      console.log(data);
+      if(data == "add"){
+        $('#likesCommentCount' + comment_id).text(parseInt($('#likesCommentCount' + comment_id).text() + 1));
+      }else{
+        $('#likesCommentCount' + comment_id).text(parseInt($('#likesCommentCount' + comment_id).text() - 1));
+        $('#likesCommentCount' + comment_id).text(0) ? $('#likesCommentCount' + comment_id).text('') : '';
+      }
+      $('#' + id).toggleClass('tBold');
     },
     error: function(xhr){
       alert(xhr.responseText);

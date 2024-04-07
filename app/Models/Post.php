@@ -34,7 +34,13 @@ class Post extends Model
     }
 
     public function likes(): HasMany
-{
-    return $this->hasMany(LikePost::class);
-}
+    {
+        return $this->hasMany(LikePost::class);
+    }
+
+    public function commentsWithLikesCount(): HasMany
+    {
+        return $this->commentsWithLikesCount()
+            ->withCount('likes');
+    }
 }

@@ -37,6 +37,10 @@
     a:hover {
       cursor: pointer;
     }
+
+    .tBold {
+      font-weight: bolder;
+    }
   </style>
 
 
@@ -428,7 +432,22 @@
             <p id="likesCount{{$post->id}}" class="footer-btn">{{ $post->likes_count == 0 ? '' :  $post->likes_count}}</p>
             <a class="footer-btn" onclick="likePost('like{{$post->id}}', '{{$name->id}}', '{{$post->id}}')" style="text-align:left">
 
-              <i class="fa fa-heart {{ $post->like == null ? 'outlined-heart' : ''}}" id="like{{$post->id}}"></i>
+              <i class="fa fa-heart 
+                @if (count($post->likes) > 0)
+                    @php $outlinedHeart = true; @endphp
+                    @foreach ($post->likes as $like)
+                        @if ($like->user != null)
+                            @php $outlinedHeart = false; @endphp
+                            @break
+                        @endif
+                    @endforeach
+                    {{ $outlinedHeart ? 'outlined-heart' : '' }}
+                @else
+                    outlined-heart
+                @endif
+            " id="like{{$post->id}}">
+              </i>
+
               <p>Like</p>
             </a>
             <a class="footer-btn" onclick="showComment('main-comment-sec{{$post->id}}')"><i class="bx bxs-message-rounded"></i>
@@ -485,7 +504,8 @@
                   <div class="content">{{ $comment->comment }}</div>
 
                   <div class="actions">
-                    <button>Like</button>
+                    <p id="likesCommentCount{{$comment->id}}"></p>
+                    <button onclick="likeComment('likeComment{{$comment->id}}', '{{$name->id}}', '{{$comment->id}}')" class="{{ $comment->like == null ? 'outlined-heart' : ''}}"" id=" likeComment{{$comment->id}}">Like</button>
                     <button onclick="toggleReply('replyInput{{$comment->id}}')">Reply</button>
                     <button href="#">{{ \Illuminate\Support\Carbon::parse($comment->created_at)->diffForHumans() }}</button>
                   </div>
@@ -503,10 +523,10 @@
 
                       </div>
                       @if ($reply->replyWithUser != null )
-                        <p class="content" style="font-size: 12px; font-style:italic">{{ $name->id == $reply->user->id ? 'You' : $reply->replyWithUser->user->fname }} replied to {{ $reply->replyWithUser->user->fname . ' ' . $reply->replyWithUser->user->lname }}</p> 
-                        <div style="background-color:rgba(255,255,255, .5)">
-                          <p class="content" style="font-size: 12px; color:gray; font-style:italic">{{ $reply->replyWithUser->reply}}</p>
-                        </div>
+                      <p class="content" style="font-size: 12px; font-style:italic">{{ $name->id == $reply->user->id ? 'You' : $reply->replyWithUser->user->fname }} replied to {{ $reply->replyWithUser->user->fname . ' ' . $reply->replyWithUser->user->lname }}</p>
+                      <div style="background-color:rgba(255,255,255, .5)">
+                        <p class="content" style="font-size: 12px; color:gray; font-style:italic">{{ $reply->replyWithUser->reply}}</p>
+                      </div>
                       @endif
 
 
