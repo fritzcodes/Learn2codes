@@ -504,8 +504,19 @@
                   <div class="content">{{ $comment->comment }}</div>
 
                   <div class="actions">
-                    <p id="likesCommentCount{{$comment->id}}"></p>
-                    <button onclick="likeComment('likeComment{{$comment->id}}', '{{$name->id}}', '{{$comment->id}}')" class="{{ $comment->like == null ? 'outlined-heart' : ''}}"" id=" likeComment{{$comment->id}}">Like</button>
+                    <p id="likesCommentCount{{$comment->id}}">@if (count($comment->likes) > 0){{count($comment->likes)}}@endif</p>
+                    <button onclick="likeComment('likeComment{{$comment->id}}', '{{$name->id}}', '{{$comment->id}}')" class="
+                    @if (count($comment->likes) > 0)
+                      @php $tBold = true; @endphp
+                      @foreach ($comment->likes as $like)
+                          @if ($like->user != null)
+                              @php $tBold = false; @endphp
+                              @break
+                          @endif
+                      @endforeach
+                      {{ $tBold ? '' : 'tBold' }}
+                    @endif
+                    " id="likeComment{{$comment->id}}">Like</button>
                     <button onclick="toggleReply('replyInput{{$comment->id}}')">Reply</button>
                     <button href="#">{{ \Illuminate\Support\Carbon::parse($comment->created_at)->diffForHumans() }}</button>
                   </div>

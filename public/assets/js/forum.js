@@ -515,12 +515,24 @@ function likeComment(id, user_id, comment_id){
     },
     data: request,
     success: function(data){
+      
       console.log(data);
       if(data == "add"){
-        $('#likesCommentCount' + comment_id).text(parseInt($('#likesCommentCount' + comment_id).text() + 1));
+       
+        if($('#likesCommentCount' + comment_id).text() == ""){
+          $('#likesCommentCount' + comment_id).text("1");
+          
+        }else{
+          $('#likesCommentCount' + comment_id).text(parseInt($('#likesCommentCount' + comment_id).text()) + 1);
+        }
       }else{
-        $('#likesCommentCount' + comment_id).text(parseInt($('#likesCommentCount' + comment_id).text() - 1));
-        $('#likesCommentCount' + comment_id).text(0) ? $('#likesCommentCount' + comment_id).text('') : '';
+        
+        if($('#likesCommentCount' + comment_id).text() == 1){
+          $('#likesCommentCount' + comment_id).text('')
+        }else{
+          $('#likesCommentCount' + comment_id).text(parseInt($('#likesCommentCount' + comment_id).text()) - 1);
+        }
+  
       }
       $('#' + id).toggleClass('tBold');
     },
