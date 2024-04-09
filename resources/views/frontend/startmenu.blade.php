@@ -11,40 +11,9 @@
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
     
-
-    <style>
-        body {
-            padding: 90px 10%;
-            width: 100%;
-            height: 100vh;
-            background: url("assets/images/backmenu.svg");
-            color: var(--text-color);
-            overflow-x: hidden;
-            /* Prevent horizontal scrolling */
-            z-index: -1;
-            /* Behind other content */
-            background-size: cover;
-            animation: animateBackground 20s linear infinite;
-            /* Adjust as needed */
-        }
-
-        @keyframes animateBackground {
-            0% {
-                background-position: 0 0;
-            }
-
-            100% {
-                background-position: 100% 100%;
-            }
-        }
-    </style>
-
-
-
-
 </head>
 
-<body>
+<body style="background-image: url(assets/images/backmenu.svg);">
 
     <header>
         <a href="/" class="bx bx-chevron-left" id="back-btn"></a>
@@ -77,72 +46,27 @@
 
     </header>
 
-
     <section class="space-background">
-        <div class="content-section">
-            <div class="content-container1">
-                <a href="Playground" class="content-link">
-                    <img src="assets/images/playground-btn.svg" alt="Playground" id="playground">
-                </a>
-            </div>
+    <div class=title>
+        <h2>Main menu</h2>
+      </div> 
+     <div class="content-section">
+          <a href="Playground" >
+            <img src="assets/images/playground-btn.svg" alt="Playground" id="playground">
+          </a>
+          <a href="#"> 
+            <img src="assets/images/leaderboard-btn.svg" alt="Leaderboard" id="leaderboard">
+          </a>
+          <a href="{{ route('moduleLanguage') }}">
+            <img src="assets/images/module-btn.svg" alt="Modules" id="module">
+          </a>
+          <a href="/forum"> 
+            <img src="assets/images/forums-btn.svg" alt="forum" id="forum">
+          </a>
+    </div>
+  </section>
 
-            <div class="content-container2">
-                <a href="#" class="content-link"> <img src="assets/images/leaderboard-btn.svg" alt="Leaderboard"
-                        id="leaderboard">
-                </a>
-            </div>
-
-            <div class="content-container3">
-                <a href="{{ route('moduleLanguage') }}" class="content-link">
-                    <img src="assets/images/module-btn.svg" alt="Modules" id="module">
-                </a>
-            </div>
-
-            <div class="content-container4">
-                <a href="/forum" class="content-link">
-                    <img src="assets/images/forums-btn.svg" alt="forum" id="forum">
-                </a>
-            </div>
-        </div>
-    </section>
-
-
-    <script>
-        const header = document.querySelector("header");
-        const menu = document.querySelector('#menu-icon');
-        const navbar = document.querySelector('.navbar');
-        const section = document.querySelector('section');
-
-        // Global variable to track the hover state
-        let isHoverEnabled = true;
-
-        // Function to toggle hoverability
-        function toggleHoverability() {
-            section.classList.toggle('no-hover', !isHoverEnabled);
-        }
-
-        // Toggle menu and navbar on menu icon click
-        menu.onclick = (event) => {
-            event.stopPropagation(); // Prevent the click event from reaching the document click event
-            navbar.classList.toggle('open');;
-            isHoverEnabled = !isHoverEnabled; // Toggle hover state
-            toggleHoverability();
-        };
-
-        // Close header when clicking on free space
-        document.addEventListener('click', function(event) {
-            // Check if the clicked element is not part of the header or menu
-            if (!header.contains(event.target) && event.target !== menu) {
-                // Check if the navbar is open
-                if (navbar.classList.contains('open')) {
-                    // Close the header
-                    navbar.classList.remove('open');
-                    isHoverEnabled = true; // Enable hover when closing the menu
-                    toggleHoverability();
-                }
-            }
-        });
-    </script>
+    <script type="text/javascript" src="assets/js/headermenu.js"></script>
 
 </body>
 
