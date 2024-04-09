@@ -49,6 +49,9 @@
 
 
     <section class="space-background">
+    <div class=title>
+        <h2>Main menu</h2>
+      </div> 
      <div class="content-section">
           <a href="Playground" >
             <img src="assets/images/playground-btn.svg" alt="Playground" id="playground">

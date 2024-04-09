@@ -179,6 +179,19 @@ animation: animateBackground 20s linear infinite; /* Adjust as needed */
   }
 
     /*----------- Content Section------------ */
+    .title {
+      position: relative;
+      padding-bottom: 50px;
+      width: 100%;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .title h2 {
+      font-size: var(--h2-font);
+    }
 
   .content-section {
     align-items: center;
@@ -267,7 +280,7 @@ animation: animateBackground 20s linear infinite; /* Adjust as needed */
 }
 
 .space-background {
-  padding: 90px 50px;
+  padding: 120px 50px;
   overflow: scroll;
 }
 
@@ -295,10 +308,6 @@ height: auto;
     transition: .2s;
   }
 
-  .space-background {
-    padding: 90px 70px;
-  }
-
   .content-section {
     gap: 20px;
 }
@@ -315,10 +324,6 @@ height: auto;
     --big-font: 3.5rem;
     --h2-font: 1.5rem;
     transition: .2s;
-  }
-
-  .space-background {
-    padding: 90px 40px;
   }
 
   .content-section {
