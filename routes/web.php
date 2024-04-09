@@ -29,6 +29,8 @@ use App\Http\Controllers\ExpController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\TryCodeController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\boardController; 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,7 +41,7 @@ use App\Http\Controllers\CommentController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/leaderboard', [boardController::class, 'Index'])->name('leaderboard');
 Route::get('/ha', function () {
     return "HAHAHA";
 });
