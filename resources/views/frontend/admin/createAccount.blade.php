@@ -59,7 +59,7 @@
 
                 <div class="title">
                 <h2>Learn2Code</h2>
-                <p>Admin Login</p>
+                <p>Admin Creation</p>
                 </div>
                 
 
