@@ -57,10 +57,12 @@
           <a href="#" class="bx bx-menu" id="menu-icon"></a>
         </li>
         <li>
-          <div class="logo">
-            <img src="assets/images/Logo.jpg" alt="logo">
-          </div>
-        </li>
+  <div class="logo">
+    <a href="/startmenu">
+      <img src="assets/images/Logo.jpg" alt="logo">
+    </a>
+  </div>
+</li>
         <li>
           <input type="search" id="search" placeholder="Search">
           <div>
@@ -86,19 +88,16 @@
 
     </div>
     <div class="right-btn">
-      <a href="#" class="bx bxs-bell" id="notif"><span class="indicator"></span></a>
-      <a href="#" class="profile-link">
-
-        @if (Auth::check() && Auth::user()->profile_photo)
-        <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}" alt="Profile Photo" class="avatar">
-        @else
-        <!-- Placeholder image or default avatar -->
-        <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
-        @endif
-      </a>
-
-
-    </div>
+  <a href="#" class="bx bxs-bell" id="notif"><span class="indicator"></span></a>
+  <a href="/profile" class="profile-link">
+    @if (Auth::check() && Auth::user()->profile_photo)
+    <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}" alt="Profile Photo" class="avatar">
+    @else
+    <!-- Placeholder image or default avatar -->
+    <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
+    @endif
+  </a>
+</div>
 
     <div id="notifModal" class="modal">
       <!-- Modal content -->
@@ -346,6 +345,9 @@
                 <a href=""><i class='bx bxs-trash'></i>
                   <p>Delete</p>
                 </a>
+                <a href=""><i class='bx bxs-edit'></i>
+                  <p>Edit</p>
+                </a>
                 <a href=""><i class='bx bxl-instagram-alt'></i>
                   <p>Report</p>
                 </a>
@@ -480,8 +482,14 @@
                     <div class="user">{{ $comment->user->fname . " " . $comment->user->lname}}</div>
                   </div>
 
-                  <div class="content">{{ $comment->comment }}</div>
-
+                  <div class="content">
+                  {{ $comment->comment }}
+                  <!-- @if (Auth::user()->id == $comment->user_id)
+                  <a href="">Edit</a> | 
+                  <a href="">Delete</a>
+                  @endif -->
+                  </div>
+                    
                   <div class="actions">
                     <p id="likesCommentCount{{$comment->id}}">@if (count($comment->likes) > 0){{count($comment->likes)}}@endif</p>
                     <button onclick="likeComment('likeComment{{$comment->id}}', '{{$name->id}}', '{{$comment->id}}')" class="
