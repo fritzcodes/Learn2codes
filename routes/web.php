@@ -76,7 +76,7 @@ Route::get('/admin/adminLogin', [adminLoginController::class, 'Index'])->name('A
 Route::post('/admin/adminLogin', [adminLoginController::class, 'adminLoginPost'])->name('AdminLogin');
 
 Route::get('/admin/createAccount', [adminLoginController::class, 'createAdmin'])->name('createAccount');
-Route::post('/admin/createAccount', [adminLoginController::class, 'createAccountPost'])->name('createAccount');
+Route::post('/admin/createAccountPost', [adminLoginController::class, 'createAccountPost'])->name('createAccountPost');
 
 
 Route::get('/', [TemplateController::class, 'index']);

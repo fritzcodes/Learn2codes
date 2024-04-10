@@ -80,7 +80,7 @@ class adminLoginController extends Controller
         $user->password = Hash::make($request->password);
 
         $user->save();
-
+        
         return redirect()->to(route('createAccount'))->with("success","Created Admin account successfully");
     }
 
