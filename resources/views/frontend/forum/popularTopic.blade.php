@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Learn2Code</title>
-  <link rel="stylesheet" href="assets/css/forum.css">
-  <link rel="stylesheet" href="upload.css">
+  <link rel="stylesheet" href="/assets/css/forum.css">
+  <link rel="stylesheet" href="/upload.css">
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,8 +21,8 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script src="assets/js/forum.js" defer></script>
-  <script src="assets/js/insertimg.js" defer></script>
+  <script src="/assets/js/forum.js" defer></script>
+  <script src="/assets/js/insertimg.js" defer></script>
   <style>
     .outlined-heart {
       color: black;
@@ -58,7 +58,7 @@
         </li>
         <li>
           <div class="logo">
-            <img src="assets/images/Logo.jpg" alt="logo">
+            <img src="/assets/images/Logo.jpg" alt="logo">
           </div>
         </li>
         <li>
@@ -90,10 +90,10 @@
       <a href="#" class="profile-link">
 
         @if (Auth::check() && Auth::user()->profile_photo)
-        <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}" alt="Profile Photo" class="avatar">
+        <img src="{{ Auth::user()->profile_photo ? asset('/images/' . Auth::user()->profile_photo) : '/assets/images/avatar.png' }}" alt="Profile Photo" class="avatar">
         @else
         <!-- Placeholder image or default avatar -->
-        <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
+        <img src="/assets/images/avatar.png" alt="Default Avatar" class="avatar">
         @endif
       </a>
 
@@ -132,7 +132,7 @@
         <div class="notif-container">
           <a href="#" class="notification-item unread-notif">
             <span class="unread"></span>
-            <img src="images/avatar.jpg" alt="Notification Icon" class="icon">
+            <img src="/images/avatar.jpg" alt="Notification Icon" class="icon">
             <div class="content">
               <h2 class="notification-item-user-block">
                 <span class="notification-item-user-name">Kioh Samson</span> is watching your repository
@@ -159,7 +159,7 @@
 
         <div class="notif-container">
           <a href="#" class="notification-item">
-            <img src="images/avatar.jpg" alt="Notification Icon" class="icon">
+            <img src="/images/avatar.jpg" alt="Notification Icon" class="icon">
             <div class="content">
               <h2 class="notification-item-user-block">
                 <span class="notification-item-user-name">David Matthew Arsenal</span> is watching your repository
@@ -228,95 +228,9 @@
 
     <div class="contents">
       <div class="feed">
-        <div class="writeout">
-          <div class="writein">
-            <a href="#" id="createbtn">
-              <h2>Write your thoughts...</h2>
-            </a>
-          </div>
-        </div>
+       
 
-        <div id="postModal" class="modal">
-          <div class="modal-content">
-            <div class="createheader">
-              <h2>Create Post<span class="close">&times;</span></h2>
-            </div>
-
-            <hr>
-
-            <form id="postForm" action="/post-forum" method="post" enctype="multipart/form-data">
-              @csrf
-              <div class="info-header">
-                <div>
-                  <a href="#" class="profile-pic">
-                    @if (Auth::check() && Auth::user()->profile_photo)
-                    <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}" alt="Profile Picture" class="profile-pic">
-                    @else
-                    <!-- Placeholder image or default avatar -->
-                    <img src="assets/images/avatar.png" alt="Profile Picture" class="profile-pic">
-                    @endif
-                  </a>
-                </div>
-
-                <div class="post-info">
-                  <div class="first-name">
-                    <p><a href="#">{{ $name->fname . ' ' . $name->lname }}</a><span class="feelings" style="display: none;">is <img src="images/smiley.PNG" alt=""> feeling happy</span></p>
-                  </div>
-
-                  <!--
-                   <div class="date">
-                      March 4, 2024
-                    </div>                      
-                    -->
-                </div>
-              </div>
-
-              <div class="postContent">
-
-                <div class="createcaption">
-                  <textarea id="textContent" name="content" placeholder="Type a caption here..." required></textarea>
-                </div>
-
-                <div class="photocontainer">
-                  <span class="photoclose">&times;</span>
-                  <input type="file" id="file-input" name="image[]" accept="image/png, image/jpeg" onchange="preview()" multiple>
-                  <label for="file-input">
-                    <i class='bx bx-upload'></i> &nbsp; Choose A Photo
-                  </label>
-                  <p id="num-of-files">
-                    No Files Chosen
-                  </p>
-                  <div id="photos">
-
-                  </div>
-                </div>
-
-                <div class="codecontainer">
-                  <span class="codeclose" onclick="insertCode()">&times;</span>
-                  <div>
-                    <h3>Insert code here</h3>
-                    <textarea name="code" id="" rows="10" style="width: 100%; background-color:black; color:white"></textarea>
-                  </div>
-                </div>
-              </div>
-
-
-
-              <div class="create-footer">
-                <div id="add-content" class="add-content">
-                  <a class="photos" data-tooltip="Add Photos"><i class='bx bx-image-add'></i></a>
-                  <a class="emotions" data-tooltip="Add Feelings"><i class='bx bxs-heart-circle'></i></a>
-                  <a class="snippet" data-tooltip="Insert Code" id="insertCode" onclick="insertCode()"><i class='bx bx-code'></i></a>
-                  <a class="hashtag" data-tooltip="Add Hashtag" id="hashtag"><i class='bx bx-link-alt'></i></a>
-                </div>
-
-                <button type="submit" id="postbtn">Post</button>
-              </div>
-
-
-            </form>
-          </div>
-        </div>
+        
 
         
 
@@ -325,12 +239,12 @@
         <div class="post">
           <div class="post-header">
             <div>
-              <a href="#" class="profile-pic"><img src="{{ $post->user->profile_photo ? 'images/' . $post->user->profile_photo : 'assets/images/avatar.png' }}" alt="Profile Picture" id="profile-pic"></a>
+              <a href="#" class="profile-pic"><img src="{{ $post->user->profile_photo ? '/images/' . $post->user->profile_photo : '/assets/images/avatar.png' }}" alt="Profile Picture" id="profile-pic"></a>
             </div>
 
             <div class="post-info">
               <div class="first-name">
-                <p><a href="#">{{ $post->user->fname . " " . $post->user->lname }}</a><span class="feelings">is <img src="images/smiley.PNG" alt=""> feeling happy</span></p>
+                <p><a href="#">{{ $post->user->fname . " " . $post->user->lname }}</a><span class="feelings">is <img src="/images/smiley.PNG" alt=""> feeling happy</span></p>
               </div>
 
               <div class="date">
@@ -387,7 +301,7 @@
             @if (count($post->images) > 0)
             <div class="image-gallery">
               @foreach ($post->images as $image)
-              <img class="post-pic" src="forums/{{$image->image}}" alt="Image 1">
+              <img class="post-pic" src="/forums/{{$image->image}}" alt="Image 1">
               @endforeach
             </div>
             @endif
@@ -476,7 +390,7 @@
                 @foreach ($post->comments as $comment)
                 <div class="comment">
                   <div class="user-info">
-                    <img src="{{ $comment->user->profile_photo ? 'images/' . $comment->user->profile_photo : 'assets/images/avatar.png' }}" alt="Profile Picture">
+                    <img src="{{ $comment->user->profile_photo ? '/images/' . $comment->user->profile_photo : '/assets/images/avatar.png' }}" alt="Profile Picture">
                     <div class="user">{{ $comment->user->fname . " " . $comment->user->lname}}</div>
                   </div>
 
@@ -506,7 +420,7 @@
                     @foreach ($comment->replies as $reply)
                     <div class="reply-container reply nested-reply">
                       <div class="user-info">
-                        <img src="{{ $reply->user->profile_photo ? 'images/' . $reply->user->profile_photo : 'assets/images/avatar.png' }}" alt="User Avatar" style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
+                        <img src="{{ $reply->user->profile_photo ? '/images/' . $reply->user->profile_photo : '/assets/images/avatar.png' }}" alt="User Avatar" style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
                         <div class="user">{{ $reply->user->fname . " " . $reply->user->lname }}
                         </div>
 

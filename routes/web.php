@@ -151,7 +151,10 @@ Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () 
     Route::post('/comment/storeReply', [CommentController:: class, 'storeReply']);
     Route::post('/post-forum', [ForumController::class, 'store'])->name('storeForum');
     Route::post('/like-post', [ForumController::class, 'likePost']);
+    Route::post('/notifications', [ForumController::class, 'Notification']);
+    Route::post('/notifications-update', [ForumController::class, 'NotificationUpdate']);
     Route::post('/like-comment', [ForumController::class, 'likeComment']);
+    Route::get('/popular/{hashtag}', [ForumController::class, 'PopularTopics']);
     Route::get('/startmenu', function () {
         return view('frontend.startmenu');
     })->name('startmenu');
