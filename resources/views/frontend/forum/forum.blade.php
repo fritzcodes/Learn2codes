@@ -390,6 +390,7 @@
 
 
               @endphp
+              {{ $hashtags }}
               <pre>{!! $content !!}
 </pre>
 

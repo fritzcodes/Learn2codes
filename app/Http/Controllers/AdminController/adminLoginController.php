@@ -49,7 +49,7 @@ class adminLoginController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:users,email',
-            'username' => 'required|unique:users,username',
+          
             'password' => 'required|min:8|confirmed',
         ]);
         
@@ -76,7 +76,7 @@ class adminLoginController extends Controller
         $user = new Admin();
 
         $user->email = $request->email;
-        $user->username = $request->username;
+        //$user->username = $request->username;
         $user->password = Hash::make($request->password);
 
         $user->save();
