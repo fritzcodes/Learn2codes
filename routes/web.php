@@ -29,6 +29,8 @@ use App\Http\Controllers\ExpController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\TryCodeController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\boardController; 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,7 +41,7 @@ use App\Http\Controllers\CommentController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/leaderboard', [boardController::class, 'Index'])->name('leaderboard');
 Route::get('/ha', function () {
     return "HAHAHA";
 });
@@ -149,7 +151,10 @@ Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () 
     Route::post('/comment/storeReply', [CommentController:: class, 'storeReply']);
     Route::post('/post-forum', [ForumController::class, 'store'])->name('storeForum');
     Route::post('/like-post', [ForumController::class, 'likePost']);
+    Route::post('/notifications', [ForumController::class, 'Notification']);
+    Route::post('/notifications-update', [ForumController::class, 'NotificationUpdate']);
     Route::post('/like-comment', [ForumController::class, 'likeComment']);
+    Route::get('/popular/{hashtag}', [ForumController::class, 'PopularTopics']);
     Route::get('/startmenu', function () {
         return view('frontend.startmenu');
     })->name('startmenu');

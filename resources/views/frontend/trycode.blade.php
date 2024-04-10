@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <center><h1 style="font-family:'Times New Roman', Times, serif" id="titleContent"></h1></center>
+    <center><h1 style="font-family:'Helvetica', Arial, serif" id="titleContent"></h1></center>
     <iframe id="oc-editor" frameborder="0" height="450px"
         src="https://onecompiler.com/embed?hideLanguageSelection=true&&hideNew=true&&hideNewFileOption=true&&listenToEvents=true&&codeChangeEvent=true&&hideTitle=true"
         width="100%"></iframe>

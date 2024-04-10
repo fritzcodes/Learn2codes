@@ -20,7 +20,7 @@
         --font2: Helvetica;
         transition: .2s;
     }
- 
+
     body {
         padding: 100px;
         display: flex;
@@ -39,30 +39,31 @@
               background-position: 100% 100%;
             }
           }
-    
+
+
     .logo {
         align-items: center;
         align-content: center;
-        justify-content: center;  
+        justify-content: center;
     }
 
     .logo img{
-        
+
         width: 55%;
         border-radius: 50%;
         box-shadow: -2px 2px var(--bg-color);
-        backdrop-filter: blur(6px); 
+        backdrop-filter: blur(6px);
     }
 
-    .space-background { 
+    .space-background {
         width: 45%;
         align-items: center;
         align-content: center;
         justify-content: center;
         border-radius: 35.066px;
         background: var(--main-color);
-        backdrop-filter: blur(6px);  
-    
+        backdrop-filter: blur(6px);
+
     }
 
 /*----------- Content Section------------ */
@@ -226,7 +227,7 @@
     .signing {
         align-items: center;
         display: flex;
-        justify-content: center;  
+        justify-content: center;
         margin-bottom: 20px;
     }
 
@@ -262,7 +263,7 @@
 #passwordError {
     color: var(--text-color);
     display: none;
-    
+
 }
 
 /*-----------RESPONSIVENESS----------*/
@@ -295,8 +296,8 @@
     .logo {
         display: none;
     }
- 
-    .space-background { 
+
+    .space-background {
         background: none;
         position: fixed;
         top: 0;
@@ -313,7 +314,6 @@
     }
 
     }
-
 
     @media (max-width: 376px) {
     :root{ /*---font and color defaults --*/
@@ -359,7 +359,7 @@
         .space-background {
             width: 80%;
         }
- 
+
 
     }
 
@@ -386,5 +386,23 @@
         }
     }
 
+        .mobile-logo {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            width: 100%; /* Ensures the div takes up full width */
+      }
+
+        .mobile-logo img {
+            border-radius: 50%;
+            width: 100px; /* Adjust as needed */
+            height: 100px; /* Adjust as needed */
+          }
+
+        @media screen and (max-width: 600px) {
+            .mobile-logo {
+            display: flex;
+            }
+        }
 
 

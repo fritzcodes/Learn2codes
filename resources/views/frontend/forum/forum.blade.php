@@ -318,6 +318,7 @@
           </div>
         </div>
 
+        
 
         @if(count($posts) > 0)
         @foreach ($posts as $index => $post)
@@ -356,28 +357,6 @@
 
           <div class="post-content">
             <div class="caption">
-              <!-- @php
-    $content = $post->content;
-    // Split the content by hashtags while maintaining line breaks
-    $parts = preg_split('/#(\w+)/', $content);
-@endphp
-
-@foreach ($parts as $part)
-    @if ($loop->first)
-    <pre>{{ $part }}</pre>
-    @else
-   
-        @if (strpos($part, "\n") === false)
-        <a href="/hash/{{ strtok($part, ' ') }}" class="hashtags">
-                <p>#{{ strtok($part, ' ') }}</p>
-            </a>
-            {{ substr($part, strpos($part, ' ') + 1) }}
-        @else
-            #{{ $part }}
-        @endif
-    @endif
-@endforeach -->
-
               @php
               $content = $post->content;
 
@@ -385,16 +364,16 @@
 
               $hashtags = $matches[1];
               foreach ($hashtags as $hashtag) {
-              $content = str_replace("#$hashtag", "<a href='$hashtag' class='hashtags'>#$hashtag</a>", $content);
+              $content = str_replace("#$hashtag", "<a href='/popular/$hashtag' class='hashtags'>#$hashtag</a>", $content);
               }
 
 
               @endphp
+
               <pre>{!! $content !!}
 </pre>
 
             </div>
-
 
             @if ($post->code != null)
             <div class="code-snippet"> <!--where code will display-->
@@ -745,21 +724,44 @@
 
 
       </div>
+@php
+              $allHashtags = [];
+              foreach ($posts as $post) {
+              $content = $post->content;
+              preg_match_all('/#(\w+)/', $content, $matches);
+              $allHashtags = array_merge($allHashtags, $matches[1]);
+              }
+
+              $hashtagCounts = array_count_values($allHashtags);
+              arsort($hashtagCounts);
+              $popularHashtags = array_slice($hashtagCounts, 0, 5, true);
+              @endphp
+
+              @foreach ($posts as $index => $post)
+              @php
+              $content = $post->content;
+              preg_match_all('/#(\w+)/', $content, $matches);
+              @endphp
+            
+              @endforeach
 
       <!-------------------sidebar content-->
       <div class="content2" id="content2">
         <div class="sidebar">
           <ul class="main-menu">
             <li class="dropdown">
-              <a href="javascript:void(0)">Recent<span class="icon">▼</span></a>
+              <a href="javascript:void(0)">Popular Hashtags<span class="icon">▼</span></a>
+            
               <ul class="dropdown-content">
-                <li><a href="#">Java</a></li>
+                @foreach ($popularHashtags as $hashtag => $count)
+                  <li><a href="/popular/{{$hashtag}}">#{{ $hashtag }}</a></li>
+                @endforeach
               </ul>
             </li>
             <div>
               <hr>
             </div>
-            <li class="dropdown">
+            <!-- <li class="dropdown">
               <a href="javascript:void(0)">Topics<span class="icon">▼</span></a>
               <ul class="dropdown-content">
                 <li><a href="#">Web Design</a></li>
@@ -784,7 +786,7 @@
               </ul>
             </li>
 
-            <li><a href="#">About</a></li>
+            <li><a href="#">About</a></li> -->
           </ul>
         </div>
 
