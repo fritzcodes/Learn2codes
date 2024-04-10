@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\ImagePost;
 use App\Models\LikeComment;
 use App\Models\LikePost;
+use App\Models\UserNotification;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
@@ -31,8 +33,9 @@ class ForumController extends Controller
             }])
             ->with('comments.replies.replyWithUser')
             ->get();
-        //dd($posts);
-        return view('frontend.forum.forum', compact('name', 'posts'));
+        $notif = UserNotification::where('self_id', $name->id)->get();
+        //dd($notif);
+        return view('frontend.forum.forum', compact('name', 'posts', 'notif'));
     }
 
     public function store(PostRequest $request)
@@ -70,10 +73,27 @@ class ForumController extends Controller
             LikePost::where('post_id', $data['post_id'])
                 ->where('user_id', Auth::user()->id)
                 ->delete();
+
+            UserNotification::where('notif_type_id', $data['post_id'])
+                ->where('user_id', Auth::user()->id)
+                ->where('notif_type', 'post')
+                ->delete();
             $data = 'subtract';
         } else {
             LikePost::create($data);
             $data = 'add';
+
+            $self = Post::with('user')->findOrFail($request['post_id']);
+
+            if ($request['user_id'] != $self->user_id) {
+                UserNotification::create([
+                    'self_id' => $self->user_id,
+                    'user_id' => $request->user_id,
+                    'notif_type' => 'post',
+                    'content' => Auth::user()->fname . ' ' . Auth::user()->lname . ' Liked your post',
+                    'notif_type_id' => $request->post_id
+                ]);
+            }
         }
 
 
@@ -93,13 +113,64 @@ class ForumController extends Controller
             LikeComment::where('comment_id', $data['comment_id'])
                 ->where('user_id', Auth::user()->id)
                 ->delete();
+
+            UserNotification::where('notif_type_id', $data['comment_id'])
+                ->where('user_id', Auth::user()->id)
+                ->where('notif_type', 'comment')
+                ->delete();
             $data = 'subtract';
         } else {
             LikeComment::create($data);
             $data = 'add';
+
+            $self = Comment::with('user')->findOrFail($request['comment_id']);
+
+            if ($request['user_id'] != $self->user_id) {
+                UserNotification::create([
+                    'self_id' => $self->user_id,
+                    'user_id' => $request->user_id,
+                    'notif_type' => 'comment',
+                    'content' => Auth::user()->fname . ' ' . Auth::user()->lname . ' Liked your comment',
+                    'notif_type_id' => $request->comment_id
+                ]);
+            }
         }
 
 
         return response()->json($data);
+    }
+
+    public function PopularTopics($hashtag): View
+    {
+        $name = Auth::user();
+        $posts = Post::with('images')
+            ->with('user')
+            ->withCount('likes')
+            ->with(['likes.user' => function ($query) use ($name) {
+                $query->where('id', $name->id);
+            }])
+            ->with(['comments.user', 'comments.replies.user'])
+            ->with(['comments.likes.user' => function ($query) use ($name) {
+                $query->where('id', $name->id);
+            }])
+            ->with('comments.replies.replyWithUser')
+            ->where('content', 'LIKE', '%#' . $hashtag . '%')
+            ->get();
+        //dd($posts);
+        return view('frontend.forum.popularTopic', compact('name', 'posts'));
+    }
+
+    public function Notification()
+    {
+        $notif = UserNotification::where('self_id', Auth::user()->id)->get();
+        return response()->json($notif);
+    }
+
+    public function NotificationUpdate()
+    {
+        $notif = UserNotification::where('self_id', Auth::user()->id)
+        ->where('is_read', '0')
+        ->update(['is_read' => '1']);
+        return response()->json($notif);
     }
 }
