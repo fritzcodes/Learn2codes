@@ -51,13 +51,13 @@
         <h2>Main menu</h2>
       </div> 
      <div class="content-section">
-          <a href="Playground" >
+          <a href="/Playground" >
             <img src="assets/images/playground-btn.svg" alt="Playground" id="playground">
           </a>
-          <a href="#"> 
+          <a href="/leaderboard"> 
             <img src="assets/images/leaderboard-btn.svg" alt="Leaderboard" id="leaderboard">
           </a>
-          <a href="{{ route('moduleLanguage') }}">
+          <a href="module/moduleLanguage">
             <img src="assets/images/module-btn.svg" alt="Modules" id="module">
           </a>
           <a href="/forum"> 

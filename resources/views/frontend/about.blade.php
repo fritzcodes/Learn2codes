@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn2Code | Our Team</title>
+    <title>Our Team | Learn2Code</title>
 
     <link rel="stylesheet" href="assets/css/aboutus.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -35,13 +35,249 @@
         </div>
 		<div id="div1" class="team-content">
 			<div class="box">
-				<img src="assets/images/avatar.png">
-				<h2>Ricardo Macayan</h2>
-				<p>Artist</p>
+				<img src="assets/images/aboutpic/adrao.png">
+				<h2>Adrao, Abigael</h2>
+				<p>UI/UX Designer</p>
 				<div class="icons">
-					<a href="#"><i class="bx bxl-facebook"></i></a>
-					<a href="#"><i class="bx bxl-instagram-alt"></i></a>
-					<a href="#"><i class="bx bxl-twitter"></i></a>
+					<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/amar.png">
+				<h2>Amar, Kimberly</h2>
+				<p>UI/UX Designer</p>
+				<div class="icons">
+					<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/balubal.png">
+				<h2>Balubal, Johnny</h2>
+				<p>Documentator</p>
+				<div class="icons">
+					<a href="https://www.facebook.com/johnnyfrey20" target="_blank"><i class="bx bxl-facebook"></i></a>					
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/borromeo.png">
+				<h2>Borromeo, David</h2>
+				<p>Front-end Developer</p>
+				<div class="icons">
+					<a href="https://www.facebook.com/dvdmtthw11" target="_blank"><i class="bx bxl-facebook"></i></a>					
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/diamante.png">
+				<h2>Diamante, Russell</h2>
+				<p>Prototype Designer</p>
+				<div class="icons">
+					<a href="#"><i class='bx bxs-rocket'></i></a>				
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/famor.png">
+				<h2>Famor, Jehu</h2>
+				<p>Dev Team Leader</p>
+				<div class="icons">
+					<a href="https://www.facebook.com/Isaiah.Jehu?mibextid=ZbWKwL" target="_blank"><i class="bx bxl-facebook"></i></a>					
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/francisco.png">
+				<h2>Francisco, Dave</h2>
+				<p>Documentator</p>
+				<div class="icons">
+					<a href="https://www.facebook.com/kristiandgf" target="_blank"><i class="bx bxl-facebook"></i></a>					
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/isangga.png">
+				<h2>Isangga, Gian</h2>
+				<p>Database Designer</p>
+				<div class="icons">
+					<a href="https://www.facebook.com/kristiandgf" target="_blank"><i class="bx bxl-facebook"></i></a>					
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/alquicer.png">
+				<h2>Alquicer, Jelisa</h2>
+				<p>Documentator</p>
+				<div class="icons">
+				<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/alpajora.png">
+				<h2>Alpajora, Jenny</h2>
+				<p>UI/UX Designer</p>
+				<div class="icons">
+				<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/larisma.png">
+				<h2>Larisma, Robert</h2>
+				<p>UI/UX Designer</p>
+				<div class="icons">
+				<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/lucero.png">
+				<h2>Alpajora, Jenny</h2>
+				<p>UI/UX Designer</p>
+				<div class="icons">
+				<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/macayan.png">
+				<h2>Ricardo Macayan</h2>
+				<p>Project Manager</p>
+				<div class="icons">
+					<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/magbag.png">
+				<h2>Alpajora, Jenny</h2>
+				<p>UI/UX Designer</p>
+				<div class="icons">
+				<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/makinano.png">
+				<h2>Alpajora, Jenny</h2>
+				<p>UI/UX Designer</p>
+				<div class="icons">
+				<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/mallari.png">
+				<h2>Alpajora, Jenny</h2>
+				<p>UI/UX Designer</p>
+				<div class="icons">
+				<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/modestano.png">
+				<h2>Alpajora, Jenny</h2>
+				<p>UI/UX Designer</p>
+				<div class="icons">
+				<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/mumar.png">
+				<h2>Alpajora, Jenny</h2>
+				<p>UI/UX Designer</p>
+				<div class="icons">
+				<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/obrero.png">
+				<h2>Alpajora, Jenny</h2>
+				<p>UI/UX Designer</p>
+				<div class="icons">
+				<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/principe.png">
+				<h2>Alpajora, Jenny</h2>
+				<p>UI/UX Designer</p>
+				<div class="icons">
+				<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/remandaban.png">
+				<h2>Alpajora, Jenny</h2>
+				<p>UI/UX Designer</p>
+				<div class="icons">
+				<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/retiza.png">
+				<h2>Alpajora, Jenny</h2>
+				<p>UI/UX Designer</p>
+				<div class="icons">
+				<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/serandon.png">
+				<h2>Alpajora, Jenny</h2>
+				<p>UI/UX Designer</p>
+				<div class="icons">
+				<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/tubeo.png">
+				<h2>Alpajora, Jenny</h2>
+				<p>UI/UX Designer</p>
+				<div class="icons">
+				<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/uy.png">
+				<h2>Alpajora, Jenny</h2>
+				<p>UI/UX Designer</p>
+				<div class="icons">
+				<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			
+		</div>
+
+        <div id="div2" class="team-content">
+		<div class="box">
+				<img src="assets/images/aboutpic/macayan.png">
+				<h2>Ricardo Macayan</h2>
+				<p>Project Manager</p>
+				<div class="icons">
+					<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="assets/images/aboutpic/famor.png">
+				<h2>Famor, Jehu</h2>
+				<p>Dev Team Leader</p>
+				<div class="icons">
+					<a href="https://www.facebook.com/Isaiah.Jehu?mibextid=ZbWKwL" target="_blank"><i class="bx bxl-facebook"></i></a>					
 				</div>
 			</div>
 
@@ -79,8 +315,7 @@
 			</div>
 		</div>
 
-
-        <div id="div2" class="team-content">
+		<div id="div3" class="team-content">
 			<div class="box">
             <img src="assets/images/avatar.png">
 				<h2>Steph Jobs</h2>
