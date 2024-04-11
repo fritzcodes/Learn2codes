@@ -29,7 +29,8 @@ use App\Http\Controllers\ExpController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\TryCodeController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\boardController; 
+use App\Http\Controllers\boardController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -147,10 +148,12 @@ Route::middleware(['auth:admin'])->group(function () {
 
 // User routes
 Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () {
+    Route::post('/report', [ReportController::class, 'store']);
     Route::post('/comment/store', [CommentController:: class, 'store']);
     Route::post('/comment/storeReply', [CommentController:: class, 'storeReply']);
     Route::post('/post-forum', [ForumController::class, 'store'])->name('storeForum');
     Route::post('/like-post', [ForumController::class, 'likePost']);
+    Route::delete('/delete-post/{id}', [ForumController::class, 'destroy']);
     Route::post('/notifications', [ForumController::class, 'Notification']);
     Route::post('/notifications-update', [ForumController::class, 'NotificationUpdate']);
     Route::post('/like-comment', [ForumController::class, 'likeComment']);

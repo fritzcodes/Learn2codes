@@ -542,3 +542,49 @@ function likeComment(id, user_id, comment_id){
   })
   
 }
+
+function report(post_id, user_id){
+  if(confirm('Are you sure you want to report this?')){
+    $.ajax({
+      url: '/report',
+      data: {
+        post_id: post_id,
+        user_id: user_id
+      },
+      method: 'post',
+      dataType: 'json',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      success: function (data){
+
+      },
+      error: function (xhr){
+        alert(xhr.responseText);
+      }
+    })
+  }
+}
+
+
+function deletePostId(post_id){
+  if(confirm('Are you sure you want to delete this post?')){
+    $.ajax({
+      url: `/delete-post/${post_id}`,
+      method: 'delete',
+      dataType: 'json',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      success: function (data){
+        if(data == "success"){
+          alert("deleted successfully");
+          location.reload();
+        }
+      },
+      error: function (xhr){
+        alert(xhr.responseText);
+      }
+    })
+  }
+}

@@ -32,6 +32,7 @@ class ForumController extends Controller
                 $query->where('id', $name->id);
             }])
             ->with('comments.replies.replyWithUser')
+            ->where('is_deleted', '0')
             ->get();
         $notif = UserNotification::where('self_id', $name->id)->get();
         //dd($notif);
@@ -155,6 +156,7 @@ class ForumController extends Controller
             }])
             ->with('comments.replies.replyWithUser')
             ->where('content', 'LIKE', '%#' . $hashtag . '%')
+            ->where('is_deleted', '0')
             ->get();
         //dd($posts);
         return view('frontend.forum.popularTopic', compact('name', 'posts'));
@@ -172,5 +174,11 @@ class ForumController extends Controller
         ->where('is_read', '0')
         ->update(['is_read' => '1']);
         return response()->json($notif);
+    }
+
+    public function destroy($id)
+    {
+        $notif = Post::where('id', $id)->update(['is_deleted' => '1']);
+        return response()->json("success");
     }
 }

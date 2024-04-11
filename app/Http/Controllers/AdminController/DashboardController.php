@@ -14,18 +14,18 @@ class DashboardController extends Controller
 
     public function Index(): View
     {
-        $badges = count(ClaimedBadge::All());
+        $badges = count(ClaimedBadge::All()) ?? null;
         $highestexpUSER = Experience::groupBy('user_id')
             ->selectRaw('user_id, SUM(points) as total_points')
             ->orderByDesc('total_points')
-            ->first()->user_id; //highest exp user
+            ->first()->user_id ?? null; //highest exp user
 
         $highest = Experience::groupBy('user_id')
             ->selectRaw('SUM(points) as total_points')
             ->orderByDesc('total_points')
-            ->value('total_points');
+            ->value('total_points') ?? null;
 
-        $totalUsers = User::count();
+        $totalUsers = User::count() ?? 0;
 
 
         return view('frontend.admin.dashboard', compact('totalUsers', 'badges', 'highest'));

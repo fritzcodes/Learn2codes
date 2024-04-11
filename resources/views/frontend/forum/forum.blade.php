@@ -57,12 +57,12 @@
           <a href="#" class="bx bx-menu" id="menu-icon"></a>
         </li>
         <li>
-  <div class="logo">
-    <a href="/startmenu">
-      <img src="assets/images/Logo.jpg" alt="logo">
-    </a>
-  </div>
-</li>
+          <div class="logo">
+            <a href="/startmenu">
+              <img src="assets/images/Logo.jpg" alt="logo">
+            </a>
+          </div>
+        </li>
         <li>
           <input type="search" id="search" placeholder="Search">
           <div>
@@ -88,16 +88,16 @@
 
     </div>
     <div class="right-btn">
-  <a href="#" class="bx bxs-bell" id="notif"><span class="indicator"></span></a>
-  <a href="/profile" class="profile-link">
-    @if (Auth::check() && Auth::user()->profile_photo)
-    <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}" alt="Profile Photo" class="avatar">
-    @else
-    <!-- Placeholder image or default avatar -->
-    <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
-    @endif
-  </a>
-</div>
+      <a href="#" class="bx bxs-bell" id="notif"><span class="indicator"></span></a>
+      <a href="/profile" class="profile-link">
+        @if (Auth::check() && Auth::user()->profile_photo)
+        <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}" alt="Profile Photo" class="avatar">
+        @else
+        <!-- Placeholder image or default avatar -->
+        <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
+        @endif
+      </a>
+    </div>
 
     <div id="notifModal" class="modal">
       <!-- Modal content -->
@@ -259,7 +259,8 @@
 
                 <div class="post-info">
                   <div class="first-name">
-                    <p><a href="#">{{ $name->fname . ' ' . $name->lname }}</a><span class="feelings" style="display: none;">is <img src="images/smiley.PNG" alt=""> feeling happy</span></p>
+                    <p><a href="#">{{ $name->fname . ' ' . $name->lname }}</a><span class="feelings" style="display: none;">
+                    is <img src="images/smiley.PNG" alt=""> feeling happy</span></p>
                   </div>
 
                   <!--
@@ -317,7 +318,7 @@
           </div>
         </div>
 
-        
+
 
         @if(count($posts) > 0)
         @foreach ($posts as $index => $post)
@@ -329,7 +330,8 @@
 
             <div class="post-info">
               <div class="first-name">
-                <p><a href="#">{{ $post->user->fname . " " . $post->user->lname }}</a><span class="feelings">is <img src="images/smiley.PNG" alt=""> feeling happy</span></p>
+                <p><a href="#">{{ $post->user->fname . " " . $post->user->lname }}</a><span class="feelings">
+                  <!-- is <img src="images/smiley.PNG" alt=""> feeling happy</span></p> -->
               </div>
 
               <div class="date">
@@ -342,13 +344,29 @@
               <button href="#" onclick="deletePost(`postsetModal{{$post->id}}`)" style="background-color: transparent; border:none"><i class="bx bx-dots-horizontal-rounded"></i>
               </button>
               <div id="postsetModal" class="modal postsetModal{{$post->id}}">
-                <a href=""><i class='bx bxs-trash'></i>
+                <a onclick="deletePostId('{{ $post->id }}')"><i class='bx bxs-trash'></i>
+                  <p>Delete</p>
+                </a>
+                <!-- <a href=""><i class='bx bxs-edit'></i>
+                  <p>Edit</p>
+                </a> -->
+                <!-- <a href=""><i class='bx bxl-instagram-alt'></i>
+                  <p>Report</p>
+                </a> -->
+              </div>
+            </div>
+            @else
+            <div class="post-setting">
+              <button href="#" onclick="deletePost(`postsetModal{{$post->id}}`)" style="background-color: transparent; border:none"><i class="bx bx-dots-horizontal-rounded"></i>
+              </button>
+              <div id="postsetModal" class="modal postsetModal{{$post->id}}">
+                <!-- <a href=""><i class='bx bxs-trash'></i>
                   <p>Delete</p>
                 </a>
                 <a href=""><i class='bx bxs-edit'></i>
                   <p>Edit</p>
-                </a>
-                <a href=""><i class='bx bxl-instagram-alt'></i>
+                </a> -->
+                <a onclick="report('{{ $post->id }}', '{{ $name->id }}')"><i class='bx bxl-instagram-alt'></i>
                   <p>Report</p>
                 </a>
               </div>
@@ -483,13 +501,13 @@
                   </div>
 
                   <div class="content">
-                  {{ $comment->comment }}
-                  <!-- @if (Auth::user()->id == $comment->user_id)
+                    {{ $comment->comment }}
+                    <!-- @if (Auth::user()->id == $comment->user_id)
                   <a href="">Edit</a> | 
                   <a href="">Delete</a>
                   @endif -->
                   </div>
-                    
+
                   <div class="actions">
                     <p id="likesCommentCount{{$comment->id}}">@if (count($comment->likes) > 0){{count($comment->likes)}}@endif</p>
                     <button onclick="likeComment('likeComment{{$comment->id}}', '{{$name->id}}', '{{$comment->id}}')" class="
@@ -732,26 +750,26 @@
 
 
       </div>
-@php
-              $allHashtags = [];
-              foreach ($posts as $post) {
-              $content = $post->content;
-              preg_match_all('/#(\w+)/', $content, $matches);
-              $allHashtags = array_merge($allHashtags, $matches[1]);
-              }
+      @php
+      $allHashtags = [];
+      foreach ($posts as $post) {
+      $content = $post->content;
+      preg_match_all('/#(\w+)/', $content, $matches);
+      $allHashtags = array_merge($allHashtags, $matches[1]);
+      }
 
-              $hashtagCounts = array_count_values($allHashtags);
-              arsort($hashtagCounts);
-              $popularHashtags = array_slice($hashtagCounts, 0, 5, true);
-              @endphp
+      $hashtagCounts = array_count_values($allHashtags);
+      arsort($hashtagCounts);
+      $popularHashtags = array_slice($hashtagCounts, 0, 5, true);
+      @endphp
 
-              @foreach ($posts as $index => $post)
-              @php
-              $content = $post->content;
-              preg_match_all('/#(\w+)/', $content, $matches);
-              @endphp
-            
-              @endforeach
+      @foreach ($posts as $index => $post)
+      @php
+      $content = $post->content;
+      preg_match_all('/#(\w+)/', $content, $matches);
+      @endphp
+
+      @endforeach
 
       <!-------------------sidebar content-->
       <div class="content2" id="content2">
@@ -759,10 +777,10 @@
           <ul class="main-menu">
             <li class="dropdown">
               <a href="javascript:void(0)">Popular Hashtags<span class="icon">▼</span></a>
-            
+
               <ul class="dropdown-content">
                 @foreach ($popularHashtags as $hashtag => $count)
-                  <li><a href="/popular/{{$hashtag}}">#{{ $hashtag }}</a></li>
+                <li><a href="/popular/{{$hashtag}}">#{{ $hashtag }}</a></li>
                 @endforeach
               </ul>
             </li>
