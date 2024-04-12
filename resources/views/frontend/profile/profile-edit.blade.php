@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Profile</title>
+    <title>Profile | Learn2Code</title>
     <link rel="stylesheet" href="assets/css/Edit.css">
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
@@ -18,62 +18,9 @@
     {{-- <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <style>
-        body {
-            padding: 90px 10%;
-            width: 100%;
-            height: 100vh;
-            background: url('assets/images/proressbg.svg') no-repeat center center fixed;
-            background-size: cover;
-            color: var(--text-color);
-            overflow-x: hidden;
-            /* Prevent horizontal scrolling */
-            z-index: -1;
-            /* Behind other content */
-            background-size: cover;
-        }
-
-        .profile-icon {
-            position: absolute;
-            width: 120px;
-            height: 120px;
-            display: flex;
-            margin-left: 34%;
-            margin-top: -25px;
-            border-radius: 60%;
-            background-color: lightgray;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: 2px solid black;
-            background: url("../assets/images/avatar.png");
-            background-size: 102%;
-            background-repeat: no-repeat;
-
-        }
-
-        .cancel-button {
-            position: absolute;
-            display: block;
-            /* Change from none to block */
-            margin-top: -30px;
-            margin-bottom: 105px;
-            cursor: pointer;
-            margin-left: 480px;
-            margin-right: 600px;
-            padding: 12px;
-            text-align: center;
-            border-radius: 20px;
-            background: url('../assets/images/close.png');
-            background-size: cover;
-
-        }
-    </style>
-
 </head>
 
-<body>
+<body style="background-image: url(assets/images/backmenu.svg);">
 
     <header>
         <a href="{{ route('profile') }}" class="bx bx-chevron-left" id="back-btn"></a>
@@ -107,73 +54,76 @@
     </header>
 
 
+
+
     <section class="space-background">
+        <div class=title>
+            <h2>My Profile</h2>
+        </div> 
 
-        <body>
+        <form method="post" enctype="multipart/form-data" id="formData" class="content-section">
+        @csrf    
+        <div class="top">
+                <div class="details">
+                    <div class="contents">
+                        <div class="imageContainer" id="imageContainer" class="profile-icon" onclick="openFileInput()">
+                            <img style="width:100px; height:100px; border-radius:50%"
+                            src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : '../assets/images/avatar.png' }}"
+                            alt="">
 
-            <div class="heading">Edit Profile</div>
+                            <input type="file" id="fileInput" style="display: none;" onchange="handleFileSelect(event)"
+                            accept="image/*" name="profile_photo">
+                            <input type="file" class="profile-image" accept="image/*" onchange="previewImage()">
+                        
+                            <div class="cancel-button" onclick="cancelUpload()"></div>
 
-            <div class="headline"> ______</div>
-            <div class="profile-icon" onclick="openFileInput()">
-                <img style="width:100%; height:100%; border-radius:50%"
-                    src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : '../assets/images/avatar.png' }}"
-                    alt="">
+                        </div>
+                        
+                        <div>
+                            <input class="username" type="text" id="username" placeholder="Your Username?"
+                            value="{{ Auth::user()->username }}" name="username" required>
+                            <br>
+                            <input class="firstname" type="text" id="fname" placeholder="First Name"
+                            value="{{ Auth::user()->fname }}" name="fname" required>
+
+                            <input class="lastname" type="text" id="lname" placeholder="Last Name"
+                            value="{{ Auth::user()->lname }}" name="lname" required>                             
+                        </div>
+                       
+                    </div>
+
+                    <div class="others">
+                        <input class="course" type="text" id="course" placeholder="Course"
+                        value="{{ Auth::user()->course }}" name="course" required>
+
+                        <select class="Years" id="year" name="year">
+                            <option class="option1" value="{{ Auth::user()->year }}">---Select Year---</option>
+                            <option class="option1" value="1st Year" {{ Auth::user()->year == '1st Year' ? 'selected' : '' }}>
+                                1st Year</option>
+                            <option class="option1"value="2nd Year" {{ Auth::user()->year == '2nd Year' ? 'selected' : '' }}>
+                                2nd Year</option>
+                            <option class="option1"value="3rd Year" {{ Auth::user()->year == '3rd Year' ? 'selected' : '' }}>
+                                3rd Year</option>
+                            <option class="option1"{{ Auth::user()->year == '4th Year' ? 'selected' : '' }}>4th Year</option>
+                        </select>
+
+                        <input class="Email" type="email" id="Email" placeholder="Your Email?"
+                        value="{{ Auth::user()->email }}" name="email">
+                    </div>
+                </div>
+
+                <div class="Editprofile">
+                    <input type="hidden" name="id" value="{{ Auth::user()->id }}" required>
+                    <button type="button" class="submit-button" id="btnSubmit">Save</button>
+                </div>
             </div>
 
-            <form method="post" enctype="multipart/form-data" id="formData">
-                @csrf
-                <input type="file" id="fileInput" style="display: none;" onchange="handleFileSelect(event)"
-                    accept="image/*" name="profile_photo">
-                <input type="file" class="profile-image" accept="image/*" onchange="previewImage()">
-                <div class="cancel-button" onclick="cancelUpload()"></div>
-
-
-
-                <label class="label1" for="firstname">First Name:</label>
-                <input class="firstname" type="text" id="fname" placeholder="First Name?"
-                    value="{{ Auth::user()->fname }}" name="fname" required>
-
-                <label class="label2" for="lastname">Last Name:</label>
-                <input class="lastname" type="text" id="lname" placeholder="Last Name?"
-                    value="{{ Auth::user()->lname }}" name="lname" required>
-                <br>
-                <label class="label3" for="course">Course:</label>
-                <input class="course" type="text" id="course" placeholder="Course?"
-                    value="{{ Auth::user()->course }}" name="course" required>
-
-
-                <label class="label4"for="Years">Year Level:</label>
-                <select class="Years" id="year" name="year">
-                    <option class="option1" value="{{ Auth::user()->year }}">---Select Year---</option>
-                    <option class="option1" value="1st Year" {{ Auth::user()->year == '1st Year' ? 'selected' : '' }}>
-                        1st Year</option>
-                    <option class="option1"value="2nd Year" {{ Auth::user()->year == '2nd Year' ? 'selected' : '' }}>
-                        2nd Year</option>
-                    <option class="option1"value="3rd Year" {{ Auth::user()->year == '3rd Year' ? 'selected' : '' }}>
-                        3rd Year</option>
-                    <option class="option1"{{ Auth::user()->year == '4th Year' ? 'selected' : '' }}>4th Year</option>
-                </select>
-
-                <label class="label5" for="username">Username:</label>
-                <input class="username" type="text" id="username" placeholder="Your Username?"
-                    value="{{ Auth::user()->username }}" name="username" required>
-
-                <label class="label6" for="Email">Email:</label>
-                <input class="Email" type="email" id="Email" placeholder="Your Email?"
-                      value="{{ Auth::user()->email }}" name="email">
-
-                <input type="hidden" name="id" value="{{ Auth::user()->id }}" required>
-
-
-                <button type="button" class="submit-button" id="btnSubmit">Save</button>
-                {{-- <button class="reset-button" onclick="resetForm()">Reset</button> --}}
-
-                <!-- Verification Message -->
-                <div class="verification-message" id="verification-message" style="display: none;"> Save
-                    successfully!</div>
-                </div>
-            </form>
+            <div class="verification-message" id="verification-message" style="display: none;"> Save
+                successfully!</div>
+            </div>
+        </form>
     </section>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
         // var bottomReached = false;
@@ -268,7 +218,7 @@
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const imgElement = document.querySelector('.profile-icon img');
+                    const imgElement = document.querySelector('.imageContainer img');
                     imgElement.src = e.target.result;
                 };
                 reader.readAsDataURL(file);
@@ -276,8 +226,8 @@
         }
     </script>
 
-    <script type="text/javascript" src="assets/js/headermenu.js"></script>
-
+    <script src="assets/js/headermenu.js"></script>
+    {{-- <script src="assets/js/fetch.js"></script> --}}
 </body>
 
 </html>

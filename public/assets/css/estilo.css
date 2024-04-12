@@ -11,13 +11,14 @@ scroll-behavior: smooth;
 }
 
 :root { /*---font and color defaults --*/
-	--bg-color: #fff;
-	--text-color: #221341;
-	--second-color: #5a7184;
-	--main-color: #6e54fa;
+	--bg-color: #210535;
+	--main-color: #f5d5e0;
+	--text-color: #430d4b;
+	--second-color: #7b337d;
+	--high-color: #c874b2;
 	--big-font: 6rem;
 	--h2-font: 3rem;
-	--p-font: 1.1rem;
+	--p-font: 1.5rem;
 }
 
 
@@ -25,7 +26,7 @@ body
 {
 min-height: 100vh; 
 overflow-x: hidden;
-background: linear-gradient(#2b1055, #1c0522);
+background: linear-gradient(#210535, #430d4b);
 
 }
 
@@ -115,7 +116,7 @@ section::before
     bottom: 0;
     width: 100%;
     height: 100px;
-    background: linear-gradient(to top,#1c0522, transparent);
+    background: linear-gradient(to top, #210535, transparent);
     z-index: 1000;
 }
 
@@ -133,8 +134,9 @@ pointer-events: none;
 section img#moon
 {	
     mix-blend-mode: screen;
-
+	z-index: 0;
 }
+
 section img#mountains_front
 {
     z-index: 10;
@@ -165,7 +167,8 @@ transform: translateY(100px);
 
 #btn:hover {
 	animation: none;
-    filter: drop-shadow(0px 0px 20px rgba(255, 255, 255, 0.767));
+    filter: drop-shadow(0px 0px 20px #c874b2);
+	
 	
 }
 
@@ -178,7 +181,7 @@ transform: translateY(100px);
 	align-items: center;
     position: relative;
 	padding: 100px;
-    background: #1c0522;
+    background: var(--bg-color);
 }
 
 .play {
@@ -188,7 +191,7 @@ transform: translateY(100px);
 	align-items: center;
 	overflow: hidden;
   	border-radius: 35.066px;
-	background: blueviolet;
+	background: var(--main-color);
 }
 
 .play .description {
@@ -210,7 +213,7 @@ transform: translateY(100px);
 	text-shadow:1px 1px #000;
 }
 .description p {
-	color: var(--bg-color);
+	color: var(--text-color);
 	font-size: var(--p-font);
 	line-height: 38px;
 }
@@ -222,7 +225,7 @@ transform: translateY(100px);
 	align-items: center;
 	overflow: hidden;
   	border-radius: 35.066px;
-	background: blueviolet;
+	background: var(--main-color);
 }
 
 .quiz .description {
@@ -255,22 +258,22 @@ transform: translateY(100px);
 	text-align: center;
 	font-size: 90;
 	padding: 20px 400px;
-	border-radius: 15px;
 	text-shadow: -3px 3px #000;
+	color: var(--main-color);
 	animation: highlight-animation 2s infinite alternate;	
 
 }
 
 @keyframes highlight-animation {
 	from { background-color: transparent; }
-	to { background-color: rgb(102, 18, 170); }
+	to { background-color: var(--text-color); }
   }
 
 
 
 /*------------------footer--------------------*/
 footer {
-	background: #1c0522;
+	background: var(--text-color);
 	padding-top: 300px;
 }
 
@@ -287,7 +290,7 @@ footer {
 }
 
 .foot li a {
-	color: var(--bg-color);
+	color: var(--main-color);
 }
 
 .contact li a img {
@@ -309,7 +312,7 @@ footer {
 }
 
 .socials ul li a {
-	color: var(--bg-color);
+	color: var(--main-color);
 }
 
 .textlogo li a {
@@ -319,7 +322,7 @@ footer {
 
 @keyframes text-colors {
 	from { color: transparent; }
-	to { color: rgb(102, 18, 170); }
+	to { color: var(--high-color); }
   }
 
 .socmed{
@@ -338,7 +341,7 @@ footer {
 
 .socmed p {
 	margin: 2px;
-	color: var(--bg-color);
+	color: var(--main-color);
 }
 
 /*------------Responsiveness------------*/
