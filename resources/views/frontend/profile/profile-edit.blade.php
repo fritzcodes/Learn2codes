@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile | Learn2Code</title>
+    <title>Edit Profile | Learn2Code</title>
     <link rel="stylesheet" href="assets/css/Edit.css">
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
