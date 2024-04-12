@@ -8,14 +8,9 @@
 
     <link rel="stylesheet" href="../assets/css/moduleLang.css">
     <link rel="shortcut icon" type="x-icon" href="../assets/images/Logo.jpg">
-
+    <link rel="stylesheet" href="../assets/css/header.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
     <script src="../assets/js/headermenu.js" defer></script>
     <script src="../assets/js/carousel.js" defer></script>
     <style>

@@ -8,15 +8,9 @@
     <title>Module</title>
     <link rel="stylesheet" href="../assets/css/java_Module.css">
     <link rel="shortcut icon" type="x-icon" href="../assets/images/Logo.jpg">
-
+    <link rel="stylesheet" href="../assets/css/header.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -248,10 +242,11 @@
 
 <body>
     <header>
+        <a href="moduleLanguage" class="bx bx-chevron-left" id="back-btn"></a>
+
         <div id="progressbar" role="progressbar" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100" style="--value: {{ $percent }}; height: 50px; width: 50px; margin-left: 20px;">
         </div>
 
-        <a></a>
 
         <div class="bx bx-menu" id="menu-icon"></div>
 
