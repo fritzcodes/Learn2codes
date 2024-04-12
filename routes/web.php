@@ -115,7 +115,8 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/admin/addNewModule', [ModuleController::class, 'addModule'])->name('addNewModule');
     Route::get('/admin/viewModule/{id}', [ModuleController::class, 'viewModule'])->name('viewModule');
     Route::post('/admin/updateModule', [ModuleController::class, 'updateModule'])->name('updateModule');
-
+    Route::post('/admin/exercise-edit/{id}', [ExerciseController::class, 'updateExercise'])->name('updateExercise');
+    Route::get('/admin/exercise-view/{id}', [ExerciseController::class, 'viewExercise'])->name('viewExercise');
 
 
 
@@ -143,6 +144,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/manageUser', [ManageUserController::class, 'Index'])->name('ManageUser');
     Route::get('/admin/leaderboard', [LeaderboardController::class, 'Index'])->name('Leaderboard');
     Route::get('/admin/exercise', [ExerciseController::class, 'Index'])->name('addExercise');
+    Route::get('/admin/exercise/{id}', [ExerciseController::class, 'exerciseList'])->name('exerciseList');
     Route::post('/admin/addExercise', [ExerciseController::class, 'addExercise'])->name('addExercise');
 });
 
