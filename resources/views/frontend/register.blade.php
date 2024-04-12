@@ -56,10 +56,10 @@
                   <label for="year">
                     <select name="year" id="year">
                       <option>--Select Year (optional)--</option>                      
-                      <option value="1styear">1st Year</option>
-                      <option value="2ndyear">2nd Year</option>
-                      <option value="3rdyear">3rd Year</option>
-                      <option value="4thyear">4th Year</option>
+                      <option value="1st Year">1st Year</option>
+                      <option value="2nd Year">2nd Year</option>
+                      <option value="3rd Year">3rd Year</option>
+                      <option value="4th Year">4th Year</option>
                   </select>
                   </label>
                 </div>
