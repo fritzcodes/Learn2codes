@@ -6,9 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Learn2Code</title>
-  <link rel="stylesheet" href="assets/css/forum.css">
+  <link rel="stylesheet" href="/assets/css/forum.css">
   <link rel="stylesheet" href="upload.css">
-  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
@@ -21,8 +22,8 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script src="assets/js/forum.js" defer></script>
-  <script src="assets/js/insertimg.js" defer></script>
+  <script src="/assets/js/forum.js" defer></script>
+  <script src="/assets/js/insertimg.js" defer></script>
   <style>
     .outlined-heart {
       color: black;
@@ -40,6 +41,32 @@
 
     .tBold {
       font-weight: bolder;
+    }
+
+    .copy-link {
+      position: relative;
+    }
+
+    .tooltip {
+      visibility: hidden;
+      width: 80px;
+      background-color: black;
+      color: white;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -40px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .copy-link:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
     }
   </style>
 
@@ -260,7 +287,7 @@
                 <div class="post-info">
                   <div class="first-name">
                     <p><a href="#">{{ $name->fname . ' ' . $name->lname }}</a><span class="feelings" style="display: none;">
-                    is <img src="images/smiley.PNG" alt=""> feeling happy</span></p>
+                        is <img src="images/smiley.PNG" alt=""> feeling happy</span></p>
                   </div>
 
                   <!--
@@ -331,7 +358,7 @@
             <div class="post-info">
               <div class="first-name">
                 <p><a href="#">{{ $post->user->fname . " " . $post->user->lname }}</a><span class="feelings">
-                  <!-- is <img src="images/smiley.PNG" alt=""> feeling happy</span></p> -->
+                    <!-- is <img src="images/smiley.PNG" alt=""> feeling happy</span></p> -->
               </div>
 
               <div class="date">
@@ -458,15 +485,35 @@
 
             <div id="shareModal" class="modal">
               <div id="share-content" class="share-content">
-                <a href=""><i class='bx bxl-facebook'></i></a>
+                <!-- <a href=""><i class='bx bxl-facebook'></i></a>
                 <a href=""><i class='bx bxl-instagram-alt'></i></a>
-                <a href=""><i class='bx bxl-twitter'></i></a>
-                <a href=""><i class='bx bx-link-alt'></i></a>
+                <a href=""><i class='bx bxl-twitter'></i></a> -->
+                <a href="#" class="copy-link" onclick="copyLink('{{ $post->id }}')">
+                  <i class='bx bx-link-alt'></i>
+                  <span class="tooltip" id="tooltip">Copy link</span>
+                </a>
 
               </div>
             </div>
 
-
+            <script>
+              function copyLink(link) {
+                var linkText = window.location.href;
+                var url = window.location.href;
+                var parser = document.createElement('a');
+                parser.href = url;
+                var host = parser.protocol + "//" + parser.hostname + (parser.port ? ":" + parser.port : "");
+                navigator.clipboard.writeText(host).then(function() {
+                  var tooltip = document.getElementById("tooltip");
+                  tooltip.innerText = "Link copied!";
+                  setTimeout(function() {
+                    tooltip.innerText = "Copy link";
+                  }, 1500);
+                }).catch(function(err) {
+                  console.error('Failed to copy: ', err);
+                });
+              }
+            </script>
           </div>
 
           <div class="main-comment-sec" id="main-comment-sec{{ $post->id }}"> <!--comment section / hidden in default-->
