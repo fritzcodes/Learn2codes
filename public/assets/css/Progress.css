@@ -190,6 +190,7 @@
       }
       
       .title h2 {
+        color: var(--text-color);
         font-size: var(--h2-font);
       }
   
@@ -213,6 +214,8 @@
     }
   
     .head h2 {
+      font-weight: 600px;
+      color: var(--bg-color);
       font-size: var(--p-font);
     }
   
@@ -223,7 +226,7 @@
   
     }
 
-    .head .text p span {
+    .space {
       margin-left: 10px;
     }
     
@@ -258,28 +261,27 @@
       margin-top: 120px;
   
     }
+
+    .desc {
+      margin-top: 20px;
+      width: 100%;
+      display: block;
+    }
   
     .percentage {
-      position: absolute;
-      bottom: 45%;
-      left: 50%;
-      top: 175px;
-      transform: translateX(-45%);
+      text-align: center;
       font-size: var(--p-font);
       font-weight: bold;
-      color: #080808;
+      color: var(--text-color);
       z-index: 400;
     }
   
   
     .label {
-      position: center;
-      margin-top: 10%;
-      margin-left: 38%;
-      font-family: "Comic Sans MS", cursive;
+      text-align: center;
       font-weight: bold;
-      color: #000000;
-      font-size: 22px;
+      color: var(--text-color);
+      font-size: var(--h2-font);
     }
   
     .progress {
@@ -345,11 +347,6 @@
   
        /* -------RESPONSIVENESS======= */
   @media (max-width: 1300px) {
-    header {
-      padding: 17px 3%;
-      transition: .2s;
-    }
-  
     :root {
       --big-font: 4.5rem;
       --h2-font: 2.3rem;
@@ -361,15 +358,6 @@
   
   
   @media (max-width: 1024px) {
-  
-    #menu-icon {
-      display: block;
-    }
-  
-    .navbar {
-      width: 45%;
-    }
-  
     .space-background { 
       width: 70%;
       padding: 50px 5%;
@@ -378,11 +366,6 @@
   }
   
   @media (max-width: 860px) {
-  
-    #menu-icon {
-      display: block;
-    }
-  
     .space-background {
       padding: 100px;
       position: fixed;
@@ -434,11 +417,7 @@
       --p-font: 0.8rem;
       transition: .2s;
     }
-  
-    .navbar {
-      width: 70%;
-  }
-  
+
   .content-section img {
     width: 250px;
   }
@@ -461,11 +440,6 @@
   
   
   @media (max-width: 376px) {
-  
-    .open {
-      right: 0;
-  }
-  
       :root {
       --big-font: 3.5rem;
       --h2-font: 1.5rem;
@@ -483,6 +457,11 @@
     .content-section {
       grid-template-columns: repeat(1, 1fr);
   }
+
+  .space-background {
+    padding: 120px 10px;
+
+  }
   
       :root {
       --big-font: 3.5rem;
@@ -491,7 +470,7 @@
     }
   
     .content-section {
-      gap: 30px;
+      gap: 0px;
   }
   
   .chartBox {
@@ -501,13 +480,7 @@
   
   }
   
-  @media (min-height: 1024px) {
-  
-    .navbar {
-      width: 50%
-      
-  }
-  
+  @media (min-height: 1024px) {  
   .space-background {
     padding: 150px;
     position: fixed;

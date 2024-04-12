@@ -120,7 +120,7 @@
 				<h2>Isangga, Gian</h2>
 				<p>Back-end</p>
 				<div class="icons">
-					<a href="https://www.facebook.com/kristiandgf" target="_blank"><i class="bx bxl-facebook"></i></a>					
+				<a href="#"><i class='bx bxs-rocket'></i></a>				
 				</div>
 			</div>
 

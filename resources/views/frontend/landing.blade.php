@@ -62,7 +62,8 @@
         <div class="play">
         <div class="description">
             <h2>Gamified</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            <p>Integrated gamification enhances systems by infusing game-like elements such as points, badges, and challenges. It motivates users, fosters engagement, and improves outcomes across diverse domains like education. 
+                By transforming tasks into enjoyable experiences, integrated gamification maximizes participation and drives desired behaviors effectively.</p>
         </div>
         <img src="assets/images/qpic.svg">
         </div>
@@ -75,7 +76,8 @@
             <img src="assets/images/qpic.svg">
             <div class="description">
                 <h2>Programming Tests</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <p>Ready to put your coding powers to the test? Dive into our comprehensive collection of programming tests designed to challenge and enhance your skills. Designed specifically for beginner developers, our diverse range of 
+                tests covers various languages and difficulty levels, helping you advance your programming journey. Take the challenge, level up, and showcase your coding expertise today!</p>
             </div>
         </div>
     </div>
@@ -121,9 +123,9 @@
 
             <div>
                 <ul class="shortcut">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Login</a></li>
+                    <li><a href="/landing">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="login">Login</a></li>
                 </ul>
             </div>
 

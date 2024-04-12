@@ -8,9 +8,10 @@
     <title>Leaderboard | Learn2Code</title>
 
     <link rel="stylesheet" href="assets/css/leaderboard.css">
+    <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="headermenu.js" defer></script>
+    <script type="text/javascript" src="assets/js/headermenu.js" defer></script>
 </head>
 
 <body>

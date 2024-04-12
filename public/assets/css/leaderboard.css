@@ -21,145 +21,10 @@
     transition: .2s;
 }
 
-header {    
-  padding: 20px 2%;
-  position: fixed;
-  top:0;
-  right: 0;
-  width: 100%;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: transparent;
-
-}
-
-#back-btn{
-  color: var(--bg-color);
-  font-size: 60px;
-  z-index: 10001;
-  cursor: pointer;
-  display: block;
-}
-
-.navbar a {
-  color: var(--bg-color);
-  font-size: var(--p-font);
-  font-weight: 500;
-  padding: 4px 15px;
-  border-radius: 4px;
-  transition: ease .40s;
-  display: block;
-  margin: 1.2rem 0;
-}
-
-.navbar a:hover {
-  background: var(--bg-color);
-  color: var(--text-color);
-  box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
-  border-radius: 4px;
-  transition: ease .40s;
-}
-
-
-.profile button{
-  display: flex;
-  justify-content: center; /* Aligns content horizontally */
-  align-items: center; /* Aligns content vertically */
-  border: none; /* Remove button border */
-  background: none; /* Transparent background */
-  cursor: pointer;
-  padding: 0;
-  
-  
-  
-}
-
-.profile-link {
-text-decoration: none;
-color: inherit; /* Use the parent element's text color */
-display: flex;
-flex-direction: column; /* Stack items vertically */
-align-items: center;
-}
-
-
-/* .profile h2{
-  margin-left: 60px;
-  height: 25px;
-  width: 100px;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  scroll-behavior: unset;
-  margin: 0;
-} */
-h2 {
-margin: 0; /* Remove default margin */
-font-size: 16px; /* Allows the username to take remaining space */
-}
-
-.avatar{
-width: 80px; /* Adjust the width as needed */
-height: 80px; /* Adjust the height as needed */
-border-radius: 50%; /* Makes the image round if needed */
-margin-bottom: 5px; 
-  
-}
-
-#menu-icon {
-  color: var(--bg-color);
-  font-size: 50px;
-  z-index: 10001;
-  cursor: pointer;
-  display: block;
-}
-
-.logout-btn{
-margin-top: 20px;
-padding: 10px 10%;
-flex-shrink: 0;
-border-radius: 35.07px;
-background: #fa0404;
-}
-
-.logout-btn:hover{
-  cursor: pointer;
-  box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
-}
-
-.logout-btn:active{
-  background: var(--bg-color);
-  color: var(--text-color);
-}
-
-.navbar {
-  position: absolute;
-  top: 0;
-  right: -100%;
-  width: 25%;
-  height: 100vh;
-  background: #000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 0%;
-  transition: 0.5s all;
-}
-
-.open {
-  right: 0;
-}
-
-.list {
-  width: 50%;
-  margin-top: 100px;     
-}
-
 body{
-    padding-top: 70px;
     overflow-x: hidden;
     width: 100%;
+    height: 100vh;
     background: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -182,14 +47,17 @@ body{
 
 
 .leaderboard{
-    max-width: 100%;
-    margin-right: auto;
+    align-items: center;
+    margin-top: 100px;
+    width: 100%;
+    height: 100vh;
     margin-left: auto;
+    margin-right: auto;
     display: block;
     padding: 1em;
 }
 .description {
-    margin: 10px;
+    margin: 50px;
     font-family: var(--font1);
     display: block;
     text-align: center;
@@ -295,6 +163,7 @@ tbody tr:nth-child(even){
 @media(max-width:860px){
 
     .leaderboard{
+        position: fixed;
         padding: 0;
     }
 
@@ -317,10 +186,6 @@ tbody tr:nth-child(even){
         transition: .2s;
       }
 
-    header {
-      height: 60px;
-    }
-
     .description h2 {
         font-size: var(--h2-font);
     }
@@ -332,26 +197,6 @@ tbody tr:nth-child(even){
     thead tr td {
         color: var(--main-color);
     }
-
-    .navbar {
-      right: -100%;
-      width: 100%;
-      height: 100vh;
-
-  }
-
-    .open {
-      right: 0;
-  }
-
-    .list {
-      width: 70%;
-      margin-bottom: 12px;
-  }
-
-  table td:nth-child(2){
-    display: none;
-}
 
     table td:nth-child(4){
         display: none;
@@ -371,11 +216,6 @@ tbody tr:nth-child(even){
 }
 
 @media (max-width: 1300px) {
-    header {
-      padding: 17px 3%;
-      transition: .2s;
-    }
-
     :root {
       --big-font: 4.5rem;
       --h2-font: 2.3rem;
@@ -402,6 +242,10 @@ tbody tr:nth-child(even){
       transition: .2s;
     }
 
+    table td:nth-child(3){
+      display: none;
+  }
+
   }
 
 
@@ -410,15 +254,9 @@ tbody tr:nth-child(even){
         color: var(--main-color);
     }
 
-
     table{
         background-color: transparent;
     }
-
-    .navbar {
-      right: -100%;
-      width: 50%;
-  }
 
     :root {
       --big-font: 5rem;
@@ -430,13 +268,7 @@ tbody tr:nth-child(even){
 
 }
 
-
 @media (min-height: 1300px) {
-  .navbar {
-    right: -100%;
-    width: 50%;
-}
-
   :root {
     --big-font: 5rem;
     --h2-font: 2.5rem;

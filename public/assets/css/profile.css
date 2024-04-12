@@ -1,517 +1,386 @@
-   /* Reset and basic styling */
-
-      * {
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-      font-family: 'Orbitron', sans-serif;
-      text-decoration: none;
-      list-style: none;
-      }
-    
-      /*---font and color defaults --*/
-
-      :root{ 
-      --bg-color: #fff;
-      --text-color: #221341;
-      --second-color: #5a7184;
-      --main-color: #6e54fa;
-      --big-font: 6rem;
-      --h2-font: 3rem;
-      --p-font: 1.1rem;
-      }
-
-      header {    
-         padding: 20px 2%;
-         position: fixed;
-         top:0;
-         right: 0;
-         width: 100%;
-         z-index: 1000;
-         display: flex;
-         align-items: center;
-         justify-content: space-between;
-         background-color: transparent;
-     
+* {
+   font-family: var(--font1);
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+   text-decoration: none;
+   list-style: none;
+   font-family: var(--font1);
+ }
+ 
+ :root{ /*---font and color defaults --*/
+   --bg-color: #210535;
+   --main-color: #f5d5e0;
+   --text-color: #430d4b;
+   --second-color: #7b337d;
+   --high-color: #c874b2;
+   --big-font: 3rem;
+   --h2-font: 1.5rem;
+   --p-font: 1rem;
+   --font1: 'Orbitron';
+   --font2: Helvetica;
+   transition: .2s;
+ }
+ 
+ body {
+   margin: auto;
+   display: flex;
+   justify-content: center; /* Center horizontally */
+   align-items: center; /* Center vertically */
+   min-height: 100vh; /* Use full viewport height */
+   background-size: cover;
+   animation: animateBackground 20s linear infinite; /* Adjust as needed */
      }
-     
-       #back-btn{
-         color: var(--bg-color);
-         font-size: 60px;
-         z-index: 10001;
-         cursor: pointer;
-         display: block;
+     @keyframes animateBackground {
+       0% {
+         background-position: 0 0;
+       }
+       100% {
+         background-position: 100% 100%;
+       }
      }
-     
-       .navbar a {
-         color: var(--bg-color);
-         font-size: var(--p-font);
-         font-weight: 500;
-         padding: 4px 15px;
-         border-radius: 4px;
-         transition: ease .40s;
-         display: block;
-         margin: 1.2rem 0;
-     }
-     
-       .navbar a:hover {
-         background: var(--bg-color);
-         color: var(--text-color);
-         box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
-         border-radius: 4px;
-         transition: ease .40s;
-     }
-     
-     
-       .profile button{
-         display: flex;
-         justify-content: center; /* Aligns content horizontally */
-         align-items: center; /* Aligns content vertically */
-         border: none; /* Remove button border */
-         background: none; /* Transparent background */
-         cursor: pointer;
-         padding: 0;
-         
-         
-         
-     }
-     
-     .profile-link {
-       text-decoration: none;
-       color: inherit; /* Use the parent element's text color */
+ 
+   .space-background { 
+     margin: 20px;
+     width: 80%;
+     padding: 80px;
+     position: relative; 
+     border-radius: 35.066px;
+     background: var(--main-color);  
+   }
+ 
+     /*----------- Content Section------------ */
+     .title {
+       position: relative;
+       padding-bottom: 50px;
+       width: 100%;
+       height: 30px;
        display: flex;
-       flex-direction: column; /* Stack items vertically */
+       justify-content: center;
        align-items: center;
      }
      
-     
-       /* .profile h2{
-         margin-left: 60px;
-         height: 25px;
-         width: 100px;
-         overflow-x: hidden;
-         overflow-y: hidden;
-         scroll-behavior: unset;
-         margin: 0;
-     } */
-     h2 {
-       margin: 0; /* Remove default margin */
-       font-size: 16px; /* Allows the username to take remaining space */
+     .title h2 {
+      color: var(--text-color);
+       font-size: var(--h2-font);
      }
-     
-       .avatar{
-       width: 80px; /* Adjust the width as needed */
-       height: 80px; /* Adjust the height as needed */
-       border-radius: 50%; /* Makes the image round if needed */
-       margin-bottom: 5px; 
-         
-     }
-     
-       #menu-icon {
-         color: var(--bg-color);
-         font-size: 50px;
-         z-index: 10001;
-         cursor: pointer;
-         display: block;
-     }
-     
-     .logout-btn{
-       margin-top: 20px;
-       padding: 10px 10%;
-       flex-shrink: 0;
-       border-radius: 35.07px;
-       background: #fa0404;
-     }
-     
-     .logout-btn:hover{
-         cursor: pointer;
-         box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
-     }
-     
-     .logout-btn:active{
-         background: var(--bg-color);
-         color: var(--text-color);
-     }
-     
-       .navbar {
-         position: absolute;
-         top: 0;
-         right: -100%;
-         width: 25%;
-         height: 100vh;
-         background: #000;
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-         padding: 20px 0%;
-         transition: 0.5s all;
-     }
-     
-       .open {
-         right: 0;
-     }
-     
-       .list {
-         width: 50%;
-         margin-top: 100px;     
-     }
+ 
+   .content-section {
+     align-items: center;
+     align-content: center;
+     display: block;
+     text-align: center;
+     margin: 0;
+ }
 
+ .top {
+   display: flex;
+   justify-content: space-between;
+ }
 
-      .space-background { 
-      width: 100%;
-      height: 500px; 
-      padding: 100px 10%;
-      position: relative; 
-      border-radius: 35.066px;
-      border: 1px solid #fefefe;
-      background-color: rgba(255, 255, 255, 0.8); /* Fallback background color with transparency Fallback for       browsers       that do       not support backdrop-filter */ 
+ .details {
+   display: block;
+   align-items: center;
+ }
 
-      /* Apply backdrop-filter for browsers that support it */
-      @supports (-webkit-backdrop-filter: blur(6px)) or (backdrop-filter: blur(6px)) {
-      backdrop-filter: blur(6px); /* Standard syntax */
-      -webkit-backdrop-filter: blur(6px); /* Safari 9+, Safari on iOS 9+ */
-      background: radial-gradient(254.43% 143.73% at 6.62% 2.73%, rgba(255, 182, 72, 0.56) 0%, rgba(255, 182, 72, 0.56) 0%,       rgba(255,       182, 72, 0.56) 0.01%, rgba(53, 0, 62, 0.08) 100%);
-      }
-   }
-      /*----------- Content Section------------ */
-
-      .content-section {
-      align-items: center;
-      align-content: center;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      justify-content: space-between;
-      text-align: center;
-      border: 1px solid black;
-      }
-
-    
-     
-
-      .heading {
-      position: absolute;
-      top: 20px; /* Adjust the top position as needed */
-      left: 43%;
-      font-size: 30px;
-      color: #333;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      font-weight: bold;
-      }
-
-      .headlines {
-      position: absolute;
-      top: 5px; /* Adjust the top position as needed */
-      left: 43.10%;
-      font-size: 43px;
-      color: #333;
-      font-family: 'Helvetica Neue', Arial, sans-serif;   	
-      }
-
-
-     
-      .imageContainer {
-      position: absolute;
-      text-align: center;
-      margin-top: -30px;
-      margin-left: 360px;
-      border: 3px solid black; /* Border color around the circular container */
-      border-radius: 60%; /* Ensure the container is circular */
-      width: 130px; /* Set the width to your desired value */
-      height: 120px; /* Set the height to your desired value */
-      overflow: hidden; /* Clip the circular container */
-      border: 3px solid #333;
-      }
-
-      .displayedImage {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: none;
-      object-fit: cover;
-      }
-
-
-      .labelread1 {
-      position: absolute;
-      margin-left: 50px;
-      margin-top: 40px; 
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      font-weight: bold;
-      font-size: 14px;
-      color: black; 
-      }
-
-     .dataLabel1 {
-     position: absolute;
-     background-color: rgba(255, 900, 203, 0.15);
-     border: 3px solid #333;
-     font-family: 'Helvetica Neue', Arial, sans-serif;
-     font-weight: bold;
-     font-size: 80%;
-     border-radius: 10px;
-     padding-left: 10px;
-     padding-top: 5px;
-     padding-bottom: 5px;
-     margin-left: 50px; 
-     margin-top: 60px;
-     width: 300px;
-     height: 30px;
-     }
-
-
-    .labelread2 {
-    position: absolute; 
-    margin-left: 510px;
-    margin-top: 40px;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    font-weight: bold;
-    font-size: 14px;
-    color: black;
-    }
-
-    .dataLabel2 {
-    position: absolute;
-    background-color: rgba(255, 900, 203, 0.15);
-    border: 3px solid #333;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    font-weight: bold;
-    font-size: 80%;
-    border-radius: 10px;
-    padding-left: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin-left: 510px; 
-    margin-top: 60px;
-    width: 300px;
-    height: 30px;
-    }
-
-   .labelread3 {
-   position: absolute;
-   margin-left: 50px;
-   margin-top: 100px; 
-   font-family: 'Helvetica Neue', Arial, sans-serif;
-   font-weight: bold;
-   font-size: 14px;
-   color: black;  
-   }
-
-
-   .dataLabel3 {
-   position: absolute;
-   background-color: rgba(255, 900, 203, 0.15);
-   border: 3px solid #333;
-   font-family: 'Helvetica Neue', Arial, sans-serif;
-   font-weight: bold;
-   font-size: 80%;
-   border-radius: 10px;
-   padding-left: 10px;
-   padding-top: 5px;
-   padding-bottom: 5px;
-   margin-left: 50px; 
-   margin-top:  120px;
-   width: 300px;
-   height: 30px;
-   }
-
-
-   .labelread4 {
-   position: absolute;
-   font-family: 'Helvetica Neue', Arial, sans-serif;
-   font-weight: bold;
-   font-size: 14px;
-   margin-left: 510px;
-   margin-top: 100px;
-   color: black;
-   }
-
-
-   .dataLabel4 {
-   position: absolute;
-   background-color: rgba(255, 900, 203, 0.15);
-   border: 3px solid #333;
-   font-family: 'Helvetica Neue', Arial, sans-serif;
-   font-weight: bold;
-   font-size: 80%;
-   border-radius: 10px;
-   padding-left: 10px;
-   padding-top: 5px;
-   padding-bottom: 5px;
-   margin-left: 510px; 
-   margin-top: 120px;
-   width: 300px;
-   height: 30px;
-   }
-
-   .labelread5 {
-   position: absolute;
-   margin-left: 50px;
-   margin-top: 160px;
-   font-family: 'Helvetica Neue', Arial, sans-serif;
-   font-weight: bold;
-   font-size: 14px;
-   color: black;   
-   }
-
-   .dataLabel5 {
-   position: absolute;
-   background-color: rgba(255, 900, 203, 0.15);
-   border: 3px solid #333;
-   font-family: 'Helvetica Neue', Arial, sans-serif;
-   font-weight: bold;
-   font-size: 80%;
-   border-radius: 10px;
-   padding-left: 10px;
-   padding-top: 5px;
-   padding-bottom: 5px;
-   margin-left: 50px; 
-   margin-top: 180px;
-   width: 300px;
-   height: 30px;
-   }
-
-
-   .labelread6 {
-   position: absolute;
-   margin-left: 510px;
-   margin-top: 160px;
-   font-family: 'Helvetica Neue', Arial, sans-serif;
-   font-weight: bold;
-   font-size: 14px;
-   color: black;   
-   }
-
-
-   .dataLabel6 {
-   position: absolute;
-   background-color: rgba(255, 900, 203, 0.15);
-   border: 3px solid #333;
-   font-family: 'Helvetica Neue', Arial, sans-serif;
-   font-weight: bold;
-   font-size: 80%;
-   border-radius: 10px;
-   padding-top: 5px;
-   padding-bottom: 5px;
-   padding-left: 5px;
-   margin-left: 510px; 
-   margin-top: 180px;
-   letter-spacing: 1px;
-   width: 300px;
-   height: 30px;
-   }
-
-   .Editprofile {
-   position: absolute;
-   margin-left:375px;
-   margin-top: 350px;
-   font-size: 15px;
-   letter-spacing: 1px;
-   color: #4169E1;
-   font-weight: regular;
-   }
-
-   .Editprofile:hover {
-   transform: scale(1.1);
-   color: #4169E1;
-   font-weight: bold;
+ .contents {
+   text-align: left;
+   margin: 20px;
+   display: flex;
    
+ }
+
+ input {
+    border-style: none;
+    background-color: transparent;
+   color: var(--text-color);
+   border-radius: 5px;
+   padding: 10px;
+ }
+
+ #Username {
+   margin: auto;
+   font-weight: 800;
+   font-size: var(--p-font);
+   color: var(--bg-color);
+ }
+
+   #lastName, #firstName {
+    margin: auto;
+    font: var(--p-font);
    }
 
+ .contents img {
+   margin-right: 10px;
+   border-radius: 100%;
+   width: 100px;
+   height: 100px;
+ }
 
+ .others input {
+   font-variant: var(--p-font);
+   text-align: center;
+   margin: auto;
+ }
 
-.badges {
+ .Editprofile {
+   font-weight: 600;
+   font-size: var(--p-font);
+   display: flex;
+ }
 
+ .bottom {
+   padding-top: 20px;
+   display: flex;
+   justify-content: space-evenly;
+ }
+
+ 
+ .btns img {
+   border-radius: 15px;
    height: 80px;
    width: 180px;
-   background: url('../svg/badges-btn.svg');
    background-size: cover;
    border: transparent;
-   margin-left: 55px;
-   margin-top: 250px;
-   cursor: pointer;
-
 }
 
-
-.badges:hover {
+.btns:hover {
    transform: scale(1.1);
    color: #4169E1;
    font-weight: bold;
-   cursor: pointer;
+
 }
-
-
-
-.Experience {
-
-   height: 80px;
-   width: 180px;
-   background: url('../svg/Exp-progress-btn.svg');
-   background-size: cover;
-   border: transparent;
-   margin-left: 100px;
-   margin-top: -30px;
-   cursor: pointer;
-}
-
-
-.Experience:hover {
-   transform: scale(1.1);
-   color: #4169E1;
-   font-weight: bold;
-   cursor: pointer;
-   
+ 
+      /* -------RESPONSIVENESS======= */
+ @media (max-width: 1300px) {
+   :root {
+     --big-font: 4.5rem;
+     --h2-font: 2.3rem;
+     --p-font: 1rem;
+     transition: .2s;
+   }
+ 
+   }
+ 
+ @media (max-width: 860px) {
+   .space-background {
+     padding: 10px;
+     position: fixed;
+     border-radius: 0px;
+     width: 100%;
+     height: 100vh; 
+     overflow: scroll;
    }
 
+ .top {
+   align-items: center;
+   align-self: center;
+   display: block;
+ }
 
+ .contents {
+   text-align: center;
+   margin: 0;
+   display: block;
+ }
 
-.Changepassword {
+ .contents img {
+   margin: 30px;
+   border-radius: 100%;
+   width: 100px;
+   height: 100px;
+ }
 
-   height: 80px;
-   width: 180px;
-   background: url('../svg/Changepassword.svg'); 
-   background-size: cover;
-   border: transparent;
-   margin-left: 100px;
-   margin-top: -30px;
-   cursor: pointer;
-}
+ .names {
+   display: block;
+   text-align: center;
+ }
 
-.Changepassword:hover {
+ .others{
+   width: 0;
+   display: block;
+ }
+
+ .others input {
+   margin: 10px;
+ }
+
+ .Editprofile {
+   margin: 20px 0 0 0;
+   display: block;
+ }
+
+ .bottom {
+   display: block;
+   text-align: center;
+ }
+
+ .bottom a img{
+   margin: 0 0 10px 0;
+ }
+ 
+.btns:hover {
    transform: scale(1.1);
-   color: #4169E1;
-   font-weight: bold;
-   cursor: pointer;
+}
+ 
+ }
+ 
+ @media (max-width: 540px) {
+ 
+   :root {
+     --big-font: 2.8rem;
+     --h2-font: 2rem;
+     --p-font: 0.8rem;
+     transition: .2s;
+   }
+ 
+ .space-background {
+   padding: 200px 30px;
+   overflow: scroll;
+ }
+ 
+ .top {
+   align-items: center;
+   align-self: center;
+   display: block;
+ }
+
+ .contents {
+   text-align: center;
+   margin: 0;
+   display: block;
+ }
+
+ .names {
+   display: block;
+   text-align: center;
+   width: auto;
+ }
+
+ .others{
+   width: auto;
+   text-align: center;
+   display: block;
+ }
+
+ .others input {
+   width: auto;
+   margin: 2px;
+ }
+
+
+
+ 
+ }
+ 
+ @media (max-width: 376px) {
+     :root {
+     --big-font: 3.5rem;
+     --h2-font: 1.5rem;
+     transition: .2s;
+   }
+ 
+ }
+ 
+ 
+ @media (max-width: 280px) {
+     :root {
+     --big-font: 3.5rem;
+     --h2-font: 1.5rem;
+     transition: .2s;
+   }
+
+   .contents div input{
+       width: 100%;
+       text-align: center;
+     }
+
    
-}
+ 
+ }
+ 
+ @media (min-height: 1024px) {
+ .space-background {
+   padding: 150px 200px;
+   position: fixed;
+   border-radius: 0px;
+   width: 100%;
+   height: 100vh; 
+   overflow: scroll;
+ }
+ 
+ .content-section {
+   grid-template-columns: repeat(1, 1fr);
+ }
+ 
+   :root {
+     --big-font: 4.5rem;
+     --h2-font: 2.5rem;
+     --p-font: 1.5rem;
+     transition: .2s;
+ 
+ }
 
-.badge1 {
+ .top {
+   align-items: center;
+   align-self: center;
+   display: block;
+ }
 
-cursor: pointer;
-}
+ .contents {
+   text-align: center;
+   margin: 0;
+   display: block;
+ }
 
-.Experiences {
-
-cursor: pointer;
-
-}
-
-.Passwords {
-
-cursor: pointer;
-
-}
-
-
+ .names {
+   display: block;
+   text-align: center;
+ }
 
 
+ .contents img {
+   margin: 30px;
+   border-radius: 100%;
+   width: 100px;
+   height: 100px;
+ }
 
+ .others{
+   width: auto;
+   text-align: center;
+   display: block;
+ }
 
+ .Editprofile {
+   margin: 20px 0 0 0;
+   display: block;
+ }
 
+ .others input {
+   width: auto;
+   margin: 2px;
+ }
 
+ .bottom {
+   display: block;
+   text-align: center;
+ }
 
+ .bottom a img{
+   margin: 0 0 10px 0;
+ }
+ 
+ }
 
+ @media (min-height: 1300px) {
+     :root {
+       --big-font: 5rem;
+       --h2-font: 2.5rem;
+       --p-font: 1.5rem;
+       transition: .2s;
+   
+   }
+ 
 
-
-
-
+   }

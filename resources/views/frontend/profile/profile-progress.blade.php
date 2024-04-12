@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu</title>
+  <title>EXP Progress</title>
   <link rel="stylesheet" href="assets/css/progress.css">
-
+  <link rel="stylesheet" href="assets/css/header.css">
 <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 
@@ -53,7 +53,7 @@
         <div class="head">
           <h2>MODULES</h2>
           <div class="text">
-            <p class="description">Modules experience gain is:<span class="space"></p>
+            <p class="description">Modules experience gain is:<span class="space"></span></p>
             <p class="modula"></p>          
           </div>
         </div>
@@ -61,7 +61,7 @@
         <div class="head">
           <h2>EXERCISE</h2>
           <div class="text">
-            <p class="description">Modules experience gain is:<span class="space"></p>
+            <p class="description">Modules experience gain is:<span class="space"></span></p>
             <p class="exer"></p>          
           </div>
         </div>
@@ -69,18 +69,16 @@
         <div class="head">
           <h2>QUIZZES</h2>
           <div class="text">
-            <p class="description">Modules experience gain is:<span class="space"></p>
+            <p class="description">Modules experience gain is:<span class="space"></span></p>
             <p class="quiz"></p>          
           </div class="text">
         </div>
-
-
       </div>
       
         <div class="chartCard">
           <div class="chartBox">
             <canvas id="myChart"></canvas>
-            <div>
+            <div class="desc">
               <div class="percentage">0</div>
               <p class="label"></p>
             </div>

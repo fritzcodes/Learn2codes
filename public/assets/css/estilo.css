@@ -171,12 +171,11 @@ transform: translateY(100px);
 
 
 .sections {
-	position: relative;
-width: 100%;
-padding: 100px;
-display: flex;
-justify-content: center;
-align-items: center;
+	width: 100%;
+	padding: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
     position: relative;
 	padding: 100px;
     background: #1c0522;
