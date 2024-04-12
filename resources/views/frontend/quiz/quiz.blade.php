@@ -6,7 +6,7 @@
   <title>Select Items | Quiz</title>
   <link rel="stylesheet" href="/assets/css/quizItem.css">
   <link rel="stylesheet" href="/assets/css/header.css">
-  <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.jpg">
+  <link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
 
   <link rel="stylesheet"href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
