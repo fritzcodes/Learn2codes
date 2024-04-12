@@ -588,32 +588,43 @@ function deletePostId(post_id){
 /* Notif-Section */
 
 $(document).ready(function() {
-  function fetchNotifications() {
+  function fetchNotifications() { 
       console.log('Fetching notifications...');
-        $.ajax({
-            url: '/ForumController/NotificationUpdate', 
-            success: function(data) {
-                console.log('Fetched notifications:', data);
-            }
-        });
-    }
+      $.ajax({
+          url: '/ForumController/NotificationUpdate', 
+          success: function(data) {
+              console.log('Fetched notifications:', data);
+              $('#notif-content').empty();
 
-    function markNotificationAsRead() {
-        console.log('Marking notification as read...');
-        $.ajax({
-            url: '/ForumController/NotificationUpdate',
-            type: 'POST',
-            success: function(data) {
-                console.log('Marked notification as read:', data);
-            }
-        });
-    }
+              data.forEach(function(notification) {
+                  var notifItem = '<div class="notification-item">' +
+                      '<h2>' + notification.title + '</h2>' +
+                      '<p>' + notification.content + '</p>' +
+                      '</div>';
 
-    // fetch new notifications every 5 seconds
-    setInterval(fetchNotifications, 5000);
+                  $('#notif-content').append(notifItem);
+              });
+          }
+      });
+  }
 
-    // mark notification as read when a user clicks on it
-    $(document).on('click', '.notification', function() {
-        markNotificationAsRead();
-    });
+  function markNotificationAsRead() {
+      console.log('Marking notification as read...');
+      $.ajax({
+          url: '/ForumController/NotificationUpdate',
+          type: 'POST',
+          success: function(data) {
+              console.log('Marked notification as read:', data);
+              $(this).remove();
+          }
+      });
+  }
+
+  // fetch new notifications every 5 seconds
+  setInterval(fetchNotifications, 5000);
+
+  // mark notification as read when a user clicks on it
+  $(document).on('click', '.notification-item', function() {
+      markNotificationAsRead.call(this);
+  });
 });
