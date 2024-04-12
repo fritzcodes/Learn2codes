@@ -25,4 +25,24 @@ class ExerciseController extends Controller
         $exercise->save();
         return back()->with('message', "Exercise added successfully");
     }
+
+    public function exerciseList($id){
+        $data = Exercise::where('language', $id)->get();
+        return View("frontend.admin.exerciseList", compact('data'));
+    }
+
+    public function viewExercise($id)
+    {
+        $language = prog_language::All();
+        $data = Exercise::findOrFail($id); 
+        return view('frontend.admin.exerciseEdit', compact('data', 'language'));
+    }
+
+    public function updateExercise(ExcerciseRequest $request, $id)
+    {
+        $data = $request->validated();
+        $exercise = Exercise::findOrFail($id);
+        $exercise->update($data);
+        return back()->with('message', "Exercise updated successfully");
+    }
 }

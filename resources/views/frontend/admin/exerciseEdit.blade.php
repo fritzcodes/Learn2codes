@@ -26,38 +26,24 @@
         </div>
     @endif
 
-    <form method="post" action="/admin/addExercise">
+    <form method="post" action="/admin/exercise-edit/{{ $data->id }}">
         @csrf
        
         Language
-        <select name="language" id="">
+        <select name="language" id="" required>
             <option value="">--Select a Language--</option>
-            @foreach ($data as $item)
+            @foreach ($language as $item)
                 <option value="{{ $item->language }}">{{ $item->language }}</option>
             @endforeach
         </select>
         <div style="width: 1000px">
-            <textarea id="summernote" name="content"></textarea>
+            <textarea id="summernote" name="content">{{ $data->content }}</textarea>
         </div>
        
-        <input type="submit" value="Add exercise">
+        <input type="submit" value="Update exercise">
     </form>
 
-    <table>
-        <tr>
-            <th>Language</th>
-            <th>Action</th>
-        </tr>
-
-        @foreach ($data as $item)
-            <tr>
-                <td>{{ $item->language }}</td>
-                <td><a href="/admin/exercise/{{ urlencode($item->language) }}"><button>View</button></a></td>
-            </tr>
-        @endforeach
-
-
-    </table>
+   
 
     {{-- <p id="exerciseContent">System.<u>out.println</u>("Hello World<u>");</u></p>
     <button onclick="checkAnswers()">Check Answers</button>

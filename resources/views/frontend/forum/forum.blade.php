@@ -488,7 +488,7 @@
                 <!-- <a href=""><i class='bx bxl-facebook'></i></a>
                 <a href=""><i class='bx bxl-instagram-alt'></i></a>
                 <a href=""><i class='bx bxl-twitter'></i></a> -->
-                <a href="#" class="copy-link" onclick="copyLink('{{ $post->id }}')">
+                <a href="#" class="copy-link" onclick="copyLink('/forum/{{ $post->id }}')">
                   <i class='bx bx-link-alt'></i>
                   <span class="tooltip" id="tooltip">Copy link</span>
                 </a>
@@ -503,7 +503,7 @@
                 var parser = document.createElement('a');
                 parser.href = url;
                 var host = parser.protocol + "//" + parser.hostname + (parser.port ? ":" + parser.port : "");
-                navigator.clipboard.writeText(host).then(function() {
+                navigator.clipboard.writeText(host + link).then(function() {
                   var tooltip = document.getElementById("tooltip");
                   tooltip.innerText = "Link copied!";
                   setTimeout(function() {
