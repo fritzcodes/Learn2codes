@@ -1,6 +1,3 @@
-
-
-
 //     SIDEBAR DROPDOWN
 var dropdowns = document.querySelectorAll(".dropdown");
 
@@ -588,3 +585,35 @@ function deletePostId(post_id){
     })
   }
 }
+/* Notif-Section */
+
+$(document).ready(function() {
+  function fetchNotifications() {
+      console.log('Fetching notifications...');
+        $.ajax({
+            url: '/ForumController/NotificationUpdate', 
+            success: function(data) {
+                console.log('Fetched notifications:', data);
+            }
+        });
+    }
+
+    function markNotificationAsRead() {
+        console.log('Marking notification as read...');
+        $.ajax({
+            url: '/ForumController/NotificationUpdate',
+            type: 'POST',
+            success: function(data) {
+                console.log('Marked notification as read:', data);
+            }
+        });
+    }
+
+    // fetch new notifications every 5 seconds
+    setInterval(fetchNotifications, 5000);
+
+    // mark notification as read when a user clicks on it
+    $(document).on('click', '.notification', function() {
+        markNotificationAsRead();
+    });
+});
