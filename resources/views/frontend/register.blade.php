@@ -13,6 +13,10 @@
 </head>
 <body style="background-image: url(assets/images/backlogin.png)";>
 
+<header>
+        <a href="/" class="bx bx-chevron-left" id="back-btn"></a>
+</header>
+
 <div class="logo">
     <img src="assets/images/logo.jpg" alt="">
     </div>
@@ -31,10 +35,6 @@
             <form action="{{ route('register') }}" method="POST" class="signup-form" onsubmit="return validatePasswords()"> 
             @csrf
             
-                <div class="head">
-                  <a href="/" id="back-btn"><i class="bx bx-chevron-left"></i></a>
-                </div>       
-
                 <div class="title">
                 <h2>Learn2Code</h2>
                 <p>Sign Up</p>
