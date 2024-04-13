@@ -4,15 +4,420 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.jpg">
+    <link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
+    <link rel="stylesheet" href="assets/css/header.css">
     <title>Compiler | Learn2code</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+    * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+:root{ /*---font and color defaults --*/
+    --bg-color: #210535;
+    --main-color: #f5d5e0;
+    --text-color: #430d4b;
+    --second-color: #7b337d;
+    --high-color: #c874b2;
+    --big-font: 3rem;
+    --h2-font: 1.5rem;
+    --p-font: 1rem;
+    --font1: 'Orbitron';
+    --font2: Helvetica;
+    transition: .2s;
+}
+
+body{
+    overflow-x: hidden;
+    width: 100%;
+    height: 100vh;
+    background: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background: linear-gradient(-45deg, #210535, #7b337d, #430d4b);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+  
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  header {    
+    padding: 20px 2%;
+    position: fixed;
+    top:0;
+    right: 0;
+    width: 100%;
+    height: 10vh;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+    }
+
+    header.sticky {
+      background-color: var(--main-color);
+    }
+    
+    #back-btn {
+    color: var(--text-color);
+    font-size: 60px;
+    z-index: 10001;
+    cursor: pointer;
+    display: block;
+    }
+    
+    .navbar a {
+    color: var(--main-color);
+    font-size: var(--p-head);
+    font-weight: 500;
+    padding: 4px 15px;
+    border-radius: 4px;
+    display: block;
+    margin: 1.2rem 0;
+    font-family: var(--font1);
+    }
+    
+    .navbar a:hover {
+    background: var(--second-color);
+    color: var(--main-color);
+    box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
+    border-radius: 4px;
+    transition: ease .2s;
+    }
+    
+    .profile button{
+    display: flex;
+    justify-content: center; /* Aligns content horizontally */
+    align-items: center; /* Aligns content vertically */
+    border: none; /* Remove button border */
+    background: none; /* Transparent background */
+    cursor: pointer;
+    padding: 0;
+    }
+    
+    .profile-link {
+    text-decoration: none;
+    color: inherit; /* Use the parent element's text color */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;
+    }
+    
+    .profile button a h2 {
+    word-wrap: break-word;
+    word-break: break-all;
+    margin: 0; /* Remove default margin */
+    font-size: var(--p-head); /* Allows the username to take remaining space */
+    }
+    
+    .avatar{
+    width: 80px; /* Adjust the width as needed */
+    height: 80px; /* Adjust the height as needed */
+    border-radius: 50%; /* Makes the image round if needed */
+    margin-bottom: 5px; 
+    
+    }
+    
+    #menu-icon {
+    color: var(--text-color);
+    font-size: 50px;
+    z-index: 10001;
+    cursor: pointer;
+    display: block;
+    }
+    
+    .logout-btn{
+    margin-top: 20px;
+    padding: 10px 10%;
+    flex-shrink: 0;
+    border-radius: 35.07px;
+    background: #fa0404;
+    }
+    
+    .logout-btn:hover{
+    cursor: pointer;
+    background: var(--main-color);
+    box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
+    }
+    
+    .logout-btn:active{
+    color: var(--text-color);
+    }
+    
+    .navbar {
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 25%;
+    height: 100vh;
+    background-color: var(--bg-color);  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0%;
+    font-family: var(--font1);
+    transition: 0.5s all;
+    }
+    
+    .open {
+    right: 0;
+    }
+    
+    .list {
+    width: 50%;
+    margin-top: 100px;     
+    }
+    
+
+    /*----------------IDE--*/
+    iframe {
+        position: relative;
+        top: 10vh;
+        padding: 30px;
+        border-radius: 40px;
+    }
+
+
+    
+
+
+
+
+
+
+
+    @media (max-width: 1300px) {
+      header {
+        padding: 17px 3%;
+        transition: .2s;
+      }
+    
+      :root {
+        --h2-head: 2rem;
+        --p-head: 1.5rem;
+        transition: .2s;
+      }
+    
+      }
+    
+    
+    @media (max-width: 1024px) {
+    
+      #menu-icon {
+        display: block;
+      }
+    
+      .navbar {
+        width: 45%;
+      }
+    
+    }
+    
+    @media (max-width: 860px) {
+      header {
+        background-color: var(--main-color);
+        box-shadow: 0 0 10px 2px var(--second-color); /* Tomato color */
+
+      }
+
+      #menu-icon {
+        display: block;
+      }
+
+      :root {
+        --h2-head: 1.5rem;
+        --p-head: 1rem;
+        transition: .2s;
+      }
+
+      iframe {
+        padding: 0px;
+        border-radius: 0px;
+    }
+    
+    }
+    
+    @media (max-width: 540px) {
+      :root {
+        --h2-head: 1.1rem;
+        --p-head: 0.8rem;
+        transition: .2s;
+      }
+    
+      .navbar {
+        width: 70%;
+    }
+    
+    }
+    
+    
+    @media (max-width: 376px) {
+    
+      .open {
+        right: 0;
+    }
+    
+    }
+    
+    
+    @media (max-width: 280px) {
+        :root {
+        --h2-head: 1rem;
+        --p-head: 0.8rem;
+        transition: .2s;
+      }
+
+      .profile button {
+        margin-top: 40px;
+    }
+
+    }
+    
+    @media (min-height: 1024px) {
+      .navbar {
+        width: 50%
+    }
+    
+    #back-btn, #menu-icon {
+      font-size: 80px;
+    }
+
+    .profile button {
+        margin-top: 100px;
+    }
+    
+      :root {
+        --h2-head: 2.5rem;
+        --p-head: 1.5rem;
+        transition: .2s;
+    
+    }
+    
+    }
+
+    @media (min-height: 1300px) {
+      #back-btn, #menu-icon {
+        font-size: 100px;
+      }
+
+      .profile button {
+        margin-top: 150px;
+    }
+      
+        :root {
+          --big-font: 5rem;
+          --h2-font: 2.5rem;
+          --p-font: 1.5rem;
+          transition: .2s;
+      
+      }
+
+      header {
+        background-color: var(--main-color);
+        box-shadow: 0 0 10px 2px var(--second-color); /* Tomato color */
+
+      }
+      
+      }
+</style>
+
+
 </head>
 
 <body>
-    <center><h1 style="font-family:'Helvetica', Arial, serif" id="titleContent"></h1></center>
-    <iframe id="oc-editor" frameborder="0" height="450px"
+
+<header>
+        <a href="/module/java" class="bx bx-chevron-left" id="back-btn"></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+    
+        <ul class="navbar">
+
+            <ul class="profile">
+                <button><a href="{{ route('profile') }}" class="profile-link">
+
+                        @if (Auth::check() && Auth::user()->profile_photo)
+                            <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
+                                alt="Profile Photo" class="avatar">
+                        @else
+                            <!-- Placeholder image or default avatar -->
+                            <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
+                        @endif
+                        <h2>{{ Auth::user()->username }}</h2>
+                    </a></button>
+            </ul>
+
+            <li><a href="/startmenu">Home</a></li>
+            <li><a href="/forum">Forums</a></li>
+            <li><a href="/Playground">Playground</a></li>
+            <li><a href="/module/moduleLanguage">Modules</a></li>
+            <li><a href="/leaderboard">Leaderboard</a></li>
+            <li><a class="logout-btn" href="{{ route('logout') }}">Logout</a></li>
+
+        </ul>
+    </header>
+
+    <iframe id="oc-editor" frameborder="" height="90%"
         src="https://onecompiler.com/embed?hideLanguageSelection=true&&hideNew=true&&hideNewFileOption=true&&listenToEvents=true&&codeChangeEvent=true&&hideTitle=true"
-        width="100%"></iframe>
+        width="100%">
+    </iframe>
+
+    <script>
+        const header = document.querySelector("header");
+        const menu = document.querySelector('#menu-icon');
+        const navbar = document.querySelector('.navbar');
+        const section = document.querySelector('section');
+
+        // Adjust header class based on scroll position
+        window.addEventListener("scroll", function() {
+            header.classList.toggle("sticky", window.scrollY > 0);
+        });
+
+        // Global variable to track the hover state
+        let isHoverEnabled = true;
+
+        // Function to toggle hoverability
+        function toggleHoverability() {
+        section.classList.toggle('no-hover', !isHoverEnabled);
+        }
+
+        // Toggle menu, navbar, and menu icon on menu icon click
+        menu.onclick = (event) => {
+        event.stopPropagation(); // Prevent the click event from bubbling up to the document
+        menu.classList.toggle('bx-x'); // Toggle icon shape between burger and X
+        navbar.classList.toggle('open'); // Toggle visibility of the navbar
+        isHoverEnabled = !isHoverEnabled; // Toggle hover state
+        toggleHoverability();
+        };
+
+        // Close navbar and reset icon when clicking outside the header or menu
+        document.addEventListener('click', function (event) {
+        if (!header.contains(event.target) && event.target !== menu) {
+            if (navbar.classList.contains('open')) {
+            navbar.classList.remove('open'); // Close the navbar
+            menu.classList.remove('bx-x'); // Ensure menu icon is back to burger
+            isHoverEnabled = true; // Reset hover state
+            toggleHoverability();
+            }
+        }
+        });
+    </script>
     
     <script>
         const programmingLanguages = [{

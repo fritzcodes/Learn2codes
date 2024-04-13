@@ -6,8 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Learn2Code</title>
-    <link rel="shortcut icon" type="x-icon" href="assets/images/Logo.jpg">
+    <link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
     <link rel="stylesheet" href="assets/css/login.css">
+
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 
@@ -16,6 +17,10 @@
 </head>
 
 <body style="background-image: url(assets/images/backlogin.png);">
+
+    <header>
+        <a href="/" class="bx bx-chevron-left" id="back-btn"></a>
+    </header>
 
     <div class="logo">
     <img src="assets/images/logo.jpg" alt="">
@@ -43,10 +48,6 @@
             <form action="{{ route('login') }}" method="POST" class="log-form">
             @csrf
 
-                <div class="head">
-                  <a href="/" id="back-btn"><i class="bx bx-chevron-left"></i></a>
-                </div>
-
                 <div class="mobile-logo">
                     <img src="assets/images/Logo.jpg" alt="Logo">
                 </div>
@@ -71,11 +72,11 @@
                     <label for="remember">Remember me</label>
                     </div>
                     <div class="forgot">
-                    <a href="{{ route('forgetPassword') }}">Forgot password?</a>
+                    <a target="_blank" href="{{ route('forgetPassword') }}">Forgot password?</a>
                     </div>
                 </div>
                 <div class="logbutton">
-                  <button type="submit" id="login">Log In</button>
+                  <button type="submit" id="login" class="btns">Log In</button>
                 </div>
                 <div class="signing">
                   <p>Create an account</p>

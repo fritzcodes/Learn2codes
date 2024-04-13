@@ -5,10 +5,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Learn2Code</title>
-
-    <link rel="shortcut icon" type="x-icon" href="assets/images/Logo.jpg">
-
+    <link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
     <link rel="stylesheet" href="assets/css/estilo.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 
@@ -19,7 +18,7 @@
     <!--header-->
     <header>
     <a href="#" class="logotext">Learn2Code</a>
-    <a href="#" class="logo"><img src="/assets/images/logo.jpg" alt=""></a>
+    <a href="#" class="logo"><img src="/assets/images/logo.svg" alt=""></a>
         <ul>
             <li><a href="#home" class="active">Home</a></li>
             <li><a href="#gamified">Features</a></li>
@@ -65,7 +64,7 @@
             <p>Integrated gamification enhances systems by infusing game-like elements such as points, badges, and challenges. It motivates users, fosters engagement, and improves outcomes across diverse domains like education. 
                 By transforming tasks into enjoyable experiences, integrated gamification maximizes participation and drives desired behaviors effectively.</p>
         </div>
-        <img src="assets/images/qpic.svg">
+        <img src="assets/images/gamifiedpic.svg">
         </div>
     </div>
 
@@ -117,7 +116,7 @@
         <div class=foot>
             <div>
                 <ul class="contact">
-                    <li><a href="#"><img src="assets/images/logo.jpg"></a></li>
+                    <li><a href="#"><img src="assets/images/logo.svg"></a></li>
                 </ul>
             </div>
 

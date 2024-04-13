@@ -21,6 +21,32 @@
         transition: .2s;
     }
 
+    header {    
+        padding: 20px 2%;
+        position: fixed;
+        top:0;
+        right: 0;
+        width: 100%;
+        height: 10vh;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: transparent;
+        }
+    
+        header.sticky {
+          background-color: var(--main-color);
+        }
+        
+        #back-btn {
+        color: var(--text-color);
+        font-size: 60px;
+        z-index: 10001;
+        cursor: pointer;
+        display: block;
+        }
+
     body {
         padding: 100px;
         display: flex;
@@ -76,6 +102,20 @@
 
     }
 
+    .mobile-logo {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        width: 100%; /* Ensures the div takes up full width */
+  }
+
+  .mobile-logo img {
+    border-radius: 50%;
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+  }
+
+
     .alert {
         width: 50%;
         position: absolute;
@@ -101,26 +141,12 @@
         justify-content: space-between;
     }
 
-    #back-btn {
-        margin-left: -10px;
-        color: var(--second-color);
-        cursor: pointer;
-    }
-
-    #back-btn i {
-        font-size: var(--big-font);
-    }
-
-    #back-btn:hover {
-        color: var(--text-color);
-    }
-
     .title{
         display: flex;
         align-items: center;
         font-family: var(--font1);
         color: var(--text-color);
-        padding: 15px 0;
+        padding: 30px 0;
         text-align: justify;
     }
 
@@ -182,7 +208,7 @@
         text-align: center;
     }
 
-    #login{
+    .btns{
         border-style: none;
         font-size: var(--p-font);
         border-radius: 5px;
@@ -194,12 +220,13 @@
         transition: ease .2s;
     }
 
-    #login:hover{
+    .btns:hover{
         background-color: var(--text-color);
         cursor: pointer;
     }
 
     .links {
+        font-family: var(--font2);
         margin: 4px;
         display: flex;
         justify-content: space-between;
@@ -267,6 +294,20 @@
 }
 
 /*-----------RESPONSIVENESS----------*/
+@media (max-width: 1300px) {
+    header {
+      padding: 17px 3%;
+      transition: .2s;
+    }
+  
+    :root {
+      --h2-head: 2rem;
+      --p-head: 1.5rem;
+      transition: .2s;
+    }
+  
+    }
+
 @media (max-width: 1024px) {
     :root{ /*---font and color defaults --*/
         --h2-font: 1.5rem;
@@ -281,17 +322,36 @@
             height: 35px;
         }
 
-        #login {
+        .btns {
             height: 35px;
         }
 
 }
+
+@media (max-width: 860px) {
+    :root {
+      --h2-head: 1.5rem;
+      --p-head: 1rem;
+      transition: .2s;
+    }
+
+    .mobile-logo {
+        display: flex;
+  }
+  
+  }
 
     @media (max-width: 540px) {
         :root{ /*---font and color defaults --*/
             --h2-font: 2.2rem;
             --p-font: 1.1rem;
         }
+
+        header {
+            background-color: var(--main-color);
+            box-shadow: 0 0 10px 2px var(--second-color); /* Tomato color */
+      
+          }
 
     .logo {
         display: none;
@@ -302,6 +362,7 @@
         position: fixed;
         top: 0;
         width: 100%;
+        height: 100vh;
         border-radius: 0px;
     }
 
@@ -312,6 +373,7 @@
     #back-btn {
         color: var(--text-color);
     }
+
 
     }
 
@@ -326,7 +388,7 @@
 
     @media (max-width: 280px) {
         :root{ /*---font and color defaults --*/
-            --h2-font: 1.8rem;
+            --h2-font: 1.5rem;
             --p-font: .9rem;
         }
 
@@ -348,11 +410,15 @@
             display: none;
         }
 
+        #back-btn {
+            font-size: 80px;
+          }
+
         .typeinput input{
             height: 50px;
         }
 
-        .logbutton #login {
+        .logbutton .btns {
             height: 50px;
         }
 
@@ -360,14 +426,21 @@
             width: 80%;
         }
 
+        .mobile-logo {
+            display: flex;
+      }
 
     }
 
-    @media (min-height: 1400px) {
+    @media (min-height: 1300px) {
         :root {
             --h2-font: 3rem;
             --p-font: 2rem;
         }
+
+        #back-btn {
+            font-size: 100px;
+          }
 
         .logo {
             display: none;
@@ -377,7 +450,7 @@
             height: 70px;
         }
 
-        .logbutton #login {
+        .logbutton .btns {
             height: 70px;
         }
 
@@ -385,24 +458,4 @@
             width: 85%;
         }
     }
-
-        .mobile-logo {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            width: 100%; /* Ensures the div takes up full width */
-      }
-
-        .mobile-logo img {
-            border-radius: 50%;
-            width: 100px; /* Adjust as needed */
-            height: 100px; /* Adjust as needed */
-          }
-
-        @media screen and (max-width: 600px) {
-            .mobile-logo {
-            display: flex;
-            }
-        }
-
 
