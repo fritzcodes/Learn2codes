@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div class="logbutton">
-                  <button type="submit" id="login">Log In</button>
+                  <button type="submit" id="login" class="btns">Log In</button>
                 </div>
                 <div class="signing">
                   <p>Create an account</p>

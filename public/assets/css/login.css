@@ -208,7 +208,7 @@
         text-align: center;
     }
 
-    #login{
+    .btns{
         border-style: none;
         font-size: var(--p-font);
         border-radius: 5px;
@@ -220,7 +220,7 @@
         transition: ease .2s;
     }
 
-    #login:hover{
+    .btns:hover{
         background-color: var(--text-color);
         cursor: pointer;
     }
@@ -322,7 +322,7 @@
             height: 35px;
         }
 
-        #login {
+        .btns {
             height: 35px;
         }
 
@@ -418,7 +418,7 @@
             height: 50px;
         }
 
-        .logbutton #login {
+        .logbutton .btns {
             height: 50px;
         }
 
@@ -450,7 +450,7 @@
             height: 70px;
         }
 
-        .logbutton #login {
+        .logbutton .btns {
             height: 70px;
         }
 

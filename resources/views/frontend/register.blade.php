@@ -79,7 +79,7 @@
                     <p id="passwordError">Passwords do not match!</p> <!-- Removed the margin-bottom -->
                 </div>
                 <div class="logbutton">
-                  <button type="submit" onclick="document.location='#'" id="login">Sign Up</button>
+                  <button type="submit" onclick="document.location='#'" id="login" class="btns">Sign Up</button>
                 </div>
                 <div class="signing">
                   <p>Existing account</p>

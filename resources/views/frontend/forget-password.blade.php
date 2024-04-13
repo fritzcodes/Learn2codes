@@ -49,7 +49,7 @@
                 <div class="typeinput">
                   <input required placeholder="example@gmail.com" type="text" id="email" name="email">
                 </div>
-                  <button type="submit" id="login">submit</button>
+                  <button type="submit" id="login" class="btns">submit</button>
                 </div>
     
             </form>
