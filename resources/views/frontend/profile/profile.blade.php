@@ -50,44 +50,43 @@
 
 
     <section class="space-background">
-        <div class=title>
-            <h2>My Profile</h2>
-        </div> 
-
         <form method="post" enctype="multipart/form-data" id="formData" class="content-section">
             @csrf
+                        <div class=title>
+                            <h2>My Profile</h2>
+                        </div> 
             <div class="top">
+
                 <div class="details">
                     <div class="contents">
                         <div class="imageContainer" id="imageContainer">
-                            <img style="width:100px; height:100px; border-radius:50%"
+                            <img style="border-radius:50%"
                             src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
                             alt="">
                         </div>
                         
                         <div>
-                            <input type="text" id="Username" readonly autocomplete="off"
-                                value="{{ Auth::user()->username }}">
-                            <br>
-                            <input type="text" id="firstName" readonly autocomplete="off"
-                                value="{{ Auth::user()->fname }}">
+                            <div>
+                                <h2 id="Username">{{ Auth::user()->username }}</h2>
+                            </div>
 
-                            <input type="text" id="lastName" readonly autocomplete="off"
-                                value="{{ Auth::user()->lname }}">                                   
+                            <div class="names">
+                                <p id="firstName">{{ Auth::user()->fname }}</p>
+                                <p id="lastName">{{ Auth::user()->lname }}</p>  
+                            </div>
+
+                            <div class="others">
+                                        <p id="Course">{{ Auth::user()->course }}</p>
+                                        <p id="year">{{ Auth::user()->year }}</p>
+                                        <p id="email">{{ Auth::user()->email }}</p>  
+                            </div>                            
+
                         </div>
                        
                     </div>
 
-                    <div class="others">
-                        <input type="text" id="Course" class="dataLabel3" readonly autocomplete="off"
-                        value="{{ Auth::user()->course }}" placeholder="Your course?">
 
-                        <input type="text" id="year" class="dataLabel4" readonly autocomplete="off"
-                        value="{{ Auth::user()->year }}">
 
-                        <input type="text" id="email" class="dataLabel6" readonly autocomplete="off"
-                        value="{{ Auth::user()->email }}">
-                    </div>
                 </div>
 
                 <div class="Editprofile">
