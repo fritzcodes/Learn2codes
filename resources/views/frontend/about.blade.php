@@ -37,7 +37,7 @@
 			<div class="box">
 				<img src="assets/images/aboutpic/adrao.png">
 				<h2>Adrao, Abigael</h2>
-				<p>UI/UX Designer</p>
+				<p>Technical Writer</p>
 				<div class="icons">
 					<a href="#"><i class='bx bxs-rocket'></i></a>
 				</div>
@@ -313,6 +313,15 @@
 			</div>
 
 			<div class="box">
+				<img src="assets/images/aboutpic/adrao.png">
+				<h2>Adrao, Abigael</h2>
+				<p>Technical Writer</p>
+				<div class="icons">
+					<a href="#"><i class='bx bxs-rocket'></i></a>
+				</div>
+			</div>
+
+			<div class="box">
 				<img src="assets/images/aboutpic/alquicer.png">
 				<h2>Alquicer, Jelisa</h2>
 				<p>Technical Writer</p>
@@ -392,15 +401,6 @@
 				<p>Head UI/UX designer</p>
 				<div class="icons">
 				<a href="#"><i class='bx bxs-rocket'></i></a>
-				</div>
-			</div>
-
-			<div class="box">
-				<img src="assets/images/aboutpic/adrao.png">
-				<h2>Adrao, Abigael</h2>
-				<p>UI/UX Designer</p>
-				<div class="icons">
-					<a href="#"><i class='bx bxs-rocket'></i></a>
 				</div>
 			</div>
 
