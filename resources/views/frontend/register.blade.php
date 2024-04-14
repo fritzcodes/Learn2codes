@@ -40,44 +40,47 @@
                 <p>Sign Up</p>
                 </div>
                 
-                <div class="typeinput">    
-                  <input required placeholder="Email" type="text" id="email" name="email">
-                </div>
-                <div class="typeinput">    
-                  <input required placeholder="Username" type="text" id="username" name="username">
-                </div>
-                <div class="typeinput">    
-                  <input required placeholder="Firstname" type="text" id="fname" name="firstname">
-                </div>
-                <div class="typeinput">    
-                  <input required placeholder="Lastname" type="text" id="lname" name="lastname">
-                </div>
-                <div class="typeinput">    
-                  <label for="year">
-                    <select name="year" id="year">
-                      <option>--Select Year (optional)--</option>                      
-                      <option value="1st Year">1st Year</option>
-                      <option value="2nd Year">2nd Year</option>
-                      <option value="3rd Year">3rd Year</option>
-                      <option value="4th Year">4th Year</option>
-                  </select>
-                  </label>
-                </div>
-                <div class="typeinput">                  
-                  <input required placeholder="Password" type="password" id="password" name="password">
-                  <button class="showhide" type="button" onclick="togglePassword('password')">
-                    <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
-                  </button>
-                </div>
-                <div class="typeinput">                  
-                  <input required placeholder="Confirm password" type="password" id="confirmPassword" name="confirmpassword">
-                  <button class="showhide" type="button" onclick="togglePassword('confirmPassword')">
-                    <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
-                  </button>
-                </div>
-                <div class="typeinput">
-                    <p id="passwordError">Passwords do not match!</p> <!-- Removed the margin-bottom -->
-                </div>
+               <div class="inputs">
+                    <div class="typeinput">    
+                      <input required placeholder="Email" type="text" id="email" name="email">
+                    </div>
+                    <div class="typeinput">    
+                      <input required placeholder="Username" type="text" id="username" name="username">
+                    </div>
+                    <div class="typeinput">    
+                      <input required placeholder="Firstname" type="text" id="fname" name="firstname">
+                    </div>
+                    <div class="typeinput">    
+                      <input required placeholder="Lastname" type="text" id="lname" name="lastname">
+                    </div>
+                    <div class="typeinput">    
+                      <label for="year">
+                        <select name="year" id="year">
+                          <option>--Select Year (optional)--</option>                      
+                          <option value="1st Year">1st Year</option>
+                          <option value="2nd Year">2nd Year</option>
+                          <option value="3rd Year">3rd Year</option>
+                          <option value="4th Year">4th Year</option>
+                      </select>
+                      </label>
+                    </div>
+                    <div class="typeinput">                  
+                      <input required placeholder="Password" type="password" id="password" name="password">
+                      <button class="showhide" type="button" onclick="togglePassword('password')">
+                        <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
+                      </button>
+                    </div>
+                    <div class="typeinput">                  
+                      <input required placeholder="Confirm password" type="password" id="confirmPassword" name="confirmpassword">
+                      <button class="showhide" type="button" onclick="togglePassword('confirmPassword')">
+                        <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
+                      </button>
+                    </div>
+                    <div class="typeinput">
+                        <p id="passwordError">Passwords do not match!</p> <!-- Removed the margin-bottom -->
+                    </div>                
+               </div> 
+
                 <div class="logbutton">
                   <button type="submit" onclick="document.location='#'" id="login" class="btns">Sign Up</button>
                 </div>

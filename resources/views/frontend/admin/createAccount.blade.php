@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login</title>
+<title>Create Admin | Learn2code</title>
 
   <link rel="stylesheet" href="../assets/css/adminLogin.css">
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -15,51 +15,50 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <style>
-        body {
-        text-align: center;
-        width: 100%;
-        min-height: 100vh;
-        background: url('../assets/images/bglog.svg');
-        color: var(--text-color);
-        overflow-x: hidden; /* Prevent horizontal scrolling */
-        z-index: -1; /* Behind other content */
-        background-size: cover;
-        animation: animateBackground 20s linear infinite; /* Adjust as needed */
-    }
+     body {       
+            background: url('/assets/images/backlogin.png');
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Use full viewport height */
+            margin: 0; /* Remove default body margin */
+            background-size: cover;
+            animation: animateBackground 20s linear infinite; /* Adjust as needed */
+              }
+              @keyframes animateBackground {
+                0% {
+                  background-position: 0 0;
+                }
+                100% {
+                  background-position: 100% 100%;
+                }
+              }
 
-    @keyframes animateBackground {
-        0% {
-        background-position: 0 0;
-        }
-        100% {
-        background-position: 100% 100%;
-        }
-    }
 </style>
 <body>
 
       <section class="space-background">
 
-        @if(Session::has('success'))
-        <div class="alert alert-success">
-            {{ Session::get('success') }}
-        </div>
-        @endif
-        @if(Session::has('error'))
-        <div class="alert alert-error">
-            {{ Session::get('error') }}
-        </div>
-        @endif
+              @if(Session::has('success'))
+              <div class="alert alert-success">
+                  {{ Session::get('success') }}
+              </div>
+              @endif
+              @if(Session::has('error'))
+              <div class="alert alert-error">
+                  {{ Session::get('error') }}
+              </div>
+              @endif
 
     <form action="/admin/createAccountPost" method="POST" class="content-container1">
         @csrf    
                 <div class="logo">
-                <img src="../assets/images/logo.png" alt="learn2Code">
+                  <img src="/assets/images/logo.jpg" alt="learn2Code">
                 </div>       
 
                 <div class="title">
-                <h2>Learn2Code</h2>
-                <p>Admin Creation</p>
+                  <h2>Learn2Code</h2>
+                  <p>Admin Creation</p>
                 </div>
                 
 
@@ -68,16 +67,34 @@
                 </div>
                 <div class="typeinput">    
                     <input required placeholder="Admin Name" type="text" id="username" name="username">
-                  </div>
+                </div>
                 <div class="typeinput">                  
                   <input required placeholder="Password" type="password" id="password" name="password">
+                  <button class="showhide" type="button" onclick="togglePassword('password')">
+                    <img id="imageeye" src="/assets/images/view.png" alt="not visible eye">
+                  </button>
                 </div>
             
                 <div class="logbutton">
-                  <button id="login" type="submit">Create</button>
+                  <button id="login" type="submit" class="btns">Create</button>
                 </div>
             </form>
       </section>
+
+      <script>
+                    function togglePassword(inputId) {
+                var passwordInput = document.getElementById(inputId);
+                var imageeye = passwordInput.parentNode.querySelector('img');
+
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    imageeye.src = '/assets/images/hidden.png';
+                } else {
+                    passwordInput.type = 'password';
+                    imageeye.src = '/assets/images/view.png';
+                }
+            }
+      </script>
 
 </body>
 </html>
