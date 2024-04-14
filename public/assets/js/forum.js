@@ -1,6 +1,3 @@
-
-
-
 //     SIDEBAR DROPDOWN
 var dropdowns = document.querySelectorAll(".dropdown");
 
@@ -342,14 +339,16 @@ function toggleReply(replyId) {
   $('#' + replyId).toggle();
 }
 
-function postReply(button, containerId, user_id, comment_id) {
+function postReply(button, containerId, user_id, comment_id, reply_id) {
+  console.log(reply_id);
   var replyInput = button.parentElement.querySelector('textarea');
 console.log(containerId);
   var replyText = replyInput.value.trim();
   const request = {
     user_id: user_id,
     comment_id: comment_id,
-    reply: replyText
+    reply: replyText,
+    reply_id_reply: reply_id || null
   }
   if (replyText !== '') {
     $.ajax({
@@ -369,11 +368,18 @@ console.log(containerId);
         var newReply = document.createElement('div');
         newReply.classList.add('reply');
         newReply.classList.add('nested-reply'); // Add class for nested replies
+        const addReply = data.reply_with_user != null ?
+        `<p class="content" style="font-size: 12px; font-style:italic">${user_id == data.user.id ? 'You' : data.reply_with_user.user.fname } replied to ${ data.reply_with_user.user.fname + ' ' + data.reply_with_user.user.lname }</p> 
+        <div style="background-color:rgba(255,255,255, .5)">
+          <p class="content" style="font-size: 12px; color:gray; font-style:italic">${data.reply_with_user.reply}</p>
+        </div>` : '';
+        
         newReply.innerHTML = `<div class="reply-container">
               <div class="user-info">
                   <img src="${data.user.profile_photo ? '/images/' + data.user.profile_photo : '/assets/images/avatar.png'}" alt="User Avatar" style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
                   <div class="user">${data.user.fname + ' ' + data.user.lname}</div>
               </div>
+              ` + addReply + `
               <div class="content">${data.reply}</div>
               <div class="actions">
                   <button onclick="toggleReply('replyInputNested-${data.id}')">Reply</button>
@@ -381,7 +387,7 @@ console.log(containerId);
               </div>           
               <div class="reply-input" id="replyInputNested-${data.id}" style="display:none;">
                   <textarea placeholder="Write a reply..."></textarea>
-                  <button onclick="postReply(this, 'nestedRepliesContainer-${containerId}')">Reply</button>
+                  <button onclick="postReply(this, 'repliesContainer${comment_id}', '${user_id}', '${comment_id}', '${data.id}')">Reply</button>
               </div>
               <div class="replies" id="nestedRepliesContainer-${containerId}"></div> <!-- Nested replies container -->
           </div>`;
@@ -468,10 +474,20 @@ function likePost(id, user_id, post_id){
     success: function(data){
       console.log(data);
       if(data == "add"){
-        $('#likesCount' + post_id).text(parseInt($('#likesCount' + post_id).text() + 1));
+       
+        if($('#likesCount' + post_id).text() == ""){
+          $('#likesCount' + post_id).text(parseInt(1));
+        }else{
+          $('#likesCount' + post_id).text(parseInt($('#likesCount' + post_id).text()) + 1);
+        }
       }else{
-        $('#likesCount' + post_id).text(parseInt($('#likesCount' + post_id).text() - 1));
-        $('#likesCount' + post_id).text(0) ? $('#likesCount' + post_id).text('') : '';
+        
+        if($('#likesCount' + post_id).text() == 1){
+          $('#likesCount' + post_id).text('')
+        }else{
+          $('#likesCount' + post_id).text(parseInt($('#likesCount' + post_id).text()) - 1);
+        }
+  
       }
       $('#' + id).toggleClass('outlined-heart');
     },
@@ -481,3 +497,123 @@ function likePost(id, user_id, post_id){
   })
   
 }
+
+function likeComment(id, user_id, comment_id){
+  const request = {
+    user_id: user_id,
+    comment_id: comment_id
+  }
+  $.ajax({
+    url: '/like-comment',
+    method: 'post',
+    dataType: 'json',
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    data: request,
+    success: function(data){
+      
+      console.log(data);
+      if(data == "add"){
+       
+        if($('#likesCommentCount' + comment_id).text() == ""){
+          $('#likesCommentCount' + comment_id).text("1");
+          
+        }else{
+          $('#likesCommentCount' + comment_id).text(parseInt($('#likesCommentCount' + comment_id).text()) + 1);
+        }
+      }else{
+        
+        if($('#likesCommentCount' + comment_id).text() == 1){
+          $('#likesCommentCount' + comment_id).text('')
+        }else{
+          $('#likesCommentCount' + comment_id).text(parseInt($('#likesCommentCount' + comment_id).text()) - 1);
+        }
+  
+      }
+      $('#' + id).toggleClass('tBold');
+    },
+    error: function(xhr){
+      alert(xhr.responseText);
+    }
+  })
+  
+}
+
+function report(post_id, user_id){
+  if(confirm('Are you sure you want to report this?')){
+    $.ajax({
+      url: '/report',
+      data: {
+        post_id: post_id,
+        user_id: user_id
+      },
+      method: 'post',
+      dataType: 'json',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      success: function (data){
+
+      },
+      error: function (xhr){
+        alert(xhr.responseText);
+      }
+    })
+  }
+}
+
+
+function deletePostId(post_id){
+  if(confirm('Are you sure you want to delete this post?')){
+    $.ajax({
+      url: `/delete-post/${post_id}`,
+      method: 'delete',
+      dataType: 'json',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      success: function (data){
+        if(data == "success"){
+          alert("deleted successfully");
+          location.reload();
+        }
+      },
+      error: function (xhr){
+        alert(xhr.responseText);
+      }
+    })
+  }
+}
+/* Notif-Section */
+
+$(document).ready(function() {
+  function fetchNotifications() {
+      console.log('Fetching notifications...');
+        $.ajax({
+            url: '/ForumController/NotificationUpdate', 
+            success: function(data) {
+                console.log('Fetched notifications:', data);
+            }
+        });
+    }
+
+    function markNotificationAsRead() {
+        console.log('Marking notification as read...');
+        $.ajax({
+            url: '/ForumController/NotificationUpdate',
+            type: 'POST',
+            success: function(data) {
+                console.log('Marked notification as read:', data);
+            }
+        });
+    }
+
+    // fetch new notifications every 5 seconds
+    setInterval(fetchNotifications, 5000);
+
+    // mark notification as read when a user clicks on it
+    $(document).on('click', '.notification', function() {
+        markNotificationAsRead();
+    });
+});

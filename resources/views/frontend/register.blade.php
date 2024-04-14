@@ -4,14 +4,18 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link rel="shortcut icon" type="x-icon" href="assets/images/Logo.jpg">
+    <title>Sign Up | Learn2code</title>
+    <link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
     <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 
 </head>
-<body>
+<body style="background-image: url(assets/images/backlogin.png)";>
+
+<header>
+        <a href="/" class="bx bx-chevron-left" id="back-btn"></a>
+</header>
 
 <div class="logo">
     <img src="assets/images/logo.jpg" alt="">
@@ -31,10 +35,6 @@
             <form action="{{ route('register') }}" method="POST" class="signup-form" onsubmit="return validatePasswords()"> 
             @csrf
             
-                <div class="head">
-                  <a href="/" id="back-btn"><i class="bx bx-chevron-left"></i></a>
-                </div>       
-
                 <div class="title">
                 <h2>Learn2Code</h2>
                 <p>Sign Up</p>
@@ -56,10 +56,10 @@
                   <label for="year">
                     <select name="year" id="year">
                       <option>--Select Year (optional)--</option>                      
-                      <option value="1styear">1st Year</option>
-                      <option value="2ndyear">2nd Year</option>
-                      <option value="3rdyear">3rd Year</option>
-                      <option value="4thyear">4th Year</option>
+                      <option value="1st Year">1st Year</option>
+                      <option value="2nd Year">2nd Year</option>
+                      <option value="3rd Year">3rd Year</option>
+                      <option value="4th Year">4th Year</option>
                   </select>
                   </label>
                 </div>
@@ -79,7 +79,7 @@
                     <p id="passwordError">Passwords do not match!</p> <!-- Removed the margin-bottom -->
                 </div>
                 <div class="logbutton">
-                  <button type="submit" onclick="document.location='#'" id="login">Sign Up</button>
+                  <button type="submit" onclick="document.location='#'" id="login" class="btns">Sign Up</button>
                 </div>
                 <div class="signing">
                   <p>Existing account</p>

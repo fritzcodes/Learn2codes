@@ -5,24 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Learn2Code</title>
-  <link rel="stylesheet" href="assets/css/forum.css">
+  <title>Forum | Learn2Code</title>
+  <link rel="stylesheet" href="/assets/css/forum.css">
   <link rel="stylesheet" href="upload.css">
-  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script src="assets/js/forum.js" defer></script>
-  <script src="assets/js/insertimg.js" defer></script>
+  <script src="/assets/js/forum.js" defer></script>
+  <script src="/assets/js/insertimg.js" defer></script>
   <style>
     .outlined-heart {
       color: black;
@@ -36,6 +32,36 @@
 
     a:hover {
       cursor: pointer;
+    }
+
+    .tBold {
+      font-weight: bolder;
+    }
+
+    .copy-link {
+      position: relative;
+    }
+
+    .tooltip {
+      visibility: hidden;
+      width: 80px;
+      background-color: black;
+      color: white;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -40px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .copy-link:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
     }
   </style>
 
@@ -54,7 +80,9 @@
         </li>
         <li>
           <div class="logo">
-            <img src="assets/images/Logo.jpg" alt="logo">
+            <a href="/startmenu">
+              <img src="assets/images/Logo.jpg" alt="logo">
+            </a>
           </div>
         </li>
         <li>
@@ -83,18 +111,14 @@
     </div>
     <div class="right-btn">
       <a href="#" class="bx bxs-bell" id="notif"><span class="indicator"></span></a>
-      <a href="#" class="profile-link">
-
+      <a href="/profile" class="profile-link">
         @if (Auth::check() && Auth::user()->profile_photo)
-            <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
-                alt="Profile Photo" class="avatar">
+        <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}" alt="Profile Photo" class="avatar">
         @else
-            <!-- Placeholder image or default avatar -->
-            <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
+        <!-- Placeholder image or default avatar -->
+        <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
         @endif
-    </a>
-
-
+      </a>
     </div>
 
     <div id="notifModal" class="modal">
@@ -247,18 +271,18 @@
                 <div>
                   <a href="#" class="profile-pic">
                     @if (Auth::check() && Auth::user()->profile_photo)
-                    <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
-                        alt="Profile Picture" class="profile-pic">
-                @else
+                    <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}" alt="Profile Picture" class="profile-pic">
+                    @else
                     <!-- Placeholder image or default avatar -->
                     <img src="assets/images/avatar.png" alt="Profile Picture" class="profile-pic">
-                @endif
+                    @endif
                   </a>
                 </div>
 
                 <div class="post-info">
                   <div class="first-name">
-                    <p><a href="#">{{ $name->fname . ' ' . $name->lname }}</a><span class="feelings" style="display: none;">is <img src="images/smiley.PNG" alt=""> feeling happy</span></p>
+                    <p><a href="#">{{ $name->fname . ' ' . $name->lname }}</a><span class="feelings" style="display: none;">
+                        is <img src="images/smiley.PNG" alt=""> feeling happy</span></p>
                   </div>
 
                   <!--
@@ -317,6 +341,7 @@
         </div>
 
 
+
         @if(count($posts) > 0)
         @foreach ($posts as $index => $post)
         <div class="post">
@@ -327,7 +352,8 @@
 
             <div class="post-info">
               <div class="first-name">
-                <p><a href="#">{{ $post->user->fname . " " . $post->user->lname }}</a><span class="feelings">is <img src="images/smiley.PNG" alt=""> feeling happy</span></p>
+                <p><a href="#">{{ $post->user->fname . " " . $post->user->lname }}</a><span class="feelings">
+                    <!-- is <img src="images/smiley.PNG" alt=""> feeling happy</span></p> -->
               </div>
 
               <div class="date">
@@ -340,10 +366,29 @@
               <button href="#" onclick="deletePost(`postsetModal{{$post->id}}`)" style="background-color: transparent; border:none"><i class="bx bx-dots-horizontal-rounded"></i>
               </button>
               <div id="postsetModal" class="modal postsetModal{{$post->id}}">
-                <a href=""><i class='bx bxs-trash'></i>
+                <a onclick="deletePostId('{{ $post->id }}')"><i class='bx bxs-trash'></i>
                   <p>Delete</p>
                 </a>
-                <a href=""><i class='bx bxl-instagram-alt'></i>
+                <!-- <a href=""><i class='bx bxs-edit'></i>
+                  <p>Edit</p>
+                </a> -->
+                <!-- <a href=""><i class='bx bxl-instagram-alt'></i>
+                  <p>Report</p>
+                </a> -->
+              </div>
+            </div>
+            @else
+            <div class="post-setting">
+              <button href="#" onclick="deletePost(`postsetModal{{$post->id}}`)" style="background-color: transparent; border:none"><i class="bx bx-dots-horizontal-rounded"></i>
+              </button>
+              <div id="postsetModal" class="modal postsetModal{{$post->id}}">
+                <!-- <a href=""><i class='bx bxs-trash'></i>
+                  <p>Delete</p>
+                </a>
+                <a href=""><i class='bx bxs-edit'></i>
+                  <p>Edit</p>
+                </a> -->
+                <a onclick="report('{{ $post->id }}', '{{ $name->id }}')"><i class='bx bxl-instagram-alt'></i>
                   <p>Report</p>
                 </a>
               </div>
@@ -354,28 +399,6 @@
 
           <div class="post-content">
             <div class="caption">
-              <!-- @php
-    $content = $post->content;
-    // Split the content by hashtags while maintaining line breaks
-    $parts = preg_split('/#(\w+)/', $content);
-@endphp
-
-@foreach ($parts as $part)
-    @if ($loop->first)
-    <pre>{{ $part }}</pre>
-    @else
-   
-        @if (strpos($part, "\n") === false)
-        <a href="/hash/{{ strtok($part, ' ') }}" class="hashtags">
-                <p>#{{ strtok($part, ' ') }}</p>
-            </a>
-            {{ substr($part, strpos($part, ' ') + 1) }}
-        @else
-            #{{ $part }}
-        @endif
-    @endif
-@endforeach -->
-
               @php
               $content = $post->content;
 
@@ -383,16 +406,16 @@
 
               $hashtags = $matches[1];
               foreach ($hashtags as $hashtag) {
-              $content = str_replace("#$hashtag", "<a href='$hashtag' class='hashtags'>#$hashtag</a>", $content);
+              $content = str_replace("#$hashtag", "<a href='/popular/$hashtag' class='hashtags'>#$hashtag</a>", $content);
               }
 
 
               @endphp
+
               <pre>{!! $content !!}
 </pre>
 
             </div>
-
 
             @if ($post->code != null)
             <div class="code-snippet"> <!--where code will display-->
@@ -430,7 +453,22 @@
             <p id="likesCount{{$post->id}}" class="footer-btn">{{ $post->likes_count == 0 ? '' :  $post->likes_count}}</p>
             <a class="footer-btn" onclick="likePost('like{{$post->id}}', '{{$name->id}}', '{{$post->id}}')" style="text-align:left">
 
-              <i class="fa fa-heart {{ $post->like == null ? 'outlined-heart' : ''}}" id="like{{$post->id}}"></i>
+              <i class="fa fa-heart 
+                @if (count($post->likes) > 0)
+                    @php $outlinedHeart = true; @endphp
+                    @foreach ($post->likes as $like)
+                        @if ($like->user != null)
+                            @php $outlinedHeart = false; @endphp
+                            @break
+                        @endif
+                    @endforeach
+                    {{ $outlinedHeart ? 'outlined-heart' : '' }}
+                @else
+                    outlined-heart
+                @endif
+            " id="like{{$post->id}}">
+              </i>
+
               <p>Like</p>
             </a>
             <a class="footer-btn" onclick="showComment('main-comment-sec{{$post->id}}')"><i class="bx bxs-message-rounded"></i>
@@ -442,15 +480,35 @@
 
             <div id="shareModal" class="modal">
               <div id="share-content" class="share-content">
-                <a href=""><i class='bx bxl-facebook'></i></a>
+                <!-- <a href=""><i class='bx bxl-facebook'></i></a>
                 <a href=""><i class='bx bxl-instagram-alt'></i></a>
-                <a href=""><i class='bx bxl-twitter'></i></a>
-                <a href=""><i class='bx bx-link-alt'></i></a>
+                <a href=""><i class='bx bxl-twitter'></i></a> -->
+                <a href="#" class="copy-link" onclick="copyLink('/forum/{{ $post->id }}')">
+                  <i class='bx bx-link-alt'></i>
+                  <span class="tooltip" id="tooltip">Copy link</span>
+                </a>
 
               </div>
             </div>
 
-
+            <script>
+              function copyLink(link) {
+                var linkText = window.location.href;
+                var url = window.location.href;
+                var parser = document.createElement('a');
+                parser.href = url;
+                var host = parser.protocol + "//" + parser.hostname + (parser.port ? ":" + parser.port : "");
+                navigator.clipboard.writeText(host + link).then(function() {
+                  var tooltip = document.getElementById("tooltip");
+                  tooltip.innerText = "Link copied!";
+                  setTimeout(function() {
+                    tooltip.innerText = "Copy link";
+                  }, 1500);
+                }).catch(function(err) {
+                  console.error('Failed to copy: ', err);
+                });
+              }
+            </script>
           </div>
 
           <div class="main-comment-sec" id="main-comment-sec{{ $post->id }}"> <!--comment section / hidden in default-->
@@ -484,10 +542,28 @@
                     <div class="user">{{ $comment->user->fname . " " . $comment->user->lname}}</div>
                   </div>
 
-                  <div class="content">{{ $comment->comment }}</div>
+                  <div class="content">
+                    {{ $comment->comment }}
+                    <!-- @if (Auth::user()->id == $comment->user_id)
+                  <a href="">Edit</a> | 
+                  <a href="">Delete</a>
+                  @endif -->
+                  </div>
 
                   <div class="actions">
-                    <button>Like</button>
+                    <p id="likesCommentCount{{$comment->id}}">@if (count($comment->likes) > 0){{count($comment->likes)}}@endif</p>
+                    <button onclick="likeComment('likeComment{{$comment->id}}', '{{$name->id}}', '{{$comment->id}}')" class="
+                    @if (count($comment->likes) > 0)
+                      @php $tBold = true; @endphp
+                      @foreach ($comment->likes as $like)
+                          @if ($like->user != null)
+                              @php $tBold = false; @endphp
+                              @break
+                          @endif
+                      @endforeach
+                      {{ $tBold ? '' : 'tBold' }}
+                    @endif
+                    " id="likeComment{{$comment->id}}">Like</button>
                     <button onclick="toggleReply('replyInput{{$comment->id}}')">Reply</button>
                     <button href="#">{{ \Illuminate\Support\Carbon::parse($comment->created_at)->diffForHumans() }}</button>
                   </div>
@@ -499,8 +575,19 @@
                     <div class="reply-container reply nested-reply">
                       <div class="user-info">
                         <img src="{{ $reply->user->profile_photo ? 'images/' . $reply->user->profile_photo : 'assets/images/avatar.png' }}" alt="User Avatar" style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
-                        <div class="user">{{ $reply->user->fname . " " . $reply->user->lname }}</div>
+                        <div class="user">{{ $reply->user->fname . " " . $reply->user->lname }}
+                        </div>
+
+
                       </div>
+                      @if ($reply->replyWithUser != null )
+                      <p class="content" style="font-size: 12px; font-style:italic">{{ $name->id == $reply->user->id ? 'You' : $reply->replyWithUser->user->fname }} replied to {{ $reply->replyWithUser->user->fname . ' ' . $reply->replyWithUser->user->lname }}</p>
+                      <div style="background-color:rgba(255,255,255, .5)">
+                        <p class="content" style="font-size: 12px; color:gray; font-style:italic">{{ $reply->replyWithUser->reply}}</p>
+                      </div>
+                      @endif
+
+
                       <div class="content">{{ $reply->reply }}</div>
                       <div class="actions">
                         <button onclick="toggleReply('replyInputNested-{{$reply->id}}')">Reply</button>
@@ -508,9 +595,9 @@
                       </div>
                       <div class="reply-input" id="replyInputNested-{{$reply->id}}" style="display:none;">
                         <textarea placeholder="Write a reply..."></textarea>
-                        <button onclick="postReply(this, 'repliesContainer{{$reply->id . $comment->id}}', '{{$name->id}}', '{{$comment->id}}')">Reply</button>
+                        <button onclick="postReply(this, 'repliesContainer{{$comment->id}}', '{{$name->id}}', '{{$comment->id}}', '{{$reply->id}}')">Reply</button>
                       </div>
-                      <div class="replies" id="nestedRepliesContainer-{{$reply->id}}"></div> <!-- Nested replies container -->
+                      <div class="replies" id="nestedRepliesContainer-{{$comment->id}}"></div> <!-- Nested replies container -->
                     </div>
                     @endforeach
                     @endif
@@ -705,21 +792,44 @@
 
 
       </div>
+      @php
+      $allHashtags = [];
+      foreach ($posts as $post) {
+      $content = $post->content;
+      preg_match_all('/#(\w+)/', $content, $matches);
+      $allHashtags = array_merge($allHashtags, $matches[1]);
+      }
+
+      $hashtagCounts = array_count_values($allHashtags);
+      arsort($hashtagCounts);
+      $popularHashtags = array_slice($hashtagCounts, 0, 5, true);
+      @endphp
+
+      @foreach ($posts as $index => $post)
+      @php
+      $content = $post->content;
+      preg_match_all('/#(\w+)/', $content, $matches);
+      @endphp
+
+      @endforeach
 
       <!-------------------sidebar content-->
       <div class="content2" id="content2">
         <div class="sidebar">
           <ul class="main-menu">
             <li class="dropdown">
-              <a href="javascript:void(0)">Recent<span class="icon">▼</span></a>
+              <a href="javascript:void(0)">Popular Hashtags<span class="icon">▼</span></a>
+
               <ul class="dropdown-content">
-                <li><a href="#">Java</a></li>
+                @foreach ($popularHashtags as $hashtag => $count)
+                <li><a href="/popular/{{$hashtag}}">#{{ $hashtag }}</a></li>
+                @endforeach
               </ul>
             </li>
             <div>
               <hr>
             </div>
-            <li class="dropdown">
+            <!-- <li class="dropdown">
               <a href="javascript:void(0)">Topics<span class="icon">▼</span></a>
               <ul class="dropdown-content">
                 <li><a href="#">Web Design</a></li>
@@ -744,7 +854,7 @@
               </ul>
             </li>
 
-            <li><a href="#">About</a></li>
+            <li><a href="#">About</a></li> -->
           </ul>
         </div>
 

@@ -6,8 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Learn2Code</title>
-    <link rel="shortcut icon" type="x-icon" href="assets/images/Logo.jpg">
+    <link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
     <link rel="stylesheet" href="assets/css/login.css">
+
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 
@@ -15,12 +16,16 @@
 
 </head>
 
-<body>
+<body style="background-image: url(assets/images/backlogin.png);">
+
+    <header>
+        <a href="/" class="bx bx-chevron-left" id="back-btn"></a>
+    </header>
 
     <div class="logo">
     <img src="assets/images/logo.jpg" alt="">
     </div>
-    
+
       <section class="space-background">
             @if (Session::has('error'))
                 <div class="alert alert-danger" role="alert">
@@ -38,24 +43,24 @@
                         });
                     });
                 </script>
-            @endif   
+            @endif
 
-            <form action="{{ route('login') }}" method="POST" class="log-form"> 
+            <form action="{{ route('login') }}" method="POST" class="log-form">
             @csrf
-            
-                <div class="head">
-                  <a href="/" id="back-btn"><i class="bx bx-chevron-left"></i></a>
-                </div>       
+
+                <div class="mobile-logo">
+                    <img src="assets/images/Logo.jpg" alt="Logo">
+                </div>
 
                 <div class="title">
                 <h2>Learn2Code</h2>
                 <p>Login</p>
                 </div>
 
-                <div class="typeinput">    
+                <div class="typeinput">
                   <input required placeholder="Email" type="text" id="email" name="email">
                 </div>
-                <div class="typeinput">                  
+                <div class="typeinput">
                   <input required placeholder="Password" type="password" id="password" name="password">
                   <button class="showhide" type="button" onclick="togglePassword('password')">
                     <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
@@ -63,15 +68,15 @@
                 </div>
                 <div class="links">
                     <div class="remember-me">
-                        <label for="remember">Remember me</label>
-                        <input type="checkbox" id="remember" name="remember">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Remember me</label>
                     </div>
                     <div class="forgot">
-                    <a href="{{ route('forgetPassword') }}">Forgot password?</a>
-                    </div>  
+                    <a target="_blank" href="{{ route('forgetPassword') }}">Forgot password?</a>
+                    </div>
                 </div>
                 <div class="logbutton">
-                  <button type="submit" onclick="document.location='#'" id="login">Log In</button>
+                  <button type="submit" id="login" class="btns">Log In</button>
                 </div>
                 <div class="signing">
                   <p>Create an account</p>

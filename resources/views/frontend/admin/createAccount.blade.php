@@ -51,7 +51,7 @@
         </div>
         @endif
 
-    <form action="{{ route('createAccount') }}" method="POST" class="content-container1">
+    <form action="/admin/createAccountPost" method="POST" class="content-container1">
         @csrf    
                 <div class="logo">
                 <img src="../assets/images/logo.png" alt="learn2Code">
@@ -59,7 +59,7 @@
 
                 <div class="title">
                 <h2>Learn2Code</h2>
-                <p>Admin Login</p>
+                <p>Admin Creation</p>
                 </div>
                 
 

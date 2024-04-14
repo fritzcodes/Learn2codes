@@ -29,6 +29,9 @@ use App\Http\Controllers\ExpController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\TryCodeController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\boardController;
+use App\Http\Controllers\ReportController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,7 +42,7 @@ use App\Http\Controllers\CommentController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/leaderboard', [boardController::class, 'Index'])->name('leaderboard');
 Route::get('/ha', function () {
     return "HAHAHA";
 });
@@ -74,7 +77,7 @@ Route::get('/admin/adminLogin', [adminLoginController::class, 'Index'])->name('A
 Route::post('/admin/adminLogin', [adminLoginController::class, 'adminLoginPost'])->name('AdminLogin');
 
 Route::get('/admin/createAccount', [adminLoginController::class, 'createAdmin'])->name('createAccount');
-Route::post('/admin/createAccount', [adminLoginController::class, 'createAccountPost'])->name('createAccount');
+Route::post('/admin/createAccountPost', [adminLoginController::class, 'createAccountPost'])->name('createAccountPost');
 
 
 Route::get('/', [TemplateController::class, 'index']);
@@ -112,7 +115,8 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/admin/addNewModule', [ModuleController::class, 'addModule'])->name('addNewModule');
     Route::get('/admin/viewModule/{id}', [ModuleController::class, 'viewModule'])->name('viewModule');
     Route::post('/admin/updateModule', [ModuleController::class, 'updateModule'])->name('updateModule');
-
+    Route::post('/admin/exercise-edit/{id}', [ExerciseController::class, 'updateExercise'])->name('updateExercise');
+    Route::get('/admin/exercise-view/{id}', [ExerciseController::class, 'viewExercise'])->name('viewExercise');
 
 
 
@@ -140,15 +144,22 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/manageUser', [ManageUserController::class, 'Index'])->name('ManageUser');
     Route::get('/admin/leaderboard', [LeaderboardController::class, 'Index'])->name('Leaderboard');
     Route::get('/admin/exercise', [ExerciseController::class, 'Index'])->name('addExercise');
+    Route::get('/admin/exercise/{id}', [ExerciseController::class, 'exerciseList'])->name('exerciseList');
     Route::post('/admin/addExercise', [ExerciseController::class, 'addExercise'])->name('addExercise');
 });
 
 // User routes
 Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () {
+    Route::post('/report', [ReportController::class, 'store']);
     Route::post('/comment/store', [CommentController:: class, 'store']);
     Route::post('/comment/storeReply', [CommentController:: class, 'storeReply']);
     Route::post('/post-forum', [ForumController::class, 'store'])->name('storeForum');
     Route::post('/like-post', [ForumController::class, 'likePost']);
+    Route::delete('/delete-post/{id}', [ForumController::class, 'destroy']);
+    Route::post('/notifications', [ForumController::class, 'Notification']);
+    Route::post('/notifications-update', [ForumController::class, 'NotificationUpdate']);
+    Route::post('/like-comment', [ForumController::class, 'likeComment']);
+    Route::get('/popular/{hashtag}', [ForumController::class, 'PopularTopics']);
     Route::get('/startmenu', function () {
         return view('frontend.startmenu');
     })->name('startmenu');

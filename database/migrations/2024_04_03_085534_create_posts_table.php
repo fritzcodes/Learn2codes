@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('content')->nullable();
             $table->text('code')->nullable();
             $table->string('feeling')->nullable();
+            $table->string('is_deleted')->default('0');
             $table->timestamps();
         });
     }

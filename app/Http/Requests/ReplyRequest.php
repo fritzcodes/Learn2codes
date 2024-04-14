@@ -24,7 +24,8 @@ class ReplyRequest extends FormRequest
         return [
             'user_id' => 'required',
             'comment_id' => 'required',
-            'reply' => 'required|string'
+            'reply' => 'required|string',
+            'reply_id_reply' => 'nullable|string'
         ];
     }
 }

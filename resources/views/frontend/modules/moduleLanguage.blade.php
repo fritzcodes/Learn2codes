@@ -7,15 +7,10 @@
     <title>Module</title>
 
     <link rel="stylesheet" href="../assets/css/moduleLang.css">
-    <link rel="shortcut icon" type="x-icon" href="../assets/images/Logo.jpg">
-
+    <link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
+    <link rel="stylesheet" href="../assets/css/header.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
     <script src="../assets/js/headermenu.js" defer></script>
     <script src="../assets/js/carousel.js" defer></script>
     <style>
@@ -69,11 +64,11 @@
                     </a></button>
             </ul>
 
-            <li><a href="startmenu">Home</a></li>
-            <li><a href="#forums">Forums</a></li>
-            <li><a href="Playground">Playground</a></li>
-            <li><a href="moduleLanguage">Modules</a></li>
-            <li><a href="#leaderboard">Leaderboard</a></li>
+            <li><a href="/startmenu">Home</a></li>
+            <li><a href="/forum">Forums</a></li>
+            <li><a href="/Playground">Playground</a></li>
+            <li><a href="/module/moduleLanguage">Modules</a></li>
+            <li><a href="/leaderboard">Leaderboard</a></li>
             <li><a class="logout-btn" href="{{ route('logout') }}">Logout</a></li>
 
         </ul>

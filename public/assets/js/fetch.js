@@ -2,19 +2,19 @@
 // Example JavaScript code to simulate fetching data from the database
         setTimeout(function () {
             // Simulated data
+            const Username = "Castlee_01";
             const First = "Robert";
             const Last = "Larisma";
             const Course = "BSIT";
             const year = "4th Year";
-            const Username = "Castlee_01";
             const Email = "robertlarisma01@gmail.com";
 
             // Update input fields with fetched data
+            document.getElementById("Username").value = Username;
             document.getElementById("firstName").value = First;
             document.getElementById("lastName").value = Last;
             document.getElementById("Course").value = Course;
             document.getElementById("year").value = year;
-            document.getElementById("Username").value = Username;
             document.getElementById("email").value = Email;
         }, 1000); // Simulating a delay of 1 second for data fetching
 

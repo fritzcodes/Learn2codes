@@ -1,0 +1,284 @@
+@import url("https://unpkg.com/boxicons@latest/css/boxicons.min.css");
+
+* {
+    font-family: var(--font1);
+}
+
+:root{ /*---font and color defaults --*/
+    --bg-color: #210535;
+    --main-color: #f5d5e0;
+    --text-color: #430d4b;
+    --second-color: #7b337d;
+    --high-color: #c874b2;
+    --h2-head: 1.5rem;
+    --p-head: 1rem;
+    --font1: 'Orbitron';
+    transition: .2s;
+  }
+
+header {    
+    padding: 20px 2%;
+    position: fixed;
+    top:0;
+    right: 0;
+    width: 100%;
+    height: 10vh;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+    }
+
+    header.sticky {
+      background-color: var(--main-color);
+    }
+    
+    #back-btn {
+    color: var(--text-color);
+    font-size: 60px;
+    z-index: 10001;
+    cursor: pointer;
+    display: block;
+    }
+    
+    .navbar a {
+    color: var(--main-color);
+    font-size: var(--p-head);
+    font-weight: 500;
+    padding: 4px 15px;
+    border-radius: 4px;
+    display: block;
+    margin: 1.2rem 0;
+    }
+    
+    .navbar a:hover {
+    background: var(--second-color);
+    color: var(--main-color);
+    box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
+    border-radius: 4px;
+    transition: ease .2s;
+    }
+    
+    .profile button{
+    display: flex;
+    justify-content: center; /* Aligns content horizontally */
+    align-items: center; /* Aligns content vertically */
+    border: none; /* Remove button border */
+    background: none; /* Transparent background */
+    cursor: pointer;
+    padding: 0;
+    }
+    
+    .profile-link {
+    text-decoration: none;
+    color: inherit; /* Use the parent element's text color */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;
+    }
+    
+    .profile button a h2 {
+    word-wrap: break-word;
+    word-break: break-all;
+    margin: 0; /* Remove default margin */
+    font-size: var(--p-head); /* Allows the username to take remaining space */
+    }
+    
+    .avatar{
+    width: 80px; /* Adjust the width as needed */
+    height: 80px; /* Adjust the height as needed */
+    border-radius: 50%; /* Makes the image round if needed */
+    margin-bottom: 5px; 
+    
+    }
+    
+    #menu-icon {
+    color: var(--text-color);
+    font-size: 50px;
+    z-index: 10001;
+    cursor: pointer;
+    display: block;
+    }
+    
+    .logout-btn{
+    margin-top: 20px;
+    padding: 10px 10%;
+    flex-shrink: 0;
+    border-radius: 35.07px;
+    background: #fa0404;
+    }
+    
+    .logout-btn:hover{
+    cursor: pointer;
+    background: var(--main-color);
+    box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
+    }
+    
+    .logout-btn:active{
+    color: var(--text-color);
+    }
+    
+    .navbar {
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 25%;
+    height: 100vh;
+    background-color: var(--bg-color);  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0%;
+    transition: 0.5s all;
+    }
+    
+    .open {
+    right: 0;
+    }
+    
+    .list {
+    width: 50%;
+    margin-top: 100px;     
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    @media (max-width: 1300px) {
+      header {
+        padding: 17px 3%;
+        transition: .2s;
+      }
+    
+      :root {
+        --h2-head: 2rem;
+        --p-head: 1.5rem;
+        transition: .2s;
+      }
+    
+      }
+    
+    
+    @media (max-width: 1024px) {
+    
+      #menu-icon {
+        display: block;
+      }
+    
+      .navbar {
+        width: 45%;
+      }
+    
+    }
+    
+    @media (max-width: 860px) {
+      header {
+        background-color: var(--main-color);
+        box-shadow: 0 0 10px 2px var(--second-color); /* Tomato color */
+
+      }
+
+      #menu-icon {
+        display: block;
+      }
+
+      :root {
+        --h2-head: 1.5rem;
+        --p-head: 1rem;
+        transition: .2s;
+      }
+    
+    }
+    
+    @media (max-width: 540px) {
+      :root {
+        --h2-head: 1.1rem;
+        --p-head: 0.8rem;
+        transition: .2s;
+      }
+    
+      .navbar {
+        width: 70%;
+    }
+    
+    }
+    
+    
+    @media (max-width: 376px) {
+    
+      .open {
+        right: 0;
+    }
+    
+    }
+    
+    
+    @media (max-width: 280px) {
+        :root {
+        --h2-head: 1rem;
+        --p-head: 0.8rem;
+        transition: .2s;
+      }
+
+      .profile button {
+        margin-top: 40px;
+    }
+
+    }
+    
+    @media (min-height: 1024px) {
+      .navbar {
+        width: 50%
+    }
+    
+    #back-btn, #menu-icon {
+      font-size: 80px;
+    }
+
+    .profile button {
+        margin-top: 100px;
+    }
+    
+      :root {
+        --h2-head: 2.5rem;
+        --p-head: 1.5rem;
+        transition: .2s;
+    
+    }
+    
+    }
+
+    @media (min-height: 1300px) {
+      #back-btn, #menu-icon {
+        font-size: 100px;
+      }
+
+      .profile button {
+        margin-top: 150px;
+    }
+      
+        :root {
+          --big-font: 5rem;
+          --h2-font: 2.5rem;
+          --p-font: 1.5rem;
+          transition: .2s;
+      
+      }
+
+      header {
+        background-color: var(--main-color);
+        box-shadow: 0 0 10px 2px var(--second-color); /* Tomato color */
+
+      }
+      
+      }

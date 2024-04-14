@@ -28,6 +28,8 @@ class LoginController extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:users,email',
             'username' => 'required|unique:users,username',
+            'firstname' => 'required|string',
+            'lastname' => 'required|string',
             'password' => 'required|min:8|confirmed',
         ]);
         
@@ -53,8 +55,8 @@ class LoginController extends Controller
         
         $user = new User();
 
-        $user->fname = $request->fname;
-        $user->lname = $request->lname;
+        $user->fname = $request->firstname;
+        $user->lname = $request->lastname;
         $user->email = $request->email;
         $user->username = $request->username;
         $user->course = $request->course;
