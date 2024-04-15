@@ -43,7 +43,7 @@
     .space-background { 
       margin: 20px;
       width: 80%;
-      padding: 100px;
+      padding: 80px;
       position: relative; 
       border-radius: 35.066px;
       background: var(--main-color);  
@@ -102,7 +102,8 @@
 }
  
   input {
-    background-color: transparent;
+    font-size: var(--p-font);
+    background-color: var(--main-color);
     color: var(--text-color);
     border-radius: 5px;
     padding: 10px;
@@ -121,6 +122,7 @@
     }
  
   .contents img {
+    cursor: pointer;
     margin-right: 10px;
     border-radius: 100%;
     width: 100px;
@@ -169,7 +171,7 @@
 
 
 input[type="text"] {
-  border-color: var(--second-color); 
+  border-color: var(--high-color); 
   transition: border-color 0.3s ease; 
 }
 
@@ -179,6 +181,7 @@ input[type="text"]:hover {
 }
 
 select {
+  font-size: var(--p-font);
   border-radius: 5px;
   background-color: transparent;
   padding: 10px 10px;
@@ -207,32 +210,33 @@ select:hover {
     }
   
   @media (max-width: 860px) {
+    body {
+      margin-top: 10vh;
+      overflow-y: hidden;
+    }
+
     .space-background {
-      padding: 10px;
+      padding: 40px 0;
       position: fixed;
       border-radius: 0px;
       width: 100%;
       height: 100vh; 
-      overflow: scroll;
+      overflow-y: scroll;
     }
  
   .top {
-    align-items: center;
-    align-self: center;
     display: block;
   }
  
   .contents {
     text-align: center;
-    margin: 0;
+    margin: 0 20px;
     display: block;
   }
  
   .contents img {
-    margin: 30px;
-    border-radius: 100%;
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
   }
  
   .names {
@@ -271,10 +275,7 @@ select:hover {
     background: var(--high-color);
     border-radius: 5px;
 }
-  
- .btns:hover {
-    transform: scale(1.1);
- }
+
   
   }
   
@@ -287,11 +288,6 @@ select:hover {
       transition: .2s;
     }
   
-  .space-background {
-    padding: 200px 30px;
-    overflow: scroll;
-  }
-  
   .top {
     align-items: center;
     align-self: center;
@@ -302,6 +298,7 @@ select:hover {
     text-align: center;
     margin: 0;
     display: block;
+    padding: 0;
   }
  
   .names {
@@ -311,8 +308,8 @@ select:hover {
   }
  
   .others{
+    padding: 10px 0;
     width: auto;
-    text-align: center;
     display: block;
   }
  
@@ -321,7 +318,11 @@ select:hover {
     margin: 2px;
   }
  
- 
+  .contents img {
+    margin: 0;
+   width: 70px;
+   height: 70px;
+ }
  
   
   }
@@ -331,6 +332,10 @@ select:hover {
       --big-font: 3.5rem;
       --h2-font: 1.5rem;
       transition: .2s;
+    }
+
+    .space-background { 
+      padding: 40px 15px; 
     }
   
   }
@@ -347,14 +352,23 @@ select:hover {
         width: 100%;
         text-align: center;
       }
+
+      .space-background { 
+        padding: 50px 15px; 
+      }
  
     
   
   }
   
   @media (min-height: 1024px) {
+    body {
+      margin-top: 10vh;
+      overflow: hidden;
+     }
+
   .space-background {
-    padding: 150px 200px;
+    padding: 80px 80px;
     position: fixed;
     border-radius: 0px;
     width: 100%;
@@ -385,10 +399,21 @@ select:hover {
     margin: 0;
     display: block;
   }
+
+  .title {
+    width: 100%;
+    height: 30px;
+    align-items: center;
+    justify-content: left;
+  }
  
   .names {
     display: block;
     text-align: center;
+  }
+
+  input {
+    font-size: var(--p-font);
   }
  
  
@@ -424,6 +449,15 @@ select:hover {
   .bottom a img{
     margin: 0 0 10px 0;
   }
+
+  .submit-button {
+    background: var(--high-color);
+    width: 100px;
+    height: 50px;
+    font-size: var(--p-font);
+    font-weight: 600;
+    color: var(--text-color);
+}
   
   }
  

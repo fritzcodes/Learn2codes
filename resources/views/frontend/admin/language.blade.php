@@ -103,8 +103,8 @@
                <div class="langpicDiv">
                    <label for="ops" id="option">Add Language</label>
                    <br>
-                   <input type="text" name="language" id="language" placeholder="Language">
-                   <input type="file" name="picture" id="picture" accept="image/*, .svg">
+                   <input type="text" name="language" id="language" placeholder="Language" required>
+                   <input type="file" name="picture" id="picture" accept="image/*, .svg" required>
                    <br>
                    <button onclick="" id="add_question" type="submit" value="Add">Add</button>               
                </div>

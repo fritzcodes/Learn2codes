@@ -3,33 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login</title>
+<title>Admin Login | Learn2code</title>
   <link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
   <link rel="stylesheet" href="../assets/css/adminLogin.css">
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <style>
-        body {
-        text-align: center;
-        width: 100%;
-        min-height: 100vh;
-        background: url('../assets/images/bglog.svg');
-        color: var(--text-color);
-        overflow-x: hidden; /* Prevent horizontal scrolling */
-        z-index: -1; /* Behind other content */
-        background-size: cover;
-        animation: animateBackground 20s linear infinite; /* Adjust as needed */
-    }
-
-    @keyframes animateBackground {
-        0% {
-        background-position: 0 0;
-        }
-        100% {
-        background-position: 100% 100%;
-        }
-    }
+     body {       
+            background: url('/assets/images/backlogin.png');
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Use full viewport height */
+            margin: 0; /* Remove default body margin */
+            background-size: cover;
+            animation: animateBackground 20s linear infinite; /* Adjust as needed */
+              }
+              @keyframes animateBackground {
+                0% {
+                  background-position: 0 0;
+                }
+                100% {
+                  background-position: 100% 100%;
+                }
+              }
 </style>
 <body>
 
@@ -56,12 +54,12 @@
     <form action="{{ route('AdminLogin') }}" method="POST" class="content-container1">
         @csrf    
                 <div class="logo">
-                <img src="../assets/images/logo.png" alt="learn2Code">
+                  <img src="../assets/images/logo.jpg" alt="learn2Code">
                 </div>       
 
                 <div class="title">
-                <h2>Learn2Code</h2>
-                <p>Admin Login</p>
+                  <h2>Learn2Code</h2>
+                  <p>Admin Login</p>
                 </div>
                 
 
@@ -73,7 +71,7 @@
                 </div>
             
                 <div class="logbutton">
-                  <button id="login" type="submit">Log In</button>
+                  <button id="login" type="submit" class="btns">Log In</button>
                 </div>
                 <div class="forgot">
                   <a onclick="">Forgot password?</a>
