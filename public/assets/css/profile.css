@@ -84,30 +84,39 @@
  }
 
  .contents {
+  padding: 20px 0;
    text-align: left;
-   margin: 20px;
    display: flex;
    
  }
 
- input {
-    border-style: none;
-    background-color: transparent;
-   color: var(--text-color);
-   border-radius: 5px;
-   padding: 10px;
+ .names {
+  align-items: center;
+  justify-content: center;
+  display: inline-flex;
  }
 
  #Username {
-   margin: auto;
+   letter-spacing: 10px;
    font-weight: 800;
-   font-size: var(--p-font);
-   color: var(--bg-color);
+   font-size: var(--h2-font);
+   color: var(--second-color);
  }
 
-   #lastName, #firstName {
-    margin: auto;
-    font: var(--p-font);
+   #firstName {
+    color: var(--text-color);
+    letter-spacing: 5px;
+    font-weight: 600;
+    margin-right: 10px;
+    font-size: var(--p-font);
+   }
+
+   
+   #lastName {
+    color: var(--text-color);
+    letter-spacing: 5px;
+    font-weight: 600;
+    font-size: var(--p-font);
    }
 
  .contents img {
@@ -117,16 +126,21 @@
    height: 100px;
  }
 
- .others input {
-   font-variant: var(--p-font);
-   text-align: center;
-   margin: auto;
+ .others {
+  padding: 10px 0;
+  line-height: 15px;
+  width: 100%;
+  display: block;
  }
 
- .Editprofile {
-   font-weight: 600;
+ .others p {
+   color: var(--high-color);
    font-size: var(--p-font);
-   display: flex;
+ }
+
+ .Editprofile a {
+  font-weight: 600;
+  font-size: var(--p-font);
  }
 
  .bottom {
@@ -146,7 +160,6 @@
 
 .btns:hover {
    transform: scale(1.1);
-   color: #4169E1;
    font-weight: bold;
 
 }
@@ -163,119 +176,90 @@
    }
  
  @media (max-width: 860px) {
-   .space-background {
-     padding: 10px;
-     position: fixed;
-     border-radius: 0px;
-     width: 100%;
-     height: 100vh; 
-     overflow: scroll;
+  body {
+    margin-top: 10vh;
+    overflow: hidden;
    }
 
- .top {
-   align-items: center;
-   align-self: center;
-   display: block;
+  .space-background { 
+    width: 100%;
+    height: 100vh;
+    position: fixed; 
+    border-radius: 0;
+    overflow-y: scroll;
+  }
+
+  .title {
+    width: 100%;
+    height: 30px;
+    display: flex;
+  }
+
+  .contents {
+    text-align: center;
+    margin: 0 20px;
+    display: block;
+  }
+
+   .contents img {
+   width: 70px;
+   height: 70px;
  }
 
- .contents {
-   text-align: center;
-   margin: 0;
-   display: block;
- }
+  .top {
+    display: block;
+  }
 
- .contents img {
-   margin: 30px;
-   border-radius: 100%;
-   width: 100px;
-   height: 100px;
- }
-
- .names {
-   display: block;
-   text-align: center;
- }
-
- .others{
-   width: 0;
-   display: block;
- }
-
- .others input {
-   margin: 10px;
- }
-
- .Editprofile {
-   margin: 20px 0 0 0;
-   display: block;
- }
-
- .bottom {
-   display: block;
-   text-align: center;
- }
-
- .bottom a img{
-   margin: 0 0 10px 0;
- }
-
- input {
-  text-align: center;
- }
- 
-.btns:hover {
-   transform: scale(1.1);
-}
+  .bottom {
+    display: block;
+    text-align: center;
+  }
  
  }
  
  @media (max-width: 540px) {
- 
    :root {
      --big-font: 2.8rem;
      --h2-font: 2rem;
      --p-font: 0.8rem;
      transition: .2s;
    }
+
+   .contents {
+    padding: 0;
+  }
+
+   .contents img {
+    margin: 0;
+   width: 70px;
+   height: 70px;
+ }
+
+  .top {
+    display: block;
+  }
+
+  .bottom {
+    display: block;
+    text-align: center;
+  }
+
+    #firstName, #lastName,
+      #Username  {
+    letter-spacing: normal;
+  }
  
- .space-background {
-   padding: 200px 30px;
-   overflow: scroll;
- }
- 
- .top {
-   align-items: center;
-   align-self: center;
-   display: block;
- }
+  .others {
+    padding: 10px 0;
+    line-height: normal;
+   }
 
- .contents {
-   text-align: center;
-   margin: 0;
-   display: block;
- }
-
- .names {
-   display: block;
-   text-align: center;
-   width: auto;
- }
-
- .others{
-   width: auto;
-   text-align: center;
-   display: block;
- }
-
- .others input {
-   width: auto;
-   margin: 2px;
- }
-
-
-
+   .others p {
+    word-break: break-all;
+  }
  
  }
+
  
  @media (max-width: 376px) {
      :root {
@@ -283,6 +267,11 @@
      --h2-font: 1.5rem;
      transition: .2s;
    }
+
+   .space-background { 
+    margin: 20px;
+    padding: 40px 0; 
+  }
  
  }
  
@@ -294,86 +283,80 @@
      transition: .2s;
    }
 
-   .contents div input{
-       width: 100%;
-       text-align: center;
-     }
+   .space-background { 
+    padding: 50px 0; 
+  }
+
+
 
    
  
  }
  
  @media (min-height: 1024px) {
- .space-background {
-   padding: 150px 200px;
-   position: fixed;
-   border-radius: 0px;
-   width: 100%;
-   height: 100vh; 
-   overflow: scroll;
- }
- 
- .content-section {
-   grid-template-columns: repeat(1, 1fr);
- }
- 
    :root {
      --big-font: 4.5rem;
      --h2-font: 2.5rem;
      --p-font: 1.5rem;
      transition: .2s;
- 
+ }
+ body {
+  margin-top: 10vh;
+  overflow: hidden;
  }
 
- .top {
-   align-items: center;
-   align-self: center;
-   display: block;
- }
+ .space-background { 
+  width: 100%;
+  height: 100vh;
+  position: fixed; 
+  border-radius: 0;
+  overflow-y: scroll;
+}
 
- .contents {
-   text-align: center;
-   margin: 0;
-   display: block;
- }
+.title {
+  width: 100%;
+  height: 30px;
+  align-items: center;
+  justify-content: left;
+}
 
- .names {
-   display: block;
-   text-align: center;
- }
+   .contents {
+    margin: 0 20px;
+    text-align: left;
+    display: flex;
+  }
 
-
- .contents img {
-   margin: 30px;
-   border-radius: 100%;
+   .contents img {
    width: 100px;
    height: 100px;
  }
 
- .others{
-   width: auto;
-   text-align: center;
-   display: block;
- }
+  .top {
+    display: block;
+  }
 
- .Editprofile {
-   margin: 20px 0 0 0;
-   display: block;
- }
+  .bottom {
+    display: block;
+    text-align: center;
+  }
 
- .others input {
-   width: auto;
-   margin: 2px;
- }
+    #firstName, #lastName,
+      #Username  {
+    letter-spacing: normal;
+  }
+ 
+  .others {
+    padding: 10px 0;
+    line-height: normal;
+   }
 
- .bottom {
-   display: block;
-   text-align: center;
+  .btns img {
+    height: 120px;
+    width: 220px;
  }
+ 
 
- .bottom a img{
-   margin: 0 0 10px 0;
- }
+
  
  }
 

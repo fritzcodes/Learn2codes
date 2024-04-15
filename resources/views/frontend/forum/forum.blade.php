@@ -7,7 +7,6 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Forum | Learn2Code</title>
   <link rel="stylesheet" href="/assets/css/forum.css">
-  <link rel="stylesheet" href="upload.css">
 <link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
@@ -148,9 +147,41 @@
 
 
 
+<div id="notifContainer">
+@foreach($notif as $notification)
+<div class="notif-container">
+    <a href="#" class="notification-item @if(!$notification->is_read) unread-notif @endif">
+        <span class="unread"></span>
+        <img src="images/avatar.jpg" alt="Notification Icon" class="icon">
+        <div class="content">
+            <h2 class="notification-item-user-block">
+                <span class="notification-item-user-name"></span>
+                {{ $notification->content }}
+            </h2>
+            <span class="timestamp">{{ $notification->created_at->diffForHumans() }}</span>
+        </div>
+        <button onclick="showModal('settings{{ $loop->iteration }}')" type="button" class="notif-action">
+            <i class="bx bx-dots-horizontal-rounded"></i>
+        </button>
+    </a>
+
+    <div class="notif-action-modal" id="settings{{ $loop->iteration }}">
+        <!-- Your action buttons here -->
+        <a href="#"><i class='bx bx-check'>
+                <p>Mark as read</p>
+            </i></a>
+        <a href="#"><i class='bx bxs-bell'>
+                <p>Remove</p>
+            </i></a>
+    </div>
+</div>
+@endforeach
+</div>
+        
 
 
-        <div class="notif-container">
+
+        {{-- <div class="notif-container">
           <a href="#" class="notification-item unread-notif">
             <span class="unread"></span>
             <img src="images/avatar.jpg" alt="Notification Icon" class="icon">
@@ -201,7 +232,7 @@
                 <p>Remove</p>
               </i></a>
           </div>
-        </div>
+        </div> --}}
 
 
         <!--
@@ -352,8 +383,8 @@
 
             <div class="post-info">
               <div class="first-name">
-                <p><a href="#">{{ $post->user->fname . " " . $post->user->lname }}</a><span class="feelings">
-                    <!-- is <img src="images/smiley.PNG" alt=""> feeling happy</span></p> -->
+                <p><a href="#">{{ $post->user->fname . " " . $post->user->lname }}</a><!--<span class="feelings">
+                    is <img src="images/smiley.PNG" alt=""> feeling happy</span></p> -->
               </div>
 
               <div class="date">
@@ -369,12 +400,6 @@
                 <a onclick="deletePostId('{{ $post->id }}')"><i class='bx bxs-trash'></i>
                   <p>Delete</p>
                 </a>
-                <!-- <a href=""><i class='bx bxs-edit'></i>
-                  <p>Edit</p>
-                </a> -->
-                <!-- <a href=""><i class='bx bxl-instagram-alt'></i>
-                  <p>Report</p>
-                </a> -->
               </div>
             </div>
             @else
@@ -382,12 +407,6 @@
               <button href="#" onclick="deletePost(`postsetModal{{$post->id}}`)" style="background-color: transparent; border:none"><i class="bx bx-dots-horizontal-rounded"></i>
               </button>
               <div id="postsetModal" class="modal postsetModal{{$post->id}}">
-                <!-- <a href=""><i class='bx bxs-trash'></i>
-                  <p>Delete</p>
-                </a>
-                <a href=""><i class='bx bxs-edit'></i>
-                  <p>Edit</p>
-                </a> -->
                 <a onclick="report('{{ $post->id }}', '{{ $name->id }}')"><i class='bx bxl-instagram-alt'></i>
                   <p>Report</p>
                 </a>
@@ -612,13 +631,13 @@
                 @endif
               </div>
 
-              <div class="" style="padding:12px">
-                <form action="/comment/store" method="POST" id="commentId{{$post->id}}">
+              <div style="padding:12px;">
+                <form action="/comment/store" method="POST" id="commentId{{$post->id}}" style="display:flex; border: solid var(--main-color); border-radius: 5px;">
                   @csrf
-                  <textarea name="comment" id="comment{{$post->id}}" style="width:88%; height:50px; display:inline-block" placeholder="Add comment..." required></textarea>
+                  <textarea name="comment" id="comment{{$post->id}}" style="width:100%; height:50px; display:inline-block; resize: none; padding: 5px; border: none; border-radius: 5px;" placeholder="Add comment..." required></textarea>
                   <input type="hidden" id="user_id{{ $post->id }}" value="{{ $name->id }}">
                   <input type="hidden" id="postId{{ $post->id }}" value="{{ $post->id }}">
-                  <input type="button" id="btn{{ $post->id }}" onclick="postComment($('#comment{{$post->id}}').val(), $('#user_id{{$post->id}}').val(), $('#postId{{$post->id}}').val())" style="width:10%; display: inline-block; height:50px" value="Comment">
+                  <button id="btn{{ $post->id }}" onclick="postComment($('#comment{{$post->id}}').val(), $('#user_id{{$post->id}}').val(), $('#postId{{$post->id}}').val())" style="display: inline-block; width:50px; height:50px; font:bx-send; border: none; cursor: pointer;" value="Comment"><i class="bx bxs-send" style="color: var(--main-color); font-size: 30px;"></i></button>
                 </form>
               </div>
 

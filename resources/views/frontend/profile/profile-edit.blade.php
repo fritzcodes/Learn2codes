@@ -67,15 +67,14 @@
                 <div class="details">
                     <div class="contents">
                         <div class="imageContainer" id="imageContainer" class="profile-icon" onclick="openFileInput()">
-                            <img style="width:100px; height:100px; border-radius:50%"
+                            <img style="border-radius:50%"
                             src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : '../assets/images/avatar.png' }}"
                             alt="">
 
                             <input type="file" id="fileInput" style="display: none;" onchange="handleFileSelect(event)"
                             accept="image/*" name="profile_photo">
                             <input type="file" class="profile-image" accept="image/*" onchange="previewImage()">
-                        
-                            <div class="cancel-button" onclick="cancelUpload()"></div>
+                    
 
                         </div>
                         

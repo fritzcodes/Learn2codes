@@ -23,7 +23,7 @@
     </header>
 
     <div class="logo">
-    <img src="assets/images/logo.jpg" alt="">
+    <img src="assets/images/Logo.jpg" alt="">
     </div>
 
       <section class="space-background">

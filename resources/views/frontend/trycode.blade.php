@@ -683,11 +683,11 @@ body{
         const filteredLanguage = programmingLanguages.filter(languages => languages.name.toUpperCase() === language.toUpperCase());
         var iFrame = document.getElementById('oc-editor');
         var title = document.getElementById('titleContent');
-       
+       console.log(filteredLanguage[0].name);
       
         // Wait for the iframe to finish loading
         iFrame.onload = function() {
-            title.textContent = filteredLanguage[0].name;
+            //title.textContent = filteredLanguage[0].name;
             // Send message to populate code
             title = filteredLanguage[0].name;
             iFrame.contentWindow.postMessage({

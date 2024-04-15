@@ -68,55 +68,55 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 //     NOTIF ACTION MODAL
-document.addEventListener('DOMContentLoaded', function () {
-  // Function to hide all modals except for a specified modal ID (optional)
-  function hideAllModals(exceptId) {
-    var allModals = document.querySelectorAll('.notif-action-modal');
-    allModals.forEach(function (modal) {
-      if (modal.id !== exceptId) { // Check if the modal is not the one we want to exclude
-        modal.style.display = 'none';
-      }
-    });
-  }
+// document.addEventListener('DOMContentLoaded', function () {
+//   // Function to hide all modals except for a specified modal ID (optional)
+//   function hideAllModals(exceptId) {
+//     var allModals = document.querySelectorAll('.notif-action-modal');
+//     allModals.forEach(function (modal) {
+//       if (modal.id !== exceptId) { // Check if the modal is not the one we want to exclude
+//         modal.style.display = 'none';
+//       }
+//     });
+//   }
 
-  // Function to toggle a specific settings panel
-  function toggleSettingsPanel(targetId) {
-    var settingsPanel = document.getElementById(targetId);
-    // If the targeted modal is already open, close it.
-    if (settingsPanel.style.display === 'block') {
-      settingsPanel.style.display = 'none';
-    } else {
-      // Hide all other modals first, except for the target one
-      hideAllModals(targetId);
-      // Then display the targeted modal
-      settingsPanel.style.display = 'block';
-    }
-  }
+//   // Function to toggle a specific settings panel
+//   function toggleSettingsPanel(targetId) {
+//     var settingsPanel = document.getElementById(targetId);
+//     // If the targeted modal is already open, close it.
+//     if (settingsPanel.style.display === 'block') {
+//       settingsPanel.style.display = 'none';
+//     } else {
+//       // Hide all other modals first, except for the target one
+//       hideAllModals(targetId);
+//       // Then display the targeted modal
+//       settingsPanel.style.display = 'block';
+//     }
+//   }
 
-  // Listen for clicks on settings buttons
-  var settingsButtons = document.querySelectorAll('.notif-action');
-  settingsButtons.forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
-      e.preventDefault(); // Prevent default action
-      var targetId = this.getAttribute('data-target');
-      toggleSettingsPanel(targetId);
-      e.stopPropagation(); // Prevent event from bubbling up
-    });
-  });
+//   // Listen for clicks on settings buttons
+//   var settingsButtons = document.querySelectorAll('.notif-action');
+//   settingsButtons.forEach(function (btn) {
+//     btn.addEventListener('click', function (e) {
+//       e.preventDefault(); // Prevent default action
+//       var targetId = this.getAttribute('data-target');
+//       toggleSettingsPanel(targetId);
+//       e.stopPropagation(); // Prevent event from bubbling up
+//     });
+//   });
 
-  // Close all modals when clicking anywhere in the document, except when clicking on a button
-  document.addEventListener('click', function () {
-    hideAllModals();
-  });
+//   // Close all modals when clicking anywhere in the document, except when clicking on a button
+//   document.addEventListener('click', function () {
+//     hideAllModals();
+//   });
 
   // Prevent clicks within modals from closing them
-  var modals = document.querySelectorAll('.notif-action-modal');
-  modals.forEach(function (modal) {
-    modal.addEventListener('click', function (e) {
-      e.stopPropagation(); // Prevent event from bubbling up
-    });
-  });
-});
+//   var modals = document.querySelectorAll('.notif-action-modal');
+//   modals.forEach(function (modal) {
+//     modal.addEventListener('click', function (e) {
+//       e.stopPropagation(); // Prevent event from bubbling up
+//     });
+//   });
+// });
 
 
 //     NOTIF SETTING MODAL
@@ -586,42 +586,69 @@ function deletePostId(post_id){
   }
 }
 /* Notif-Section */
+function showModal(id){
+  document.getElementById(id).style.display = 'block';
 
+  console.log("success");
+}
 $(document).ready(function() {
-  function fetchNotifications() { 
-      console.log('Fetching notifications...');
-      $.ajax({
-          url: '/ForumController/NotificationUpdate', 
-          success: function(data) {
-              console.log('Fetched notifications:', data);
-              $('#notif-content').empty();
+  function fetchNotifications() {
+      
+        $.ajax({
+            url: '/notifications', 
+            method: 'GET',
+            dataType: 'json',
+            success: function(data) {
+              let notif = "";
 
-              data.forEach(function(notification) {
-                  var notifItem = '<div class="notification-item">' +
-                      '<h2>' + notification.title + '</h2>' +
-                      '<p>' + notification.content + '</p>' +
-                      '</div>';
-
-                  $('#notif-content').append(notifItem);
+              data.forEach((notifs, i) => {
+                notif += `
+                <div class="notif-container">
+                    <a href="#" class="notification-item ${notifs.is_read == 0 ?  'unread-notif' : ''}">
+                        <span class="unread"></span>
+                        <i class="icon bx bx-post"></i>
+                        <div class="content">
+                            <h2 class="notification-item-user-block">
+                              ${notifs.content}
+                            </h2>
+                            <span class="timestamp">${moment(notifs.created_at).fromNow()}</span>
+                        </div>
+                        <button onclick="showModal('settings${notifs.id}')" type="button" class="notif-action">
+                            <i class="bx bx-dots-horizontal-rounded"></i>
+                        </button>
+                    </a>
+                  
+                    <div class="notif-action-modal" id="settings${notifs.id}">
+                        <!-- Your action buttons here -->
+                        <a href="#"><i class='bx bx-check'>
+                                <p>Mark as read</p>
+                            </i></a>
+                        <a href="#"><i class='bx bxs-bell'>
+                                <p>Remove</p>
+                            </i></a>
+                    </div>
+                </div>
+                `;
               });
-          }
-      });
-  }
 
-  function markNotificationAsRead() {
-      console.log('Marking notification as read...');
-      $.ajax({
-          url: '/ForumController/NotificationUpdate',
-          type: 'POST',
-          success: function(data) {
-              console.log('Marked notification as read:', data);
-              $(this).remove();
-          }
-      });
-  }
+                $('#notifContainer').html(notif);
+            }
+        });
+    }
 
-  // fetch new notifications every 5 seconds
-  setInterval(fetchNotifications, 5000);
+    function markNotificationAsRead() {
+        console.log('Marking notification as read...');
+        $.ajax({
+            url: '/ForumController/NotificationUpdate',
+            type: 'POST',
+            success: function(data) {
+                
+            }
+        });
+    }
+
+    // fetch new notifications every 5 seconds
+    setInterval(fetchNotifications, 3000);
 
   // mark notification as read when a user clicks on it
   $(document).on('click', '.notification-item', function() {
