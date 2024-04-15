@@ -80,6 +80,7 @@ class ForumController extends Controller
             UserNotification::where('notif_type_id', $data['post_id'])
                 ->where('user_id', Auth::user()->id)
                 ->where('notif_type', 'post')
+                ->orderBy('created_at', 'desc')
                 ->delete();
             $data = 'subtract';
         } else {
@@ -120,6 +121,7 @@ class ForumController extends Controller
             UserNotification::where('notif_type_id', $data['comment_id'])
                 ->where('user_id', Auth::user()->id)
                 ->where('notif_type', 'comment')
+                ->orderBy('created_at', 'desc')
                 ->delete();
             $data = 'subtract';
         } else {
