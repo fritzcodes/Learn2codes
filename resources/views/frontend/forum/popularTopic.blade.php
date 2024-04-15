@@ -57,9 +57,11 @@
           <a href="#" class="bx bx-menu" id="menu-icon"></a>
         </li>
         <li>
-          <div class="logo">
-            <img src="/assets/images/Logo.jpg" alt="logo">
-          </div>
+        <div class="logo">
+  <a href="/forum">
+    <img src="/assets/images/Logo.jpg" alt="logo">
+  </a>
+</div>
         </li>
         <li>
           <input type="search" id="search" placeholder="Search">
