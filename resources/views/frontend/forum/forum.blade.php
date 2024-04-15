@@ -147,15 +147,15 @@
 
 
 
-
-        @foreach($notif as $notification)
+<div id="notifContainer">
+@foreach($notif as $notification)
 <div class="notif-container">
     <a href="#" class="notification-item @if(!$notification->is_read) unread-notif @endif">
         <span class="unread"></span>
         <img src="images/avatar.jpg" alt="Notification Icon" class="icon">
         <div class="content">
             <h2 class="notification-item-user-block">
-                <span class="notification-item-user-name">{{ $notification->user->fname }} {{ $notification->user->lname }}</span>
+                <span class="notification-item-user-name"></span>
                 {{ $notification->content }}
             </h2>
             <span class="timestamp">{{ $notification->created_at->diffForHumans() }}</span>
@@ -176,6 +176,8 @@
     </div>
 </div>
 @endforeach
+</div>
+        
 
 
 

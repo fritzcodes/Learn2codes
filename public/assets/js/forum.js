@@ -589,11 +589,45 @@ function deletePostId(post_id){
 
 $(document).ready(function() {
   function fetchNotifications() {
-      console.log('Fetching notifications...');
+      
         $.ajax({
-            url: '/ForumController/NotificationUpdate', 
+            url: '/notifications', 
+            method: 'GET',
+            dataType: 'json',
             success: function(data) {
-                console.log('Fetched notifications:', data);
+              let notif = "";
+
+              data.forEach((notifs, i) => {
+                notif += `
+                <div class="notif-container">
+                    <a href="#" class="notification-item ${notifs.is_read == 0 ?  'unread-notif' : ''}">
+                        <span class="unread"></span>
+                        <i class="icon bx bx-post"></i>
+                        <div class="content">
+                            <h2 class="notification-item-user-block">
+                              ${notifs.content}
+                            </h2>
+                            <span class="timestamp">${moment(notifs.created_at).fromNow()}</span>
+                        </div>
+                        <button data-target="settings${i}" type="button" class="notif-action">
+                            <i class="bx bx-dots-horizontal-rounded"></i>
+                        </button>
+                    </a>
+                
+                    <div class="notif-action-modal" id="settings${i}">
+                        <!-- Your action buttons here -->
+                        <a href="#"><i class='bx bx-check'>
+                                <p>Mark as read</p>
+                            </i></a>
+                        <a href="#"><i class='bx bxs-bell'>
+                                <p>Remove</p>
+                            </i></a>
+                    </div>
+                </div>
+                `;
+              });
+
+                $('#notifContainer').html(notif);
             }
         });
     }
@@ -604,13 +638,13 @@ $(document).ready(function() {
             url: '/ForumController/NotificationUpdate',
             type: 'POST',
             success: function(data) {
-                console.log('Marked notification as read:', data);
+                
             }
         });
     }
 
     // fetch new notifications every 5 seconds
-    setInterval(fetchNotifications, 5000);
+    setInterval(fetchNotifications, 3000);
 
     // mark notification as read when a user clicks on it
     $(document).on('click', '.notification', function() {
