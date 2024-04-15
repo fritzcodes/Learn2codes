@@ -650,8 +650,8 @@ $(document).ready(function() {
     // fetch new notifications every 5 seconds
     setInterval(fetchNotifications, 3000);
 
-    // mark notification as read when a user clicks on it
-    $(document).on('click', '.notification', function() {
-        markNotificationAsRead();
-    });
+  // mark notification as read when a user clicks on it
+  $(document).on('click', '.notification-item', function() {
+      markNotificationAsRead.call(this);
+  });
 });
