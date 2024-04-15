@@ -152,7 +152,7 @@
 <div class="notif-container">
     <a href="#" class="notification-item @if(!$notification->is_read) unread-notif @endif">
         <span class="unread"></span>
-        <img src="assets/images/avatar.jpg" alt="Notification Icon" class="icon">
+        <img src="/images/{{ $notification->user->profile_photo }}" alt="Notification Icon" class="icon"> <!-- Display user's avatar -->
         <div class="content">
             <h2 class="notification-item-user-block">
                 <span class="notification-item-user-name"></span>

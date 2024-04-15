@@ -35,9 +35,11 @@ class ForumController extends Controller
             ->where('is_deleted', '0')
             ->orderBy('created_at', 'desc') // Order by created_at column in descending order
             ->get();
-        $notif = UserNotification::where('self_id', $name->id)->get();
-        //dd($notif);
+        $notif = UserNotification::with('user')->where('self_id', $name->id)->get();
+        // dd($notif);
         return view('frontend.forum.forum', compact('name', 'posts', 'notif'));
+
+        
     }
     
 
