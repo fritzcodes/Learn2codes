@@ -160,7 +160,7 @@
             </h2>
             <span class="timestamp">{{ $notification->created_at->diffForHumans() }}</span>
         </div>
-        <button data-target="settings{{ $loop->iteration }}" type="button" class="notif-action">
+        <button onclick="showModal('settings{{ $loop->iteration }}')" type="button" class="notif-action">
             <i class="bx bx-dots-horizontal-rounded"></i>
         </button>
     </a>
