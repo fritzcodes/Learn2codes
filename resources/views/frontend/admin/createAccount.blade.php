@@ -53,7 +53,7 @@
     <form action="/admin/createAccountPost" method="POST" class="content-container1">
         @csrf    
                 <div class="logo">
-                  <img src="/assets/images/logo.jpg" alt="learn2Code">
+                  <img src="/assets/images/Logo.jpg" alt="learn2Code">
                 </div>       
 
                 <div class="title">
