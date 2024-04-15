@@ -148,8 +148,38 @@
 
 
 
+        @foreach($notif as $notification)
+<div class="notif-container">
+    <a href="#" class="notification-item @if(!$notification->is_read) unread-notif @endif">
+        <span class="unread"></span>
+        <img src="images/avatar.jpg" alt="Notification Icon" class="icon">
+        <div class="content">
+            <h2 class="notification-item-user-block">
+                <span class="notification-item-user-name">{{ $notification->user->fname }} {{ $notification->user->lname }}</span>
+                {{ $notification->content }}
+            </h2>
+            <span class="timestamp">{{ $notification->created_at->diffForHumans() }}</span>
+        </div>
+        <button data-target="settings{{ $loop->iteration }}" type="button" class="notif-action">
+            <i class="bx bx-dots-horizontal-rounded"></i>
+        </button>
+    </a>
 
-        <div class="notif-container">
+    <div class="notif-action-modal" id="settings{{ $loop->iteration }}">
+        <!-- Your action buttons here -->
+        <a href="#"><i class='bx bx-check'>
+                <p>Mark as read</p>
+            </i></a>
+        <a href="#"><i class='bx bxs-bell'>
+                <p>Remove</p>
+            </i></a>
+    </div>
+</div>
+@endforeach
+
+
+
+        {{-- <div class="notif-container">
           <a href="#" class="notification-item unread-notif">
             <span class="unread"></span>
             <img src="images/avatar.jpg" alt="Notification Icon" class="icon">
@@ -200,7 +230,7 @@
                 <p>Remove</p>
               </i></a>
           </div>
-        </div>
+        </div> --}}
 
 
         <!--
