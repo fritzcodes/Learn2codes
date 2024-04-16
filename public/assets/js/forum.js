@@ -603,7 +603,7 @@ $(document).ready(function() {
 
               data.forEach((notifs, i) => {
                 notif += `
-                <div class="notif-container">
+                <div class="notif-container" onclick="markNotificationAsRead('${notifs.id}')">
                     <a href="#" class="notification-item ${notifs.is_read == 0 ?  'unread-notif' : ''}">
                         <span class="unread"></span>
                         <i class="icon bx bx-post"></i>
@@ -632,26 +632,31 @@ $(document).ready(function() {
               });
 
                 $('#notifContainer').html(notif);
+            },
+            error: function(xhr){
+              console.log(xhr.responseText)
             }
         });
     }
 
-    function markNotificationAsRead() {
-        console.log('Marking notification as read...');
-        $.ajax({
-            url: '/ForumController/NotificationUpdate',
-            type: 'POST',
-            success: function(data) {
-                
-            }
-        });
+    function markNotificationAsRead(id) {
+      alert(id);
+        // console.log('Marking notification as read...');
+        // $.ajax({
+        //     url: `/notifications-update/${id}`,
+        //     dataType: 'json',
+        //     method: 'get',
+        //     success: function(data) {
+        //         console.log(data);
+        //     }
+        // });
     }
 
     // fetch new notifications every 5 seconds
     setInterval(fetchNotifications, 3000);
 
   // mark notification as read when a user clicks on it
-  $(document).on('click', '.notification-item', function() {
-      markNotificationAsRead.call(this);
-  });
+  // $(document).on('click', '.notification-item', function() {
+  //     markNotificationAsRead.call(this);
+  // });
 });

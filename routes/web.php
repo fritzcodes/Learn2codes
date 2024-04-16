@@ -157,7 +157,7 @@ Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () 
     Route::post('/like-post', [ForumController::class, 'likePost']);
     Route::delete('/delete-post/{id}', [ForumController::class, 'destroy']);
     Route::get('/notifications', [ForumController::class, 'Notification']);
-    Route::post('/notifications-update', [ForumController::class, 'NotificationUpdate']);
+    Route::get('/notifications-update/{id}', [ForumController::class, 'NotificationUpdate']);
     Route::post('/like-comment', [ForumController::class, 'likeComment']);
     Route::get('/popular/{hashtag}', [ForumController::class, 'PopularTopics']);
     Route::get('/startmenu', function () {

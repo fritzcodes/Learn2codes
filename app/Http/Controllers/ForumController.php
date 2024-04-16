@@ -38,8 +38,13 @@ class ForumController extends Controller
         $notif = UserNotification::with('user')->where('self_id', $name->id)
             ->orderBy('created_at', 'desc')
             ->get();
+        $notifCount = count(UserNotification::with('user')->where('self_id', $name->id)
+            ->where('is_read', '0')
+            ->orderBy('created_at', 'desc')
+            ->get());
+
         // dd($notif);
-        return view('frontend.forum.forum', compact('name', 'posts', 'notif'));
+        return view('frontend.forum.forum', compact('name', 'posts', 'notif', 'notifCount'));
     }
 
 
@@ -177,7 +182,16 @@ class ForumController extends Controller
     }
 
 
-    public function NotificationUpdate()
+    public function NotificationUpdate($id)
+    {
+        $notif = UserNotification::where('self_id', Auth::user()->id)
+            ->where('is_read', '0')
+            ->where('id', $id)
+            ->update(['is_read' => '1']);
+            $data = UserNotification::find($id);
+        return response()->json($id);
+    }
+    public function NotificationUpdateAll()
     {
         $notif = UserNotification::where('self_id', Auth::user()->id)
             ->where('is_read', '0')
