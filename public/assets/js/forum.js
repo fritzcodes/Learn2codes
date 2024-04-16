@@ -593,7 +593,7 @@ function showModal(id){
 }
 $(document).ready(function() {
   function fetchNotifications() {
-      
+        
         $.ajax({
             url: '/notifications', 
             method: 'GET',

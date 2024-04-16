@@ -35,13 +35,13 @@ class ForumController extends Controller
             ->where('is_deleted', '0')
             ->orderBy('created_at', 'desc') // Order by created_at column in descending order
             ->get();
-        $notif = UserNotification::with('user')->where('self_id', $name->id)->get();
+        $notif = UserNotification::with('user')->where('self_id', $name->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
         // dd($notif);
         return view('frontend.forum.forum', compact('name', 'posts', 'notif'));
-
-        
     }
-    
+
 
     public function store(PostRequest $request)
     {
@@ -175,13 +175,13 @@ class ForumController extends Controller
             ->get();
         return response()->json($notif);
     }
-    
+
 
     public function NotificationUpdate()
     {
         $notif = UserNotification::where('self_id', Auth::user()->id)
-        ->where('is_read', '0')
-        ->update(['is_read' => '1']);
+            ->where('is_read', '0')
+            ->update(['is_read' => '1']);
         return response()->json($notif);
     }
 

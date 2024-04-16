@@ -59,20 +59,15 @@ class boardController extends Controller
             $languageCount[] = ['user_id' => $userLanguage['user_id'], 'badge' => count($userLanguage['languages'])];
         }
         foreach ($userPoints as &$userPoint) {
-            foreach ($languageCount as $count) {
-                if ($count['user_id'] == $userPoint['user_id']) {
-                    $userPoint['badge'] = $count['badge'];
-                    $totalPoints = ($userPoint['module'] ?? 0) + ($userPoint['quiz'] ?? 0) + ($userPoint['exercise'] ?? 0);
-
-                    $userPoint['total_points'] = $totalPoints;
-                }
-            }
-
+            // Initialize total_points key with a default value of 0 if it doesn't exist
+            $userPoint['total_points'] = ($userPoint['module'] ?? 0) + ($userPoint['quiz'] ?? 0) + ($userPoint['exercise'] ?? 0);
+            
+        
             $userId = $userPoint['user_id'];
-
+        
             // Retrieve the user's name from the user table
             $user = User::find($userId);
-
+        
             if ($user) {
                 // If user exists, add their name to userPoint
                 $userPoint['username'] = $user->username;
@@ -83,13 +78,14 @@ class boardController extends Controller
                 $userPoint['profile_photo'] = null;
             }
         }
+        
+       //dd($userPoints);
         usort($userPoints, function ($a, $b) {
             return $b['total_points'] <=> $a['total_points']; // Sort in descending order based on 'total_points'
         });
 
-
+        
         // dd($userPoints);
-
         return view('frontend.leaderboard', compact('userPoints'));
     }
 }
