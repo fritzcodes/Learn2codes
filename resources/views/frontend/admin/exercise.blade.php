@@ -2,7 +2,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Add Exercise | Admin</title>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
@@ -19,8 +22,88 @@
 </head>
 
 <body>
+    <!-- -----------SIDEBAR------------ -->
+    <div class="sidebar">
+        <div class="top">
+            <div class="logo">
+                <span>Learn2Code</span>
+            </div>
+            <i class="bx bx-menu" id="btn"></i>
+        </div>
 
-    @if (session()->has('message'))
+
+        <div class="user">
+            @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
+            <img src="{{Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photoo) : 'assets/images/avatar.png' }}" alt="user" class="user-img">
+            @else
+            <!-- Placeholder image or default avatar -->
+            <img src="../assets/images/avatar.png" alt="user" class="user-img">
+            @endif
+            {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
+            <div>
+                <p class="username">{{ Auth::guard('admin')->user()->email }}</p>
+                <p>Admin</p>
+            </div>
+        </div>
+
+
+        <ul>
+            <li>
+                <a target="_top" href="{{ route('Dashboard') }}">
+                    <i class="bx bxs-dashboard"></i>
+                    <span class="nav-item">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="{{ route('ManageUser') }}">
+                    <i class="bx bxs-user"></i>
+                    <span class="nav-item">Manage Users</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="{{ route('Leaderboard') }}">
+                    <i class="bx bxs-trophy"></i>
+                    <span class="nav-item">Leaderboard</span>
+                </a>
+            </li>
+            <li>
+
+                <a target="_top" href="{{ route('Question') }}">
+                    <i class="bx bxs-hourglass-top"></i>
+                    <span class="nav-item">Quiz</span>
+                </a>
+            </li>
+            <li>
+
+                <a target="_top" href="#">
+                    <i class="bx bxs-chat"></i>
+                    <span class="nav-item">Forum</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="{{ route('addModule') }}">
+                <i class='bx bxs-book-reader'></i>
+                    <span class="nav-item">Module</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="{{ route('addExercise') }}" class="active">
+                    <i class="bx bx-dumbbell"></i>
+                    <span class="nav-item">Exercise</span>
+                </a>
+            </li>
+            <li class="Logout">
+                <a target="_top" href="{{ route('adminLogout') }}">
+                    <i class="bx bxs-exit"></i>
+                    <span class="nav-item">Logout</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+ 
+    <div class="main-content" id="content1"> <!------------------------------------------ dashboard -->
+        @if (session()->has('message'))
         <div class="alert alert-success">
             {{ session('message') }}
         </div>
@@ -36,28 +119,39 @@
                 <option value="{{ $item->language }}">{{ $item->language }}</option>
             @endforeach
         </select>
-        <div style="width: 1000px">
+        <div style="width: 100%">
             <textarea id="summernote" name="content"></textarea>
         </div>
        
         <input type="submit" value="Add exercise">
     </form>
 
-    <table>
-        <tr>
-            <th>Language</th>
-            <th>Action</th>
-        </tr>
+    <div class="table">
+        <div class="tablebg">
+            <div class="heading">
+                <h2>Exercise</h2>
+                <input class="search" placeholder="Search" id="search">
+                <a href="#" class="action" style="display:none;">View All</a>
+            </div>
+            <table class="manage-user">
+                    <tr>
+                        <th>Language</th>
+                        <th>Action</th>
+                    </tr>
 
-        @foreach ($data as $item)
-            <tr>
-                <td>{{ $item->language }}</td>
-                <td><a href="/admin/exercise/{{ urlencode($item->language) }}"><button>View</button></a></td>
-            </tr>
-        @endforeach
+                    @foreach ($data as $item)
+                        <tr>
+                            <td>{{ $item->language }}</td>
+                            <td><a href="/admin/exercise/{{ urlencode($item->language) }}"><button>View</button></a></td>
+                        </tr>
+                    @endforeach
+            </table>
+        </div>
+    </div>
+
+    </div>
 
 
-    </table>
 
     {{-- <p id="exerciseContent">System.<u>out.println</u>("Hello World<u>");</u></p>
     <button onclick="checkAnswers()">Check Answers</button>
@@ -108,17 +202,17 @@
             alert("Your score: " + score + " out of " + correctAnswers.length);
         }
     </script> --}}
-<script>
-     $('#summernote').summernote({
-            placeholder: 'Add codes here...',
-            tabsize: 2,
-            height: 100,
-            toolbar: [
-                ['style', ['underline']],
-            ],
-           
-        });
-</script>
-</body>
-
+        <script>
+            $('#summernote').summernote({
+                    placeholder: 'Add codes here...',
+                    tabsize: 2,
+                    height: 100,
+                    toolbar: [
+                        ['style', ['underline']],
+                    ],
+                
+                });
+        </script>
+        <script src="../assets/js/admin/admin.js" async></script>
+    </body>
 </html>

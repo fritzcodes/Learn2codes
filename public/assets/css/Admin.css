@@ -329,7 +329,7 @@ label {
     margin: 10px 0;
 }
 
-.langDiv select {
+select {
     color: var(--bg-color);
     background: linear-gradient(0deg, rgba(137, 33, 33, 0.2), rgba(137, 33, 33, 0.2)),
     linear-gradient(180.04deg, rgba(253, 140, 140, 0.81) 0.04%, rgba(255, 128, 185, 0.57699) 0.04%, rgba(200, 97, 97, 0.710019) 50.69%, rgba(206, 2, 137, 0.53) 101.64%);
@@ -338,26 +338,13 @@ label {
     font-size: 17px;
 }
 
-.langDiv select option{
+select option{
     color: #1a1a1a;
 }
 
 .difDiv {
     width: 100%;
     margin: 10px 0;
-}
-
-.difDiv select {
-    color: var(--bg-color);
-    background: linear-gradient(0deg, rgba(137, 33, 33, 0.2), rgba(137, 33, 33, 0.2)),
-    linear-gradient(180.04deg, rgba(253, 140, 140, 0.81) 0.04%, rgba(255, 128, 185, 0.57699) 0.04%, rgba(200, 97, 97, 0.710019) 50.69%, rgba(206, 2, 137, 0.53) 101.64%);
-    font-weight: 400;
-    border-radius: 5px;
-    font-size: 17px;
-}
-
-.difDiv select option{
-    color: #1a1a1a;
 }
 
 .langpicDiv {
@@ -559,6 +546,16 @@ td {
     font-weight: 800;
     color: #CD7F32;
 }
+
+
+/*-----------ADD MODULE----------------*/
+
+
+
+
+
+
+
 
 
 /*-----------RESPONSIVENESS----------------*/

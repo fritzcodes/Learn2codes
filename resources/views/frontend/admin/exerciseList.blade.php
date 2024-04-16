@@ -6,49 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="CodeHim">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title> List of Exercise </title>
+    <link rel="stylesheet" href="/assets/css/Admin.css">
+    <title> List of Exercise | Learn2Code </title>
     <!-- Style CSS -->
-    <link rel="stylesheet" href="./css/style.css">
-    <!-- Demo CSS (No need to include it into your project) -->
-    <link rel="stylesheet" href="./css/demo.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&amp;display=swap'>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-        @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: inherit;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            align-content: flex-start;
-
-            font-family: 'Roboto', sans-serif;
-            font-style: normal;
-            font-weight: 300;
-            font-smoothing: antialiased;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            font-size: 15px;
-            background: #eee;
-        }
 
         .cd__intro {
             padding: 60px 30px;
@@ -170,10 +138,6 @@
             }
         }
 
-        * {
-            font-family: "Source Sans Pro", sans-serif;
-        }
-
         .cd__main {
             padding: 0;
             margin: 0;
@@ -244,6 +208,7 @@
             padding: 10px;
             user-select: none;
             border-top: 1px solid whitesmoke;
+            color: #000;
         }
 
         .draggable-table tbody tr:nth-child(even) {
@@ -265,7 +230,86 @@
 </head>
 
 <body>
-    <!--$%adsense%$-->
+<div class="sidebar">
+        <div class="top">
+            <div class="logo">
+                <span>Learn2Code</span>
+            </div>
+            <i class="bx bx-menu" id="btn"></i>
+        </div>
+
+
+        <div class="user">
+            @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
+            <img src="{{Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photoo) : 'assets/images/avatar.png' }}" alt="user" class="user-img">
+            @else
+            <!-- Placeholder image or default avatar -->
+            <img src="/assets/images/avatar.png" alt="user" class="user-img">
+            @endif
+            {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
+            <div>
+                <p class="username">{{ Auth::guard('admin')->user()->email }}</p>
+                <p>Admin</p>
+            </div>
+        </div>
+
+
+        <ul>
+            <li>
+                <a target="_top" href="{{ route('Dashboard') }}" class='active'>
+                    <i class="bx bxs-dashboard"></i>
+                    <span class="nav-item">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="{{ route('ManageUser') }}">
+                    <i class="bx bxs-user"></i>
+                    <span class="nav-item">Manage Users</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="{{ route('Leaderboard') }}">
+                    <i class="bx bxs-trophy"></i>
+                    <span class="nav-item">Leaderboard</span>
+                </a>
+            </li>
+            <li>
+
+                <a target="_top" href="{{ route('Question') }}">
+                    <i class="bx bxs-hourglass-top"></i>
+                    <span class="nav-item">Quiz</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="#">
+                    <i class="bx bxs-chat"></i>
+                    <span class="nav-item">Forum</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="{{ route('addModule') }}">
+                <i class='bx bxs-book-reader'></i>
+                    <span class="nav-item">Module</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="{{ route('addExercise') }}">
+                    <i class="bx bx-dumbbell"></i>
+                    <span class="nav-item">Exercise</span>
+                </a>
+            </li>
+            <li class="Logout">
+                <a target="_top" href="{{ route('adminLogout') }}">
+                    <i class="bx bxs-exit"></i>
+                    <span class="nav-item">Logout</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+    <!-- -----------MAIN CONTENT------------ -->
+    <div class="main-content" id="content1"> <!------------------------------------------ dashboard -->
     <main class="">
         <!-- Start DEMO HTML (Use the following code into your project)-->
         {{-- <p>Drag n' Drop sorting of rows!</p> --}}
@@ -285,10 +329,9 @@
         </table>
         <!-- END EDMO HTML (Happy Coding!)-->
     </main>
+    </div>
+    <script src="/assets/js/admin/admin.js" async></script>
 
-
-    <!-- Script JS -->
-    
     
 </body>
 
