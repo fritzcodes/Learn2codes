@@ -420,9 +420,10 @@
             #Make sure our PlayerId is under 24 characters: Might modify this since
             #PlayerID is Unique
             $player_ID = $json['playerID'];
-            if (strlen($player_ID) > 24){
-                $player_ID = substr($player_ID, 24);
-            }
+
+            #if (strlen($player_ID) > 24){
+            #    $player_ID = substr($player_ID, 24);
+            #}
 
             #Form SQL request string:
             $template = "INSERT INTO `cleartime` (playerID,Level_2) VALUES(:playerID, :Level_2)
@@ -449,9 +450,10 @@
             #Make sure our PlayerId is under 24 characters: Might modify this since
             #PlayerID is Unique
             $player_ID = $json['playerID'];
-            if (strlen($player_ID) > 24){
-                $player_ID = substr($player_ID, 24);
-            }
+
+            #if (strlen($player_ID) > 24){
+            #    $player_ID = substr($player_ID, 24);
+            #}
 
             #Form SQL request string:
             $template = "INSERT INTO `cleartime` (playerID,Level_3) VALUES(:playerID, :Level_3)
@@ -478,9 +480,10 @@
             #Make sure our PlayerId is under 24 characters: Might modify this since
             #PlayerID is Unique
             $player_ID = $json['playerID'];
-            if (strlen($player_ID) > 24){
-                $player_ID = substr($player_ID, 24);
-            }
+            
+            #if (strlen($player_ID) > 24){
+            #     $player_ID = substr($player_ID, 24);
+            # }
 
             #Form SQL request string:
             $template = "INSERT INTO `cleartime` (playerID,Level_4) VALUES(:playerID, :Level_4)
