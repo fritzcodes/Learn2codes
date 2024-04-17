@@ -3,70 +3,113 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Orbitron', sans-serif;
     text-decoration: none;
     list-style: none;
 }
 
-  :root{ /*---font and color defaults --*/
-    --bg-color: #fff;
-    --text-color: #221341;
-    --second-color: #5a7184;
-    --main-color: #6e54fa;
-    --big-font: 6rem;
-    --h2-font: 3rem;
-    --p-font: 1.1rem;
+:root{ /*---font and color defaults --*/
+  --bg-color: #210535;
+  --main-color: #f5d5e0;
+  --text-color: #430d4b;
+  --second-color: #7b337d;
+  --high-color: #c874b2;
+  --big-font: 3rem;
+  --h2-font: 1.5rem;
+  --p-font: 1rem;
+  --font1: 'Orbitron';
+  --font2: Helvetica;
+  transition: .2s;
+}
+
+#btn {
+  position: fixed;
+  top: 11vh;
+  left: 11px;
+  color: var(--text-color);
+  font-size: 30px;
+  z-index: 10001;
+  cursor: pointer;
+  display: block;
 }
 
   .space-background {
-    width: 90%;
-    height: 80vh; 
-    position: fixed; 
-    border-radius: 35.066px;
-    border: 1px solid #FFDCDC;
-    background: radial-gradient(254.43% 143.73% at 6.62% 2.73%, rgba(255, 182, 72, 0.56) 0%, rgba(255, 182, 72, 0.56) 0%, rgba(255, 182, 72, 0.56) 0.01%, rgba(53, 0, 62, 0.08) 100%);
-    backdrop-filter: blur(6px);  
-    overflow: hidden;
-  
+    top: 10vh;
+    background-color: #f7f7f7;
+    width: calc(100% - 0px);
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
+
+  .content {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ddd;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+
+  
 
     /*----------- Content Section------------ */
 
     
 .sidenav {
-    box-sizing: inherit;
     scroll-behavior: smooth;
-    height: 100%;
-    width: 200px;
-    position: fixed;
-    top: 0;
+    height: 90vh;
+    width: 0;
+    position: absolute;
+    top: 10vh;
     left: 0;
-    background-color: #333;
+    background-color: var(--text-color);
     padding-top: 20px;
-    color: #818181;
+    color: var(--main-color);
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding-bottom: 40px;
+    z-index: 1;
 
 }
 
+.sidenav.active ~ .space-background {
+  left: 250px;
+  width: calc(100% - 250px);
+}
+
+.sidenav.active {
+  position: fixed;
+  width: 250px;
+}
+
+.sidenav.active #btn{
+  left:260px;
+  
+}
+
+
 .sidenav h2{
-  padding-left: 20px;
+  padding: 15px 5px 2px 10px;
+  font-size: var(--p-font);
 }
 
 .sidenav a {
     font-size: var(--p-font);
-    padding: 10px 10%;
+    padding: 5px 0px 5px 20px;
     text-decoration: none;
-    color: #818181;
+    color: var(--main-color);
     display: block;
     transition: 0.3s;
 }
 
 .sidenav a:hover {
-    background-color: #000;
-    color: #f1f1f1;
+    background-color: var(--second-color);
+    color: var(--main-color);
 }
 
 .sidenav a.active {
@@ -78,6 +121,7 @@
   text-align: left; 
   margin-bottom: x20px; 
 }
+
 
 .photo-container img {
   max-width: 100%; 
@@ -97,21 +141,6 @@ pre {
   margin: 0;
 }
 
-
-.content {
-    height: 100%;
-    overflow-y: scroll;
-    line-height: 1.5;
-    margin-left: 300px;
-    padding: 16px;
-}
-
-#main{
-  display: block;
-  box-sizing: inherit;
-  float: left;
-  padding: 16px 32px 32px 32px;
-}
 
 
 
@@ -137,31 +166,11 @@ pre {
   }
 
 
-  body {
-    padding: 80px 0%;
-    animation: paused;
-  }
-
-  .space-background {
-    border-radius: 0px;
-    width: 90%;
-    height: 80vh; 
-  }
-
 }
 
 
 @media (max-width: 376px) {
-  body {
-    padding: 80px 0%;
-    animation: paused;
-  }
 
-  .space-background {
-    border-radius: 0px;
-    width: 90%;
-    height: 80vh; 
-  }
 
   :root {
     --big-font: 3.5rem;
