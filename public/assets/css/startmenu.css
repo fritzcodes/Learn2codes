@@ -22,7 +22,6 @@
 }
 
 body {
-margin: auto;
 display: flex;
 justify-content: center; /* Center horizontally */
 align-items: center; /* Center vertically */
@@ -39,42 +38,45 @@ animation: animateBackground 20s linear infinite; /* Adjust as needed */
     }
   }
 
-  .space-background { 
-    width: 60%;
-    padding: 80px;
-    position: relative; 
+  .space-background {
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
     border-radius: 35.066px;
-    background: var(--main-color);  
+    background: var(--main-color);
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
     /*----------- Content Section------------ */
     .title {
-      position: relative;
-      padding-bottom: 50px;
-      width: 100%;
-      height: 30px;
-      display: flex;
-      justify-content: center;
+      padding: 20px;
+      display: block;
+      text-align: center;
       align-items: center;
     }
     
-    .title h2 {
+    .title h2{
+      color: var(--text-color);
       font-size: var(--h2-font);
     }
 
   .content-section {
-    align-items: center;
-    align-content: center;
+    justify-content: center;
+    margin: 30px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    text-align: center;
-    gap: 50px 200px;
 }
 
-  .content-section img {
-    width: 100%;
-    object-fit: cover;
-  }
+.content-section a {
+  margin: auto;
+}
+
+.content-section img {
+  width: 250px;
+  object-fit: cover;
+}
   
 
 
@@ -92,12 +94,12 @@ animation: animateBackground 20s linear infinite; /* Adjust as needed */
 
 @media (max-width: 860px) {
   .space-background {
-    padding: 100px;
+    background: none;
+    padding: 0;
     position: fixed;
     border-radius: 0px;
     width: 100%;
     height: 100vh; 
-    overflow: scroll;
   }
 
   .content-section {
@@ -107,7 +109,6 @@ animation: animateBackground 20s linear infinite; /* Adjust as needed */
 }
 
 @media (max-width: 540px) {
-
   :root {
     --big-font: 2.8rem;
     --h2-font: 2rem;
@@ -115,23 +116,6 @@ animation: animateBackground 20s linear infinite; /* Adjust as needed */
     transition: .2s;
   }
 
-.content-section img {
-  width: 250px;
-}
-
-.space-background {
-  padding: 120px 50px;
-  overflow: scroll;
-}
-
-.content-section {
-  gap: 20px;
-}
-
-.content-section img{
-width: 100%;
-height: auto;
-}
 
 }
 
@@ -142,14 +126,13 @@ height: auto;
     transition: .2s;
   }
 
-}
+  .content-section img {
+    width: 200px;
+  }
 
+}
 
 @media (max-width: 280px) {
-  .content-section {
-    grid-template-columns: repeat(1, 1fr);
-}
-
     :root {
     --big-font: 3.5rem;
     --h2-font: 1.5rem;
@@ -159,24 +142,16 @@ height: auto;
 }
 
 @media (min-height: 1024px) {
-
-  .navbar {
-    width: 50%
-    
-}
-
 .space-background {
-  padding: 200px;
+  background: none;
   position: fixed;
   border-radius: 0px;
   width: 100%;
   height: 100vh; 
-  overflow: scroll;
 }
 
 .content-section {
   grid-template-columns: repeat(1, 1fr);
-  gap: 20px
 }
 
   :root {
@@ -186,5 +161,25 @@ height: auto;
     transition: .2s;
 
 }
+
+.content-section img {
+  width: 300px;
+}
+
+}
+
+@media (min-height: 1300px) {
+  :root {
+    --big-font: 5rem;
+    --h2-font: 2.5rem;
+    --p-font: 1.5rem;
+    transition: .2s;
+
+}
+
+.content-section img {
+  width: 400px;
+}
+
 
 }
