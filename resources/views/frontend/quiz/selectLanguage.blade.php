@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quizzes</title>
+  <title>Quiz Select Language</title>
 
-<link rel="stylesheet" href="assets/css/selectLanguage.css">
+<link rel="stylesheet" href="assets/css/moduleLang.css">
 <link rel="stylesheet" href="assets/css/header.css">
-<link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
+<link rel="shortcut icon" type="x-icon" href="../assets/images/logo.svg">
 <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 
@@ -15,25 +15,24 @@
 <script src="assets/js/carousel.js" defer></script>
 <style>
     body {
-  padding: 90px 10%;
-  width: 100%;
-  height: 100vh;
-  background: url("assets/images/backquiz.svg");
-  color: var(--text-color);
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  z-index: -1; /* Behind other content */
-  background-size: cover;
-  animation: animateBackground 20s linear infinite; /* Adjust as needed */
-}
-
-  @keyframes animateBackground {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 100% 100%;
-    }
-}
+        background: url("../assets/images/backlogin.png");
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        height: 100vh; /* Use full viewport height */
+        margin: 0; /* Remove default body margin */
+        background-size: cover;
+        overflow-y: hidden;
+        animation: animateBackground 20s linear infinite; /* Adjust as needed */
+          }
+          @keyframes animateBackground {
+            0% {
+              background-position: 0 0;
+            }
+            100% {
+              background-position: 100% 100%;
+            }
+          }
 </style>
 
 </head>
@@ -72,13 +71,10 @@
 
   <section class="space-background">
 
-    <div class="title">
-      <h3>Quiz</h3>
-      </div>
-
-      <div id="subtitle">
-        <h2>Select Language</h2> 
-      </div>
+        <div class="title">
+            <h2>Programming Quiz</h2>
+            <p>Select Language</p>
+        </div>
 
     <div class="content">     
      <div class="content-section">
