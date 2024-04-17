@@ -404,6 +404,12 @@ transition: .2s;
             --p-font: 1.1rem;
         }
 
+        .quiz-container, #congratulations,
+        #incorrect, #showScore {
+          padding: 0 10px;
+           
+       }
+
 
     }
 
