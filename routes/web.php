@@ -49,6 +49,7 @@ Route::get('/ha', function () {
 Route::get('/forum', [ForumController::class, 'Index'])->name('forum');
 
 
+
 Route::get('/trycode/{id}', [TryCodeController::class, 'Index'])->name('trycode');
 Route::get('/', function () {
     return view('landing');
@@ -158,8 +159,10 @@ Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () 
     Route::delete('/delete-post/{id}', [ForumController::class, 'destroy']);
     Route::get('/notifications', [ForumController::class, 'Notification']);
     Route::get('/notifications-update/{id}', [ForumController::class, 'NotificationUpdate']);
+    Route::get('/notifications-updateAll/{id}', [ForumController::class, 'NotificationUpdateAll']);
     Route::post('/like-comment', [ForumController::class, 'likeComment']);
     Route::get('/popular/{hashtag}', [ForumController::class, 'PopularTopics']);
+    Route::get('/forum/{postId}', [ForumController::class, 'PostNotif']);
     Route::get('/startmenu', function () {
         return view('frontend.startmenu');
     })->name('startmenu');
