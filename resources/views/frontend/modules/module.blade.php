@@ -11,9 +11,7 @@
     <link rel="stylesheet" href="../assets/css/header.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
     <style>
     .dot {
     display: none; /* Initially hide the dot */
@@ -93,21 +91,31 @@
 }
 
 
+body{
+    overflow-x: hidden;
+    width: 100%;
+    height: 100vh;
+    background: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background: linear-gradient(-45deg, #210535, #7b337d, #430d4b);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+  
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
-        body {
-            padding: 90px 5%;
-            width: 100%;
-            height: 100vh;
-            background: url("../assets/images/backmenu.svg");
-            color: var(--text-color);
-            overflow-x: hidden;
-            /* Prevent horizontal scrolling */
-            z-index: -1;
-            /* Behind other content */
-            background-size: cover;
-            animation: animateBackground 20s linear infinite;
-            /* Adjust as needed */
-        }
+
 
         table,
         th,
@@ -118,8 +126,6 @@
             padding-left: 20px;
             padding-right: 20px;
         }
-
-
 
         @keyframes animateBackground {
             0% {
@@ -184,8 +190,6 @@
             color: var(--primary);
         }
 
-
-
         #youtube {
             z-index: 2;
             display: block;
@@ -236,6 +240,16 @@
             height: 0;
             overflow: hidden;
         }
+        
+
+        #main p{
+            font-family: var(--font2);
+            margin: 70px 5%;
+        }
+
+        #progressbar {
+            width: 50px;
+        }
     </style>
 
 </head>
@@ -244,7 +258,7 @@
     <header>
         <a href="moduleLanguage" class="bx bx-chevron-left" id="back-btn"></a>
 
-        <div id="progressbar" role="progressbar" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100" style="--value: {{ $percent }}; height: 50px; width: 50px; margin-left: 20px;">
+        <div id="progressbar" role="progressbar" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100" style="--value: {{ $percent }};">
         </div>
 
 
@@ -275,25 +289,26 @@
 
     </header>
 
-    <section class="space-background">
-
         <div class="sidenav">
+        <div class="bx bxs-book-reader" id="btn"></div>
+        
+        <h2>{{ $id }} Module</h2>
+        @foreach ($data as $item)
+        <a target="_top" href="#{{ $loop->index + 1 }}#{{ $item->id }}">{{ $item->title }} </a>
+        @endforeach
+        <a href="#">adasd</a>
+        <a href="#">adasd</a>
+        <a href="#">adasd</a>
+        <a href="#">adasd</a>
+        <h2>sdas</h2>
+    </div>
 
-            <h2>{{ $id }} Module</h2>
-            @foreach ($data as $item)
-            <a target="_top" href="#{{ $loop->index + 1 }}#{{ $item->id }}">{{ $item->title }} </a>
-            @endforeach
-
-
-
-        </div>
-
-
-
+    <section class="space-background">
 
         <div class="content" id="content">
             <div id="main">
-
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique sint aperiam distinctio, aut aliquam, laudantium numquam ab ex atque neque dolore in. Ducimus perferendis iusto sint odio recusandae beatae aspernatur?</p>
+                
             </div>
         </div>
 
@@ -307,11 +322,11 @@
         <div class="dot-spirit" id="dotSpirit4"></div>
 
     </div>
-
     <script type="text/javascript" src="../assets/js/headermenu.js"></script>
-    <script>
-        var modulePercent = {{$percent}}
-         
+    <script type="text/javascript" src="../assets/js/topic.js"></script>
+
+<script>
+        var modulePercent = {{$percent}}     
         var bottomReached = false;
 
 
@@ -362,7 +377,7 @@
                     },
                     success: function(data) {
                         console.log(data);
-                        if (modulePercent < data[0]) {
+                        if (modulePercent <script data[0]) {
                             const dot = document.querySelector('.dot');
                             const dot1 = document.getElementById('dotSpirit1');
                             const dot2 = document.getElementById('dotSpirit2');

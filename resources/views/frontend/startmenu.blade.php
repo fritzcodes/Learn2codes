@@ -14,7 +14,7 @@
     
 </head>
 
-<body style="background-image: url(assets/images/backmenu.svg);">
+<body style="background-image: url(assets/images/backlogin.png);">
 
     <header>
         <a href="/" class="bx bx-chevron-left" id="back-btn"></a>

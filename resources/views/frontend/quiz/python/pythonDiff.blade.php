@@ -3,42 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Select Difficulty</title>
+  <title>Python Difficulty | Quiz</title>
   <link rel="stylesheet" href="assets/css/quizDiff.css">
-
-<link rel="stylesheet"
-   href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.svg">
+ <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
+ <script src="/assets/js/headermenu.js" defer></script>
 
 <style>
-        body {
-      text-align: center;
-      padding: 90px 10%;
-      width: 100%;
-      height: 100vh;
-      background: url("assets/images/backquiz.svg");
-      color: var(--text-color);
-      overflow-x: hidden; /* Prevent horizontal scrolling */
-      z-index: -1; /* Behind other content */
-      background-size: cover;
-      animation: animateBackground 20s linear infinite; /* Adjust as needed */
-  }
-
-
-    @keyframes animateBackground {
-      0% {
-        background-position: 0 0;
-      }
-      100% {
-        background-position: 100% 100%;
-      }
-  }
+    body {
+        background: url("../assets/images/backlogin.png");
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        height: 100vh; /* Use full viewport height */
+        margin: 0; /* Remove default body margin */
+        background-size: cover;
+        overflow-y: hidden;
+        animation: animateBackground 20s linear infinite; /* Adjust as needed */
+          }
+          @keyframes animateBackground {
+            0% {
+              background-position: 0 0;
+            }
+            100% {
+              background-position: 100% 100%;
+            }
+          }
 </style>
 
 </head>
