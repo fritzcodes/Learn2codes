@@ -54,6 +54,12 @@
                 </a>
             </li>
             <li>
+                <a target="_top" href="{{ route('AddLanguage') }}">
+                    <i class="bx bxs-select-multiple"></i>
+                    <span class="nav-item">Add Language</span>
+                </a>
+            </li>
+            <li>
 
                 <a target="_top" href="{{ route('Question') }}" class='active'>
                     <i class="bx bxs-hourglass-top"></i>

@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn2Code</title>
+    <title>Add Language | Admin</title>
+    <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.svg">
     <link rel="stylesheet" href="../assets/css/Admin.css">
     <link rel="stylesheet"href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+    <script src="/assets/js/admin/admin.js" async></script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -29,45 +30,52 @@
             </div>
             <i class="bx bx-menu" id="btn"></i>
         </div>
+
         <div class="user">
-            <img src="/admin/avatar.jpg" alt="user" class="user-img">
+            @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
+            <img src="{{Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photoo) : 'assets/images/avatar.png' }}" alt="user" class="user-img">
+            @else
+            <!-- Placeholder image or default avatar -->
+            <img src="../assets/images/avatar.png" alt="user" class="user-img">
+            @endif
+            {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
             <div>
-                <p class="username">David Matthew Borromeo</p>
+                <p class="username">{{ Auth::guard('admin')->user()->email }}</p>
                 <p>Admin</p>
             </div>
         </div>
+
         <ul>
             <li>
-                <a target="_top" href="/admin/dashboard.html">
+                <a target="_top" href="{{ route('Dashboard') }}">
                     <i class="bx bxs-dashboard"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
             </li>
             <li>
-                <a target="_top" href="/admin/manageUser.html">
+                <a target="_top" href="{{ route('ManageUser') }}">
                     <i class="bx bxs-user"></i>
                     <span class="nav-item">Manage Users</span>
                 </a>
             </li>
             <li>
-                <a target="_top" href="/admin/leaderboard.html">
+                <a target="_top" href="{{ route('Leaderboard') }}">
                     <i class="bx bxs-trophy"></i>
                     <span class="nav-item">Leaderboard</span>
                 </a>
-            </li>            
-            <li class="addlang">
-                <a target="_top" href="/admin/addLanguage.html" class='active'>
+            </li>
+            <li>
+                <a target="_top" href="{{ route('AddLanguage') }}" class='active'>
                     <i class="bx bxs-select-multiple"></i>
                     <span class="nav-item">Add Language</span>
                 </a>
             </li>
             <li>
-                <a target="_top" href="/admin/quiz.html">
+                <a target="_top" href="{{ route('Question') }}">
                     <i class="bx bxs-hourglass-top"></i>
                     <span class="nav-item">Quiz</span>
                 </a>
             </li>
-
             <li>
                 <a target="_top" href="#">
                     <i class="bx bxs-chat"></i>
@@ -75,24 +83,24 @@
                 </a>
             </li>
             <li>
-                <a target="_top" href="#">
-                    <i class="bx bx-dumbbell"></i>
-                    <span class="nav-item">EXP Progress</span>
+                <a target="_top" href="{{ route('addModule') }}">
+                <i class='bx bxs-book-reader'></i>
+                    <span class="nav-item">Module</span>
                 </a>
             </li>
             <li>
-                <a target="_top" href="#">
-                    <i class="bx bxs-medal"></i>
-                    <span class="nav-item">Badge</span>
+                <a target="_top" href="{{ route('addExercise') }}">
+                    <i class="bx bx-dumbbell"></i>
+                    <span class="nav-item">Exercise</span>
                 </a>
             </li>
             <li class="Logout">
-                <a target="_top" href="#">
+                <a target="_top" href="{{ route('adminLogout') }}">
                     <i class="bx bxs-exit"></i>
                     <span class="nav-item">Logout</span>
                 </a>
             </li>
-        </ul>  
+        </ul>
     </div>
 
 

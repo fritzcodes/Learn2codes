@@ -12,6 +12,7 @@
     <!-- Demo CSS (No need to include it into your project) -->
     <link rel="stylesheet" href="./css/demo.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href='https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet'>    
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&amp;display=swap'>
     <script src="/assets/js/admin/admin.js" async></script>
     <style>
@@ -21,30 +22,6 @@
             padding: 0;
         }
 
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: inherit;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            align-content: flex-start;
-
-            font-family: 'Roboto', sans-serif;
-            font-style: normal;
-            font-weight: 300;
-            font-smoothing: antialiased;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            font-size: 15px;
-            background: #eee;
-        }
 
         .cd__intro {
             padding: 60px 30px;
@@ -167,7 +144,7 @@
         }
 
         * {
-            font-family: "Source Sans Pro", sans-serif;
+            font-family: var(--font2);
         }
 
         .cd__main {
@@ -305,6 +282,12 @@
                 </a>
             </li>
             <li>
+                <a target="_top" href="{{ route('AddLanguage') }}">
+                    <i class="bx bxs-select-multiple"></i>
+                    <span class="nav-item">Add Language</span>
+                </a>
+            </li>
+            <li>
 
                 <a target="_top" href="{{ route('Question') }}">
                     <i class="bx bxs-hourglass-top"></i>
@@ -342,7 +325,6 @@
 
     <div class="main-content" id="content1"> <!------------------------------------------ dashboard -->
     <!--$%adsense%$-->
-    <main class="">
         <!-- Start DEMO HTML (Use the following code into your project)-->
         {{-- <p>Drag n' Drop sorting of rows!</p> --}}
         <table id="table" class="draggable-table">
@@ -360,7 +342,6 @@
             </tbody>
         </table>
         <!-- END EDMO HTML (Happy Coding!)-->
-    </main>
 
     </div>
 

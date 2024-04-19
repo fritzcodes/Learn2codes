@@ -533,7 +533,7 @@ td {
 
 .input{
     margin-top: 5px;
-    color: var(--text-color);
+    color: var(--main-color);
     background: var(--text-color);
     border-radius: 5px;
     text-indent: 5px;

@@ -54,6 +54,12 @@
                 </a>
             </li>
             <li>
+                <a target="_top" href="{{ route('AddLanguage') }}">
+                    <i class="bx bxs-select-multiple"></i>
+                    <span class="nav-item">Add Language</span>
+                </a>
+            </li>
+            <li>
 
                 <a target="_top" href="{{ route('Question') }}">
                     <i class="bx bxs-hourglass-top"></i>
@@ -134,7 +140,9 @@
                     @foreach ($data as $item)
                         <tr>
                             <td>{{ $item->language }}</td>
-                            <td class="ved"><a href="/admin/languageModule/{{ urlencode($item->language) }}"><i class="bx bxs-show"></i></a></td>
+                            <td class="ved">
+                                <a href="/admin/languageModule/{{ urlencode($item->language) }}"><i class="bx bxs-show"></i></a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
