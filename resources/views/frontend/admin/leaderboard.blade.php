@@ -94,8 +94,8 @@
         <div class="tablebg">
             <div class="heading">
                 <h2>Leaderboard</h2>
-                <input class="search" placeholder="Search" id="search">
-                <a href="#" class="action">View All</a>
+                <input class="search" placeholder="Search" id="search" onkeyup="search()">
+                <a></a>
             </div>
             <table class="leaderboard">
                 <thead>
@@ -110,58 +110,50 @@
                     <td class="number-column">Total EXP</td>         
                 </thead>
                 <tbody>
+                    @foreach ($userPoints as $index => $userPoint)
                     <tr>
-                        <td id="gold">1</td>
-                        <td>Anita Maxx Wynn</td>
-                        <td>David Matthew</td>
-                        <td>Borromeo</td>
-                        <td>5</td>
-                        <td>10 Exp</td>
-                        <td>10 Exp</td>
-                        <td>10 Exp</td>
-                        <td>30</td>
+                        <td id="{{ $index == 0 ? 'winner' : ($index == 1 ? 'runner-up' : ($index == 2 ? 'second-runner-up' : '')) }}">{{ $index + 1 }}</td>
+                        <td><img src="{{$userPoint['profile_photo'] ? asset('/images/' . $userPoint['profile_photo']) : '/assets/images/avatar.png' }}">
+                            <p>{{ $userPoint['username'] }}</p>
+                        </td>
+                        <td>{{ $userPoint['fname']}}</td>
+                        <td>{{ $userPoint['lname']}}</td>
+                        <td>{{ $userPoint['badge'] ?? 0}}</td>
+                        <td>{{ $userPoint['module'] ?? 0}}</td>
+                        <td>{{ $userPoint['quiz'] ?? 0 }}</td>
+                        <td>{{ $userPoint['exercise'] ?? 0}}</td>
+                        <td>{{ $userPoint['total_points'] ?? 0}}</td>
                     </tr>
-                    <tr>
-                        <td id="silver">2</td>
-                        <td>KAKASHI</td>
-                        <td>Fritz</td>
-                        <td>Retiza</td>
-                        <td>3</td>
-                        <td>10 Exp</td>
-                        <td>5 Exp</td>
-                        <td>10 Exp</td>
-                        <td>25</td>
-                    </tr>
-                    <tr>
-                        <td id="bronze">3</td>
-                        <td>GOJO</td>
-                        <td>Shen</td>
-                        <td>Remandaban</td>
-                        <td>2</td>
-                        <td>5 Exp</td>
-                        <td>5 Exp</td>
-                        <td>10 Exp</td>
-                        <td>20</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>balagbag magmahal</td>
-                        <td>Gian</td>
-                        <td>Isangga</td>
-                        <td>0</td>
-                        <td>5 Exp</td>
-                        <td>5 Exp</td>
-                        <td>10 Exp</td>
-                        <td>20</td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>    
 </div>
 
+
     <script src="../assets/js/admin/admin.js" async></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 
+    <script>
+        function search() {
+            var text = document.getElementById('search').value.toLowerCase();
+            var rows = document.querySelectorAll('.leaderboard tbody tr');
+
+            rows.forEach(function(row) {
+                var match = false;
+                row.querySelectorAll('td').forEach(function(cell) {
+                    if (cell.textContent.toLowerCase().includes(text)) {
+                        match = true;
+                    }
+                });
+                if (match) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>

@@ -142,8 +142,6 @@
                         <a href="#"><i class='bx bx-check'></i>
                             <p>Mark all as read</p>
                         </a>
-                        <a href="#"><i class='bx bxs-bell'></i>
-                            <p>Open notifications</p>
                         </a>
                         <a href="#"><i class='bx bxs-trash'></i>
                             <p>Clear all notifications</p>
@@ -158,7 +156,8 @@
                     @foreach ($notif as $notification)
                         <div class="notif-container" onclick="markNotificationAsRead('1')">
                             <a href="#"
-                                class="notification-item @if (!$notification->is_read) unread-notif @endif">
+                                 class="notification-item @if (!$notification->is_read) unread-notif @endif"
+                                data-notification-id="{{ $notification->id }}" data-post-id="{{ $notification->post_id }}">
                                 <span class="unread"></span>
                                 <img src="/images/{{ $notification->user->profile_photo }}" alt="Notification Icon"
                                     class="icon"> <!-- Display user's avatar -->
@@ -191,80 +190,7 @@
 
 
 
-                {{-- <div class="notif-container">
-          <a href="#" class="notification-item unread-notif">
-            <span class="unread"></span>
-            <img src="images/avatar.jpg" alt="Notification Icon" class="icon">
-            <div class="content">
-              <h2 class="notification-item-user-block">
-                <span class="notification-item-user-name">Kioh Samson</span> is watching your repository
-              </h2>
-              <span class="timestamp">3hrs ago</span>
-            </div>
-
-            <button data-target="settings1" type="button" class="notif-action">
-              <i class="bx bx-dots-horizontal-rounded"></i>
-            </button>
-
-
-          </a>
-
-          <div class="notif-action-modal" id="settings1">
-            <a href="#"><i class='bx bx-check'>
-                <p>Mark as read</p>
-              </i></a>
-            <a href="#"><i class='bx bxs-bell'>
-                <p>Remove</p>
-              </i></a>
-          </div>
-        </div>
-
-        <div class="notif-container">
-          <a href="#" class="notification-item">
-            <img src="images/avatar.jpg" alt="Notification Icon" class="icon">
-            <div class="content">
-              <h2 class="notification-item-user-block">
-                <span class="notification-item-user-name">David Matthew Arsenal</span> is watching your repository
-              </h2>
-              <span class="timestamp">1 day ago</span>
-            </div>
-
-            <button data-target="settings2" type="button" class="notif-action">
-              <i class="bx bx-dots-horizontal-rounded"></i>
-            </button>
-          </a>
-
-          <div class="notif-action-modal" id="settings2">
-            <a href="#"><i class='bx bx-check'>
-                <p>Mark as unread</p>
-              </i></a>
-            <a href=""><i class='bx bxs-bell'>
-                <p>Remove</p>
-              </i></a>
-          </div>
-        </div> --}}
-
-
-                <!--
-            <a href="#" class="notif-container">
-              <span class="unread"></span>
-
-                  <button data-target="settings1" type="button" class="notif-action">
-                      <i class="bx bx-dots-horizontal-rounded"></i>
-                  </button>
-
-                  <div class="notif-action-modal" id="settings1">
-                      <a href=""><i class='bx bx-check'><p>Mark as read</p></i></a>
-                      <a href=""><i class='bx bxs-bell'><p>Remove</p></i></a>
-                  </div>
-
-                   <img src="images/avatar.jpg" alt="">
-                    <div class="notification-list-user-block"><span class="notification-list-user-name">Kioh Samson</span> is watching your main repository
-                        <div class="notification-date">2 min ago</div>
-                    </div>
-
-            </a>
-            -->
+               
 
                 <!-- WHEN NO NOTIF DISPLAYED THIS WILL SHOW UP-->
                 <div class="empty-state">

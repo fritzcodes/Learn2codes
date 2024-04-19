@@ -93,18 +93,20 @@
         <div class="tablebg">
             <div class="heading">
                 <h2>All Users</h2>
-                <input class="search" placeholder="Search" id="search">
-                <a href="#" class="action">View All</a>
+                <input class="search" placeholder="Search" id="search" onkeyup="search()">
+                <a></a>
             </div>
             <table class="manage-user">
                 <thead>
-                    <td>User ID</td>
-                    <td>FirstName</td>
-                    <td>LastName</td>  
-                    <td>Username</td>
-                    <td>Year</td>
-                    <td>Course</td>
-                    <td>Action</td>         
+                    <tr>
+                        <td>User ID</td>
+                        <td>FirstName</td>
+                        <td>LastName</td>  
+                        <td>Username</td>
+                        <td>Year</td>
+                        <td>Course</td>
+                        <td>Action</td>        
+                    </tr>
                 </thead>
                 <tbody>
                     @foreach($user as $use )
@@ -128,8 +130,31 @@
     </div>
 </div>
 
+
     <script src="../assets/js/admin/admin.js" async></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+
+
+    <script>
+        function search() {
+            var text = document.getElementById('search').value.toLowerCase();
+            var rows = document.querySelectorAll('.manage-user tbody tr');
+
+            rows.forEach(function(row) {
+                var match = false;
+                row.querySelectorAll('td').forEach(function(cell) {
+                    if (cell.textContent.toLowerCase().includes(text)) {
+                        match = true;
+                    }
+                });
+                if (match) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>

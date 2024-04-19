@@ -140,7 +140,7 @@
             <div class="tablebg">
                 <div class="heading">
                     <h2>Quiz</h2>
-                    <input class="search" placeholder="Search" id="search">
+                    <input class="search" placeholder="Search" id="search" onkeyup="search()">
                     <a></a>
                 </div>
                 <table class="quiz">
@@ -175,6 +175,26 @@
         </div>
     </div>
 
+    <script>
+        function search() {
+            var text = document.getElementById('search').value.toLowerCase();
+            var rows = document.querySelectorAll('.quiz tbody tr');
+
+            rows.forEach(function(row) {
+                var match = false;
+                row.querySelectorAll('td').forEach(function(cell) {
+                    if (cell.textContent.toLowerCase().includes(text)) {
+                        match = true;
+                    }
+                });
+                if (match) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    </script>
     <script src="../assets/js/admin/admin.js" async></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 
