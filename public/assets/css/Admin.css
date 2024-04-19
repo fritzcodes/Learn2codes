@@ -6,7 +6,6 @@
     padding: 0;
     box-sizing: border-box;
     list-style: none;
-    text-decoration: none;
 }
 
 :root{ /*---font and color defaults --*/
@@ -86,12 +85,6 @@
     opacity: 1;
 }
 
-
-.top .logo  {
-    font-size: 2rem;
-    margin-right: 5px;
-}
-
 .user {
     display: flex;
     align-items: center;
@@ -99,12 +92,14 @@
 }
 
 .user p {
+    font-size: var(--p-font);
     color: var(--main-color);
     opacity: 1;
     margin-left: 1rem;
 }
 
 .username {
+    font-size: var(--p-font);
     font-weight: 600;
 }
 
@@ -125,6 +120,7 @@
 }
 
 .sidebar ul li a {
+    font-size: var(--p-font);
     color: var(--main-color);
     display: flex;
     align-items: center;
@@ -163,7 +159,7 @@
     left: 80px;
     width: calc(100% - 80px);
     display: block;
-    overflow-x: hidden;
+    overflow-x: auto;
 }
 
 .active {
@@ -252,7 +248,6 @@ form {
 .form {
     justify-content: space-evenly;
     display: flex;
-    margin-bottom: 20px;
     overflow-x: hidden;
     font-family: var(--font2);
 }
@@ -366,44 +361,60 @@ form {
     display: block;
 }
 
-.langpicDiv #language {
-    margin-right: 20px;
-    color: var(--bg-color);
-    background: linear-gradient(0deg, rgba(137, 33, 33, 0.2), rgba(137, 33, 33, 0.2)),
-    linear-gradient(180.04deg, rgba(253, 140, 140, 0.81) 0.04%, rgba(255, 128, 185, 0.57699) 0.04%, rgba(200, 97, 97, 0.710019) 50.69%, rgba(206, 2, 137, 0.53) 101.64%);
-    border-radius: 5px;
-    text-indent: 5px;
-    font-size: 17px;
-    width: 150px;
-    height: 30px; 
-}
-
-.langpicDiv #picture {
-    margin-right: 20px;
-    width: 230px;
-    height: 25px;
-    color: var(--bg-color);
-    font-size: var(--p-font);
-}
-
-.langpicDiv #picture:hover {
+.photocontainer {
+    background: var(--text-color);
+    position: relative;
+    margin: 20px 0 0 0;
+    padding: 20px 10px;
+    border-radius: 10px;
+  }
+  
+  .photoclose {
+    color: var(--second-color);
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: var(--h2-font);
+    font-weight: bold;
+    margin: 10px;
+  }
+  
+  .photoclose:hover,
+  .photoclose:focus {
+    color: var(--main-color);
+    text-decoration: none;
     cursor: pointer;
-}
-
-.langpicDiv button {
-    margin-top: 10px;
-    padding: 7px 3%;
-    background: var(--high-color);
-    color: var(--bg-color);
-    border-radius: 5px;
+  }
+  
+  .photocontainer input[type="file"] {
+    display: none;
+  }
+  
+  .photocontainer label {
+    display: block;
+    position: relative;
+    background-color: var(--main-color);
+    color: var(--text-color);
     font-size: var(--p-font);
     text-align: center;
-    border-width: 0;
-}
-
-.langpicDiv button:hover {
+    max-width: 300px;
+    padding: 18px 0;
+    margin: auto;
+    border-radius: 5px;
     cursor: pointer;
-}
+  }
+  
+  .photocontainer p {
+    color: var(--high-color);
+    text-align: center;
+    margin: 10px;
+  }
+
+  #photos {
+    display: flex;
+    justify-content: center;
+  }
+  
 
 
 
@@ -460,6 +471,7 @@ table {
     width: 100%;
     margin-top: 10px;
     border-collapse: collapse;
+    
 }
 
 
@@ -491,10 +503,19 @@ td {
 }
 
 .ved i {
+    margin-right: 5px;
     padding: 5px;
     color: var(--main-color);
-    border-radius: 50px;
+    border-radius: 100%;
+    border: none;
+} 
 
+.ved button {
+    padding: 7px;
+    color: var(--main-color);
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;
 } 
 
 .tablebg table tbody td:last-child {
@@ -532,8 +553,7 @@ td {
 /*-----------ADD MODULE----------------*/
 
 .input{
-    margin-top: 5px;
-    color: var(--main-color);
+    color: var(--bg-color);
     background: var(--text-color);
     border-radius: 5px;
     text-indent: 5px;
@@ -552,16 +572,17 @@ td {
     font-size: var(--p-font);
     text-align: center;
     border-width: 0;
+    cursor: pointer;
 }
 
 .label {
-    font-size: 20px;
+    font-size: var(--p-font);
     font-weight: 600;
     color: var(--main-color);
 }
 
 .summernote {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 .summernote textarea{
@@ -576,6 +597,7 @@ td {
 
 
 .select {
+    margin: 0 0 10px 0;
     padding: 3px;
     color: var(--main-color);
     background: var(--text-color);
@@ -585,6 +607,7 @@ td {
 }
 
 .select option{
+    font-size: var(--p-font);
     color: var(--main-color);
 }
 
@@ -632,7 +655,7 @@ td {
 }
 
 
-@media(max-width:860px) {
+@media (max-width: 860px) {
     :root {
         --h2-head: 1.5rem;
         --p-head: 1rem;
@@ -660,10 +683,6 @@ td {
         display: none;
     }
 
-    .tablebg {
-        height: 65vh;
-    }
-
     .cardBox {
         display: block;
       }
@@ -680,77 +699,19 @@ td {
         margin-bottom: 5px;
       }
 
+      .form {
+        display: block;
+      }
+
 }
 
 
 @media(max-width:540px) {
-    :root{ /*---font and color defaults --*/
-        --h2-font: 2.2rem;
-        --p-font: .9rem;
-    }
-
-    .form, .table {
-        padding: 0;
-    }
-    
-    .form {   
-        padding: 10px;
-        display: block;
-    }
-
-
-    .manage-user td:nth-child(4)  {
-        display: none;
-    }  
-
-
-    .search {
-        width: 70px;
-
-    }
-
-    .ansDiv {
-        margin-top: 20px;
-    }
-
-    .ansDiv button {
-        float: none;
-        position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .optionDiv {
-        margin-top: 20px;
-        padding: 0;
-    }
-
-    .langpicDiv #language {
-        width: 100%;
-        margin-right: 0;
-    }  
-
-    .langpicDiv #picture {
-        margin-right: 0;
-    }
-
-    .langpicDiv button {
-        margin-top: 0;
-    }
-
-    .quesDiv {
-        padding: 0;
-    }
-
-    .langDiv {
-        margin-top: 20px;
-    }
-
-    .difDiv {
-        margin-top: 20px;
-    }
-
+    :root {
+        --h2-head: 1.1rem;
+        --p-head: 0.8rem;
+        transition: .2s;
+      }
 
     .sidebar.active ~ .main-content {
         left: 0;
@@ -759,32 +720,37 @@ td {
 
     .sidebar.active {
         z-index: 1000;
+        width: 70%;
+    }
+
+    .input, .select {
         width: 100%;
     }
 
-    .quiz td:nth-child(2)  {
-        display: none;
+    .ansDiv button {
+        margin-top: 10px;
     }
 
-    .manage-user td:nth-child(6)  {
-        display: none;
+    .summernote {
+        padding:  0 0 10px 0; 
     }
 
+    .summernote label {
+        margin-left: 5px;
+    }
 
-.languagetb tbody tr td img {
-    height: 50px;
-    width: 50px;
-} 
+    .summernote input, .summernote select {
+        border-radius: 0;
+    }
+
+    .summernote button {
+        margin-right: 10px;
+    }
 
 
 }
 
 @media(max-width:380px) {
-    :root{ /*---font and color defaults --*/
-        --h2-font: 2rem;
-        --p-font: 1rem;
-    }
-
     .tablebg {
         padding: 10px 5px 10px 5px;
         font-size: var(--p-font);        
@@ -797,10 +763,11 @@ td {
 }
 
 @media(max-width:280px) {
-    :root{ /*---font and color defaults --*/
-        --h2-font: 1.5rem;
-        --p-font: .9rem;
-    }
+    :root {
+        --h2-head: 1rem;
+        --p-head: 0.8rem;
+        transition: .2s;
+      }
 
     .manage-user td:nth-child(7)  {
         display: none;
@@ -810,26 +777,37 @@ td {
         display: none;
     }
  
-    table {
-        font-size: var(--p-font);
-
-    }
 
 }
 
 @media (min-height: 1024px) {
     :root {
-        --h2-font: 2.5rem;
-        --p-font: 1.5rem;
+        --h2-head: 2.5rem;
+        --p-head: 1.5rem;
+        transition: .2s;
     }
+
+    .sidebar.active ~ .main-content {
+        left: 0;
+        width: calc(100% - 0%);
+    }
+
+    .sidebar.active {
+        z-index: 1000;
+        width: 50%;
+    }
+
 
 
 }
 
 @media(min-height:1300px) {
     :root {
-        --h2-font: 3rem;
-        --p-font: 2rem;
+        --big-font: 5rem;
+        --h2-font: 2.5rem;
+        --p-font: 1.5rem;
+        transition: .2s;
+    
     }
 
     .sidebar {

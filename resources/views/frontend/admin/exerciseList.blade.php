@@ -7,129 +7,23 @@
     <meta name="author" content="CodeHim">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="/assets/css/Admin.css">
-    <title> List of Exercise | Admin </title>
-    <!-- Style CSS -->
+    <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.svg">
+    <title> Exercise List | Admin </title>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&amp;display=swap'>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
-
-        .cd__intro {
-            padding: 60px 30px;
-            margin-bottom: 15px;
-            flex-direction: column;
-
-        }
-
-        .cd__intro,
-        .cd__credit {
-            display: flex;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-            background: #fff;
-            color: #333;
-            line-height: 1.5;
-            text-align: center;
-        }
-
-        .cd__intro h1 {
-            font-size: 18pt;
-            padding-bottom: 15px;
-
-        }
-
-        .cd__intro p {
-            font-size: 14px;
-        }
-
-        .cd__action {
-            text-align: center;
-            display: block;
-            margin-top: 20px;
-        }
-
-        .cd__action a.cd__btn {
+      *{
             text-decoration: none;
-            color: #666;
-            border: 2px solid #666;
-            padding: 10px 15px;
-            display: inline-block;
-            margin-left: 5px;
-        }
-
-        .cd__action a.cd__btn:hover {
-            background: #666;
-            color: #fff;
-            transition: .3s;
-            -webkit-transition: .3s;
-        }
-
-        .cd__action .cd__btn:before {
-            font-family: FontAwesome;
-            font-weight: normal;
-            margin-right: 10px;
-        }
-
-        .down:before {
-            content: "\f019"
-        }
-
-        .back:before {
-            content: "\f112"
-        }
-
-        .cd__credit {
-            padding: 12px;
-            font-size: 9pt;
-            margin-top: 40px;
-
-        }
-
-        .cd__credit span:before {
-            font-family: FontAwesome;
-            color: #e41b17;
-            content: "\f004";
-
-
-        }
-
-        .cd__credit a {
-            color: #333;
-            text-decoration: none;
-        }
-
-        .cd__credit a:hover {
-            color: #1DBF73;
-        }
-
-        .cd__credit a:hover:after {
-            font-family: FontAwesome;
-            content: "\f08e";
-            font-size: 9pt;
-            position: absolute;
-            margin: 3px;
-        }
-
-        .cd__main {
-            background: #fff;
-            padding: 20px;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: center;
-
-        }
-
-        .cd__main {
-            display: flex;
-            width: 100%;
-        }
-
+            box-sizing: border-box;
+            list-style: none;
+        }          
+ 
         @media only screen and (min-width: 1360px) {
+
             .cd__main {
                 max-width: 1280px;
                 margin-left: auto;
@@ -138,61 +32,44 @@
             }
         }
 
-        .cd__main {
-            padding: 0;
-            margin: 0;
-            width: 100%;
-            height: 100vh;
-            background: #cb38e9;
-            position: relative;
-            background: radial-gradient(circle, #cb38e9 0%, #842fa8 100%) !important;
-        }
-
-        .cd__main p {
-            font-size: 0.75em;
-            font-weight: bold;
-            position: absolute;
-            top: 15%;
-            width: 100%;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            text-align: center;
-            color: white;
-            user-select: none;
+        .main-content {
+            overflow: auto;
         }
 
         .draggable-table {
+            font-family: var(--font2);  
             position: absolute;
             top: 25%;
             left: 20%;
             width: 60%;
             height: 50%;
             border-collapse: collapse;
-            background: white;
             -webkit-box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.1);
             box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.1);
         }
 
         .draggable-table .draggable-table__drag {
-            font-size: 0.95em;
+            font-size: var(--p-font);
             font-weight: lighter;
+            font-weight: 600;
             text-transform: capitalize;
+            user-select: none;
+            border-top: 1px solid var(--main-color);
             position: absolute;
-            width: 100%;
-            text-indent: 50px;
             border: 1px solid #f1f1f1;
             z-index: 10;
             cursor: grabbing;
-            -webkit-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.05);
-            box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.05);
-            opacity: 1;
+            opacity: 60%;
+            
         }
 
         .draggable-table thead th {
-            height: 25px;
+            background: var(--second-color);
+            color: var(--main-color);
             font-weight: bold;
             text-transform: capitalize;
-            padding: 10px;
+            padding: 10px 20px;
+            text-align: left;
             user-select: none;
         }
 
@@ -201,31 +78,50 @@
         }
 
         .draggable-table tbody tr td {
-            font-size: 0.95em;
+            font-size: var(--p-font);
             font-weight: lighter;
+            padding: 20px;
             text-transform: capitalize;
-            text-indent: 50px;
-            padding: 10px;
             user-select: none;
-            border-top: 1px solid whitesmoke;
-            color: #000;
+            border-top: 1px solid var(--main-color);
+
         }
 
         .draggable-table tbody tr:nth-child(even) {
-            background-color: #f7f7f7;
+            background-color: var(--main-color);
         }
 
         .draggable-table tbody tr:nth-child(odd) {
-            background-color: #ffffff;
+            background-color: var(--main-color);
         }
 
         .draggable-table tbody tr.is-dragging {
-            background: #f1c40f;
+            background: var(--bg-color);
         }
 
         .draggable-table tbody tr.is-dragging td {
-            color: #ffe683;
+            color: var(--second-color);
         }
+
+
+        
+        @media (max-width: 860px) {
+            :root {
+        --h2-head: 1.5rem;
+        --p-head: 1rem;
+        transition: .2s;
+      }
+
+      .draggable-table {
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: auto;
+            margin: 0;
+        }   
+ 
+}
     </style>
 </head>
 
@@ -244,7 +140,7 @@
             <img src="{{Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photoo) : 'assets/images/avatar.png' }}" alt="user" class="user-img">
             @else
             <!-- Placeholder image or default avatar -->
-            <img src="../assets/images/avatar.png" alt="user" class="user-img">
+            <img src="/assets/images/avatar.png" alt="user" class="user-img">
             @endif
             {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
             <div>
@@ -329,7 +225,9 @@
                 @foreach ($data as $item)
                     <tr id="{{ $item->id }}">
                         <td>{{ $item->content }}</td>
-                        <td><a href="/admin/exercise-view/{{$item->id}}"><button>View</button></a></td>
+                        <td class="ved">
+                                <a href="/admin/exercise-view/{{$item->id}}"><i class="bx bxs-show"></i></a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

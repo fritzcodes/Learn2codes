@@ -121,14 +121,15 @@
         @csrf
         <input type="hidden" name="id" value="{{$modules->id}}">
         <label class="label">Title</label>
-        <input type="text" name="title" id="" value="{{$modules->title}}">
+        <input class="input" type="text" name="title" id="" value="{{$modules->title}}">
         <br>
         <label class="label">Language</label>
-        <input type="text" value="{{$modules->language}}" name="language" readonly>
+        <input class="input" type="text" value="{{$modules->language}}" name="language" readonly>
         <div style="width: 100%">
             <textarea id="summernote" name="content">{{$modules->content}}</textarea>
         </div>
-        Example Code:
+        <br>
+        <label class="label">Example Code:</label>
         <textarea name="trycode" cols="50" rows="10" style="width: 100%">{{$modules->trycode}}</textarea>
         <button type="submit" class="button" style="margin-top: 20px;">Update</button>
     </form>

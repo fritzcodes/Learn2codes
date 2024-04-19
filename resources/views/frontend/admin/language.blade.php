@@ -16,8 +16,8 @@
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
 
+</head>
 
 <body>
 
@@ -104,17 +104,31 @@
     </div>
 
 
-    <div class="main-content" id="content1">        <!------------------------------------------ dashboard -->  
-        <form action="/admin/AddLanguage" method="post" enctype="multipart/form-data">
-            @csrf
-           <div class="form">
+    <div class="main-content">
+                <!------------------------------------------ dashboard -->  
+        <form action="/admin/AddLanguage" method="post" enctype="multipart/form-data" class="summernote">
+           @csrf            
+        <div class="form">
                <div class="langpicDiv">
                    <label for="ops" id="option">Add Language</label>
                    <br>
-                   <input type="text" name="language" id="language" placeholder="Language" required>
-                   <input type="file" name="picture" id="picture" accept="image/*, .svg" required>
+                   <input class="input" type="text" name="language" id="language" placeholder="Language" required>
+                   <div class="photocontainer">
+                                    <input type="file" name="picture" id="picture"
+                                            accept="image/*, .svg" required>
+                                    <label for="picture">
+                                        <i class='bx bx-upload'></i> &nbsp; Choose A Photo
+                                    </label>
+                                    <p id="num-of-files">
+                                        No Files Chosen
+                                    </p>
+                                    <div id="photos">
+
+                                    </div>
+                    </div>
+
                    <br>
-                   <button onclick="" id="add_question" type="submit" value="Add">Add</button>               
+                   <button class="button" type="submit">Add</button>               
                </div>
            </div>
 
@@ -195,6 +209,34 @@
         function del(id){
             
         }
+    </script>
+
+    <script>
+        //      ADD IMAGE SECTION
+
+document.getElementById('picture').addEventListener('change', function () {
+  var preview = document.getElementById('photos');
+  preview.innerHTML = ''; // Clear the preview
+  var files = event.target.files; // Get the selected files
+
+  for (var i = 0; i < files.length; i++) {
+    var file = files[i];
+
+    if (file.type.startsWith('image/')) { // Ensure it's an image
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        var img = document.createElement('img');
+        img.src = e.target.result;
+        img.style.maxWidth = '200px'; // Set the maximum width of the preview image
+        img.style.maxHeight = '200px'; // Set the maximum height of the preview image
+        preview.appendChild(img);
+      };
+
+      reader.readAsDataURL(file); // Read the image file as a data URL
+    }
+  }
+});
     </script>
 </body>
 

@@ -1,7 +1,9 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Module | Admin</title>
     <link rel="stylesheet" href="../assets/css/admin.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -113,7 +115,6 @@
             <option value="{{ $item->language }}">{{ $item->language }}</option>
             @endforeach
         </select>
-
         <div style="width: 100%;">
             <textarea id="summernote" name="content"></textarea>
         </div>
@@ -122,21 +123,23 @@
         <textarea name="trycode" id="trycode" cols="100" rows="10" style="width: 100%;"></textarea><br>
         <label for="filename" class="label">File Name</label>
         <input type="text" name="filename" class="input" id="filename" placeholder="example.java"><br>
-        <button class="button" type="submit">Add module</button>
-
+        <button class="button" type="submit" style="margin-top: 20px;">Add module</button>
+        <br>
     </form>
 
     <div class="table">
-            <div class="tablebg">
-                <div class="heading">
+        <div class="tablebg">
+            <div class="heading">
+                <h2>Module</h2>
+                <input class="search" placeholder="Search" id="search">
+                <a href="#" class="action" style="display:none;">View All</a>
+            </div>
+            <table class="quiz">
+                    <tr>
+                        <th>Language</th>
+                        <th>Action</th>
+                    </tr>
 
-                </div>
-                <table class="quiz">
-                    <thead>
-                        <td>Language</td>
-                        <td>Action</td>
-                    </thead>
-                    <tbody>
                     @foreach ($data as $item)
                         <tr>
                             <td>{{ $item->language }}</td>
@@ -145,10 +148,9 @@
                             </td>
                         </tr>
                     @endforeach
-                    </tbody>
-                </table>
-            </div>
+            </table>
         </div>
+    </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>

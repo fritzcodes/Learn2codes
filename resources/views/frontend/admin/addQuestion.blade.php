@@ -169,7 +169,6 @@
                                 <td>{{ $question->level }}</td>
                                 <td>{{ $question->option1 . ' | ' . $question->option2 . ' | ' . $question->option3 . ' | ' . $question->option4 }}</td>
                                 <td class="ved">
-                                    <i class="bx bxs-edit"></i>
                                     <button type="submit" class="bx bxs-trash"></button>
                                 </td>
                             </tr>
