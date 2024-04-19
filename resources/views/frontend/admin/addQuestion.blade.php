@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn2Code</title>
+    <title>Add Quiz | Admin</title>
+    <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.svg">
     <link rel="stylesheet" href="../assets/css/admin.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 </head>
@@ -67,15 +68,15 @@
                 </a>
             </li>
             <li>
-                <a target="_top" href="#">
-                    <i class="bx bx-dumbbell"></i>
-                    <span class="nav-item">EXP Progress</span>
+                <a target="_top" href="{{ route('addModule') }}">
+                <i class='bx bxs-book-reader'></i>
+                    <span class="nav-item">Module</span>
                 </a>
             </li>
             <li>
-                <a target="_top" href="#">
-                    <i class="bx bxs-medal"></i>
-                    <span class="nav-item">Badge</span>
+                <a target="_top" href="{{ route('addExercise') }}">
+                    <i class="bx bx-dumbbell"></i>
+                    <span class="nav-item">Exercise</span>
                 </a>
             </li>
             <li class="Logout">
@@ -95,23 +96,23 @@
             @csrf
             <div class="form">
                 <div class="quesDiv">
-                    <label for="que">Question</label>
+                    <label>Question</label>
                     <br>
                     <textarea required name="question" id="" cols="30" rows="10" placeholder="Type a question..."></textarea>
                     <br>
                 </div>
 
                 <div class="optionDiv">
-                    <label for="ops" id="option">Options</label>
-                    <p>Option 1:</p> <input required type="text" name="option1" id=""><br>
-                    <p>Option 2:</p> <input required type="text" name="option2" id=""><br>
-                    <p>Option 3:</p> <input required type="text" name="option3" id=""><br>
-                    <p>Option 4:</p> <input required type="text" name="option4" id=""><br>
+                    <label id="option">Options</label>
+                    <input required type="text" name="option1" id="" placeholder="Option 1"><br>
+                    <input required type="text" name="option2" id="" placeholder="Option 2"><br>
+                    <input required type="text" name="option3" id="" placeholder="Option 3"><br>
+                    <input required type="text" name="option4" id="" placeholder="Option 4"><br>
                 </div>
 
                 <div class="ansDiv">
                     <label for="ans">Answer </label>
-                    <input required type="text" name="answer" id="" class="input">
+                    <input required type="text" name="answer" id="">
 
                     <div class="langDiv">
                         <label for="lang">Programming Language</label>
@@ -124,7 +125,7 @@
 
                     <div class="difDiv">
                         <label for="dif">Difficulty</label>
-                        <select name="level" class="input" id="">
+                        <select name="level" id="">
                             <option value="easy">Easy</option>
                             <option value="medium">Medium</option>
                             <option value="hard">Hard</option>
@@ -145,9 +146,9 @@
                 <table class="quiz">
                     <thead>
                         <td>Questions</td>
-                        <td class="medium-column">Answers</td>
-                        <td class="small-column">Language</td>
-                        <td class="small-column">Difficulty</td>
+                        <td>Answers</td>
+                        <td>Language</td>
+                        <td>Difficulty</td>
                         <td>Options</td>
                         <td>Actions</td>
                     </thead>

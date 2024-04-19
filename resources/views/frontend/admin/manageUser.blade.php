@@ -66,15 +66,15 @@
                 </a>
             </li>
             <li>
-                <a target="_top" href="#">
-                    <i class="bx bx-dumbbell"></i>
-                    <span class="nav-item">EXP Progress</span>
+                <a target="_top" href="{{ route('addModule') }}">
+                <i class='bx bxs-book-reader'></i>
+                    <span class="nav-item">Module</span>
                 </a>
             </li>
             <li>
-                <a target="_top" href="#">
-                    <i class="bx bxs-medal"></i>
-                    <span class="nav-item">Badge</span>
+                <a target="_top" href="{{ route('addExercise') }}">
+                    <i class="bx bx-dumbbell"></i>
+                    <span class="nav-item">Exercise</span>
                 </a>
             </li>
             <li class="Logout">

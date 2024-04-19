@@ -1,19 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    list-style: none;
+    text-decoration: none;
 }
 
 :root{ /*---font and color defaults --*/
-    --bg-color: #fff;
-    --text-color: #9e0d62;
-    --second-color: #5a7184;
-    --main-color: #6e54fa;
-    --big-font: 6rem;
-    --h2-font: 3rem;
-    --p-font: 1.1rem;
-}
+    --bg-color: #210535;
+    --main-color: #f5d5e0;
+    --text-color: #430d4b;
+    --second-color: #7b337d;
+    --high-color: #c874b2;
+    --big-font: 3rem;
+    --h2-font: 1.5rem;
+    --p-font: 1rem;
+    --font1: 'Orbitron';
+    --font2: Helvetica;
+    transition: .2s;
+  }
+
 
 .user img {
     width: 50px;
@@ -27,11 +36,9 @@
     left: 0;
     height: 100vh;
     width: 80px;
-    background: linear-gradient(180deg, #020202 0%, rgba(52, 44, 44, 0.69) 50%, rgba(2, 2, 2, 50.79) 100%),
-    linear-gradient(0deg, rgba(137, 33, 33, 70.2), rgba(137, 33, 33, 70.2)),
-    linear-gradient(180.04deg, rgba(253, 140, 140, 70.81) 0.04%, rgba(255, 128, 185, 0.57699) 0.04%, rgba(200, 97, 97, 0.710019) 50.69%, rgba(206, 2, 137, 0.53) 101.64%);
+    background: var(--second-color);
     padding: 0.4rem 0.8rem;
-    transition: all 0.5s ease;
+    font-family: var(--font2);
 }
 
 .sidebar.active ~ .main-content {
@@ -40,16 +47,19 @@
 }
 
 .sidebar.active {
+    background: var(--second-color);
     position: fixed;
     width: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .sidebar #btn {
     position: absolute;
-    color: var(--bg-color);
+    color: var(--main-color);
     top: .4rem;
     left: 50%;
-    font-size: 1.2rem;
+    font-size: var(--h2-font);
     line-height: 50px;
     transform: translateX(-50%);
     cursor: pointer;
@@ -60,7 +70,10 @@
 }
 
 .sidebar .top .logo {
+    font-family: var(--font1);
+    font-size: var(--h2-font);
     color: var(--bg-color);
+    font-weight: 600;
     display: flex;
     height: 50px;
     width: 100%;
@@ -86,7 +99,7 @@
 }
 
 .user p {
-    color: var(--bg-color);
+    color: var(--main-color);
     opacity: 1;
     margin-left: 1rem;
 }
@@ -112,7 +125,7 @@
 }
 
 .sidebar ul li a {
-    color: var(--bg-color);
+    color: var(--main-color);
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -120,8 +133,7 @@
 }
 
 .sidebar ul li a:hover {
-    background-color: var(--bg-color);
-    color: #1a1a1a;
+    background-color: var(--text-color);
 }
 
 .sidebar ul li a i {
@@ -145,23 +157,20 @@
 /*-----------MAIN----------------*/
 .main-content {
     position: relative;
-    background: linear-gradient(0deg, rgba(137, 33, 33, 0.2), rgba(137, 33, 33, 0.2)),
-    linear-gradient(180.04deg, rgba(253, 140, 140, 0.81) 0.04%, rgba(255, 128, 185, 0.57699) 0.04%, rgba(200, 97, 97, 0.710019) 50.69%, rgba(206, 2, 137, 0.53) 101.64%);
+    background: var(--bg-color);
     min-height: 100vh;
     top: 0;
     left: 80px;
-    transition: all 0.5s ease;
     width: calc(100% - 80px);
-    padding: 1rem;
     display: block;
-    transition: all 0.5s ease;
     overflow-x: hidden;
 }
 
 .active {
-    background-color: var(--text-color); /* Green background for active links */
+    background-color: var(--bg-color); /* Green background for active links */
     color: var(--bg-color); /* White text for active links */
 }
+
 
 /*-----------CARD----------------*/
 .cardBox {
@@ -171,36 +180,36 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 30px;
+    font-family: var(--font2);
   }
   
   .cardBox .card {
     position: relative;
-    background: var(--white);
+    background: var(--text-color);
     padding: 30px;
     border-radius: 20px;
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
     border: var(--bg-color) solid;
   }
   
   .cardBox .card .numbers {
     position: relative;
     font-weight: 500;
-    font-size: var(--h2-font);
-    color: var(--bg-color);
+    font-size: var(--big-font);
+    color: var(--second-color);
   }
   
   .cardBox .card .cardName {
-    color: var(--bg-color);
-    font-size: var(--p-font);
+    color: var(--second-color);
+    font-size: var(--h2-font);
     margin-top: 5px;
   }
   
   .cardBox .card .iconBx {
-    font-size: var(--h2-font);
-    color: var(--bg-color);
+    font-size: var(--big-font);
+    color: var(--second-color);
   }
   
   .cardBox .card:hover {
@@ -209,7 +218,7 @@
   .cardBox .card:hover .numbers,
   .cardBox .card:hover .cardName,
   .cardBox .card:hover .iconBx {
-    color: var(--bg-color);
+    color: var(--main-color);
   }
 
 
@@ -225,96 +234,101 @@
   
   .chartsBx .chart{
     position: relative;
-    background: linear-gradient(180deg, #020202 0%, rgba(52, 44, 44, 0.69) 50%, rgba(2, 2, 2, 50.79) 100%),
-    linear-gradient(0deg, rgba(137, 33, 33, 70.2), rgba(137, 33, 33, 70.2)),
-    linear-gradient(180.04deg, rgba(253, 140, 140, 70.81) 0.04%, rgba(255, 128, 185, 0.57699) 0.04%, rgba(200, 97, 97, 0.710019) 50.69%, rgba(206, 2, 137, 0.53) 101.64%);
+    background: var(--text-color);
     padding: 20px;
     width: 100%;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
     border-radius: 20px;
     border: 1px solid var(--blue);
 }
 
+
+
+
 /*-----------FORM----------------*/
+form {
+    padding: 1rem;
+}
+
 .form {
-    justify-content: space-between;
-    width: 100%;
+    justify-content: space-evenly;
     display: flex;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     overflow-x: hidden;
+    font-family: var(--font2);
 }
 
-label {
-    font-size: 20px;
+.form label {
+    font-size: var(--p-font);
     font-weight: 600;
-    color: var(--bg-color);
+    color: var(--main-color);
 }
 
-.input {
-    margin-right: 20px;
-}
 
 .quesDiv {
-    padding: 0 10px 0 0;
     display: block;
+    margin: 0 10px 0 0;
     width: 100%;
 }
 
 .quesDiv textarea {
-    border-radius: 15px;
+    margin-top: 5px;
+    border-radius: 10px;
+    border: none;
     width: 100%;
-    color: var(--bg-color);
-    background: linear-gradient(0deg, rgba(137, 33, 33, 0.2), rgba(137, 33, 33, 0.2)),
-    linear-gradient(180.04deg, rgba(253, 140, 140, 0.81) 0.04%, rgba(255, 128, 185, 0.57699) 0.04%, rgba(200, 97, 97, 0.710019) 50.69%, rgba(206, 2, 137, 0.53) 101.64%);
-    font-size: 17px;
-    text-indent: 10px;
-    padding: 5px 5px 5px 5px;
+    resize: none;
+    color: var(--main-color);
+    background: var(--text-color);
+    font-size: var(--p-font);
+    padding: 7px 10px;
 }
 
 .optionDiv {
-    width: 100%;
     display: block;
-    color: #ddd;
+    margin: 0 10px 0 0;
+    width: 100%;
+    color: var(--high-color);
 }
 
 .optionDiv input {
-    color: var(--bg-color);
-    background: linear-gradient(0deg, rgba(137, 33, 33, 0.2), rgba(137, 33, 33, 0.2)),
-    linear-gradient(180.04deg, rgba(253, 140, 140, 0.81) 0.04%, rgba(255, 128, 185, 0.57699) 0.04%, rgba(200, 97, 97, 0.710019) 50.69%, rgba(206, 2, 137, 0.53) 101.64%);
+    margin-top: 5px;
+    color: var(--main-color);
+    background: var(--text-color);
     border-radius: 5px;
-    text-indent: 5px;
-    font-size: 17px;
+    text-indent: 7px;
+    font-size: var(--p-font);
     margin-bottom: 3px;
     padding: 0 10px 0 0;
     width: 100%;
-    height: 30px;
+    height: 35px;
+    border: none;
 }
 
 .ansDiv {  
-    padding: 0 0 0 10px;
     width: 100%;
     display: block;
 }
 
 .ansDiv input{
-    color: var(--bg-color);
-    background: linear-gradient(0deg, rgba(137, 33, 33, 0.2), rgba(137, 33, 33, 0.2)),
-    linear-gradient(180.04deg, rgba(253, 140, 140, 0.81) 0.04%, rgba(255, 128, 185, 0.57699) 0.04%, rgba(200, 97, 97, 0.710019) 50.69%, rgba(206, 2, 137, 0.53) 101.64%);
+    margin-top: 5px;
+    color: var(--main-color);
+    background: var(--text-color);
     border-radius: 5px;
     text-indent: 5px;
-    font-size: 17px;
+    font-size: var(--p-font);
     width: 100%;
-    height: 30px; 
+    height: 35px;
+    border: none; 
 }
 
 .ansDiv button {
     margin-top: 60px;
     float: right;
-    background: linear-gradient(45deg, #304e4b, hsl(258, 37%, 82%));
-    color: var(--bg-color);
+    font-weight: 600;
+    background: var(--second-color);
+    color: var(--main-color);
     border-radius: 10px;
     padding: 10px 20px;
-    font-size: 17px;
+    font-size: var(--p-font);
     text-align: center;
     border-width: 0;
 }
@@ -329,17 +343,17 @@ label {
     margin: 10px 0;
 }
 
-select {
-    color: var(--bg-color);
-    background: linear-gradient(0deg, rgba(137, 33, 33, 0.2), rgba(137, 33, 33, 0.2)),
-    linear-gradient(180.04deg, rgba(253, 140, 140, 0.81) 0.04%, rgba(255, 128, 185, 0.57699) 0.04%, rgba(200, 97, 97, 0.710019) 50.69%, rgba(206, 2, 137, 0.53) 101.64%);
-    font-weight: 400;
+.form select {
+    padding: 3px;
+    color: var(--main-color);
+    background: var(--text-color);
     border-radius: 5px;
-    font-size: 17px;
+    border: none;
+    font-size: var(--p-font);
 }
 
-select option{
-    color: #1a1a1a;
+.form select option{
+    color: var(--main-color);
 }
 
 .difDiv {
@@ -379,7 +393,7 @@ select option{
 .langpicDiv button {
     margin-top: 10px;
     padding: 7px 3%;
-    background: linear-gradient(45deg, #304e4b, hsl(258, 37%, 82%));
+    background: var(--high-color);
     color: var(--bg-color);
     border-radius: 5px;
     font-size: var(--p-font);
@@ -392,43 +406,40 @@ select option{
 }
 
 
-     /*---- */
-
 
 /*-----------TABLE----------------*/
 .table {
-    border-radius: 15px;
     display: flex;
     align-items: self-start;
     scroll-behavior: smooth;
 }
 
 .tablebg {
-    background: linear-gradient(180deg, #020202 0%, rgba(52, 44, 44, 0.69) 50%, rgba(2, 2, 2, 50.79) 100%),
-    linear-gradient(0deg, rgba(137, 33, 33, 70.2), rgba(137, 33, 33, 70.2)),
-    linear-gradient(180.04deg, rgba(253, 140, 140, 70.81) 0.04%, rgba(255, 128, 185, 0.57699) 0.04%, rgba(200, 97, 97, 0.710019) 50.69%, rgba(206, 2, 137, 0.53) 101.64%);
-    height: 50vh;
+    font-family: var(--font2);
+    background: var(--main-color);
     width: 100%;
     padding: 20px;
-    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2);
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-y: auto;
+    overflow-x: auto;
 }
 
 .heading {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: var(--bg-color);
+}
+
+.heading h2 {
+    color: var(--text-color);
+    font-size: var(--p-font);
 }
 
 .search {
     border: none;
-    width: 200px;
     background: transparent;
-    border-bottom: #eee 2px solid;
-    font-size: 1em;
-    color: #ddd;
+    border-bottom: var(--second-color) 2px solid;
+    font-size: var(--p-font);
+    color: var(--text-color);
 }
 
 .search:focus {
@@ -437,10 +448,11 @@ select option{
 
 .action {
     border-radius: 5px;
-    padding: 5px 10px;
-    background: linear-gradient(45deg, #304e4b, hsl(258, 37%, 82%));
-    color: var(--bg-color);
+    padding: 5px;
+    background-color: var(--second-color);
+    color: var(--main-color);
     text-decoration: none;
+    font-size: var(--p-font);
     text-align: center;
 }
 
@@ -453,21 +465,8 @@ table {
 
 thead td {
     font-weight: 600;
-    color: #ddd;
+    color: var(--text-color);
 }
-
-.number-column {
-    width: 20px;
-  }
-
-.small-column {
-    width: 50px;
-}
-
-.medium-column {
-    width: 150px;
-}
-
 
 table tr {
     border-bottom: 1px solid rgba(83, 52, 52, 0.9);
@@ -475,7 +474,7 @@ table tr {
 
 tbody tr:hover {
     cursor: cell;
-    background: #0a0707;
+    background: var(--high-color);
 }
 
 table tr:last-child {
@@ -487,13 +486,13 @@ td {
     /*white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;*/
-    color: var(--bg-color);
+    color: var(--text-color);
     padding: 9px 5px;
 }
 
 .ved i {
     padding: 5px;
-    color: var(--bg-color);
+    color: var(--main-color);
     border-radius: 50px;
 
 } 
@@ -503,33 +502,15 @@ td {
 }
 
 .bxs-show {
-    background: #27f1b4;
-}
-
-.bxs-show:hover {
-    background: #fdfffe;
-    color: #000;
-    cursor: pointer;
+    background: green;
 }
 
 .bxs-edit {
     background: #2767f1;
 }
 
-.bxs-edit:hover {
-    background: #fdfffe;
-    color: #000;
-    cursor: pointer;
-}
-
 .bxs-trash {
     background: #ed5564;
-}
-
-.bxs-trash:hover {
-    background: #fdfffe;
-    color: #000;
-    cursor: pointer;
 }
 
 #gold {
@@ -550,6 +531,63 @@ td {
 
 /*-----------ADD MODULE----------------*/
 
+.input{
+    margin-top: 5px;
+    color: var(--text-color);
+    background: var(--text-color);
+    border-radius: 5px;
+    text-indent: 5px;
+    font-size: var(--p-font);
+    height: 35px;
+    border: none; 
+}
+
+.button, .summernote button {
+    float: right;
+    font-weight: 600;
+    background: var(--second-color);
+    color: var(--main-color);
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: var(--p-font);
+    text-align: center;
+    border-width: 0;
+}
+
+.label {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--main-color);
+}
+
+.summernote {
+    margin-bottom: 50px;
+}
+
+.summernote textarea{
+    font-family: 'Source Code Pro', monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
+    resize: none;
+    padding: 10px;
+    color: #ddd;
+    background-color: #1a1a1a;
+}
+
+
+.select {
+    padding: 3px;
+    color: var(--main-color);
+    background: var(--text-color);
+    border-radius: 5px;
+    border: none;
+    font-size: var(--p-font);
+}
+
+.select option{
+    color: var(--main-color);
+}
+
 
 
 
@@ -560,6 +598,12 @@ td {
 
 /*-----------RESPONSIVENESS----------------*/
 @media(max-width:1366px) {
+    :root {
+        --h2-head: 2rem;
+        --p-head: 1.5rem;
+        transition: .2s;
+      }
+
     .sidebar {
         width: 80px;
     }
@@ -569,7 +613,7 @@ td {
     }
 
     .chartsBx{
-        grid-gap: 2px;
+        grid-gap: 10px;
       }
 
     .chartsBx .chart{
@@ -579,16 +623,22 @@ td {
 
 }
 
-
-@media(max-width:860px) {
-    .sidebar {
-        position: fixed;
+@media (max-width: 1024px) {
+    :root{ /*---font and color defaults --*/
+        --h2-font: 1.5rem;
+        --p-font: 1rem;
     }
 
-    .ved i {
-        padding: 3px;
-    }   
+}
 
+
+@media(max-width:860px) {
+    :root {
+        --h2-head: 1.5rem;
+        --p-head: 1rem;
+        transition: .2s;
+      }
+      
     .quiz td:nth-child(5)  {
         display: none;
     }
@@ -608,11 +658,6 @@ td {
     }
     .leaderboard td:nth-child(8)  {
         display: none;
-    }
-
-
-    .table {
-        grid-template-columns: 1fr;
     }
 
     .tablebg {
@@ -640,19 +685,19 @@ td {
 
 @media(max-width:540px) {
     :root{ /*---font and color defaults --*/
-        --h2-font: 2.7rem;
-        --p-font: .6rem;
+        --h2-font: 2.2rem;
+        --p-font: .9rem;
     }
-    
-    .main-content{
+
+    .form, .table {
         padding: 0;
     }
-
-    .form {  
-        padding: 10px;  
+    
+    .form {   
+        padding: 10px;
         display: block;
-
     }
+
 
     .manage-user td:nth-child(4)  {
         display: none;
@@ -660,13 +705,12 @@ td {
 
 
     .search {
-        width: 100px;
+        width: 70px;
 
     }
 
     .ansDiv {
         margin-top: 20px;
-        padding: 0;
     }
 
     .ansDiv button {
@@ -726,23 +770,6 @@ td {
         display: none;
     }
 
-    table {
-        font-size: var(--p-font);
-    }
-
-    .tablebg {
-        height: 100vh;
-        padding: 20px 10px 20px 10px;
-        font-size: var(--p-font);        
-    }
-
-    .number-column {
-        width: 0px;
-      }
-    
-    .small-column {
-        width: 0px;
-    }
 
 .languagetb tbody tr td img {
     height: 50px;
@@ -754,21 +781,13 @@ td {
 
 @media(max-width:380px) {
     :root{ /*---font and color defaults --*/
-        --h2-font: 2.5rem;
-        --p-font: .6rem;
+        --h2-font: 2rem;
+        --p-font: 1rem;
     }
 
     .tablebg {
         padding: 10px 5px 10px 5px;
         font-size: var(--p-font);        
-    }
-
-    .search {
-        width: 70px;
-    }
-
-    table {
-        font-size: var(--p-font);
     }
 
     .manage-user td:nth-child(5)  {
@@ -779,8 +798,8 @@ td {
 
 @media(max-width:280px) {
     :root{ /*---font and color defaults --*/
-        --h2-font: 2rem;
-        --p-font: .5rem;
+        --h2-font: 1.5rem;
+        --p-font: .9rem;
     }
 
     .manage-user td:nth-child(7)  {
@@ -796,10 +815,23 @@ td {
 
     }
 
+}
+
+@media (min-height: 1024px) {
+    :root {
+        --h2-font: 2.5rem;
+        --p-font: 1.5rem;
+    }
+
 
 }
 
-@media(max-height:1368px) {
+@media(min-height:1300px) {
+    :root {
+        --h2-font: 3rem;
+        --p-font: 2rem;
+    }
+
     .sidebar {
         width: 80px;
     }

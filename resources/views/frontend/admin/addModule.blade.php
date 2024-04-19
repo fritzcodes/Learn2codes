@@ -5,16 +5,7 @@
     <title>Add Module | Admin</title>
     <link rel="stylesheet" href="../assets/css/admin.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.svg">
 </head>
 
 <body>
@@ -70,7 +61,6 @@
                 </a>
             </li>
             <li>
-
                 <a target="_top" href="#">
                     <i class="bx bxs-chat"></i>
                     <span class="nav-item">Forum</span>
@@ -98,51 +88,67 @@
 
     </div>
 
-    <div class="main-content" id="content1"> <!------------------------------------------ dashboard -->
-    @if (session()->has('message'))
-    <div class="alert alert-success">
-        {{ session('message') }}
-    </div>
-    @endif
+    <div class="main-content"> <!------------------------------------------ dashboard -->
+        @if (session()->has('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+        @endif
 
-    <form method="post" action="/admin/addNewModule">
+    <form method="post" action="/admin/addNewModule" class="summernote">
         @csrf
-        Title
-        <input type="text" name="title" id="" required>
-        Language
-        <select name="language" id="" required>
+        <label for="title" class="label">Title</label>
+        <input type="text" name="title" class="input" id="" placeholder="Input Title" required>
+        <br>
+        <label for="title" class="label">Language</label>
+        <select name="language" class="select" id="" required>
             <option value="">--Select a Language--</option>
             @foreach ($data as $item)
             <option value="{{ $item->language }}">{{ $item->language }}</option>
             @endforeach
         </select>
-        <div style="width: 1000px">
+
+        <div style="width: 100%;">
             <textarea id="summernote" name="content"></textarea>
         </div>
+        <br>
+        <label for="trycode" class="label">Example Code</label>
+        <textarea name="trycode" id="trycode" cols="100" rows="10" style="width: 100%;"></textarea><br>
+        <label for="filename" class="label">File Name</label>
+        <input type="text" name="filename" class="input" id="filename" placeholder="example.java"><br>
+        <button class="button" type="submit">Add module</button>
 
-        Example Code:
-        <textarea name="trycode" id="trycode" cols="100" rows="10"></textarea><br>
-        file Name: <span style="color:red"> Example: (Main.java)</span>
-        <input type="text" name="filename" id="filename"><br>
-        <input type="submit" value="Add module">
     </form>
 
-    <table>
-        <tr>
-            <th>Language</th>
-            <th>Action</th>
-        </tr>
+    <div class="table">
+            <div class="tablebg">
+                <div class="heading">
 
-        @foreach ($data as $item)
-        <tr>
-            <td>{{ $item->language }}</td>
-            <td><a href="/admin/languageModule/{{ urlencode($item->language) }}"><button>View</button></a></td>
-        </tr>
-        @endforeach
-
-
-    </table>
+                </div>
+                <table class="quiz">
+                    <thead>
+                        <td>Language</td>
+                        <td>Action</td>
+                    </thead>
+                    <tbody>
+                    @foreach ($data as $item)
+                        <tr>
+                            <td>{{ $item->language }}</td>
+                            <td class="ved"><a href="/admin/languageModule/{{ urlencode($item->language) }}"><i class="bx bxs-show"></i></a></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -173,7 +179,7 @@
         $('#summernote').summernote({
             placeholder: 'Add Module Here...',
             tabsize: 2,
-            height: 100,
+            height: 200,
             toolbar: [
                 ['style', ['bold', 'italic', 'underline', 'clear']],
                 ['fontsize', ['fontsize']], // Add font size dropdown to the toolbar

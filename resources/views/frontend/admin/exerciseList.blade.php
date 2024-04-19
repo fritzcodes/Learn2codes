@@ -7,7 +7,7 @@
     <meta name="author" content="CodeHim">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="/assets/css/Admin.css">
-    <title> List of Exercise | Learn2Code </title>
+    <title> List of Exercise | Admin </title>
     <!-- Style CSS -->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
@@ -244,7 +244,7 @@
             <img src="{{Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photoo) : 'assets/images/avatar.png' }}" alt="user" class="user-img">
             @else
             <!-- Placeholder image or default avatar -->
-            <img src="/assets/images/avatar.png" alt="user" class="user-img">
+            <img src="../assets/images/avatar.png" alt="user" class="user-img">
             @endif
             {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
             <div>
@@ -256,7 +256,7 @@
 
         <ul>
             <li>
-                <a target="_top" href="{{ route('Dashboard') }}" class='active'>
+                <a target="_top" href="{{ route('Dashboard') }}">
                     <i class="bx bxs-dashboard"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
@@ -281,6 +281,7 @@
                 </a>
             </li>
             <li>
+
                 <a target="_top" href="#">
                     <i class="bx bxs-chat"></i>
                     <span class="nav-item">Forum</span>
@@ -293,7 +294,7 @@
                 </a>
             </li>
             <li>
-                <a target="_top" href="{{ route('addExercise') }}">
+                <a target="_top" href="{{ route('addExercise') }}" class="active">
                     <i class="bx bx-dumbbell"></i>
                     <span class="nav-item">Exercise</span>
                 </a>

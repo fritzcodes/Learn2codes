@@ -6,19 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="CodeHim">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title> Table Draggable Row (Vanilla JS) Example </title>
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="./css/style.css">
+    <title>View Module | Admin </title>
+    <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.svg">
+    <link rel="stylesheet" href="/assets/css/admin.css">
     <!-- Demo CSS (No need to include it into your project) -->
     <link rel="stylesheet" href="./css/demo.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&amp;display=swap'>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script src="/assets/js/admin/admin.js" async></script>
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-        @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
         * {
             margin: 0;
@@ -265,6 +261,86 @@
 </head>
 
 <body>
+<div class="sidebar">
+        <div class="top">
+            <div class="logo">
+                <span>Learn2Code</span>
+            </div>
+            <i class="bx bx-menu" id="btn"></i>
+        </div>
+
+
+        <div class="user">
+            @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
+            <img src="{{Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photoo) : 'assets/images/avatar.png' }}" alt="user" class="user-img">
+            @else
+            <!-- Placeholder image or default avatar -->
+            <img src="../assets/images/avatar.png" alt="user" class="user-img">
+            @endif
+            {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
+            <div>
+                <p class="username">{{ Auth::guard('admin')->user()->email }}</p>
+                <p>Admin</p>
+            </div>
+        </div>
+
+
+        <ul>
+            <li>
+                <a target="_top" href="{{ route('Dashboard') }}">
+                    <i class="bx bxs-dashboard"></i>
+                    <span class="nav-item">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="{{ route('ManageUser') }}">
+                    <i class="bx bxs-user"></i>
+                    <span class="nav-item">Manage Users</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="{{ route('Leaderboard') }}">
+                    <i class="bx bxs-trophy"></i>
+                    <span class="nav-item">Leaderboard</span>
+                </a>
+            </li>
+            <li>
+
+                <a target="_top" href="{{ route('Question') }}">
+                    <i class="bx bxs-hourglass-top"></i>
+                    <span class="nav-item">Quiz</span>
+                </a>
+            </li>
+            <li>
+
+                <a target="_top" href="#">
+                    <i class="bx bxs-chat"></i>
+                    <span class="nav-item">Forum</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="{{ route('addModule') }}" class="active">
+                <i class='bx bxs-book-reader'></i>
+                    <span class="nav-item">Module</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="{{ route('addExercise') }}">
+                    <i class="bx bx-dumbbell"></i>
+                    <span class="nav-item">Exercise</span>
+                </a>
+            </li>
+            <li class="Logout">
+                <a target="_top" href="{{ route('adminLogout') }}">
+                    <i class="bx bxs-exit"></i>
+                    <span class="nav-item">Logout</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="main-content" id="content1"> <!------------------------------------------ dashboard -->
     <!--$%adsense%$-->
     <main class="">
         <!-- Start DEMO HTML (Use the following code into your project)-->
@@ -285,6 +361,9 @@
         </table>
         <!-- END EDMO HTML (Happy Coding!)-->
     </main>
+
+    </div>
+
 
 
     <!-- Script JS -->
