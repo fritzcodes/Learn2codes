@@ -31,7 +31,6 @@ class LoginController extends Controller
             'firstname' => 'required|string',
             'lastname' => 'required|string',
             'password' => 'required|min:8|confirmed',
-            'g-recaptcha-response' => 'required|captcha', 
         ]);
         
         if ($validator->fails()) {
