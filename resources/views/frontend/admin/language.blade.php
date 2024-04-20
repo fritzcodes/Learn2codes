@@ -26,10 +26,11 @@
     <div class="sidebar">
         <div class="top">
             <div class="logo">
-              <span>Learn2Code</span>
+                <span>Learn2Code</span>
             </div>
             <i class="bx bx-menu" id="btn"></i>
         </div>
+
 
         <div class="user">
             @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
@@ -45,9 +46,10 @@
             </div>
         </div>
 
+
         <ul>
             <li>
-                <a target="_top" href="{{ route('Dashboard') }}">
+                <a target="_top" href="{{ route('Dashboard') }}" class='active'>
                     <i class="bx bxs-dashboard"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
@@ -65,12 +67,13 @@
                 </a>
             </li>
             <li>
-                <a target="_top" href="{{ route('AddLanguage') }}" class='active'>
+                <a target="_top" href="/admin/language">
                     <i class="bx bxs-select-multiple"></i>
                     <span class="nav-item">Add Language</span>
                 </a>
             </li>
             <li>
+
                 <a target="_top" href="{{ route('Question') }}">
                     <i class="bx bxs-hourglass-top"></i>
                     <span class="nav-item">Quiz</span>
@@ -89,7 +92,7 @@
                 </a>
             </li>
             <li>
-                <a target="_top" href="{{ route('addExercise') }}">
+                <a target="_top" href="/admin/exercise">
                     <i class="bx bx-dumbbell"></i>
                     <span class="nav-item">Exercise</span>
                 </a>
@@ -101,6 +104,7 @@
                 </a>
             </li>
         </ul>
+
     </div>
 
 

@@ -72,6 +72,8 @@ public function Index(): View
         
             if ($user) {
                 // If user exists, add their name to userPoint
+                $userPoint['fname'] = $user->fname;
+                $userPoint['lname'] = $user->lname;
                 $userPoint['username'] = $user->username;
                 $userPoint['profile_photo'] = $user->profile_photo;
             } else {

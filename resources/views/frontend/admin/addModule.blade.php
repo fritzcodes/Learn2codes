@@ -38,7 +38,7 @@
 
         <ul>
             <li>
-                <a target="_top" href="{{ route('Dashboard') }}">
+                <a target="_top" href="{{ route('Dashboard') }}" class='active'>
                     <i class="bx bxs-dashboard"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
@@ -56,7 +56,7 @@
                 </a>
             </li>
             <li>
-                <a target="_top" href="{{ route('AddLanguage') }}">
+                <a target="_top" href="/admin/language">
                     <i class="bx bxs-select-multiple"></i>
                     <span class="nav-item">Add Language</span>
                 </a>
@@ -75,13 +75,13 @@
                 </a>
             </li>
             <li>
-                <a target="_top" href="{{ route('addModule') }}" class="active">
+                <a target="_top" href="{{ route('addModule') }}">
                 <i class='bx bxs-book-reader'></i>
                     <span class="nav-item">Module</span>
                 </a>
             </li>
             <li>
-                <a target="_top" href="{{ route('addExercise') }}">
+                <a target="_top" href="/admin/exercise">
                     <i class="bx bx-dumbbell"></i>
                     <span class="nav-item">Exercise</span>
                 </a>
