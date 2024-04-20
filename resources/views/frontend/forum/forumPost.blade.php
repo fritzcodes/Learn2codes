@@ -426,7 +426,8 @@
             <a href="#"><i class=""></i></a>
             <p></p>
           </div>  -->
-                                <p id="likesCount{{ $post->id }}" class="footer-btn">{{ $post->likes_count == 0 ? '' : $post->likes_count }}</p>
+                                <p id="likesCount{{ $post->id }}" class="footer-btn">
+                                    {{ $post->likes_count == 0 ? '' : $post->likes_count }}</p>
                                 <a class="footer-btn"
                                     onclick="likePost('like{{ $post->id }}', '{{ $name->id }}', '{{ $post->id }}')"
                                     style="text-align:left">
@@ -534,7 +535,10 @@ outlined-heart
                                                     </div>
 
                                                     <div class="actions">
-                                                        <p id="likesCommentCount{{ $comment->id }}">@if (count($comment->likes) > 0){{ count($comment->likes) }}@endif</p>
+                                                        <p id="likesCommentCount{{ $comment->id }}">
+                                                            @if (count($comment->likes) > 0)
+                                                                {{ count($comment->likes) }}@endif
+                                                        </p>
                                                         <button
                                                             onclick="likeComment('likeComment{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}')"
                                                             class="
