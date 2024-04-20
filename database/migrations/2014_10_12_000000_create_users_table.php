@@ -22,6 +22,7 @@ return new class extends Migration
         $table->string('course')->nullable();
         $table->string('profile_photo')->nullable();
         $table->string('password')->nullable();
+        $table->string('verification_code')->nullable();
 
         $table->timestamps();
         });
