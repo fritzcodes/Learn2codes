@@ -17,7 +17,7 @@
     display: none; /* Initially hide the dot */
     width: 20px;
     height: 20px;
-    background-color: rgba(0, 0, 255, .5); /* Blue color for the dot */
+    background-color: rgba(22, 163, 245, .5); /* Blue color for the dot */
     border-radius: 50%;
     position: absolute;
     bottom: 0;
@@ -30,7 +30,7 @@
     display: none; /* Initially hide the dot */
     width: 20px;
     height: 20px;
-    background-color: rgba(0, 0, 255, .2); /* Blue color for the dot */
+    background-color: rgba(22, 163, 245, .2); /* Blue color for the dot */
     border-radius: 50%;
     position: absolute;
     bottom: 20%;
@@ -155,8 +155,8 @@ body{
 
         [role="progressbar"] {
             --percentage: var(--value);
-            --primary: #369;
-            --secondary: #adf;
+            --primary: #16A3F5;
+            --secondary: #9EDCFF;
             --size: 300px;
             animation: progress 2s 0.5s forwards;
             width: var(--size);
@@ -250,6 +250,7 @@ body{
         #progressbar {
             width: 50px;
         }
+    }
     </style>
 
 </head>
@@ -290,24 +291,19 @@ body{
     </header>
 
         <div class="sidenav">
-        <div class="bx bxs-book-reader" id="btn"></div>
-        
-        <h2>{{ $id }} Module</h2>
-        @foreach ($data as $item)
-        <a target="_top" href="#{{ $loop->index + 1 }}#{{ $item->id }}">{{ $item->title }} </a>
-        @endforeach
-        <a href="#">adasd</a>
-        <a href="#">adasd</a>
-        <a href="#">adasd</a>
-        <a href="#">adasd</a>
-        <h2>sdas</h2>
-    </div>
+            <div class="bx bxs-book-reader" id="btn"></div>
+            
+                <h2>{{ $id }} Module</h2>
+                @foreach ($data as $item)
+                    <a target="_top" href="#{{ $loop->index + 1 }}#{{ $item->id }}">{{ $item->title }} </a>
+                @endforeach
+        </div>
 
     <section class="space-background">
 
         <div class="content" id="content">
             <div id="main">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique sint aperiam distinctio, aut aliquam, laudantium numquam ab ex atque neque dolore in. Ducimus perferendis iusto sint odio recusandae beatae aspernatur?</p>
+                <p>Welcome to Learn 2 Code</p>
                 
             </div>
         </div>
@@ -325,8 +321,9 @@ body{
     <script type="text/javascript" src="../assets/js/headermenu.js"></script>
     <script type="text/javascript" src="../assets/js/topic.js"></script>
 
-<script>
-        var modulePercent = {{$percent}}     
+    <script>
+        var modulePercent = {{$percent}}
+         
         var bottomReached = false;
 
 
@@ -377,7 +374,7 @@ body{
                     },
                     success: function(data) {
                         console.log(data);
-                        if (modulePercent <script data[0]) {
+                        if (modulePercent < data[0]) {
                             const dot = document.querySelector('.dot');
                             const dot1 = document.getElementById('dotSpirit1');
                             const dot2 = document.getElementById('dotSpirit2');

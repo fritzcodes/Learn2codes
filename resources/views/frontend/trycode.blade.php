@@ -344,7 +344,7 @@ body{
 <body>
 
 <header>
-        <a href="/module/java" class="bx bx-chevron-left" id="back-btn"></a>
+        <a onclick="window.history.back()" class="bx bx-chevron-left" id="back-btn"></a>
         <div class="bx bx-menu" id="menu-icon"></div>
     
         <ul class="navbar">

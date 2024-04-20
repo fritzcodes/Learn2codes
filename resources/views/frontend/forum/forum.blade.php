@@ -118,11 +118,11 @@
             </script>
             <a href="/profile" class="profile-link">
                 @if (Auth::check() && Auth::user()->profile_photo)
-                    <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
+                    <img src="{{ Auth::user()->profile_photo ? asset('/images/' . Auth::user()->profile_photo) : '/assets/images/avatar.png' }}"
                         alt="Profile Photo" class="avatar">
                 @else
                     <!-- Placeholder image or default avatar -->
-                    <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
+                    <img src="/assets/images/avatar.png" alt="Default Avatar" class="avatar">
                 @endif
             </a>
         </div>
@@ -154,7 +154,7 @@
 
                 <div id="notifContainer">
                     @foreach ($notif as $notification)
-                        <div class="notif-container" onclick="markNotificationAsRead('1')">
+                        <div class="notif-container" onclick="markNotificationAsRead('{{ $notification->id }}')">
                             <a href="#"
                                  class="notification-item @if (!$notification->is_read) unread-notif @endif"
                                 data-notification-id="{{ $notification->id }}" data-post-id="{{ $notification->post_id }}">
@@ -168,21 +168,21 @@
                                     </h2>
                                     <span class="timestamp">{{ $notification->created_at->diffForHumans() }}</span>
                                 </div>
-                                <button onclick="showModal('settings{{ $loop->iteration }}')" type="button"
+                                <!-- <button onclick="showModal('settings{{ $loop->iteration }}')" type="button"
                                     class="notif-action">
                                     <i class="bx bx-dots-horizontal-rounded"></i>
-                                </button>
+                                </button> -->
                             </a>
 
-                            <div class="notif-action-modal" id="settings{{ $loop->iteration }}">
-                                <!-- Your action buttons here -->
+                            <!-- <div class="notif-action-modal" id="settings{{ $loop->iteration }}">
+                               
                                 <a href="#"><i class='bx bx-check'>
                                         <p>Mark as read</p>
                                     </i></a>
                                 <a href="#"><i class='bx bxs-bell'>
                                         <p>Remove</p>
                                     </i></a>
-                            </div>
+                            </div> -->
                         </div>
                     @endforeach
                 </div>
