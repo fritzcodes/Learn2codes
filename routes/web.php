@@ -43,9 +43,7 @@ use App\Http\Controllers\ReportController;
 |
 */
 Route::get('/leaderboard', [boardController::class, 'Index'])->name('leaderboard');
-Route::get('/ha', function () {
-    return "HAHAHA";
-});
+
 Route::get('/forum', [ForumController::class, 'Index'])->name('forum');
 
 
@@ -154,6 +152,7 @@ Route::middleware(['auth:sanctum', User::class, 'verified'])->group(function () 
     Route::post('/report', [ReportController::class, 'store']);
     Route::post('/comment/store', [CommentController:: class, 'store']);
     Route::post('/comment/storeReply', [CommentController:: class, 'storeReply']);
+    Route::get('/forum/post', [ForumController::class, 'ForumPost']);
     Route::post('/post-forum', [ForumController::class, 'store'])->name('storeForum');
     Route::post('/like-post', [ForumController::class, 'likePost']);
     Route::delete('/delete-post/{id}', [ForumController::class, 'destroy']);

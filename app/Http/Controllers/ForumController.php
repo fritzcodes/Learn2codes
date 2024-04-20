@@ -47,6 +47,36 @@ class ForumController extends Controller
         return view('frontend.forum.forum', compact('name', 'posts', 'notif', 'notifCount'));
     }
 
+    public function ForumPost()
+    {
+        $name = Auth::user();
+        $posts = Post::with('images')
+            ->with('user')
+            ->withCount('likes')
+            ->with(['likes.user' => function ($query) use ($name) {
+                $query->where('id', $name->id);
+            }])
+            ->with(['comments.user', 'comments.replies.user'])
+            ->with(['comments.likes.user' => function ($query) use ($name) {
+                $query->where('id', $name->id);
+            }])
+            ->with('comments.replies.replyWithUser')
+            ->where('is_deleted', '0')
+            
+            ->orderBy('created_at', 'desc') // Order by created_at column in descending order
+            ->get();
+        $notif = UserNotification::with('user')->where('self_id', $name->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $notifCount = count(UserNotification::with('user')->where('self_id', $name->id)
+            ->where('is_read', '0')
+            ->orderBy('created_at', 'desc')
+            ->get());
+
+        //dd($notif);
+        return view('frontend.forum.forumPost', compact('name', 'posts', 'notif', 'notifCount'));
+    }
+
 
     public function store(PostRequest $request)
     {
@@ -228,7 +258,7 @@ class ForumController extends Controller
             ->where('id', $id)
             ->update(['is_read' => '1']);
             $data = UserNotification::find($id);
-        return response()->json($id);
+        return response()->json($data);
     }
     public function NotificationUpdateAll($id)
     {
