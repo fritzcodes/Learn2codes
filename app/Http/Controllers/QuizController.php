@@ -13,7 +13,7 @@ class QuizController extends Controller
      */
     public function Index()
     {
-        $data = prog_language::all();
+        $data = prog_language::withCount('quizzes')->get();
         return view('frontend.quiz.selectLanguage', compact('data'));
     }
 

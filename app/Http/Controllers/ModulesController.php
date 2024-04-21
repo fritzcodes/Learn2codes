@@ -14,7 +14,7 @@ class ModulesController extends Controller
 {
     public function index(): View
     {
-        $data = prog_language::all();
+        $data = prog_language::withCount('modules')->get();
         return view('frontend.modules.moduleLanguage', compact('data'));
     }
 

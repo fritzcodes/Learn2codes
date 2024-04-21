@@ -16,7 +16,7 @@ class ExerciseControllers extends Controller
 
     public function selectLanguage()
     {
-        $data = prog_language::All();
+        $data = prog_language::withCount('exercises')->get();
         return view('frontend.quiz.selectLanguageExercise', compact('data'));
     }
        
