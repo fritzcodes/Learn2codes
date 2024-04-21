@@ -1,0 +1,141 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    }
+
+:root{ /*---font and color defaults --*/
+    --bg-color: #210535;
+    --main-color: #f5d5e0;
+    --text-color: #430d4b;
+    --second-color: #7b337d;
+    --high-color: #c874b2;
+    --big-font: 3rem;
+    --h2-font: 2rem;
+    --p-font: 1rem;
+    --font1: 'Orbitron';
+    --font2: Helvetica;
+    transition: .2s;
+  }
+
+  body{
+    padding-top: 80px;
+    overflow-x: hidden;
+    width: 100%;
+    min-height: 100vh;
+    background: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background: linear-gradient(-90deg, #430d4b, #7b337d, #f5d5e0 );
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+  
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .sections {
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to top, #210535, transparent);
+    position: relative;
+    overflow: hidden;
+}
+
+
+section::before
+{
+    content:'';
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(to top, #210535, transparent);
+    z-index: 1000;
+}
+
+.sections #stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100vh;
+    pointer-events: none;
+}
+
+.sections #rocket {
+    width: 200px;
+    height: auto;
+    /* Animation Name */
+    animation: float 3s ease-in-out infinite;
+
+}
+
+/* Keyframes for floating effect */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.sections p {
+    color: var(--main-color);
+    font-weight: 800;
+    font-size: var(--h2-font);
+}
+
+.sections span {
+    color: var(--high-color);
+    font-style: italic;
+}
+
+
+.details {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding: 100px;
+    box-shadow: var (--second-color);
+    overflow: hidden;
+    background-color: var(--bg-color);
+}
+
+.title {
+    display: flex;
+    justify-content: left;
+    color: var(--main-color);
+    font-size: var(--h2-font);
+    font-family: var(--font1);
+    margin-bottom: 50px;
+    font-weight: 600;
+}
+
+.deets {
+    margin: 0 0 50px 0;
+    font-family: var(--font2);
+}
+
+.deets h2 {
+    font-size: var(--h2-font);
+    color: var(--second-color);
+}
+
+.deets p {
+    font-size: var(--p-font);
+    color: var(--main-color);
+    margin-left: 15px;
+}

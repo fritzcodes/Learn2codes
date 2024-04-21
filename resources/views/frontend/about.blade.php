@@ -6,18 +6,34 @@
     <title>Our Team | Learn2Code</title>
 	<link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
     <link rel="stylesheet" href="assets/css/aboutus.css">
-	<link rel="stylesheet" href="assets/css/header.css">
+	<link rel="stylesheet" href="assets/css/header2.css">
+
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.0/css/boxicons.min.css">
 
     <script type="text/javascript" src="assets/js/headermenu.js" defer></script>
 </head>
+
 <body>
     
 <header>
-        <a href="/" class="bx bx-chevron-left" id="back-btn"></a>
-    
+    <a href="/" class="logotext">Learn2Code</a>
+	<a href="/" class="logo"><img src="/assets/images/logo.svg" alt=""></a>
+        <ul>
+            <div>
+                @if (session('id'))
+                    <div class="alert alert-success">
+                        <li><a href="{{ route('logout') }}">Logout</a></li>
+                    </div>
+                @else
+                    <div class="alert alert-success">
+                        <li><a href="login">Login</a></li>
+                    </div>
+                @endif
+            </div>
+        </ul>
+
     </header>
 
 

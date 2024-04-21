@@ -1,0 +1,175 @@
+ 
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Orbitron', sans-serif;
+text-decoration: none;
+list-style: none;
+scroll-behavior: smooth;
+}
+
+:root { /*---font and color defaults --*/
+	--bg-color: #210535;
+	--main-color: #f5d5e0;
+	--text-color: #430d4b;
+	--second-color: #7b337d;
+	--high-color: #c874b2;
+	--big-font: 3rem;
+	--h2-font: 2rem;
+	--p-font: 1rem;
+	--font1: 'Orbitron';
+	--font2: Helvetica;
+	transition: .2s;
+}
+
+header
+{
+position: absolute; 
+top: 0;
+Left: 0;
+width: 100%;
+padding: 30px 50px;
+display: flex;
+justify-content: space-between;
+overflow-x: hidden;
+align-items: center;
+z-index: 10000;
+font-family: var(--font1);
+}
+
+header .logotext
+{
+display: flex;
+color: #fff;
+font-weight: 700;
+text-decoration: none;
+font-size: var(--h2-font);
+text-transform: uppercase;
+Letter-spacing: 2px;
+}
+
+
+header .logo {
+	display: none;
+}
+
+.logo img {
+	margin: 5px 10px 0 0;
+	width: 50px;
+	height: 50px;
+	border-radius: 100%;	
+}
+
+
+header ul
+{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+header ul li
+{
+list-style:none;
+margin-left: 20px;
+}
+
+header ul li a
+{
+text-decoration: none;
+padding: 6px 15px;
+color: #fff;
+border-radius: 20px;
+}
+header ul li a:hover,
+header ul li a.active
+{
+background: #fff;
+color: #2b1055;
+}
+
+
+
+
+
+@media (max-width: 853px) {
+	:root {
+		--big-font: 2.8rem;
+		--h2-font: 1.5rem;
+		--p-font: 1rem;
+		transition: .2s;
+	}
+
+	header, .foot, .socials {
+		padding: 15px 30px;
+	}
+
+	header .logotext {
+		display: none;
+	}
+	
+	header .logo {
+		display: flex;
+	}
+
+	header ul li {
+		list-style:none;
+		margin-left: 15px;
+	}
+
+	header ul li a {
+		padding: 6px 15px;
+
+	}
+
+}
+
+
+@media (max-width: 575px) {
+	header, .foot, .socials {
+		padding: 15px 20px;
+	}
+
+	header ul li {
+		list-style:none;
+		margin-left: 5px;
+	}
+
+	header ul li a {
+		font-size: var(--p-font);
+		text-decoration: none;
+		padding: 3px 5px;
+
+	}
+
+	:root {
+		--big-font: 2.8rem;
+		--h2-font: 1.3rem;
+		--p-font: .8rem;
+		transition: .2s;
+	}
+
+
+
+
+}
+
+@media (max-width: 390px) {
+
+
+}
+
+@media (min-height: 1024px) {
+	header, .foot, .socials {
+		padding: 30px 40px;
+	}
+
+}
+
+@media (min-height: 1360px) {
+	header .foot, .socials {
+		padding: 30px 80px;
+	}
+
+	}
