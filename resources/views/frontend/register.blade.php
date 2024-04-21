@@ -81,7 +81,7 @@
                         <p id="passwordError">Passwords do not match!</p> <!-- Removed the margin-bottom -->
                     </div>   
                     <div class="terms">
-                      <input type="checkbox" name="check" id="check">
+                      <input type="checkbox" name="check" id="check" required>
                       <label for="check">By continuing you agree to our <a href="#">Terms and Conditions</a> and acknowledge that you understand <a href="#">Privacy Policy </a><span>*</span></label>
                     </div>              
                </div> 

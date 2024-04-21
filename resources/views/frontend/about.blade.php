@@ -9,6 +9,8 @@
 	<link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.0/css/boxicons.min.css">
+
     <script type="text/javascript" src="assets/js/headermenu.js" defer></script>
 </head>
 <body>
@@ -119,7 +121,7 @@
 			<div class="box">
 				<img src="assets/images/aboutpic/isangga.png">
 				<h2>Isangga, Gian</h2>
-				<p>Back-end</p>
+				<p>Front-end</p>
 				<div class="icons">
 				<a href="#"><i class='bx bxs-rocket'></i></a>				
 				</div>
@@ -231,7 +233,9 @@
 				<h2>Retiza, Fritz</h2>
 				<p>Back-end</p>
 				<div class="icons">
-				<a href="#"><i class='bx bxs-rocket'></i></a>
+				<a href="https://www.reddit.com/user/iamfritzfornow/" target="_blank"><i class="bx bxl-reddit"></i></a>
+				<a href="https://www.facebook.com/frits.retiza.3" target="_blank"><i class="bx bxl-facebook"></i></a>
+				<a href="https://www.instagram.com/ifritzzy/" target="_blank"><i class="bx bxl-instagram-alt"></i></a>
 				</div>
 			</div>
 
@@ -482,7 +486,7 @@
 			<div class="box">
 				<img src="assets/images/aboutpic/isangga.png">
 				<h2>Isangga, Gian</h2>
-				<p>Back-end</p>
+				<p>Front-end</p>
 				<div class="icons">
 					<a href="https://www.facebook.com/kristiandgf" target="_blank"><i class="bx bxl-facebook"></i></a>					
 				</div>
@@ -520,7 +524,9 @@
 				<h2>Retiza, Fritz</h2>
 				<p>Back-end</p>
 				<div class="icons">
-				<a href="#"><i class='bx bxs-rocket'></i></a>
+					<a href="https://www.reddit.com/user/iamfritzfornow/" target="_blank"><i class="bx bxl-reddit"></i></a>
+					<a href="https://www.facebook.com/frits.retiza.3" target="_blank"><i class="bx bxl-facebook"></i></a>
+					<a href="https://www.instagram.com/ifritzzy/" target="_blank"><i class="bx bxl-instagram-alt"></i></a>
 				</div>
 			</div>
 
