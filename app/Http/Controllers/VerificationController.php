@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\LoggedIn;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class VerificationController extends Controller
 {
@@ -23,10 +25,13 @@ class VerificationController extends Controller
         if ($verCode == $verificationCode) {
             // Verification successful, log in the user
             Auth::loginUsingId($userId);
+            User::where('id', $userId)->update(['is_online' => true, 'last_online_at' => now()]);
+            LoggedIn::create(['user_id' => $userId]);
             $request->session()->put('id', $userId);
             // Clear verification code from user and session
           
             $request->session()->forget('verification_code');
+            $request->session()->forget('ids');
 
             return redirect('landing')->with('success', 'Login Success');
         } else {

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
+
 <body>
     <!-- -----------SIDEBAR------------ -->
     <div class="sidebar">
@@ -75,7 +77,7 @@
             </li>
             <li>
                 <a target="_top" href="{{ route('addModule') }}">
-                <i class='bx bxs-book-reader'></i>
+                    <i class='bx bxs-book-reader'></i>
                     <span class="nav-item">Module</span>
                 </a>
             </li>
@@ -95,47 +97,48 @@
 
     </div>
 
-<!-- -----------MAIN CONTENT------------ -->
-<div class="main-content">     <!---------------------- manage users --> 
-    <div class="table">
-        <div class="tablebg">
-            <div class="heading">
-                <h2>All Users</h2>
-                <input class="search" placeholder="Search" id="search" onkeyup="search()">
+    <!-- -----------MAIN CONTENT------------ -->
+    <div class="main-content"> <!---------------------- manage users -->
+        <div class="table">
+            <div class="tablebg">
+                <div class="heading">
+                    <h2>All Users</h2>
+                    <input class="search" placeholder="Search" id="search" onkeyup="search()">
+                </div>
+                <table class="manage-user">
+                    <thead>
+                        <tr>
+                            <td>User ID</td>
+                            <td>FirstName</td>
+                            <td>LastName</td>
+                            <td>Username</td>
+                            <td>Year</td>
+                            <td>Course</td>
+                            <td>Action</td>
+                            <td>Status</td>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                        @foreach($user as $use )
+                        <tr id="user-{{ $use->id }}">
+                            <td>{{$use['id']}}</td>
+                            <td>{{$use['fname']}}</td>
+                            <td>{{$use['lname']}}</td>
+                            <td>{{$use['username']}}</td>
+                            <td>{{$use['year']}}</td>
+                            <td>{{$use['course']}}</td>
+                            <td class="ved">
+                                <button class="bx bxs-show"></button>
+                                <button class="bx bxs-trash" onclick="confirmDelete({{ $use->id }})"></button>
+                            </td>
+                            <td>{{$use['is_online'] ? 'Online' : 'Offline' }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-            <table class="manage-user">
-                <thead>
-                    <tr>
-                        <td>User ID</td>
-                        <td>FirstName</td>
-                        <td>LastName</td>  
-                        <td>Username</td>
-                        <td>Year</td>
-                        <td>Course</td>
-                        <td>Action</td> 
-                        <td>Status</td>       
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($user as $use )
-                    <tr id="user-{{ $use->id }}">
-                        <td>{{$use['id']}}</td>
-                        <td>{{$use['fname']}}</td>
-                        <td>{{$use['lname']}}</td>
-                        <td>{{$use['username']}}</td>
-                        <td>{{$use['year']}}</td>
-                        <td>{{$use['course']}}</td>
-                        <td class="ved">
-                            <button class="bx bxs-show"></button>
-                            <button class="bx bxs-trash" onclick="confirmDelete({{ $use->id }})"></button>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
         </div>
     </div>
-</div>
 
 
     <script src="../assets/js/admin/admin.js" async></script>
@@ -162,37 +165,69 @@
             });
         }
     </script>
-   
-   <script>
-    // Retrieve CSRF token from meta tag
-    var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-    function confirmDelete(userId) {
-        if (confirm("Are you sure you want to delete this account?")) {
-            // If the user confirms, send a DELETE request using AJAX
-            $.ajax({
-                url: "/admin/users/delete/" + userId,
-                type: "DELETE",
-                headers: {
-                    'X-CSRF-TOKEN': csrfToken
-                },
-                success: function(response) {
-                    // Remove the deleted user row from the table
-                    $("#user-" + userId).remove();
-                    window.location.href = '/admin/manageUser';
-                },
-                
-                error: function(xhr, status, error) {
-                    // Handle errors
-                    console.error(error);
-                }
-            });
+    <script>
+        // Retrieve CSRF token from meta tag
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+        function fetchDataAndUpdateTable() {
+            fetch('/admin/manageUserRefresh') // Replace '/your-api-endpoint' with the actual endpoint to fetch the data
+                .then(response => response.json())
+                .then(data => {
+                    // Clear the existing table body
+                    document.getElementById('userTableBody').innerHTML = '';
+
+                    // Append new data to the table body
+                    data.forEach(user => {
+                        let row = `<tr id="user-${user.id}">
+                                    <td>${user.id}</td>
+                                    <td>${user.fname || ''}</td>
+                                    <td>${user.lname || ''}</td>
+                                    <td>${user.username || ''}</td>
+                                    <td>${user.year || ''}</td>
+                                    <td>${user.course || ''}</td>
+                                    <td class="ved">
+                                        <button class="bx bxs-show"></button>
+                                        <button class="bx bxs-trash" onclick="confirmDelete(${user.id})"></button>
+                                    </td>
+                                    <td>${user.is_online ? 'Online' : 'Offline'}</td>
+                                </tr>`;
+                        document.getElementById('userTableBody').innerHTML += row;
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
         }
-    }
-</script>
+
+        // Refresh the data every 10 seconds
+        setInterval(fetchDataAndUpdateTable, 3000);
+
+        function confirmDelete(userId) {
+            if (confirm("Are you sure you want to delete this account?")) {
+                // If the user confirms, send a DELETE request using AJAX
+                $.ajax({
+                    url: "/admin/users/delete/" + userId,
+                    type: "DELETE",
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    success: function(response) {
+                        // Remove the deleted user row from the table
+                        $("#user-" + userId).remove();
+                        window.location.href = '/admin/manageUser';
+                    },
+
+                    error: function(xhr, status, error) {
+                        // Handle errors
+                        console.error(error);
+                    }
+                });
+            }
+        }
+    </script>
 
 
 
 
 </body>
+
 </html>

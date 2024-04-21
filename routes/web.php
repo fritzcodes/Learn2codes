@@ -146,6 +146,7 @@ Route::middleware(['auth:admin'])->group(function () {
 
 
     Route::get('/admin/manageUser', [ManageUserController::class, 'Index'])->name('ManageUser');
+    Route::get('/admin/manageUserRefresh', [ManageUserController::class, 'manageUserRefresh'])->name('manageUserRefresh');
     Route::delete('/admin/users/delete/{id}', [ManageUserController::class, 'delete'])->name('admin.users.delete');
 
     Route::get('/admin/leaderboard', [LeaderboardController::class, 'Index'])->name('Leaderboard');

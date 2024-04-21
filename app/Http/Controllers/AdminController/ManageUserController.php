@@ -13,6 +13,11 @@ class ManageUserController extends Controller
         $data = User::all();
         return View('frontend.admin.manageUser', ['user'=>$data]);
     }
+    public function manageUserRefresh()
+    {
+        $data = User::all();
+        return response()->json($data);
+    }
 
     public function delete($id)
 {

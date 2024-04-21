@@ -132,6 +132,7 @@ class LoginController extends Controller
 
     public function logout()
     {
+        User::where('id', Auth::id())->update(['is_online' => false]);
         Auth::logout();
         session()->forget('id');
 
