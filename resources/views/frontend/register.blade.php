@@ -54,9 +54,10 @@
                       <input required placeholder="Lastname" type="text" id="lname" name="lastname">
                     </div>
                     <div class="typeinput">    
+                      <input required placeholder="Course" type="text" id="course" name="course" style="margin-right: 5px;">
                       <label for="year">
                         <select name="year" id="year">
-                          <option>--Select Year (optional)--</option>                      
+                          <option>--Year--</option>                      
                           <option value="1st Year">1st Year</option>
                           <option value="2nd Year">2nd Year</option>
                           <option value="3rd Year">3rd Year</option>
@@ -78,9 +79,12 @@
                     </div>
                     <div class="typeinput">
                         <p id="passwordError">Passwords do not match!</p> <!-- Removed the margin-bottom -->
-                    </div>                
+                    </div>   
+                    <div class="terms">
+                      <input type="checkbox" name="check" id="check">
+                      <label for="check">By continuing you agree to our <a href="#">Terms and Conditions</a> and acknowledge that you understand <a href="#">Privacy Policy </a><span>*</span></label>
+                    </div>              
                </div> 
-
                 <div class="logbutton">
                   <button type="submit" onclick="document.location='#'" id="login" class="btns">Sign Up</button>
                 </div>

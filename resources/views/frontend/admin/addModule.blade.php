@@ -77,8 +77,7 @@
                 </a>
             </li>
             <li>
-                <a target="_top" href="{{ route('addModule') }}"  class='active'>
-                <a target="_top" href="{{ route('addModule') }}" class='active'>
+                <a target="_top" href="{{ route('addModule') }}"  class='active'>       
                 <i class='bx bxs-book-reader'></i>
                     <span class="nav-item">Module</span>
                 </a>

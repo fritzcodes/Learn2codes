@@ -246,6 +246,33 @@ document.getElementById('picture').addEventListener('change', function () {
 });
     </script>
 
+<script>
+    // Add an event listener to the search input
+    document.getElementById('search').addEventListener('input', search);
+
+    function search() {
+        var text = this.value.toLowerCase(); // Get the search input value
+        var rows = document.querySelectorAll('.languagetb tbody tr');
+
+        // Loop through each row in the table
+        rows.forEach(function(row) {
+            var match = false;
+            // Loop through each cell in the row
+            row.querySelectorAll('td').forEach(function(cell) {
+                // Check if the cell contains the search text
+                if (cell.textContent.toLowerCase().includes(text)) {
+                    match = true;
+                }
+            });
+            // Show or hide the row based on whether it matches the search
+            if (match) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+</script>
 
 </body>
 
