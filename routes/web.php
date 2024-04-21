@@ -57,7 +57,8 @@ Route::get('/admin/getQuiz/{id}/{diff}/{item}', [AddQuestionController::class, '
 Route::get('/admin/language', [LanguageController::class, 'Index'])->name('Language');
 Route::post('/admin/AddLanguage', [LanguageController::class, 'AddLanguage'])->name('AddLanguage');
 Route::post('/admin/UpdateLanguage', [LanguageController::class, 'UpdateLanguage'])->name('UpdateLanguage');
-Route::post('/admin/DeleteLanguage', [LanguageController::class, 'DeleteLanguage'])->name('DeleteLanguage');
+Route::delete('/admin/DeleteLanguage/{id}', [LanguageController::class, 'DeleteLanguage'])->name('admin.languages.delete');
+
 
 
 Route::get('/admin/quizLanguage', [QuizLanguageController::class, 'Index'])->name('QuizLanguage');
@@ -145,6 +146,8 @@ Route::middleware(['auth:admin'])->group(function () {
 
 
     Route::get('/admin/manageUser', [ManageUserController::class, 'Index'])->name('ManageUser');
+    Route::delete('/admin/users/delete/{id}', [ManageUserController::class, 'delete'])->name('admin.users.delete');
+
     Route::get('/admin/leaderboard', [LeaderboardController::class, 'Index'])->name('Leaderboard');
     Route::get('/admin/exercise', [ExerciseController::class, 'Index'])->name('addExercise');
     Route::get('/admin/exercise/{id}', [ExerciseController::class, 'exerciseList'])->name('exerciseList');

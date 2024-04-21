@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn2Code</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="../assets/css/admin.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
     <!-- -----------SIDEBAR------------ -->
@@ -27,7 +29,7 @@
             @endif
             {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
             <div>
-                <p class="username">{{ Auth::guard('admin')->user()->email }}</p>
+                <p class="username">{{ Auth::guard('admin')->user()->username }}</p>
                 <p>Admin</p>
             </div>
         </div>
@@ -35,13 +37,13 @@
 
         <ul>
             <li>
-                <a target="_top" href="{{ route('Dashboard') }}" class='active'>
+                <a target="_top" href="{{ route('Dashboard') }}">
                     <i class="bx bxs-dashboard"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
             </li>
             <li>
-                <a target="_top" href="{{ route('ManageUser') }}">
+                <a target="_top" href="{{ route('ManageUser') }}" class='active'>
                     <i class="bx bxs-user"></i>
                     <span class="nav-item">Manage Users</span>
                 </a>
@@ -111,12 +113,13 @@
                         <td>Username</td>
                         <td>Year</td>
                         <td>Course</td>
-                        <td>Action</td>        
+                        <td>Action</td> 
+                        <td>Status</td>       
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($user as $use )
-                    <tr>
+                    <tr id="user-{{ $use->id }}">
                         <td>{{$use['id']}}</td>
                         <td>{{$use['fname']}}</td>
                         <td>{{$use['lname']}}</td>
@@ -124,9 +127,8 @@
                         <td>{{$use['year']}}</td>
                         <td>{{$use['course']}}</td>
                         <td class="ved">
-                            <i class="bx bxs-show"></i>
-                            <i class="bx bxs-edit"></i>
-                            <i class="bx bxs-trash"></i>
+                            <button class="bx bxs-show"></button>
+                            <button class="bx bxs-trash" onclick="confirmDelete({{ $use->id }})"></button>
                         </td>
                     </tr>
                     @endforeach
@@ -161,6 +163,37 @@
             });
         }
     </script>
+   
+   <script>
+    // Retrieve CSRF token from meta tag
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+    function confirmDelete(userId) {
+        if (confirm("Are you sure you want to delete this account?")) {
+            // If the user confirms, send a DELETE request using AJAX
+            $.ajax({
+                url: "/admin/users/delete/" + userId,
+                type: "DELETE",
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                success: function(response) {
+                    // Remove the deleted user row from the table
+                    $("#user-" + userId).remove();
+                    window.location.href = '/admin/manageUser';
+                },
+                
+                error: function(xhr, status, error) {
+                    // Handle errors
+                    console.error(error);
+                }
+            });
+        }
+    }
+</script>
+
+
+
 
 </body>
 </html>

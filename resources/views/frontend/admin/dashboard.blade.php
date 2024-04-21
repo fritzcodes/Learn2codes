@@ -30,7 +30,7 @@
             @endif
             {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
             <div>
-                <p class="username">{{ Auth::guard('admin')->user()->email }}</p>
+                <p class="username">{{ Auth::guard('admin')->user()->username }}</p>
                 <p>Admin</p>
             </div>
         </div>

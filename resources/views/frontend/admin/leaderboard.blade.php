@@ -28,7 +28,7 @@
             @endif
             {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
             <div>
-                <p class="username">{{ Auth::guard('admin')->user()->email }}</p>
+                <p class="username">{{ Auth::guard('admin')->user()->username }}</p>
                 <p>Admin</p>
             </div>
         </div>
@@ -36,7 +36,7 @@
 
         <ul>
             <li>
-                <a target="_top" href="{{ route('Dashboard') }}" class='active'>
+                <a target="_top" href="{{ route('Dashboard') }}">
                     <i class="bx bxs-dashboard"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
@@ -48,7 +48,7 @@
                 </a>
             </li>
             <li>
-                <a target="_top" href="{{ route('Leaderboard') }}">
+                <a target="_top" href="{{ route('Leaderboard') }}" class='active'>
                     <i class="bx bxs-trophy"></i>
                     <span class="nav-item">Leaderboard</span>
                 </a>

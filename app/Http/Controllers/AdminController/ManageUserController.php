@@ -14,5 +14,18 @@ class ManageUserController extends Controller
         return View('frontend.admin.manageUser', ['user'=>$data]);
     }
 
+    public function delete($id)
+{
+    $user = User::find($id);
+    if (!$user) {
+        return redirect()->back()->with('error', 'User not found!');
+    }
+
+    $user->delete();
+
+    return redirect()->back()->with('message', 'User account deleted successfully!');
+}
+
+
 
 }

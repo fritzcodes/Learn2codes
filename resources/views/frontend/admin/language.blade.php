@@ -41,7 +41,7 @@
             @endif
             {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
             <div>
-                <p class="username">{{ Auth::guard('admin')->user()->email }}</p>
+                <p class="username">{{ Auth::guard('admin')->user()->username }}</p>
                 <p>Admin</p>
             </div>
         </div>
@@ -49,7 +49,7 @@
 
         <ul>
             <li>
-                <a target="_top" href="{{ route('Dashboard') }}" class='active'>
+                <a target="_top" href="{{ route('Dashboard') }}">
                     <i class="bx bxs-dashboard"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
@@ -67,7 +67,7 @@
                 </a>
             </li>
             <li>
-                <a target="_top" href="/admin/language">
+                <a target="_top" href="/admin/language" class='active'>
                     <i class="bx bxs-select-multiple"></i>
                     <span class="nav-item">Add Language</span>
                 </a>
@@ -151,7 +151,7 @@
             <div class="heading">
                 <h2>Languages</h2>
                 <input class="search" placeholder="Search" id="search">
-                <a href="#" class="action">View All</a>
+                <a></a>
             </div>
             <table class="languagetb">
                 <thead>
@@ -165,12 +165,15 @@
                             <td><img src="/images/{{ $item->picture }}" height="100px" width="100px" alt=""></td>
                             <td>{{ $item->language }}</td>
                             <td class="ved">
-                                <i onclick="update({{ $item->id }})" class="bx bxs-edit"></i>
-                                <i onclick="del({{ $item->id }}" class="bx bxs-trash"></i>
+                                <form action="{{ url('/admin/DeleteLanguage/' . $item->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="bx bxs-trash"></button>
+                                </form>
                             </td>
                         </tr>
+                    @endforeach
                 </tbody>
-                @endforeach
             </table>
         </div>
     </div>
@@ -192,17 +195,17 @@
         @endforeach
     </table> --}}
     @if (Session::has('message'))
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-        <script>
-            toastr.options = {
-                closeButton: true,
-                progressBar: true,
-                showMethod: 'slideDown', // Define the show animation
-                hideMethod: 'slideUp', // Define the hide animation
-                timeOut: 5000
-            };
-            toastr.success("New Language Added!", 'Success')
-        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        toastr.options = {
+            closeButton: true,
+            progressBar: true,
+            showMethod: 'slideDown', // Define the show animation
+            hideMethod: 'slideUp', // Define the hide animation
+            timeOut: 5000
+        };
+        toastr.success("{{ Session::get('message') }}", 'Success');
+    </script>
     @endif
     <script>
         function update(id){
@@ -242,6 +245,8 @@ document.getElementById('picture').addEventListener('change', function () {
   }
 });
     </script>
+
+
 </body>
 
 </html>

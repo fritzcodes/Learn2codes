@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\LanguageAddRequest;
 use App\Models\prog_language;
+use Illuminate\Support\Facades\Session;
 
 
 class LanguageController extends Controller
@@ -38,9 +39,21 @@ class LanguageController extends Controller
     {
         
     }
-    public function DeleteLanguage($id)
-    {
 
+    public function DeleteLanguage($id)
+{
+    $language = prog_language::find($id);
+    if (!$language) {
+        return redirect()->back()->with('error', 'Language not found!');
     }
+
+    $language->delete();
+
+    // Flash success message to session
+    Session::flash('message', 'Language deleted successfully!');
+
+    return redirect()->back();
+}
+
 
 }
