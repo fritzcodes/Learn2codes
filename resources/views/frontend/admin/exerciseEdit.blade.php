@@ -19,7 +19,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-    <script src="../assets/js/admin/admin.js" async></script>
+    <script src="/assets/js/admin/admin.js" async></script>
 </head>
 
 <body>
@@ -32,14 +32,16 @@
         </div>
 
 
-        <div class="user">
+        <div class="user" style="margin-top: 1rem;">
             @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
             <img src="{{Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photoo) : 'assets/images/avatar.png' }}" alt="user" class="user-img">
             @else
             <!-- Placeholder image or default avatar -->
-            <img src="../assets/images/avatar.png" alt="user" class="user-img">
+            <img src="/assets/images/avatar.png" alt="user" class="user-img">
             @endif
             {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
+            <div class="deet" style="line-height: 0.1;">
+                <p class="username" style="margin-top: 15px;">{{ Auth::guard('admin')->user()->email }}</p>
             <div>
                 <p class="username">{{ Auth::guard('admin')->user()->username }}</p>
                 <p>Admin</p>
@@ -49,6 +51,7 @@
 
         <ul>
             <li>
+                <a target="_top" href="{{ route('Dashboard') }}">
                 <a target="_top" href="{{ route('Dashboard') }}">
                     <i class="bx bxs-dashboard"></i>
                     <span class="nav-item">Dashboard</span>
@@ -93,6 +96,7 @@
             </li>
             <li>
                 <a target="_top" href="/admin/exercise" class='active'>
+                <a target="_top" href="/admin/exercise" class='active'>
                     <i class="bx bx-dumbbell"></i>
                     <span class="nav-item">Exercise</span>
                 </a>
@@ -107,28 +111,36 @@
 
     </div>
 
-    @if (session()->has('message'))
-        <div class="alert alert-success">
-            {{ session('message') }}
+    <div class="main-content">
+        <div class="back">
+            <a href="/admin/exercise" class="bx bx-chevron-left" id="back-btn"></a>
         </div>
-    @endif
 
-    <form method="post" action="/admin/exercise-edit/{{ $data->id }}">
-        @csrf
-       
-        Language
-        <select name="language" id="" required>
-            <option value="">--Select a Language--</option>
-            @foreach ($language as $item)
-                <option value="{{ $item->language }}">{{ $item->language }}</option>
-            @endforeach
-        </select>
-        <div style="width: 1000px">
-            <textarea id="summernote" name="content">{{ $data->content }}</textarea>
-        </div>
-       
-        <input type="submit" value="Update exercise">
-    </form>
+
+            @if (session()->has('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+
+        <form method="post" action="/admin/exercise-edit/{{ $data->id }}" class="summernote">
+            @csrf
+        
+            <label for="language" class="label">Language</label>
+            <select class="select" name="language" id="" required>
+                <option value="">--Select a Language--</option>
+                @foreach ($language as $item)
+                    <option value="{{ $item->language }}">{{ $item->language }}</option>
+                @endforeach
+            </select>
+            <div style="width: 100%">
+                <textarea id="summernote" name="content">{{ $data->content }}</textarea>
+            </div>
+            <button type="submit" class="button" style="margin-top: 20px;">Update</button>
+        </form>
+    </div>
+
+ 
 
    
 

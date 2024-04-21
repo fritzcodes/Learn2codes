@@ -114,7 +114,7 @@
 
       .draggable-table {
             position: absolute;
-            top: 0%;
+            top: 50px;
             left: 0%;
             width: 100%;
             height: auto;
@@ -140,7 +140,7 @@
             <img src="{{Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photoo) : 'assets/images/avatar.png' }}" alt="user" class="user-img">
             @else
             <!-- Placeholder image or default avatar -->
-            <img src="../assets/images/avatar.png" alt="user" class="user-img">
+            <img src="/assets/images/avatar.png" alt="user" class="user-img">
             @endif
             {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
             <div>
@@ -211,7 +211,11 @@
     </div>
 
     <!-- -----------MAIN CONTENT------------ -->
-    <div class="main-content" id="content1"> <!------------------------------------------ dashboard -->
+    <div class="main-content"> <!------------------------------------------ dashboard -->
+        <div class="back">
+            <a href="/admin/exercise" class="bx bx-chevron-left" id="back-btn"></a>
+        </div>
+
     <main class="">
         <!-- Start DEMO HTML (Use the following code into your project)-->
         {{-- <p>Drag n' Drop sorting of rows!</p> --}}

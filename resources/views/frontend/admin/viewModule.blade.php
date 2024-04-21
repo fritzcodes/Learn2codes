@@ -33,21 +33,21 @@
             <i class="bx bx-menu" id="btn"></i>
         </div>
 
-
-        <div class="user">
+        <div class="user" style="margin-top: 1rem;">
             @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
             <img src="{{Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photoo) : 'assets/images/avatar.png' }}" alt="user" class="user-img">
             @else
             <!-- Placeholder image or default avatar -->
-            <img src="../assets/images/avatar.png" alt="user" class="user-img">
+            <img src="/assets/images/avatar.png" alt="user" class="user-img">
             @endif
             {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
+            <div class="deet" style="line-height: 0.1;">
+                <p class="username" style="margin-top: 15px;">{{ Auth::guard('admin')->user()->email }}</p>
             <div>
                 <p class="username">{{ Auth::guard('admin')->user()->username }}</p>
                 <p>Admin</p>
             </div>
         </div>
-
 
         <ul>
             <li>
@@ -89,6 +89,7 @@
             </li>
             <li>
                 <a target="_top" href="{{ route('addModule') }}" class='active'>
+                <a target="_top" href="{{ route('addModule') }}" class='active'>
                 <i class='bx bxs-book-reader'></i>
                     <span class="nav-item">Module</span>
                 </a>
@@ -109,15 +110,18 @@
 
     </div>
 
-
     <div class="main-content">
-         @if (session()->has('msg'))
-        <div class="alert alert-success">
+        <div class="back">
+            <a href="/admin/addModule" class="bx bx-chevron-left" id="back-btn"></a>
+        </div>
+
+    @if (session()->has('msg'))
+        <div class="alert alert-success" style="border-radius: 0;">
             {{ session('msg') }}
         </div>
-    @endif
+         @endif 
 
-    <form method="post" action="/admin/updateModule" class="summernote">
+    <form method="post" action="/admin/updateModule" class="summernote">   
         @csrf
         <input type="hidden" name="id" value="{{$modules->id}}">
         <label class="label">Title</label>
@@ -131,6 +135,7 @@
         <br>
         <label class="label">Example Code:</label>
         <textarea name="trycode" cols="50" rows="10" style="width: 100%">{{$modules->trycode}}</textarea>
+
         <button type="submit" class="button" style="margin-top: 20px;">Update</button>
     </form>
     </div>

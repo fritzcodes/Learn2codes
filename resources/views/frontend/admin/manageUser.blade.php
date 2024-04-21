@@ -102,7 +102,6 @@
             <div class="heading">
                 <h2>All Users</h2>
                 <input class="search" placeholder="Search" id="search" onkeyup="search()">
-                <a></a>
             </div>
             <table class="manage-user">
                 <thead>

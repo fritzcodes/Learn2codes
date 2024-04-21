@@ -110,7 +110,7 @@
 
     <div class="main-content">
                 <!------------------------------------------ dashboard -->  
-        <form action="/admin/AddLanguage" method="post" enctype="multipart/form-data" class="summernote">
+        <form action="/admin/AddLanguage" method="post" enctype="multipart/form-data" class="summernote" style="padding-top: 10px;">
            @csrf            
         <div class="form">
                <div class="langpicDiv">

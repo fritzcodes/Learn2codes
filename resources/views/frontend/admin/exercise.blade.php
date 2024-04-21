@@ -34,7 +34,7 @@
         </div>
 
 
-        <div class="user">
+        <div class="user" style="margin-top: 1rem;">
             @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
             <img src="{{Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photoo) : 'assets/images/avatar.png' }}" alt="user" class="user-img">
             @else
@@ -42,6 +42,8 @@
             <img src="../assets/images/avatar.png" alt="user" class="user-img">
             @endif
             {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
+            <div class="deet" style="line-height: 0.1;">
+                <p class="username" style="margin-top: 15px;">{{ Auth::guard('admin')->user()->email }}</p>
             <div>
                 <p class="username">{{ Auth::guard('admin')->user()->username }}</p>
                 <p>Admin</p>
@@ -51,6 +53,7 @@
 
         <ul>
             <li>
+                <a target="_top" href="{{ route('Dashboard') }}">
                 <a target="_top" href="{{ route('Dashboard') }}">
                     <i class="bx bxs-dashboard"></i>
                     <span class="nav-item">Dashboard</span>
@@ -95,6 +98,7 @@
             </li>
             <li>
                 <a target="_top" href="/admin/exercise" class='active'>
+                <a target="_top" href="/admin/exercise" class='active'>
                     <i class="bx bx-dumbbell"></i>
                     <span class="nav-item">Exercise</span>
                 </a>
@@ -109,18 +113,18 @@
 
     </div>
  
-    <div class="main-content" id="content1"> <!------------------------------------------ dashboard -->
+    <div class="main-content"> <!------------------------------------------ dashboard -->
         @if (session()->has('message'))
         <div class="alert alert-success">
             {{ session('message') }}
         </div>
     @endif
 
-    <form method="post" action="/admin/addExercise">
+    <form method="post" action="/admin/addExercise" class="summernote" style="padding-top: 10px;" >
         @csrf
        
-        Language
-        <select name="language" id="">
+        <label for="language" class="label">Language</label>
+        <select name="language" id="" class="select">
             <option value="">--Select a Language--</option>
             @foreach ($data as $item)
                 <option value="{{ $item->language }}">{{ $item->language }}</option>
@@ -129,8 +133,8 @@
         <div style="width: 100%">
             <textarea id="summernote" name="content"></textarea>
         </div>
-       
-        <input type="submit" value="Add exercise">
+       <button type="submit" class="button" style="margin-top: 20px;">Add exercise</button>
+       <br>
     </form>
 
     <div class="table">
@@ -149,7 +153,9 @@
                     @foreach ($data as $item)
                         <tr>
                             <td>{{ $item->language }}</td>
-                            <td><a href="/admin/exercise/{{ urlencode($item->language) }}"><button>View</button></a></td>
+                            <td class="ved">
+                                <a href="/admin/exercise/{{ urlencode($item->language) }}"><i class="bx bxs-show"></i></a>
+                            </td>
                         </tr>
                     @endforeach
             </table>

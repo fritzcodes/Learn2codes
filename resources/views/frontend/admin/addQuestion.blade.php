@@ -148,7 +148,6 @@
                 <div class="heading">
                     <h2>Quiz</h2>
                     <input class="search" placeholder="Search" id="search" onkeyup="search()">
-                    <a></a>
                 </div>
                 <table class="quiz">
                     <thead>
