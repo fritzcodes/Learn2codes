@@ -130,8 +130,8 @@
 
             <div>
                 <ul class="others">
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms and Services</a></li>
+                    <li><a href="/terms">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms and Services</a></li>
                     <li><a href="#">Cookies</a></li>
                 </ul>
             </div>
@@ -145,9 +145,7 @@
 
             <ul class="socmed">
                 <li><p>follow us on:</p></li>
-                <li><a href="#"><img src="assets/images/fb.svg"></img></a></li>
-                <li><a href="#"><img src="assets/images/insta.svg"></img></a></li>
-                <li><a href="#"><img src="assets/images/gmail.svg"></img></a></li>
+                <li><a href="https://www.facebook.com/profile.php?id=61558593006994&mibextid=ZbWKwL"><img src="assets/images/fb.svg"></img></a></li>
             </ul>
 
         </div>
