@@ -53,6 +53,20 @@
     overflow-x: hidden;
 }
 
+/* ---------------------HIDE SOME ICON WHEN SIDEBAR INACTIVE
+.sidebar.active ul li {
+    display: block;
+}
+
+.sidebar ul li:last-child {
+    display: block;
+}
+
+.sidebar ul li {
+    display: none;
+}
+*/
+
 .sidebar #btn {
     position: absolute;
     color: var(--main-color);
@@ -266,6 +280,7 @@ form {
 }
 
 .quesDiv textarea {
+    font-family: var(--font2);
     margin-top: 5px;
     border-radius: 10px;
     border: none;

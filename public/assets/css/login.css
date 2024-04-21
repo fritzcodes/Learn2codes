@@ -274,12 +274,16 @@
 
 /*-----------SIGNUP EXCUSIVE----------*/
 .typeinput label #year{
+    padding: 5px;
     height: 40px;
+    width: 200px;
     font-size: var(--p-font);
     border-radius: 5px;
+    border-width: 2px;
     border-style: solid;
     border-color: var(--high-color);
     background-color: var(--main-color);
+    text-align: left;
     cursor: pointer;
     color: var(--second-color);
 }
@@ -290,6 +294,27 @@
     display: none;
 
 }
+
+.terms {
+    text-align: left;
+    font-family: var(--font2);
+    padding: 10px 5px;
+}
+
+.terms input[type="checkbox"] {
+    width: 13px;  /* or any size */
+    height: 13px;
+  }
+
+.terms label {
+    font-size: var(--p-font);
+    text-align: left;
+}
+
+.terms span {
+    color: #ee0505;
+}
+
 
 /*-----------RESPONSIVENESS----------*/
 @media (max-width: 1300px) {
@@ -302,6 +327,15 @@
       --h2-head: 2rem;
       --p-head: 1.5rem;
       transition: .2s;
+    }
+
+    .typeinput label #year{
+        width: 140px;
+    }
+
+    .terms input[type="checkbox"] {
+        width: 15px;
+        height: 15px;  
     }
   
     }
@@ -320,9 +354,19 @@
             height: 35px;
         }
 
+        .typeinput label #year{
+            height: 35px;
+        }
+
         .btns {
             height: 35px;
         }
+
+        .terms input[type="checkbox"] {
+            width: 13px;
+            height: 13px;
+          }
+
 
 }
 
@@ -348,7 +392,11 @@
         display: flex;
         justify-content: center;
   }
-  
+
+    .typeinput label #year{
+        width: 200px;
+    }
+    
   }
 
     @media (max-width: 540px) {
@@ -374,6 +422,9 @@
         color: var(--text-color);
     }
 
+    .typeinput label #year{
+        width: 150px;
+    }
 
     }
 
@@ -396,8 +447,14 @@
             padding: 15px 10px;
         }
 
+        
+        .typeinput label #year{
+            width: 100px;
+        }
+
     }
 
+/*scrollable to maintain height*/
     @media (max-height: 645px) {
 
             .inputs {
@@ -409,6 +466,7 @@
             body {
                 padding: 50px;
             }
+    
 
     }
 
@@ -436,6 +494,10 @@
             height: 50px;
         }
 
+        .typeinput label #year{
+            height: 50px;
+        }
+
         .logbutton .btns {
             height: 50px;
         }
@@ -447,6 +509,11 @@
 
         .mobile-logo {
             display: flex;
+      }
+
+      .terms input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
       }
 
     }
@@ -483,9 +550,18 @@
             height: 70px;
         }
 
+        .typeinput label #year{
+            height: 70px;
+        }
+
         .logbutton .btns {
             height: 70px;
         }
+
+        .terms input[type="checkbox"] {
+            width: 25px;
+            height: 25px;
+          }
 
     }
 
