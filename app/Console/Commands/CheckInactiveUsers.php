@@ -27,7 +27,6 @@ class CheckInactiveUsers extends Command
      */
     public function handle()
     {
-        Log::info('nag execute na sya: ' . now());
         $inactiveThreshold = now()->subMinutes(5); // Adjust this threshold as needed
 
         // Find users whose last activity was before the threshold
