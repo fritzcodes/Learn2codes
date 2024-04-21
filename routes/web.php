@@ -31,6 +31,7 @@ use App\Http\Controllers\TryCodeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\boardController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +70,10 @@ Route::post('/admin/DeleteLanguage', [QuizLanguageController::class, 'DeleteLang
 Route::get('/register', [LoginController::class, 'register'])->name('register');
 Route::post('/register', [LoginController::class, 'registerPost'])->name('register');
 Route::get('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/login', [LoginController::class, 'loginPost'])->name('login');
+Route::post('/login', [LoginController::class, 'loginPost'])->name('loginpost');
+Route::get('/verify', [VerificationController::class, 'showVerificationForm'])->name('verify');
+Route::post('/verify', [VerificationController::class, 'verify'])->name('verification.verify');
+
 
 //addmin LOGIN
 Route::get('/admin/adminLogin', [adminLoginController::class, 'Index'])->name('AdminLogin');
