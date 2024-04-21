@@ -7,8 +7,6 @@
     <title>Sign Up | Learn2code</title>
     <link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
     <link rel="stylesheet" href="assets/css/login.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 
@@ -80,12 +78,7 @@
                     </div>
                     <div class="typeinput">
                         <p id="passwordError">Passwords do not match!</p> <!-- Removed the margin-bottom -->
-                    </div>  
-                    <div class="form-group mb-3">
-                      <strong>Google recaptcha :</strong>
-                      {!! NoCaptcha::renderJs() !!}
-                      {!! NoCaptcha::display() !!}
-                    </div>              
+                    </div>                
                </div> 
 
                 <div class="logbutton">

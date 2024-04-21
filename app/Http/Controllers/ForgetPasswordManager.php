@@ -13,20 +13,22 @@ use App\Models\User;
 
 class ForgetPasswordManager extends Controller
 {
-    function ForgetPassword(){
+    function ForgetPassword()
+    {
         return view('frontend.forget-password');
     }
 
 
-    function ForgetPasswordPost(Request $request){
+    function ForgetPasswordPost(Request $request)
+    {
         $request->validate([
-            'email'=> "required|email|exists:users",
+            'email' => "required|email|exists:users",
         ]);
-    
+
         $token = Str::random(60);
-    
+
         $existingRecord = DB::table('password_reset_tokens')->where('email', $request->email)->first();
-    
+
         if ($existingRecord) {
             DB::table('password_reset_tokens')->where('email', $request->email)->update([
                 'token' => $token,
@@ -39,29 +41,29 @@ class ForgetPasswordManager extends Controller
                 'created_at' => Carbon::now()
             ]);
         }
-    
-        Mail::send('emails.forget-password', ['token'=> $token], function ($message) use ($request){
-    $message->to($request->email);
-    $message->subject("Reset Password");
-});
+
+        Mail::send('emails.forget-password', ['token' => $token], function ($message) use ($request) {
+            $message->to($request->email);
+            $message->subject("Reset Password");
+        });
 
         return redirect()->route('forgetPassword', ['token' => $token])->with("success", "We have sent an email to reset password.");
-
     }
-    
 
-    function resetPassword($token){
+
+    function resetPassword($token)
+    {
 
         return view('frontend.new-password', ['token' => $token]);
-
     }
-    
 
-    function resetPasswordPost(Request $request){
+
+    function resetPasswordPost(Request $request)
+    {
         $request->validate([
-            "email"=>"required|email|:users",
-            "password"=>"required|string|min:8|confirmed",
-            "password_confirmation"=>"required"
+            "email" => "required|email|:users",
+            "password" => "required|string|min:8|confirmed",
+            "password_confirmation" => "required"
         ]);
 
         $updatePassword = DB::table('password_reset_tokens')->where([
@@ -71,15 +73,12 @@ class ForgetPasswordManager extends Controller
 
         if (!$updatePassword) {
             return redirect()->route('reset.password', ['token' => $request->token])->with("error", "Invalid email for password reset");
-
-            
         }
 
-        User::where("email",$request->email)->update(["password" => Hash::make($request->password)]);
+        User::where("email", $request->email)->update(["password" => Hash::make($request->password)]);
 
         DB::table('password_reset_tokens')->where(["email" => $request->email])->delete();
 
-        return redirect()->to(route('login'))->with("success","Password reset Successfully");
+        return redirect()->to(route('login'))->with("success", "Password reset Successfully");
     }
-    
 }

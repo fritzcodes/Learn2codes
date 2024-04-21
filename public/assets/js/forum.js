@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //     hideAllModals();
 //   });
 
-  // Prevent clicks within modals from closing them
+// Prevent clicks within modals from closing them
 //   var modals = document.querySelectorAll('.notif-action-modal');
 //   modals.forEach(function (modal) {
 //     modal.addEventListener('click', function (e) {
@@ -342,7 +342,7 @@ function toggleReply(replyId) {
 function postReply(button, containerId, user_id, comment_id, reply_id) {
   console.log(reply_id);
   var replyInput = button.parentElement.querySelector('textarea');
-console.log(containerId);
+  console.log(containerId);
   var replyText = replyInput.value.trim();
   const request = {
     user_id: user_id,
@@ -369,11 +369,11 @@ console.log(containerId);
         newReply.classList.add('reply');
         newReply.classList.add('nested-reply'); // Add class for nested replies
         const addReply = data.reply_with_user != null ?
-        `<p class="content" style="font-size: 12px; font-style:italic">${user_id == data.user.id ? 'You' : data.reply_with_user.user.fname } replied to ${ data.reply_with_user.user.fname + ' ' + data.reply_with_user.user.lname }</p> 
+          `<p class="content" style="font-size: 12px; font-style:italic">${user_id == data.user.id ? 'You' : data.reply_with_user.user.fname} replied to ${data.reply_with_user.user.fname + ' ' + data.reply_with_user.user.lname}</p> 
         <div style="background-color:rgba(255,255,255, .5)">
           <p class="content" style="font-size: 12px; color:gray; font-style:italic">${data.reply_with_user.reply}</p>
         </div>` : '';
-        
+
         newReply.innerHTML = `<div class="reply-container">
               <div class="user-info">
                   <img src="${data.user.profile_photo ? '/images/' + data.user.profile_photo : '/assets/images/avatar.png'}" alt="User Avatar" style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
@@ -458,7 +458,7 @@ function postComment(comment, user_id, post_id) {
 
 }
 
-function likePost(id, user_id, post_id){
+function likePost(id, user_id, post_id) {
   const request = {
     user_id: user_id,
     post_id: post_id
@@ -471,34 +471,36 @@ function likePost(id, user_id, post_id){
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
     data: request,
-    success: function(data){
+    success: function (data) {
       console.log(data);
-      if(data == "add"){
-       
-        if($('#likesCount' + post_id).text() == ""){
+      if (data == "add") {
+
+        if ($('#likesCount' + post_id).text() == "") {
           $('#likesCount' + post_id).text(parseInt(1));
-        }else{
+         
+        } else {
+      
           $('#likesCount' + post_id).text(parseInt($('#likesCount' + post_id).text()) + 1);
         }
-      }else{
-        
-        if($('#likesCount' + post_id).text() == 1){
+      } else {
+
+        if ($('#likesCount' + post_id).text() == 1) {
           $('#likesCount' + post_id).text('')
-        }else{
+        } else {
           $('#likesCount' + post_id).text(parseInt($('#likesCount' + post_id).text()) - 1);
         }
-  
+
       }
       $('#' + id).toggleClass('outlined-heart');
     },
-    error: function(xhr){
+    error: function (xhr) {
       alert(xhr.responseText);
     }
   })
-  
+
 }
 
-function likeComment(id, user_id, comment_id){
+function likeComment(id, user_id, comment_id) {
   const request = {
     user_id: user_id,
     comment_id: comment_id
@@ -511,37 +513,37 @@ function likeComment(id, user_id, comment_id){
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
     data: request,
-    success: function(data){
-      
+    success: function (data) {
+
       console.log(data);
-      if(data == "add"){
-       
-        if($('#likesCommentCount' + comment_id).text() == ""){
+      if (data == "add") {
+
+        if ($('#likesCommentCount' + comment_id).text() == "") {
           $('#likesCommentCount' + comment_id).text("1");
-          
-        }else{
+
+        } else {
           $('#likesCommentCount' + comment_id).text(parseInt($('#likesCommentCount' + comment_id).text()) + 1);
         }
-      }else{
-        
-        if($('#likesCommentCount' + comment_id).text() == 1){
+      } else {
+
+        if ($('#likesCommentCount' + comment_id).text() == 1) {
           $('#likesCommentCount' + comment_id).text('')
-        }else{
+        } else {
           $('#likesCommentCount' + comment_id).text(parseInt($('#likesCommentCount' + comment_id).text()) - 1);
         }
-  
+
       }
       $('#' + id).toggleClass('tBold');
     },
-    error: function(xhr){
+    error: function (xhr) {
       alert(xhr.responseText);
     }
   })
-  
+
 }
 
-function report(post_id, user_id){
-  if(confirm('Are you sure you want to report this?')){
+function report(post_id, user_id) {
+  if (confirm('Are you sure you want to report this?')) {
     $.ajax({
       url: '/report',
       data: {
@@ -553,10 +555,10 @@ function report(post_id, user_id){
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
-      success: function (data){
+      success: function (data) {
 
       },
-      error: function (xhr){
+      error: function (xhr) {
         alert(xhr.responseText);
       }
     })
@@ -564,8 +566,8 @@ function report(post_id, user_id){
 }
 
 
-function deletePostId(post_id){
-  if(confirm('Are you sure you want to delete this post?')){
+function deletePostId(post_id) {
+  if (confirm('Are you sure you want to delete this post?')) {
     $.ajax({
       url: `/delete-post/${post_id}`,
       method: 'delete',
@@ -573,20 +575,20 @@ function deletePostId(post_id){
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
-      success: function (data){
-        if(data == "success"){
+      success: function (data) {
+        if (data == "success") {
           alert("deleted successfully");
           location.reload();
         }
       },
-      error: function (xhr){
+      error: function (xhr) {
         alert(xhr.responseText);
       }
     })
   }
 }
 /* Notif-Section */
-function showModal(id){
+function showModal(id) {
   document.getElementById(id).style.display = 'block';
 
   console.log("success");
@@ -594,34 +596,44 @@ function showModal(id){
 
 
 
-    function markNotificationAsRead(id, postId) {
-      $.ajax({
-          url: `/notifications-update/${id}`, // Assuming this URL updates the notification status
-          dataType: 'json',
-          method: 'get',
-          success: function(data) {
-              // Redirect user to the corresponding post
-              window.location.href = `/forum/${postId}`; // Adjust the URL structure as needed
-          },
-          error: function(xhr){
-              console.log(xhr.responseText)
-          }
-      });
-  }
-  
-  $(document).ready(function() {
-      function fetchNotifications() {
-        $.ajax({
-          url: '/notifications', 
-          method: 'GET',
-          dataType: 'json',
-          success: function(data) {
-            let notif = "";
+function markNotificationAsRead(id) {
+  $.ajax({
+    url: `/notifications-update/${id}`, // Assuming this URL updates the notification status
+    dataType: 'json',
+    method: 'get',
+    success: function (data) {
 
-            data.forEach((notifs, i) => {
-              notif += `
+      window.location.href = `/forum/post#${data.notif_type}Notif${data.id}`;
+      
+      var originalColor = $(`#${data.notif_type}Notif${data.id}`).css('background-color');
+
+      // Change the background color of the element
+      $(`#${data.notif_type}Notif${data.id}`).css('background-color', '#dcdcdc');
+
+      // After 10 seconds, revert the background color back to its original color
+      setTimeout(function () {
+        $(`#${data.notif_type}Notif${data.id}`).css('background-color', originalColor);
+      }, 10000);
+    },
+    error: function (xhr) {
+      console.log(xhr.responseText)
+    }
+  });
+}
+
+$(document).ready(function () {
+  function fetchNotifications() {
+    $.ajax({
+      url: '/notifications',
+      method: 'GET',
+      dataType: 'json',
+      success: function (data) {
+        let notif = "";
+
+        data.forEach((notifs, i) => {
+          notif += `
               <div class="notif-container" onclick="markNotificationAsRead('${notifs.id}')">
-                  <a href="#" class="notification-item ${notifs.is_read == 0 ?  'unread-notif' : ''}">
+                  <a href="#" class="notification-item ${notifs.is_read == 0 ? 'unread-notif' : ''}">
                       <span class="unread"></span>
                       <i class="icon bx bx-post"></i>
                       <div class="content">
@@ -646,27 +658,26 @@ function showModal(id){
                   </div>
               </div>
               `;
-            });
+        });
 
-              $('#notifContainer').html(notif);
-          },
-          error: function(xhr){
-            console.log(xhr.responseText)
-          }
-      });
+        $('#notifContainer').html(notif);
+      },
+      error: function (xhr) {
+        console.log(xhr.responseText)
       }
-  
-      // Fetch new notifications every 3 seconds
-      setInterval(fetchNotifications, 3000);
-  
-      // Handle click on notification item
-      $(document).on('click', '.notification-item', function() {
-          // Get the ID of the clicked notification
-          let notificationId = $(this).data('notification-id');
-          // Get the ID of the post associated with the notification
-          let postId = $(this).data('post-id');
-          // Mark the notification as read and redirect to the post
-          markNotificationAsRead(notificationId, postId);
-      });
-  });
-  
+    });
+  }
+
+  // Fetch new notifications every 3 seconds
+  setInterval(fetchNotifications, 3000);
+
+  // Handle click on notification item
+  // $(document).on('click', '.notification-item', function() {
+  //     // Get the ID of the clicked notification
+  //     let notificationId = $(this).data('notification-id');
+  //     // Get the ID of the post associated with the notification
+  //     let postId = $(this).data('post-id');
+  //     // Mark the notification as read and redirect to the post
+  //     markNotificationAsRead(notificationId, postId);
+  // });
+});
