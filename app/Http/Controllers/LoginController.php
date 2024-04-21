@@ -34,6 +34,7 @@ class LoginController extends Controller
             'username' => 'required|unique:users,username',
             'firstname' => 'required|string',
             'lastname' => 'required|string',
+            'course' => 'required|string',
             'password' => 'required|min:8|confirmed',
         ]);
 
