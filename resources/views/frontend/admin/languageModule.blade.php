@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/assets/css/Admin.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href='https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet'>    
-    <script src="/assets/js/admin/admin.js" async></script>
+    <script src="/assets/js/admin/admin.js" defer></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -112,7 +112,7 @@
 
       .draggable-table {
             position: absolute;
-            top: 0%;
+            top: 50px;
             left: 0%;
             width: 100%;
             height: auto;
@@ -140,7 +140,7 @@
             <img src="{{Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photoo) : 'assets/images/avatar.png' }}" alt="user" class="user-img">
             @else
             <!-- Placeholder image or default avatar -->
-            <img src="../assets/images/avatar.png" alt="user" class="user-img">
+            <img src="/assets/images/avatar.png" alt="user" class="user-img">
             @endif
             {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
             <div>
@@ -152,7 +152,7 @@
 
         <ul>
             <li>
-                <a target="_top" href="{{ route('Dashboard') }}" class='active'>
+                <a target="_top" href="{{ route('Dashboard') }}">
                     <i class="bx bxs-dashboard"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
@@ -189,7 +189,7 @@
                 </a>
             </li>
             <li>
-                <a target="_top" href="{{ route('addModule') }}">
+                <a target="_top" href="{{ route('addModule') }}"  class='active'>
                 <i class='bx bxs-book-reader'></i>
                     <span class="nav-item">Module</span>
                 </a>
@@ -211,6 +211,9 @@
     </div>
 
     <div class="main-content"> <!------------------------------------------ dashboard -->
+        <div class="back">
+            <a href="/admin/addModule" class="bx bx-chevron-left" id="back-btn"></a>
+        </div>
     <!--$%adsense%$-->
         <!-- Start DEMO HTML (Use the following code into your project)-->
         {{-- <p>Drag n' Drop sorting of rows!</p> --}}
@@ -428,7 +431,7 @@
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Success!',
-                                    text: 'Module Order Changed'
+                                    text: 'Module Order Changed',
                                 })
                             }
                         },

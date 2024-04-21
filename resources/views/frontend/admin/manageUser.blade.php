@@ -35,13 +35,13 @@
 
         <ul>
             <li>
-                <a target="_top" href="{{ route('Dashboard') }}" class='active'>
+                <a target="_top" href="{{ route('Dashboard') }}">
                     <i class="bx bxs-dashboard"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
             </li>
             <li>
-                <a target="_top" href="{{ route('ManageUser') }}">
+                <a target="_top" href="{{ route('ManageUser') }}" class='active'>
                     <i class="bx bxs-user"></i>
                     <span class="nav-item">Manage Users</span>
                 </a>
@@ -100,7 +100,6 @@
             <div class="heading">
                 <h2>All Users</h2>
                 <input class="search" placeholder="Search" id="search" onkeyup="search()">
-                <a></a>
             </div>
             <table class="manage-user">
                 <thead>

@@ -549,11 +549,45 @@ td {
     color: #CD7F32;
 }
 
+#profile-img {
+    display: flex;
+    text-align: center;
+}
+
+#profile-img img {
+    width:2em;
+    height: 2em;
+    border-radius: 100%;
+}
+
+#profile-img p {
+    padding-top: 5px;
+    margin-left: 2px;
+}
+
+
 
 /*-----------ADD MODULE----------------*/
+.back { 
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+}
+
+
+#back-btn {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 50px;
+    cursor: pointer;
+    display: block;
+    }  
 
 .input{
-    color: var(--bg-color);
+    color: var(--main-color);
     background: var(--text-color);
     border-radius: 5px;
     text-indent: 5px;
@@ -573,15 +607,17 @@ td {
     text-align: center;
     border-width: 0;
     cursor: pointer;
+    margin-bottom: 20px;
 }
 
-.label {
+.summernote .label {
     font-size: var(--p-font);
     font-weight: 600;
     color: var(--main-color);
 }
 
 .summernote {
+    padding: 0 15px;
     margin-bottom: 40px;
 }
 
@@ -760,6 +796,7 @@ td {
         display: none;
     }   
 
+
 }
 
 @media(max-width:280px) {
@@ -775,6 +812,10 @@ td {
 
     .leaderboard td:nth-child(4) {
         display: none;
+    }
+
+    .search {
+        width: 100px;
     }
  
 

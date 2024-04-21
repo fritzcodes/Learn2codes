@@ -21,7 +21,7 @@
         </div>
 
 
-        <div class="user">
+        <div class="user" style="margin-top: 1rem;">
             @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
             <img src="{{Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photoo) : 'assets/images/avatar.png' }}" alt="user" class="user-img">
             @else
@@ -29,8 +29,8 @@
             <img src="../assets/images/avatar.png" alt="user" class="user-img">
             @endif
             {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
-            <div>
-                <p class="username">{{ Auth::guard('admin')->user()->email }}</p>
+            <div class="deet" style="line-height: 0.1;">
+                <p class="username" style="margin-top: 15px;">{{ Auth::guard('admin')->user()->email }}</p>
                 <p>Admin</p>
             </div>
         </div>
@@ -38,7 +38,7 @@
 
         <ul>
             <li>
-                <a target="_top" href="{{ route('Dashboard') }}" class='active'>
+                <a target="_top" href="{{ route('Dashboard') }}">
                     <i class="bx bxs-dashboard"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
@@ -75,7 +75,7 @@
                 </a>
             </li>
             <li>
-                <a target="_top" href="{{ route('addModule') }}">
+                <a target="_top" href="{{ route('addModule') }}"  class='active'>
                 <i class='bx bxs-book-reader'></i>
                     <span class="nav-item">Module</span>
                 </a>
@@ -103,7 +103,7 @@
         </div>
         @endif
 
-    <form method="post" action="/admin/addNewModule" class="summernote">
+    <form method="post" action="/admin/addNewModule" class="summernote" style="padding-top: 10px;">
         @csrf
         <label for="title" class="label">Title</label>
         <input type="text" name="title" class="input" id="" placeholder="Input Title" required>

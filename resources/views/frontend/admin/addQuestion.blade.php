@@ -38,7 +38,7 @@
 
         <ul>
             <li>
-                <a target="_top" href="{{ route('Dashboard') }}" class='active'>
+                <a target="_top" href="{{ route('Dashboard') }}">
                     <i class="bx bxs-dashboard"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
@@ -63,7 +63,7 @@
             </li>
             <li>
 
-                <a target="_top" href="{{ route('Question') }}">
+                <a target="_top" href="{{ route('Question') }}" class='active'>
                     <i class="bx bxs-hourglass-top"></i>
                     <span class="nav-item">Quiz</span>
                 </a>
@@ -148,7 +148,6 @@
                 <div class="heading">
                     <h2>Quiz</h2>
                     <input class="search" placeholder="Search" id="search" onkeyup="search()">
-                    <a></a>
                 </div>
                 <table class="quiz">
                     <thead>

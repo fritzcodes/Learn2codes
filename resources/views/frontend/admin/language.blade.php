@@ -49,7 +49,7 @@
 
         <ul>
             <li>
-                <a target="_top" href="{{ route('Dashboard') }}" class='active'>
+                <a target="_top" href="{{ route('Dashboard') }}">
                     <i class="bx bxs-dashboard"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
@@ -67,7 +67,7 @@
                 </a>
             </li>
             <li>
-                <a target="_top" href="/admin/language">
+                <a target="_top" href="/admin/language" class='active'>
                     <i class="bx bxs-select-multiple"></i>
                     <span class="nav-item">Add Language</span>
                 </a>
@@ -110,7 +110,7 @@
 
     <div class="main-content">
                 <!------------------------------------------ dashboard -->  
-        <form action="/admin/AddLanguage" method="post" enctype="multipart/form-data" class="summernote">
+        <form action="/admin/AddLanguage" method="post" enctype="multipart/form-data" class="summernote" style="padding-top: 10px;">
            @csrf            
         <div class="form">
                <div class="langpicDiv">

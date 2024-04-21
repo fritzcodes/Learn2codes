@@ -36,7 +36,7 @@
 
         <ul>
             <li>
-                <a target="_top" href="{{ route('Dashboard') }}" class='active'>
+                <a target="_top" href="{{ route('Dashboard') }}">
                     <i class="bx bxs-dashboard"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
@@ -48,7 +48,7 @@
                 </a>
             </li>
             <li>
-                <a target="_top" href="{{ route('Leaderboard') }}">
+                <a target="_top" href="{{ route('Leaderboard') }}" class='active'>
                     <i class="bx bxs-trophy"></i>
                     <span class="nav-item">Leaderboard</span>
                 </a>
@@ -101,7 +101,6 @@
             <div class="heading">
                 <h2>Leaderboard</h2>
                 <input class="search" placeholder="Search" id="search" onkeyup="search()">
-                <a></a>
             </div>
             <table class="leaderboard">
                 <thead>
@@ -119,7 +118,8 @@
                     @foreach ($userPoints as $index => $userPoint)
                     <tr>
                         <td id="{{ $index == 0 ? 'winner' : ($index == 1 ? 'runner-up' : ($index == 2 ? 'second-runner-up' : '')) }}">{{ $index + 1 }}</td>
-                        <td><img src="{{$userPoint['profile_photo'] ? asset('/images/' . $userPoint['profile_photo']) : '/assets/images/avatar.png' }}">
+                        <td id="profile-img">
+                            <img src="{{$userPoint['profile_photo'] ? asset('/images/' . $userPoint['profile_photo']) : '/assets/images/avatar.png' }}">
                             <p>{{ $userPoint['username'] }}</p>
                         </td>
                         <td>{{ $userPoint['fname']}}</td>
