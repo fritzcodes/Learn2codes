@@ -572,7 +572,7 @@ transition: .2s;
         </div>
         <div class="correct-container">
             <p class="correct-answer"> 
-                <code id="correctAns"> {!! $data['0']->content !!} </code>
+                <code id="correctAns"></code>
             </p>
         </div>
 
@@ -592,7 +592,7 @@ transition: .2s;
             <h2>INCORRECT!</h2>            
         </div>
         <div class="incorrect-ans">
-            <p class="incorrect-answer"> <code id="incorrectAns"> {!! $data['0']->content !!} </code></p>
+            <p class="incorrect-answer"> <code id="incorrectAns"> </code></p>
         </div>
 
         <div class="btn">
@@ -626,7 +626,8 @@ transition: .2s;
     <script>
         var score = 0;
         var answers = [];
-
+        $("#correctAns").html( `{!! $data['0']->content !!} `);
+        $("#incorrectAns").html( `{!! $data['0']->content !!} `);
         function underlineRel() {
 
             var fillInBlanks = document.querySelectorAll("#exerciseContent u");
@@ -656,7 +657,6 @@ transition: .2s;
 
             var correctAnswers = answers;
             var userAnswers = [];
-            console.log(answers);
             var textBoxes = document.querySelectorAll("input[type='text']");
             textBoxes.forEach(function(textBox) {
                 var index = parseInt(textBox.getAttribute("data-index"));

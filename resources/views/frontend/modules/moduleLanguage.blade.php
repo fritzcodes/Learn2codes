@@ -15,25 +15,32 @@
     <script src="../assets/js/carousel.js" defer></script>
 
     <style>
-    body {
-        background: url("../assets/images/backlogin.png");
-        display: flex;
-        justify-content: center; /* Center horizontally */
-        align-items: center; /* Center vertically */
-        height: 100vh; /* Use full viewport height */
-        margin: 0; /* Remove default body margin */
-        background-size: cover;
-        overflow-y: hidden;
-        animation: animateBackground 20s linear infinite; /* Adjust as needed */
-          }
-          @keyframes animateBackground {
+        body {
+            background: url("../assets/images/backlogin.png");
+            display: flex;
+            justify-content: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
+            height: 100vh;
+            /* Use full viewport height */
+            margin: 0;
+            /* Remove default body margin */
+            background-size: cover;
+            overflow-y: hidden;
+            animation: animateBackground 20s linear infinite;
+            /* Adjust as needed */
+        }
+
+        @keyframes animateBackground {
             0% {
-              background-position: 0 0;
+                background-position: 0 0;
             }
+
             100% {
-              background-position: 100% 100%;
+                background-position: 100% 100%;
             }
-          }
+        }
     </style>
 
 </head>
@@ -50,11 +57,10 @@
                 <button><a href="{{ route('profile') }}" class="profile-link">
 
                         @if (Auth::check() && Auth::user()->profile_photo)
-                            <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : '../assets/images/avatar.png' }}"
-                                alt="Profile Photo" class="avatar">
+                        <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : '../assets/images/avatar.png' }}" alt="Profile Photo" class="avatar">
                         @else
-                            <!-- Placeholder image or default avatar -->
-                            <img src="../assets/images/avatar.png" alt="Default Avatar" class="avatar">
+                        <!-- Placeholder image or default avatar -->
+                        <img src="../assets/images/avatar.png" alt="Default Avatar" class="avatar">
                         @endif
                         <h2>{{ Auth::user()->username }}</h2>
                     </a></button>
@@ -73,9 +79,9 @@
 
     <section class="space-background">
         @if (session()->has('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
-            </div>
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
         @endif
 
         <div class="title">
@@ -88,8 +94,19 @@
                 <i id="left" class="bx bx-chevron-left"></i>
                 <ul class="carousel">
                     @foreach ($data as $item)
-                        <a href="/module/{{ urlencode($item->language) }}"><img src="../images/{{ $item->picture }}" alt="img"
-                                draggable="false"></a>
+                        @if ($item->modules_count > 0)
+                        <a href="/module/{{ urlencode($item->language) }}" style="position: relative; display: inline-block;">
+                                <img src="../images/{{ $item->picture }}" alt="img" draggable="false" style="width: 100%; height: auto;">
+                                
+                            </a>
+                        @else
+                            <a style="position: relative; display: inline-block;">
+                                <img src="../images/{{ $item->picture }}" alt="img" draggable="false" style="width: 100%; height: auto;">
+                                <span style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color:rgba(255, 255, 255, .5); border-radius:6%">
+                                    <span style="transform: rotate(-45deg); color: black; font-size: 24px; font-weight: bold;">Coming soon</span>
+                                </span>
+                            </a>
+                        @endif
                     @endforeach
                 </ul>
                 <i id="right" class="bx bx-chevron-right"></i>
