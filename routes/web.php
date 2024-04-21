@@ -32,6 +32,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\boardController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\termsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +101,11 @@ Route::get('/landing', function () {
 Route::get('/about', function () {
     return view('frontend.about');
 })->name('about');
+
+//terms page route
+Route::get('/terms', function () {
+    return view('frontend.terms');
+})->name('terms');
 
 Route::get('/forget-password', [ForgetPasswordManager::class, 'ForgetPassword'])->name('forgetPassword');
 Route::post('/forget-passwordpost', [ForgetPasswordManager::class, 'ForgetPasswordPost'])->name('forget.password.post');

@@ -40,7 +40,7 @@
         }
 
         #back-btn {
-        color: var(--text-color);
+        color: var(--second-color);
         font-size: 60px;
         z-index: 10001;
         cursor: pointer;
@@ -54,6 +54,7 @@
         height: 100vh; /* Use full viewport height */
         margin: 0; /* Remove default body margin */
         background-size: cover;
+        object-fit: fit;
         animation: animateBackground 20s linear infinite; /* Adjust as needed */
           }
           @keyframes animateBackground {
@@ -76,7 +77,7 @@
 
         width: 55%;
         border-radius: 50%;
-        box-shadow: -2px 2px var(--bg-color);
+        box-shadow: 2px 4px var(--main-color);
         backdrop-filter: blur(6px);
     }
 
@@ -86,7 +87,8 @@
         align-content: center;
         justify-content: center;
         border-radius: 35.066px;
-        background: var(--main-color);
+        background: var(--bg-color);
+        box-shadow: 2px 4px var(--main-color);
         backdrop-filter: blur(6px);
 
     }
@@ -136,7 +138,7 @@
         justify-content: left;
         align-items: center;
         font-family: var(--font1);
-        color: var(--text-color);
+        color: var(--main-color);
         padding: 30px 0;
         text-align: justify;
     }
@@ -157,43 +159,37 @@
     }
 
     .typeinput input{
-        background: var(--main-color);
+        background: none;
         border-style: none;
-        text-indent: 7px;
+        text-indent: 7px    ;
         border-radius: 5px;
         border-style: solid;
-        border-color: var(--high-color);
+        border-color: var(--second-color);
         width: 100%;
         height: 40px;
         font-size: var(--p-font);
-        font-weight: 600;
-        color: var(--bg-color);
-    }
-
-    .typeinput input::placeholder {
         font-weight: 100;
         color: var(--high-color);
     }
 
     .typeinput input:focus {
-        font-weight: 100;
-        color: var(--text-color);
+        font-weight: 600;
+        color: var(--main-color);
     }
 
     .typeinput .showhide {
         margin: 0 0px 0 10px;
-        padding: 10px 15px;
+        padding: 0px 15px;
         float: right;
         border-radius: 5px;
         border-style: none;
         cursor: pointer;
-        background-color: var(--main-color);
+        background-color: var(--text-color);
         transition: ease 0.2s;
     }
 
     .showhide:hover {
         background: var(--second-color);
-        color: var(--main-color);
     }
 
     .showhide img {
@@ -209,8 +205,8 @@
         border-style: none;
         font-size: var(--p-font);
         border-radius: 5px;
-        background-color: var(--second-color);
-        color: var(--main-color);
+        background-color: var(--text-color);
+        color: var(--second-color);
         width: 100%;
         height: 40px;
         font-weight: 600;
@@ -218,7 +214,8 @@
     }
 
     .btns:hover{
-        background-color: var(--text-color);
+        color: var(--main-color);
+        background-color: var(--second-color);
         cursor: pointer;
     }
 
@@ -227,11 +224,12 @@
         margin: 4px;
         display: flex;
         justify-content: space-between;
+        align-items: center;
     }
 
     .remember-me {
         align-items: center;
-        color: var(--text-color);
+        color: var(--high-color);
     }
 
     .remember-me label {
@@ -240,7 +238,7 @@
 
     .forgot a {
         font-size: var(--p-font);
-        color: var(--text-color);
+        color: var(--high-color);
     }
 
     .forgot a:hover {
@@ -260,12 +258,12 @@
         font-weight: 600;
         font-family: var(--font2);
         font-size: var(--p-font);
-        color: var(--text-color);
+        color: var(--high-color);
     }
 
     .signing a {
         margin-top: -2px;
-        color: var(--text-color);
+        color: var(--main-color);
         font-size: var(--p-font);
         font-weight: 500;
         font-style: italic;
@@ -281,34 +279,43 @@
     border-radius: 5px;
     border-width: 2px;
     border-style: solid;
-    border-color: var(--high-color);
-    background-color: var(--main-color);
+    border-color: var(--second-color);
+    background-color: transparent;
     text-align: left;
     cursor: pointer;
-    color: var(--second-color);
+    color: var(--high-color);
 }
 
 /* Adjust the position of the error message */
 #passwordError {
-    color: var(--text-color);
+    margin-left: 10px;
+    color: var(--main-color);
     display: none;
 
 }
 
 .terms {
+    display: block;
     text-align: left;
     font-family: var(--font2);
-    padding: 10px 5px;
+    padding: 10px 10px;
 }
 
 .terms input[type="checkbox"] {
     width: 13px;  /* or any size */
     height: 13px;
+    margin-right: 5px;
   }
 
 .terms label {
+    color: var(--main-color);
     font-size: var(--p-font);
     text-align: left;
+}
+
+.terms a {
+    color: var(--high-color);
+    font-size: var(--p-font);
 }
 
 .terms span {
@@ -362,11 +369,10 @@
             height: 35px;
         }
 
-        .terms input[type="checkbox"] {
+        input[type="checkbox"] {
             width: 13px;
             height: 13px;
           }
-
 
 }
 
@@ -388,6 +394,15 @@
         overflow: hidden;
     }
 
+    .logo {
+        display: none;
+    }
+
+    .logo img {
+        margin: 0;
+        padding: 0;
+    }
+
     .mobile-logo {
         display: flex;
         justify-content: center;
@@ -395,6 +410,12 @@
 
     .typeinput label #year{
         width: 200px;
+    }
+
+    .btns{
+        color: var(--main-color);
+        background-color: var(--second-color);
+        cursor: pointer;
     }
     
   }
@@ -405,26 +426,15 @@
             --p-font: 1.1rem;
         }
 
-    .logo {
-        display: none;
-    }
-
-    .logo img {
-        margin: 0;
-        padding: 0;
-    }
-
     .title {
         justify-content: center;
-    }
-
-    #back-btn {
-        color: var(--text-color);
     }
 
     .typeinput label #year{
         width: 150px;
     }
+
+    
 
     }
 
@@ -458,9 +468,23 @@
     @media (max-height: 645px) {
 
             .inputs {
+                padding-right: 5px;
                 max-height: 45vh;
                 overflow-y: scroll;
-        
+            }
+
+            ::-webkit-scrollbar {
+                width: 12px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: var(--text-color);
+                border-radius: 15px; 
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background-color: var(--main-color);
+                border-radius: 15px; 
             }
             
             body {
@@ -511,10 +535,16 @@
             display: flex;
       }
 
-      .terms input[type="checkbox"] {
+      input[type="checkbox"] {
         width: 20px;
         height: 20px;
       }
+
+      .btns{
+        color: var(--main-color);
+        background-color: var(--second-color);
+        cursor: pointer;
+    }
 
     }
 
@@ -558,10 +588,11 @@
             height: 70px;
         }
 
-        .terms input[type="checkbox"] {
+        input[type="checkbox"] {
             width: 25px;
             height: 25px;
           }
+
 
     }
 

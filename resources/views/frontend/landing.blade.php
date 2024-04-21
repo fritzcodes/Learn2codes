@@ -9,8 +9,8 @@
     <title>Learn2Code</title>
     <link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
     <link rel="stylesheet" href="assets/css/estilo.css">
+    <link rel="stylesheet" href="assets/css/header2.css">
 
-    <link rel="shortcut icon" type="x-icon" href="assets/images/Logo.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 
 </head>
