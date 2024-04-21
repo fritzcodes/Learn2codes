@@ -54,7 +54,6 @@
         <ul>
             <li>
                 <a target="_top" href="{{ route('Dashboard') }}">
-                <a target="_top" href="{{ route('Dashboard') }}">
                     <i class="bx bxs-dashboard"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
@@ -97,7 +96,6 @@
                 </a>
             </li>
             <li>
-                <a target="_top" href="/admin/exercise" class='active'>
                 <a target="_top" href="/admin/exercise" class='active'>
                     <i class="bx bx-dumbbell"></i>
                     <span class="nav-item">Exercise</span>
