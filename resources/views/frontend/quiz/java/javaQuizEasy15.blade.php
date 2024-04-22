@@ -4,26 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Java Quiz</title>
+    <title>{{ $id }} Quiz</title>
     <link rel="stylesheet" href="/assets/css/quizContent.css">
-    <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.jpg">
+    <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.svg">
 
     
-    <link rel="stylesheet"
-    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
- 
- <link rel="preconnect" href="https://fonts.googleapis.com">
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
- <link rel="preconnect" href="https://fonts.googleapis.com">
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>
     body{
         width: 100%;
         height: 100vh;
-        background: url("/assets/images/bg.svg");
+        background: url("/assets/images/backlogin.png");
         overflow: hidden; /* Prevent horizontal scrolling */
         z-index: -1; /* Behind other content */
         background-size: cover;
@@ -59,7 +52,7 @@
             <div class="info">5. You'll get points on the basis of your correct answers.</div>
         </div>
         <div class="buttons">
-            <button class="leave"><a onclick="window.history.back()">Exit Quiz</a></button>
+            <a onclick="window.history.back()"><button class="leave">Exit</button></a>
             <button class="restart">Continue</button>
 
         </div>
@@ -98,9 +91,9 @@
     <!-- Result Box -->
     <div class="result_box">
         <div class="icon">
-            <i class="bx bx-crown"></i>
+            <i class="bx bx-trophy"></i>
         </div>
-        <div class="complete_text">Congrats! You've completed the quiz.</div>
+        <div class="complete_text">CONGRATULATIONS!<br><span>You've completed the quiz.</span></div>
         <div class="score_text">
             <!-- Here I've inserted Score Result from JavaScript -->
         </div>
