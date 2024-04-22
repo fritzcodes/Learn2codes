@@ -236,7 +236,7 @@
         }
 
         // Refresh the data every 10 seconds
-        setInterval(fetchDataAndUpdateTable, 3000);
+        setInterval(fetchDataAndUpdateTable, 10000);
 
         function confirmDelete(userId) {
             if (confirm("Are you sure you want to delete this account?")) {
