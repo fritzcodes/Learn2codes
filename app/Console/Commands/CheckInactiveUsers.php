@@ -31,12 +31,12 @@ class CheckInactiveUsers extends Command
 
         // Find users whose last activity was before the threshold
         $inactiveUsers = User::where('last_online_at', '<', $inactiveThreshold)
-            ->where('is_online', true)
+            //->where('is_online', true)
             ->get();
         
         // Update their online status to offline
-        $inactiveUsers->each(function ($user) {
-            User::where('id', $user->id)->update(['is_online' => false]);
-        });
+        // $inactiveUsers->each(function ($user) {
+        //     User::where('id', $user->id)->update(['is_online' => false]);
+        // });
     }
 }

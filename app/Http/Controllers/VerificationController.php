@@ -25,7 +25,7 @@ class VerificationController extends Controller
         if ($verCode == $verificationCode) {
             // Verification successful, log in the user
             Auth::loginUsingId($userId);
-            User::where('id', $userId)->update(['is_online' => true, 'last_online_at' => now()]);
+            User::where('id', $userId)->update(['last_online_at' => now()]);
             LoggedIn::create(['user_id' => $userId]);
             $request->session()->put('id', $userId);
             // Clear verification code from user and session

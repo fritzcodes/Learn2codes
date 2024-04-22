@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../assets/css/admin.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 </head>
 
 <body>
@@ -131,7 +132,10 @@
                                 <button class="bx bxs-show"></button>
                                 <button class="bx bxs-trash" onclick="confirmDelete({{ $use->id }})"></button>
                             </td>
-                            <td>{{$use['is_online'] ? 'Online' : 'Offline' }}</td>
+                            @php
+                            $new_last_online_at = date('Y-m-d H:i:s', strtotime($use['last_online_at'] . ' +2 minutes'));
+                            @endphp
+                            <td>{{$new_last_online_at > now() ? 'Online' :  \Illuminate\Support\Carbon::parse($use['last_online_at'])->diffForHumans()  }}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -170,6 +174,22 @@
         // Retrieve CSRF token from meta tag
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
+        function isoStringDate(lastOnline) {
+            var date = new Date(lastOnline);
+
+            // Get the individual components
+            var year = date.getFullYear();
+            var month = ('0' + (date.getMonth() + 1)).slice(-2); // Month is zero-based, so add 1
+            var day = ('0' + date.getDate()).slice(-2);
+            var hours = ('0' + date.getHours()).slice(-2);
+            var minutes = ('0' + date.getMinutes()).slice(-2);
+            var seconds = ('0' + date.getSeconds()).slice(-2);
+            var milliseconds = ('00' + date.getMilliseconds()).slice(-3);
+
+            // Format the date string
+            return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}Z`;
+        }
+
         function fetchDataAndUpdateTable() {
             fetch('/admin/manageUserRefresh') // Replace '/your-api-endpoint' with the actual endpoint to fetch the data
                 .then(response => response.json())
@@ -179,6 +199,22 @@
 
                     // Append new data to the table body
                     data.forEach(user => {
+
+                        var lastOnlineAt = new Date(user.last_online_at);
+                        var lastOnlineAt2 = new Date(user.last_online_at);
+                        lastOnlineAt.setMinutes(lastOnlineAt.getMinutes() + 2);
+                        // Assuming dateString is "Mon Apr 22 2024 14:40:29 GMT+0800 (Singapore Standard Time)"
+                        
+
+                        // Parse the date string
+
+
+                        //console.log("timeeee",formattedDateString); // Output: "2024-04-22T14:40:29.000Z"
+
+                        var currentDate = new Date();
+                        var currentTime = currentDate.toISOString(); // Convert to UTC string
+                        // Send currentDateUTC to the server
+                        
                         let row = `<tr id="user-${user.id}">
                                     <td>${user.id}</td>
                                     <td>${user.fname || ''}</td>
@@ -190,9 +226,10 @@
                                         <button class="bx bxs-show"></button>
                                         <button class="bx bxs-trash" onclick="confirmDelete(${user.id})"></button>
                                     </td>
-                                    <td>${user.is_online ? 'Online' : 'Offline'}</td>
+                                    <td>${isoStringDate(lastOnlineAt) > currentTime  ? 'Online' : moment.utc(isoStringDate(lastOnlineAt2)).fromNow()}</td>
                                 </tr>`;
                         document.getElementById('userTableBody').innerHTML += row;
+                        
                     });
                 })
                 .catch(error => console.error('Error fetching data:', error));
