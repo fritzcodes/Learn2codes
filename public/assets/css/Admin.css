@@ -791,6 +791,10 @@ td {
         margin-right: 10px;
     }
 
+    .search {
+        width: 150px;
+    }
+
 
 }
 
@@ -809,8 +813,8 @@ td {
         transition: .2s;
       }
 
-    .search {
-        width: 100px;
+      .search {
+        width: 80px;
     }
  
 

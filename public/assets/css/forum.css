@@ -386,27 +386,24 @@ background: #BABABA;
   transform-origin: center;
 }
 
-.indicator::before {
-  content: '1'; /* Add the number 1 here */
+.indicator {
+  content: ''; /* Add the number 1 here */
   position: absolute;
   top: -5px; /* Adjust position */
   right: -4px; /* Adjust position */
   display: inline-block;
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
+  padding: 5px 0 0 0;
   border-radius: 100%;
-  padding: 4px;
   background-color: #ef172c; /* Change color to white or any desired color for the number */
   color: #fff; /* Set the text color */
   font-weight: bold; /* Make the number bold */
-  font-size: 12px; /* Adjust font size */
-  line-height: 10px; /* Adjust line height to center the number vertically */
+  font-size: 10px; /* Adjust font size */
   text-align: center; /* Center the number horizontally */
   animation: 1.5s infinite beatHeart;
   transform-origin: center;
 }
-
-
 
 @keyframes beatHeart {
   0% {
@@ -443,11 +440,6 @@ background: #BABABA;
   border-radius: 3px;
 
 }
-
-
-
-
-
 
 
 
@@ -512,6 +504,39 @@ background: #BABABA;
 
 
 /*------------------MAIN------------------------*/
+
+.no-post {
+  padding: 20px 0;
+  width: 100%;
+  display: block;
+  text-align: center;
+  justify-content: center;
+}
+
+.no-post img {
+  width: 40%;
+  height: auto;
+  object-fit: cover;
+  animation: float 3s ease-in-out infinite;
+
+}
+
+/* Keyframes for floating effect */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+
+.no-post h2 {
+  padding: 10px 0;
+  font-size: var(--h2-font);
+  color: var(--second-color);
+}
 
 
 /*

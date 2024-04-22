@@ -796,9 +796,16 @@ outlined-heart
                                 </div>
                             </div>
                         </div>
+
+
                     @endforeach
                 @else
-                    No posts yet
+                                    
+                <div class="no-post">
+                    <img src="/assets/images/no-post.png" alt="">
+                    <h2>No Post Yet</h2>
+                </div>
+                    
                 @endif
 
 
