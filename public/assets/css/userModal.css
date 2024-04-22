@@ -84,6 +84,12 @@
     padding: 0 10px;
 }
 
+.image-container {
+    width: 100px;
+    height: 100px;
+    object-fit: fit;
+    border-radius: 100%;
+}
 
 .typeinput {
     text-align: center;
