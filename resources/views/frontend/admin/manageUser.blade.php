@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn2Code</title>
+    <title>Manage User | Admin</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/userModal.css">
+    <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.svg">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
@@ -129,7 +131,7 @@
                             <td>{{$use['year']}}</td>
                             <td>{{$use['course']}}</td>
                             <td class="ved">
-                                <button class="bx bxs-show"></button>
+                                <button id="openUser" class="bx bxs-show"></button>
                                 <button class="bx bxs-trash" onclick="confirmDelete({{ $use->id }})"></button>
                             </td>
                             @php
@@ -142,12 +144,84 @@
                 </table>
             </div>
         </div>
+
+
+        <div id="userModal" class="modal">
+
+        <!-- Modal content -->
+        <form class="user-content">
+
+            <div class="head">
+                <h2>User Details</h2>
+                <a href="#" class="close">&times;</a>                
+            </div>
+            <div class="image-container">
+                <a href=""><img src="../assets/images/avatar.png" alt=""></a>        
+            </div>
+
+                <div class="typeinput"> 
+                    <label for="email">Email:</label>          
+                    <h2>david1@gmail.com</h2>
+                </div>
+
+                <div class="typeinput"> 
+                    <label for="username">Username:</label>          
+                    <h2>Potetochipzzz</h2>
+                </div>
+
+                <div class="typeinput">   
+                    <label for="firstname">Firstname:</label>   
+                    <h2>David</h2>
+                </div>
+
+                <div class="typeinput"> 
+                    <label for="lastname">Lastname:</label>     
+                    <h2>Borromeo</h2>
+
+                </div>
+
+                <div class="typeinput"> 
+                    <label for="email">EXP:</label>          
+                    <h2>0</h2>
+                </div>
+
+                <div class="typeinput"> 
+                    <label for="badge">Badge:</label>          
+                    <h2>0</h2>
+                </div>
+  
+        </form>
+
+        </div>
+
+
     </div>
 
 
     <script src="../assets/js/admin/admin.js" async></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var modal = document.getElementById("userModal");
+            var btn = document.getElementById("openUser");
+            var span = document.getElementsByClassName("close")[0];
+
+            btn.onclick = function() {
+                modal.style.display = "block";
+            };
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            };
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            };
+        });
+    </script>
 
     <script>
         function search() {

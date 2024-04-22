@@ -1,0 +1,226 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+:root{ /*---font and color defaults --*/
+    --bg-color: #210535;
+    --main-color: #f5d5e0;
+    --text-color: #430d4b;
+    --second-color: #7b337d;
+    --high-color: #c874b2;
+    --big-font: 3rem;
+    --h2-font: 1.5rem;
+    --p-font: 1rem;
+    --font1: 'Orbitron';
+    --font2: Helvetica;
+    transition: .2s;
+
+}
+    .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow-y: auto;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.user-content {
+    border-radius: 15px;
+    background-color: var(--main-color);
+    margin: 10px auto; /* 15% from the top and centered */
+    padding: 20px;
+    width: 500px; /* Could be more or less, depending on screen size */
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 10px 0;
+}
+
+.head h2{
+    font-family: var(--font1);
+    font-size: var(--h2-font);
+    color: var(--second-color);
+}
+
+.close {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--high-color);
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--bg-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+
+.typeinput {
+    text-align: center;
+    font-family: var(--font2);
+    display: block;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.typeinput label {
+    font-weight: 800;
+    font-size: var(--p-font);
+    color: var(--text-color);
+    
+ }
+
+.typeinput h2 {
+    color: var(--second-color);
+    font-size: var(--p-font);
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 35px;
+}
+
+.typeinput input:focus {
+    border: none;
+}
+
+
+/*-----------RESPONSIVENESS----------------*/
+@media(max-width:1366px) {
+    :root {
+        --h2-head: 2rem;
+        --p-head: 1.5rem;
+        transition: .2s;
+      }
+
+      .user-content {
+        margin: 7% auto; /* 15% from the top and centered */
+    }
+
+
+}
+
+@media (max-width: 1024px) {
+    :root{ /*---font and color defaults --*/
+        --h2-font: 1.5rem;
+        --p-font: 1rem;
+    }
+
+    .user-content {
+        margin: 1% auto; /* 15% from the top and centered */
+    }
+
+}
+
+
+@media (max-width: 860px) {
+    :root {
+        --h2-head: 1.5rem;
+        --p-head: 1rem;
+        transition: .2s;
+      }
+
+      .user-content {
+        margin: 25% auto; /* 15% from the top and centered */
+        width: 500px; /* Could be more or less, depending on screen size */
+    }
+
+}
+
+
+@media(max-width:540px) {
+    :root {
+        --h2-head: 1.1rem;
+        --p-head: 0.8rem;
+        transition: .2s;
+      }
+
+      .user-content {
+        width: 300px; /* Could be more or less, depending on screen size */
+    }
+
+}
+
+@media(max-width:380px) {
+ 
+    .user-content {
+        margin: 10% auto; /* 15% from the top and centered */
+        width: 250px; /* Could be more or less, depending on screen size */
+    }
+
+}
+
+@media(max-width:280px) {
+    :root {
+        --h2-head: 1rem;
+        --p-head: 0.8rem;
+        transition: .2s;
+      }
+
+      .user-content {
+        margin: 10% auto; /* 15% from the top and centered */
+        width: 240px; /* Could be more or less, depending on screen size */
+    }
+
+
+}
+
+@media (min-height: 1024px) {
+    :root {
+        --h2-head: 2.5rem;
+        --p-head: 1.5rem;
+        transition: .2s;
+    }
+
+    .user-content {
+        margin: 30% auto; /* 15% from the top and centered */
+        width: 500px; /* Could be more or less, depending on screen size */
+    }
+
+}
+
+@media(min-height:1300px) {
+    :root {
+        --big-font: 5rem;
+        --h2-font: 2.5rem;
+        --p-font: 1.5rem;
+        transition: .2s;
+    
+    }
+
+    .user-content {
+        margin: 50% auto; /* 15% from the top and centered */
+        width: 500px; /* Could be more or less, depending on screen size */
+    }
+
+}

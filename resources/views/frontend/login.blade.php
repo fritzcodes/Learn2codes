@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="typeinput">
-                  <input required placeholder="Email" type="text" id="email" name="email">
+                  <input required placeholder="Email" type="email" id="email" name="email">
                 </div>
                 <div class="typeinput">
                   <input required placeholder="Password" type="password" id="password" name="password">

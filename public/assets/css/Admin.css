@@ -663,7 +663,20 @@ td {
 }
 
 
+/* For WebKit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+    width: 12px; /* width of the entire scrollbar */
+}
 
+::-webkit-scrollbar-track {
+    background: var(--bg-color); /* color of the track (part the thumb slides within) */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--second-color); /* color of the scroll thumb */
+    border-radius: 6px; /* roundness of the scroll thumb */
+    border: 3px solid var(--bg-color); /* creates padding around scroll thumb */
+}
 
 
 
@@ -713,26 +726,6 @@ td {
         transition: .2s;
       }
       
-    .quiz td:nth-child(5)  {
-        display: none;
-    }
-
-    .manage-user td:nth-child(4)  {
-        display: none;
-    }  
-
-    .leaderboard td:nth-child(5)  {
-        display: table-cell;
-    }  
-    .leaderboard td:nth-child(6)  {
-        display: none;
-    }  
-    .leaderboard td:nth-child(7)  {
-        display: none;
-    }
-    .leaderboard td:nth-child(8)  {
-        display: none;
-    }
 
     .cardBox {
         display: block;
@@ -807,11 +800,6 @@ td {
         font-size: var(--p-font);        
     }
 
-    .manage-user td:nth-child(5)  {
-        display: none;
-    }   
-
-
 }
 
 @media(max-width:280px) {
@@ -820,14 +808,6 @@ td {
         --p-head: 0.8rem;
         transition: .2s;
       }
-
-    .manage-user td:nth-child(7)  {
-        display: none;
-    }
-
-    .leaderboard td:nth-child(4) {
-        display: none;
-    }
 
     .search {
         width: 100px;
