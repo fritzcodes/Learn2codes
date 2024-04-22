@@ -20,7 +20,6 @@
             <i class="bx bx-menu" id="btn"></i>
         </div>
 
-
         <div class="user" style="margin-top: 1rem;">
             @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
             <img src="{{Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photoo) : 'assets/images/avatar.png' }}" alt="user" class="user-img">
@@ -30,13 +29,10 @@
             @endif
             {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
             <div class="deet" style="line-height: 0.1;">
-                <p class="username" style="margin-top: 15px;">{{ Auth::guard('admin')->user()->email }}</p>
-            <div>
-                <p class="username">{{ Auth::guard('admin')->user()->username }}</p>
+                <p class="username" style="margin-top: 15px;">{{ Auth::guard('admin')->user()->username }}</p>
                 <p>Admin</p>
             </div>
         </div>
-
 
         <ul>
             <li>
@@ -95,7 +91,6 @@
                 </a>
             </li>
         </ul>
-
     </div>
 
     <div class="main-content"> <!------------------------------------------ dashboard -->
