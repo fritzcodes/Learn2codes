@@ -47,7 +47,7 @@
 
   <section class="space-background">
        <div class="title">
-            <h2>Quiz</h2>
+            <h2>{{ $id }}</h2>
             <p>{{ $diff }}</p>
         </div>
       

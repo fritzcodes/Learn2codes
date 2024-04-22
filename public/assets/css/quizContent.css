@@ -7,14 +7,18 @@
     font-family: Arial, Helvetica, sans-serif
 }
 
-  :root{ /*---font and color defaults --*/
-    --bg-color: #fff;
-    --text-color: #221341;
-    --second-color: #5a7184;
-    --main-color: #6e54fa;
-    --big-font: 6rem;
-    --h2-font: 3rem;
-    --p-font: 1.1rem;
+:root{ /*---font and color defaults --*/
+    --bg-color: #210535;
+    --main-color: #f5d5e0;
+    --text-color: #430d4b;
+    --second-color: #7b337d;
+    --high-color: #c874b2;
+    --big-font: 3rem;
+    --h2-font: 1.5rem;
+    --p-font: 1rem;
+    --font1: 'Orbitron';
+    --font2: Helvetica;
+    transition: .2s;
 }
 
 
@@ -22,7 +26,6 @@
 
 
 /*---------------CONTENT--------------------------*/
-.start_btn,
 .info_box,
 .quiz_box,
 .result_box{
@@ -43,22 +46,10 @@
     transform: translate(-50%, -50%) scale(1);
 }
 
-.start_btn button{
-    font-size: 25px;
-    font-weight: 500;
-    color: var(--bg-color);
-    padding: 15px 30px;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-    background: #1a1a1a;
-    cursor: pointer;
-}
-
 .info_box{
     width: 540px;
-    background: #1a1a1a;
-    border-radius: 5px;
+    background: var(--bg-color);
+    border-radius: 15px;
     transform: translate(-50%, -50%) scale(0.9);
     opacity: 0;
     pointer-events: none;
@@ -68,8 +59,8 @@
 .info_box .info-title{
     height: 60px;
     width: 100%;
-    color: var(--bg-color);
-    border-bottom: 1px solid lightgrey;
+    color: var(--main-color);
+    border-bottom: 1px solid var(--high-color);
     display: flex;
     align-items: center;
     padding: 0 30px;
@@ -83,14 +74,14 @@
 }
 
 .info_box .info-list .info{
-    color: var(--bg-color);
+    color: var(--main-color);
     margin: 5px 0;
     font-size: 17px;
 }
 
 .info_box .info-list .info span{
     font-weight: 600;
-    color: #007bff;
+    color: var(--high-color);
 }
 
 .info_box .buttons{
@@ -99,26 +90,26 @@
     align-items: center;
     justify-content: flex-end;
     padding: 0 30px;
-    border-top: 1px solid var(--bg-color);
+    border-top: 1px solid var(--high-color);
 }
 
 .info_box .buttons button{
     margin: 0 5px;
     height: 40px;
     width: 100px;
-    font-size: 16px;
+    font-size: var(--p-font);
     font-weight: 600;
     cursor: pointer;
     border: none;
     outline: none;
     border-radius: 5px;
-    border: 1px solid var(--bg-color);
+    border: none;
     transition: all 0.3s ease;
 }
 
 .quiz_box{
     width: 550px;
-    background: #1a1a1a;
+    background: var(--bg-color);
     border-radius: 5px;
     transform: translate(-50%, -50%) scale(0.9);
     opacity: 0;
@@ -131,24 +122,25 @@
     z-index: 2;
     height: 70px;
     padding: 0 30px;
-    background: #1a1a1a;
+    background: var(--bg-color);
+    border-bottom: 1px solid var(--high-color);
     border-radius: 5px 5px 0 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.1);
+    
 }
 
 .quiz_box header .title{
-    color: var(--bg-color);
-    font-size: 20px;
+    color: var(--main-color);
+    font-size: var(--h2-font);
     font-weight: 600;
 }
 
 .quiz_box header .timer{
-    color: var(--bg-color);
-    background: #1a1a1a;
-    border: 1px solid var(--bg-color);
+    color: var(--main-color);
+    background: var(--bg-color);
+    border: 2px solid var(--high-color);
     height: 45px;
     padding: 0 8px;
     border-radius: 5px;
@@ -160,21 +152,21 @@
 
 .quiz_box header .timer .time_left_txt{
     font-weight: 400;
-    font-size: 15px;
+    font-size: var(--p-font);
     user-select: none;
 }
 
 .quiz_box header .timer .timer_sec{
-    font-size: 18px;
-    font-weight: 500;
+    font-size: var(--p-font);
+    font-weight: 600;
     height: 30px;
     width: 45px;
-    color: #1a1a1a;
+    color: var(--main-color);
     border-radius: 5px;
     line-height: 30px;
     text-align: center;
-    background: #dadada;
-    border: 1px solid var(--bg-color);
+    background: var(--text-color);
+    border: 2px solid var(--high-color);
     user-select: none;
 }
 
@@ -183,33 +175,33 @@
     bottom: 0px;
     left: 0px;
     height: 3px;
-    background: #007bff;
+    background: var(--high-color);
 }
 
 section{
-    padding: 5px 30px 0px 30px;
-    background: #1a1a1a;
+    padding: 15px 30px 5px 30px;
+    background: var(--bg-color);
 }
 
 section .que_text{
-    color: var(--bg-color);
-    font-size: 25px;
+    color: var(--main-color);
+    font-size: var(--h2-font);
     font-weight: 600;
 }
 
 section .option_list{
-    padding: 15px 0px;
+    padding: 10px 0px;
     display: block;   
 }
 
 section .option_list .option{
-    color: var(--bg-color);
-    background: #1a1a1a;
-    border: 1px solid var(--bg-color);
+    color: var(--main-color);
+    background: var(--bg-color);
+    border: 2px solid var(--high-color);
     border-radius: 5px;
-    padding: 10px 15px;
-    font-size: 17px;
-    margin-bottom: 15px;
+    padding: 10px 30px 10px 10px;
+    font-size: var(--p-font);
+    margin-bottom: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -222,39 +214,33 @@ section .option_list .option:last-child{
 }
 
 section .option_list .option:hover{
-    color: #1a1a1a;
-    background: var(--bg-color);
-    border: 1px solid #000;
+    background: var(--text-color);
 }
 
 section .option_list .option.correct{
-    color: var(--bg-color);
-    background: #155724;
-    border: 1px solid var(--bg-color);
+    background: green;
+    border: 2px solid var(--main-color);
 }
 
 section .option_list .option.incorrect{
-    color: #721c24;
-    background: var(--bg-color);
-    border: 1px solid var(--bg-color);
+    background: red;
+    border: 2px solid var(--bg-color);
 }
 
 section .option_list .option.disabled{
-    border-color: #3b3b3b;
+    border-color: var(--bg-color);
     pointer-events: none;
 }
 
 section .option_list .option .icon{
-    margin: 5px;
-    height: 26px;
-    width: 26px;
-    border: 2px solid transparent;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 20px;
+    position: absolute;
+    right: 40px;
+    height: var(--p-font);
+    width: var(--p-font);
+    border-radius: 100%;
+    font-size: var(--p-font);
     pointer-events: none;
     transition: all 0.3s ease;
-    line-height: 24px;
 }
 .option_list .option .icon.tick{
     color: #23903c;
@@ -274,17 +260,17 @@ footer{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px solid var(--bg-color);
+    border-top: 1px solid var(--high-color);
 }
 
 footer .total_que span{
-    color: var(--bg-color);
+    color: var(--main-color);
     display: flex;
     user-select: none;
 }
 
 footer .total_que span p{
-    font-weight: 500;
+    font-weight: 600;
     padding: 0 5px;
 }
 
@@ -300,10 +286,9 @@ footer button{
     cursor: pointer;
     border: none;
     outline: none;
-    color: var(--bg-color);
+    color: var(--second-color);
     border-radius: 5px;
-    background: #007bff;
-    border: 1px solid var(--bg-color);
+    background: var(--text-color);
     line-height: 10px;
     opacity: 0;
     pointer-events: none;
@@ -312,7 +297,8 @@ footer button{
 }
 
 footer button:hover{
-    background: #0263ca;
+    color: var(--main-color);
+    background: var(--second-color);
 }
 
 footer button.show{
@@ -322,7 +308,7 @@ footer button.show{
 }
 
 .result_box{
-    background: #1a1a1a;
+    background: var(--bg-color);
     border-radius: 5px;
     display: flex;
     padding: 25px 30px;
@@ -337,27 +323,41 @@ footer button.show{
 }
 
 .result_box .icon{
-    font-size: 100px;
+    font-size: 80px;
     color: gold;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .result_box .complete_text{
-    color: var(--bg-color);
-    font-size: 20px;
+    text-align: center;
+    color: var(--high-color);
+    font-size: var(--h2-font);
+    font-weight: 600;
+}
+
+.result_box .complete_text span{
+    color: var(--main-color);
+    font-size: var(--p-font);
     font-weight: 500;
+}
+
+.result_box .score_text{
+    text-align: center;
+    display: block;
+    margin: 10px 0;
+    font-weight: normal;
 }
 
 .result_box .score_text span{
-    color: var(--bg-color);
+    color: var(--main-color);
+    font-size: var(--p-font);
     display: flex;
-    margin: 10px 0;
-    font-size: 18px;
-    font-weight: 500;
 }
 
 .result_box .score_text span p{
+    color: var(--high-color);
     padding: 0 4px;
+    display: flex;
     font-weight: 600;
 }
 
@@ -369,9 +369,9 @@ footer button.show{
 .result_box .buttons button{
     margin: 0 10px;
     height: 45px;
-    padding: 0 20px;
-    font-size: 18px;
-    font-weight: 500;
+    padding: 0 15px;
+    font-size: var(--p-font);
+    font-weight: 600;
     cursor: pointer;
     border: none;
     outline: none;
@@ -380,107 +380,58 @@ footer button.show{
 }
 
 .buttons button.restart{
-    color: #fff;
-    background: #007bff;
-    border: 1px solid var(--bg-color);
+    color: var(--second-color);
+    background: var(--text-color);
 }
 
 .buttons button.restart:hover{
-    background: #0758af;
+    color: var(--main-color);
+    background: var(--second-color);
 }
 
 
 .buttons button.quit{
-    border: 1px solid var(--bg-color);
-    color: var(--bg-color);
-    background: #1a1a1a;
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
+    background: var(--bg-color);
 }
 
 .buttons button.quit:hover{
-    color: #1a1a1a;
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
     background: var(--bg-color);
 }
 
-.buttons button.leave{
-    border: 1px solid var(--bg-color);
-    color: var(--bg-color);
-    background: #1a1a1a;
-}
-
-.buttons button.leave:hover{
-    color: #1a1a1a;
-    background: var(--bg-color);
-}
-button.leave a {
-    color: white;
+.buttons .leave{
+    font-weight: 600;
     text-decoration: none;
+    padding: 0;
+    border: none;
+    font-size: var(--p-font);
+    color: var(--text-color);
+    background: var(--bg-color);
 }
 
-button.leave a:hover {
-    color: black;
+.buttons a {
+    margin: 0;
+    border-radius: 5px;
+    border: 2px solid var(--text-color);
 }
+
+.buttons a:hover {
+    border: 2px solid var(--main-color);
+}
+
+.buttons .leave:hover{
+    color: var(--main-color);
+}
+
+
 
 
 /*------------------responsiveness ----*/
 
-@media (min-height: 1024px) {
-    
-    .info_box{
-        width: 600px;
-    }
-
-    .info_box .info-list{
-        padding: 100px 30px;
-    }
-
-    .info_box .info-list .info{
-        margin: 30px 0;
-    }
-
-    .quiz_box{
-        width: 600px;
-    }
-
-    .quiz_box header{
-        margin-top: 20px;
-        height: 80px;
-    }
-
-    .quiz_box header .timer{
-        padding: 0 8px;
-        width: 160px;
-    }
-
-    .quiz_box header .time_line{
-        display: none;
-    }
-
-    section{
-        padding: 150px 30px 150px 30px;
-    }
-
-    section .que_text{
-        color: var(--bg-color);
-        font-size: 25px;
-        font-weight: 600;
-    }
-
-    section .option_list .option{
-        padding: 25px 15px;
-    }
-
-    .result_box{
-        padding: 50px 30px;
-    }
-
-    .result_box .complete_text{
-        text-align: center;
-    }
-
-    .result_box .score_text span{
-        margin: 20px 0;
-        font-size: 15px;
-    }
+@media (min-height: 860px) {
 
 
 }
@@ -488,170 +439,40 @@ button.leave a:hover {
 
 @media (max-width: 540px) {
 
-    body{
-        animation: paused;
-    }
 
-    .start_btn button{
-        font-size: 30px;
-    }
-
-    .info_box{
-        box-shadow: none;
-        width: 380px;
-    }
-
-    .info_box .info-title{
-        font-size: 17px;
-    }
-
-    .info_box .info-list{
-        padding: 10px 30px;
-    }
-
-    .info_box .info-list .info{
-        margin: 10px 0;
-    }
-
-    .info_box .buttons{
-        align-items: center;
-        justify-content: center;
-        padding: 0 0px;
-    }
-
-    .quiz_box{
-        overflow-y: scroll;
-        box-shadow: none;
-        height: 100vh;
+    .info_box,
+    .quiz_box,
+    .result_box{
+        position: fixed;
         width: 100%;
-    }
-
-    .quiz_box header{
-        margin-top: 20px;
-        height: 80px;
-        padding: 0 30px;
-    }
-
-    .quiz_box header .timer{
-        padding: 0 10px;
-        width: 160px;
+        height: 100vh;
+        top: 50%;
+        left: 50%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        border-radius: 0;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 
+                    0 6px 20px 0 rgba(255, 255, 255, 0.19);
     }
 
     .quiz_box header .time_line{
         display: none;
     }
 
-    section{
-        padding: 25px 30px 25px 30px;
-    }
-    
-    section .option_list{
-        padding: 20px 0px;
-    }
 
-    section .que_text{
-        color: var(--bg-color);
-        font-size: 20px;
-        font-weight: 600;
-    }
-
-    section .option_list .option{
-        padding: 10px 15px;
-    }
-
-    .result_box{
-        padding: 50px 30px;
-        height: 100vh;
-        width: 100%;
-    }
-
-    .result_box .complete_text{
-        text-align: center;
-    }
-
-    .result_box .score_text span{
-        margin: 20px 0;
-        font-size: 15px;
-    }
 
 }
 
 
 @media (max-width: 376px) {
 
-    .start_btn button{
-        font-size: 20px;
-    }
-
-    .info_box{
-        width: 350px;
-    }
-
-    .quiz_box header{
-        height: 60px;
-    }
-
-    section{
-        padding: 25px 30px 25px 30px;
-    }
 
 }
 
 
 @media (max-width: 280px) {
 
-    .start_btn button{
-        font-size: 20px;
-    }
-
-    .info_box{
-        width: 260px;
-    }
-
-    .quiz_box header{
-        height: 60px;
-    }
-
-    .quiz_box header .title{
-        font-size: 15px;
-    }
-
-    .quiz_box header .timer{
-        height: 40px;
-        width: 130px;
-    }
-    
-    .quiz_box header .timer .time_left_txt{
-        font-size: 11px;
-        font-weight: 300;
-    }
-    
-    .quiz_box header .timer .timer_sec{
-        font-size: 15px;
-        font-weight: 600;
-    }
-
-    section{
-        padding: 10px 30px 10px 30px;
-    }
-
-    section .que_text{
-        text-align: left;
-        font-size: 17px;
-    }
-
-    section .option_list .option{
-        font-size: 15px;
-    }
-
-    footer .total_que span{
-        font-size: 12px;
-    }
-
-    .result_box .score_text span{
-        margin: 10px 0;
-        font-size: 10px;
-    }
 
  
 
