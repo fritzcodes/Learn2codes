@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Java Difficulty | Quiz</title>
+  <title>{{ $id }} | Quiz</title>
   <link rel="stylesheet" href="/assets/css/quizDiff.css">
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.svg">
@@ -70,7 +70,7 @@
 
   <section class="space-background">
         <div class="title">
-            <h2>Java</h2>
+            <h2>{{ $id }}</h2>
             <p>Select Difficulty</p>
         </div>
 
