@@ -82,7 +82,7 @@
                     </div>   
                     <div class="terms">
                       <input type="checkbox" name="check" id="check" required>
-                      <label for="check">By continuing you agree to our <a href="#">Terms and Conditions</a> and acknowledge that you understand <a href="#">Privacy Policy </a><span>*</span></label>
+                      <label for="check">By continuing you agree to our <a href="/terms">Terms and Conditions</a> and acknowledge that you understand <a href="/terms">Privacy Policy </a><span>*</span></label>
                     </div>              
                </div> 
                 <div class="logbutton">

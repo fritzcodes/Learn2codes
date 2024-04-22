@@ -13,7 +13,7 @@
 
 </head>
 
-<body style="background-image: url(assets/images/backmenu.svg);">
+<body style="background-image: url(assets/images/backlogin.png);">
 
     <header>
         <a href="{{ route('startmenu') }}" class="bx bx-chevron-left" id="back-btn"></a>

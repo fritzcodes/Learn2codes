@@ -201,7 +201,33 @@
             ]
         });
     </script>
+
+<script>
+     function search() {
+            var text = document.getElementById('search').value.toLowerCase();
+            var rows = document.querySelectorAll('.quiz tbody tr');
+
+            rows.forEach(function(row) {
+                var match = false;
+                row.querySelectorAll('td').forEach(function(cell) {
+                    if (cell.textContent.toLowerCase().includes(text)) {
+                        match = true;
+                    }
+                });
+                if (match) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Trigger the search function when the content of the search input changes
+        document.getElementById('search').addEventListener('input', search);
+    </script>
+
    <script src="../assets/js/admin/admin.js" async></script>
+
 </body>
 
 </html>
