@@ -48,10 +48,10 @@
         <button><a href="{{ route('profile') }}" class="profile-link">
 
             @if (Auth::check() && Auth::user()->profile_photo)
-            <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}" alt="Profile Photo" class="avatar">
+            <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : '../assets/images/avatar.png' }}" alt="Profile Photo" class="avatar">
             @else
             <!-- Placeholder image or default avatar -->
-            <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
+            <img src="../assets/images/avatar.png" alt="Default Avatar" class="avatar">
             @endif
             <h2>{{ Auth::user()->username }}</h2>
           </a></button>
