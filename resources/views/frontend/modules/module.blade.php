@@ -453,7 +453,7 @@ body{
 
             if (trycode !== null && trycode.trim() !== "") {
                 addcontent += '<br><br> <h2>Example Code</h2>' +
-                    '<pre>' + trycode + '</pre><br><br><button><a href="/trycode/' + data[newIndex].id +
+                    '<pre>' + trycode + '</pre><br><br><button><a target="_blank" href="/trycode/' + data[newIndex].id +
                     '">Try Code</a></button>';
             }
 
