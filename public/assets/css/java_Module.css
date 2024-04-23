@@ -186,8 +186,8 @@ pre {
 
   :root {
     --big-font: 2.8rem;
-    --h2-font: 2rem;
-    --p-font: 0.8rem;
+    --h2-font: 1.5rem;
+    --p-font: 1.1rem;
     transition: .2s;
   }
 
