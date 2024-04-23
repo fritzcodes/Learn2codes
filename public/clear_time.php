@@ -427,7 +427,7 @@
 
             #Form SQL request string:
             $template = "INSERT INTO `cleartime` (playerID,Level_2) VALUES(:playerID, :Level_2)
-            ON DUPLICATE KEY UPDATE Level_2 = LEAST(Level_2, VALUES(Level_2))";
+            ON DUPLICATE KEY UPDATE Level_2 = LEAST(:Level_2, VALUES(Level_2))";
 
             #Prep and send request to DB
             $sth = $pdo -> prepare($template);
@@ -457,7 +457,7 @@
 
             #Form SQL request string:
             $template = "INSERT INTO `cleartime` (playerID,Level_3) VALUES(:playerID, :Level_3)
-            ON DUPLICATE KEY UPDATE Level_3 = LEAST(Level_3, VALUES(Level_3))";
+            ON DUPLICATE KEY UPDATE Level_3 = LEAST(:Level_3, VALUES(Level_3))";
 
             #Prep and send request to DB
             $sth = $pdo -> prepare($template);
@@ -487,7 +487,7 @@
 
             #Form SQL request string:
             $template = "INSERT INTO `cleartime` (playerID,Level_4) VALUES(:playerID, :Level_4)
-            ON DUPLICATE KEY UPDATE Level_4 = LEAST(Level_4, VALUES(Level_4))";
+            ON DUPLICATE KEY UPDATE Level_4 = LEAST(:Level_4, VALUES(Level_4))";
 
             #Prep and send request to DB
             $sth = $pdo -> prepare($template);
