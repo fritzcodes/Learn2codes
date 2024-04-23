@@ -27,6 +27,8 @@
     </div>
 
       <section class="space-background">
+        
+            <form action="{{ route('login') }}" method="POST" class="log-form">
             @if (Session::has('error'))
                 <div class="alert alert-danger" role="alert">
                     <p style="">{{ Session::get('error') }}</p>
@@ -45,9 +47,7 @@
                 </script>
             @endif
 
-            <form action="{{ route('login') }}" method="POST" class="log-form">
             @csrf
-
                 <div class="mobile-logo">
                     <img src="assets/images/Logo.jpg" alt="Logo">
                 </div>

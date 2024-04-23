@@ -115,12 +115,11 @@
 
 
     .alert {
-        width: 50%;
-        position: absolute;
-        top: 30px;
-        right: 0;
+        float: right;
+        width: 200px;
+        position: relative;
+        padding: 10px 0px;
         text-align: center;
-        padding: 10px;
         background-color: #ee0505; /* Adjust the background color as needed */
         color: var(--main-color); /* Adjust the text color as needed */
         box-shadow: 1px 2px var(--bg-color);

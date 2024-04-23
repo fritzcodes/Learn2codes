@@ -22,19 +22,20 @@
     </div>
     
       <section class="space-background">
-      @if(Session::has('success'))
-        <div class="alert alert-success">
-            {{ Session::get('success') }}
-        </div>
-        @endif
-        @if(Session::has('error'))
-        <div class="alert alert-error">
-            {{ Session::get('error') }}
-        </div>
-        @endif
+ 
             <form action="{{ route('register') }}" method="POST" class="signup-form" onsubmit="return validatePasswords()"> 
+                  @if(Session::has('success'))
+              <div class="alert alert-success">
+                  {{ Session::get('success') }}
+              </div>
+              @endif
+              @if(Session::has('error'))
+              <div class="alert alert-error">
+                  {{ Session::get('error') }}
+              </div>
+              @endif
+           
             @csrf
-            
                 <div class="title">
                 <h2>Learn2Code</h2>
                 <p>Sign Up</p>
