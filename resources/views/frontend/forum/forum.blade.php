@@ -62,6 +62,43 @@
             visibility: visible;
             opacity: 1;
         }
+
+
+        .no-post {
+            padding: 20px 0;
+            width: 100%;
+            display: block;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .no-post img {
+            width: 40%;
+            height: auto;
+            object-fit: cover;
+            animation: float 3s ease-in-out infinite;
+
+        }
+
+        /* Keyframes for floating effect */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+
+        .no-post h2 {
+            padding: 10px 0;
+            font-size: var(--h2-font);
+            color: var(--second-color);
+        }
     </style>
 
 
@@ -156,8 +193,9 @@
                     @foreach ($notif as $notification)
                         <div class="notif-container" onclick="markNotificationAsRead('{{ $notification->id }}')">
                             <a href="#"
-                                 class="notification-item @if (!$notification->is_read) unread-notif @endif"
-                                data-notification-id="{{ $notification->id }}" data-post-id="{{ $notification->post_id }}">
+                                class="notification-item @if (!$notification->is_read) unread-notif @endif"
+                                data-notification-id="{{ $notification->id }}"
+                                data-post-id="{{ $notification->post_id }}">
                                 <span class="unread"></span>
                                 <img src="/images/{{ $notification->user->profile_photo }}" alt="Notification Icon"
                                     class="icon"> <!-- Display user's avatar -->
@@ -190,7 +228,7 @@
 
 
 
-               
+
 
                 <!-- WHEN NO NOTIF DISPLAYED THIS WILL SHOW UP-->
                 <div class="empty-state">
@@ -319,7 +357,7 @@
 
                 @if (count($posts) > 0)
                     @foreach ($posts as $index => $post)
-                        <div class="post" id="postNotif{{$post->id}}">
+                        <div class="post" id="postNotif{{ $post->id }}">
                             <div class="post-header">
                                 <div>
                                     <a href="#" class="profile-pic"><img
@@ -426,7 +464,8 @@
             <a href="#"><i class=""></i></a>
             <p></p>
           </div>  -->
-                                <p id="likesCount{{ $post->id }}" class="footer-btn">{{ $post->likes_count == 0 ? '' : $post->likes_count }}</p>
+                                <p id="likesCount{{ $post->id }}" class="footer-btn">
+                                    {{ $post->likes_count == 0 ? '' : $post->likes_count }}</p>
                                 <a class="footer-btn"
                                     onclick="likePost('like{{ $post->id }}', '{{ $name->id }}', '{{ $post->id }}')"
                                     style="text-align:left">
@@ -516,7 +555,7 @@ outlined-heart
                                     <div class="comments" id="post{{ $post->id }}">
                                         @if (count($post->comments) > 0)
                                             @foreach ($post->comments as $comment)
-                                                <div class="comment" id="commentNotif{{$comment->id}}">
+                                                <div class="comment" id="commentNotif{{ $comment->id }}">
                                                     <div class="user-info">
                                                         <img src="{{ $comment->user->profile_photo ? 'images/' . $comment->user->profile_photo : 'assets/images/avatar.png' }}"
                                                             alt="Profile Picture">
@@ -534,7 +573,10 @@ outlined-heart
                                                     </div>
 
                                                     <div class="actions">
-                                                        <p id="likesCommentCount{{ $comment->id }}">@if (count($comment->likes) > 0){{ count($comment->likes) }}@endif</p>
+                                                        <p id="likesCommentCount{{ $comment->id }}">
+                                                            @if (count($comment->likes) > 0)
+                                                                {{ count($comment->likes) }}@endif
+                                                        </p>
                                                         <button
                                                             onclick="likeComment('likeComment{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}')"
                                                             class="
@@ -558,7 +600,8 @@ outlined-heart
                                                     <div class="replies" id="repliesContainer{{ $comment->id }}">
                                                         @if (count($comment->replies) > 0)
                                                             @foreach ($comment->replies as $reply)
-                                                                <div class="reply-container reply nested-reply" id="replyNotif{{$reply->id}}">
+                                                                <div class="reply-container reply nested-reply"
+                                                                    id="replyNotif{{ $reply->id }}">
                                                                     <div class="user-info">
                                                                         <img src="{{ $reply->user->profile_photo ? 'images/' . $reply->user->profile_photo : 'assets/images/avatar.png' }}"
                                                                             alt="User Avatar"
@@ -800,12 +843,11 @@ outlined-heart
 
                     @endforeach
                 @else
-                                    
-                <div class="no-post">
-                    <img src="/assets/images/no-post.png" alt="">
-                    <h2>No Post Yet</h2>
-                </div>
-                    
+                    <div class="no-post">
+                        <img src="/assets/images/no-post.png" alt="">
+                        <h2>No Post Yet</h2>
+                    </div>
+
                 @endif
 
 
