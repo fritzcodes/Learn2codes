@@ -80,7 +80,6 @@
   background: var(--second-color);
   border-radius: 15%;
   transform: translateY(-50%);
-  z-index: 1000;
 }
 
 .content-section i:first-child{

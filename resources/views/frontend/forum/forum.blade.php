@@ -19,48 +19,176 @@
     <script src="/assets/js/forum.js" defer></script>
     <script src="/assets/js/insertimg.js" defer></script>
     <style>
-        .outlined-heart {
-            color: black;
-            /* Set the color of the heart */
-            /* Set the size of the heart */
-            -webkit-text-stroke: 2px black;
-            /* Set the outline using CSS stroke */
-            -webkit-text-fill-color: transparent;
-            /* Make the interior of the heart transparent */
-        }
-
-        a:hover {
-            cursor: pointer;
-        }
-
-        .tBold {
-            font-weight: bolder;
-        }
-
-        .copy-link {
-            position: relative;
-        }
-
-        .tooltip {
-            visibility: hidden;
-            width: 80px;
-            background-color: black;
-            color: white;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px;
+        .unread {
+            margin: 5px;
+            content: '';
             position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -40px;
-            opacity: 0;
-            transition: opacity 0.3s;
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 100%;
+            background-color: #ef172c;
+            animation: 1.5s infinite beatHeart;
+            transform-origin: center;
         }
 
-        .copy-link:hover .tooltip {
-            visibility: visible;
-            opacity: 1;
+        .indicator {
+            content: '';
+            /* Add the number 1 here */
+            position: absolute;
+            top: -5px;
+            /* Adjust position */
+            right: -4px;
+            /* Adjust position */
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            padding: 5px 0 0 0;
+            border-radius: 100%;
+            background-color: #ef172c;
+            /* Change color to white or any desired color for the number */
+            color: #fff;
+            /* Set the text color */
+            font-weight: bold;
+            /* Make the number bold */
+            font-size: 10px;
+            /* Adjust font size */
+            text-align: center;
+            /* Center the number horizontally */
+            animation: 1.5s infinite beatHeart;
+            transform-origin: center;
+        }
+
+        @keyframes beatHeart {
+            0% {
+                transform: scale(0.9);
+            }
+
+            25% {
+                transform: scale(1.1);
+            }
+
+            40% {
+                transform: scale(0.9);
+            }
+
+            60% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(0.9);
+            }
+        }
+
+
+        .list-footer {
+            display: flex;
+            justify-content: center;
+            font-size: var(--p-font);
+            color: #fff;
+            padding: 10px 0px;
+            line-height: 1.5;
+            font-weight: 700;
+            background-color: var(--main-color);
+            border-radius: 3px;
+
+        }
+
+
+
+
+        .user ul {
+            align-items: center;
+            display: flex;
+        }
+
+        .user ul li {
+            margin-right: 10px;
+        }
+
+        .navbar {
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 40%;
+            height: 100vh;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 0%;
+            transition: 0.5s all;
+        }
+
+        .open {
+            right: 0;
+        }
+
+        .list {
+            width: 50%;
+            margin-top: 100px;
+        }
+
+        .profile button {
+            display: flex;
+            color: var(--bg-color);
+            border-style: unset;
+            background: transparent;
+            cursor: pointer;
+            align-items: center;
+            text-align: left;
+        }
+
+        .profile h3 {
+            margin-left: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            max-width: 300px;
+            text-overflow: ellipsis;
+            scroll-behavior: unset;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .no-post {
+            padding: 20px 0;
+            width: 100%;
+            display: block;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .no-post img {
+            width: 40%;
+            height: auto;
+            object-fit: cover;
+            animation: float 3s ease-in-out infinite;
+
+        }
+
+        /* Keyframes for floating effect */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+
+        .no-post h2 {
+            padding: 10px 0;
+            font-size: var(--h2-font);
+            color: var(--second-color);
         }
     </style>
 
@@ -75,11 +203,11 @@
         <div class="user">
             <ul>
                 <li>
-                    <a href="#" class="bx bx-menu" id="menu-icon"></a>
+                    <a  class="bx bx-menu" id="menu-icon"></a>
                 </li>
                 <li>
                     <div class="logo">
-                        <a href="/startmenu">
+                        <a href="/forum">
                             <img src="assets/images/Logo.jpg" alt="logo">
                         </a>
                     </div>
@@ -156,8 +284,9 @@
                     @foreach ($notif as $notification)
                         <div class="notif-container" onclick="markNotificationAsRead('{{ $notification->id }}')">
                             <a href="#"
-                                 class="notification-item @if (!$notification->is_read) unread-notif @endif"
-                                data-notification-id="{{ $notification->id }}" data-post-id="{{ $notification->post_id }}">
+                                class="notification-item @if (!$notification->is_read) unread-notif @endif"
+                                data-notification-id="{{ $notification->id }}"
+                                data-post-id="{{ $notification->post_id }}">
                                 <span class="unread"></span>
                                 <img src="/images/{{ $notification->user->profile_photo }}" alt="Notification Icon"
                                     class="icon"> <!-- Display user's avatar -->
@@ -190,7 +319,7 @@
 
 
 
-               
+
 
                 <!-- WHEN NO NOTIF DISPLAYED THIS WILL SHOW UP-->
                 <div class="empty-state">
@@ -319,7 +448,7 @@
 
                 @if (count($posts) > 0)
                     @foreach ($posts as $index => $post)
-                        <div class="post" id="postNotif{{$post->id}}">
+                        <div class="post" id="postNotif{{ $post->id }}">
                             <div class="post-header">
                                 <div>
                                     <a href="#" class="profile-pic"><img
@@ -426,7 +555,8 @@
             <a href="#"><i class=""></i></a>
             <p></p>
           </div>  -->
-                                <p id="likesCount{{ $post->id }}" class="footer-btn">{{ $post->likes_count == 0 ? '' : $post->likes_count }}</p>
+                                <p id="likesCount{{ $post->id }}" class="footer-btn">
+                                    {{ $post->likes_count == 0 ? '' : $post->likes_count }}</p>
                                 <a class="footer-btn"
                                     onclick="likePost('like{{ $post->id }}', '{{ $name->id }}', '{{ $post->id }}')"
                                     style="text-align:left">
@@ -516,7 +646,7 @@ outlined-heart
                                     <div class="comments" id="post{{ $post->id }}">
                                         @if (count($post->comments) > 0)
                                             @foreach ($post->comments as $comment)
-                                                <div class="comment" id="commentNotif{{$comment->id}}">
+                                                <div class="comment" id="commentNotif{{ $comment->id }}">
                                                     <div class="user-info">
                                                         <img src="{{ $comment->user->profile_photo ? 'images/' . $comment->user->profile_photo : 'assets/images/avatar.png' }}"
                                                             alt="Profile Picture">
@@ -534,7 +664,10 @@ outlined-heart
                                                     </div>
 
                                                     <div class="actions">
-                                                        <p id="likesCommentCount{{ $comment->id }}">@if (count($comment->likes) > 0){{ count($comment->likes) }}@endif</p>
+                                                        <p id="likesCommentCount{{ $comment->id }}">
+                                                            @if (count($comment->likes) > 0)
+                                                                {{ count($comment->likes) }}@endif
+                                                        </p>
                                                         <button
                                                             onclick="likeComment('likeComment{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}')"
                                                             class="
@@ -558,7 +691,8 @@ outlined-heart
                                                     <div class="replies" id="repliesContainer{{ $comment->id }}">
                                                         @if (count($comment->replies) > 0)
                                                             @foreach ($comment->replies as $reply)
-                                                                <div class="reply-container reply nested-reply" id="replyNotif{{$reply->id}}">
+                                                                <div class="reply-container reply nested-reply"
+                                                                    id="replyNotif{{ $reply->id }}">
                                                                     <div class="user-info">
                                                                         <img src="{{ $reply->user->profile_photo ? 'images/' . $reply->user->profile_photo : 'assets/images/avatar.png' }}"
                                                                             alt="User Avatar"
@@ -800,12 +934,11 @@ outlined-heart
 
                     @endforeach
                 @else
-                                    
-                <div class="no-post">
-                    <img src="/assets/images/no-post.png" alt="">
-                    <h2>No Post Yet</h2>
-                </div>
-                    
+                    <div class="no-post">
+                        <img src="/assets/images/no-post.png" alt="">
+                        <h2>No Post Yet</h2>
+                    </div>
+
                 @endif
 
 

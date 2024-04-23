@@ -14,7 +14,7 @@
     
 </head>
 
-<body style="background-image: url(assets/images/backlogin.png);">
+<body style="background-image: url(assets/images/Backlogin.png);">
 
     <header>
         <a href="/" class="bx bx-chevron-left" id="back-btn"></a>
@@ -61,7 +61,7 @@
           <a href="module/moduleLanguage">
             <img src="assets/images/module-btn.svg" alt="Modules" id="module">
           </a>
-          <a href="/forum"> 
+          <a target="_blank" href="/forum"> 
             <img src="assets/images/forums-btn.svg" alt="forum" id="forum">
           </a>
     </div>

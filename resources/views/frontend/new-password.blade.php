@@ -34,7 +34,7 @@
 }
 
 body {
-    background: url('/assets/images/backlogin.png');
+    background: url('/assets/images/Backlogin.png');
     padding: 100px;
     display: flex;
     justify-content: center; /* Center horizontally */

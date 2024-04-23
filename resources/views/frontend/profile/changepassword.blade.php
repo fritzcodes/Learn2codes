@@ -90,7 +90,7 @@
 </header>
 
 
-<body style="background-image: url(assets/images/backlogin.png);">
+<body style="background-image: url(assets/images/Backlogin.png);">
 <section class="space-background">
             @if (Session::has('error'))
                 <div class="alert alert-danger" role="alert">

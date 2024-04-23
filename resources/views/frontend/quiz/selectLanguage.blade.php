@@ -16,7 +16,7 @@
   <script src="assets/js/carousel.js" defer></script>
   <style>
     body {
-      background: url("../assets/images/backlogin.png");
+      background: url("../assets/images/Backlogin.png");
       display: flex;
       justify-content: center;
       /* Center horizontally */

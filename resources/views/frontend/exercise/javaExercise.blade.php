@@ -40,7 +40,7 @@ transition: .2s;
                     overflow-y: hidden;
                     width: 100%;
                     height: 100vh;
-                    background: url("/assets/images/bg.svg");
+                    background: url("/assets/images/Backlogin.png");
                     margin: auto;
                     display: flex;
                     justify-content: center; /* Center horizontally */

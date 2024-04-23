@@ -86,7 +86,7 @@
     $sql_host = "127.0.0.1";    #Where database is located
     $sql_db = "u284192868_learn2code";      #Database Name ## Change on Final Implementation
     $sql_username = "u284192868_learn2code";     #Login username on DB
-    $sql_password = "CapstoneGroup1";         #Login password on DB
+    $sql_password = "Capstonegroup1";         #Login password on DB
 
     #Set up our data in a format that PDO understands:
     $dsn = "mysql:dbname=$sql_db;host=$sql_host;charset=utf8mb4;port=3306";
@@ -427,7 +427,7 @@
 
             #Form SQL request string:
             $template = "INSERT INTO `cleartime` (playerID,Level_2) VALUES(:playerID, :Level_2)
-            ON DUPLICATE KEY UPDATE Level_2 = LEAST(Level_2, VALUES(Level_2))";
+            ON DUPLICATE KEY UPDATE Level_2 = LEAST(:Level_2, VALUES(Level_2))";
 
             #Prep and send request to DB
             $sth = $pdo -> prepare($template);
@@ -457,7 +457,7 @@
 
             #Form SQL request string:
             $template = "INSERT INTO `cleartime` (playerID,Level_3) VALUES(:playerID, :Level_3)
-            ON DUPLICATE KEY UPDATE Level_3 = LEAST(Level_3, VALUES(Level_3))";
+            ON DUPLICATE KEY UPDATE Level_3 = LEAST(:Level_3, VALUES(Level_3))";
 
             #Prep and send request to DB
             $sth = $pdo -> prepare($template);
@@ -487,7 +487,7 @@
 
             #Form SQL request string:
             $template = "INSERT INTO `cleartime` (playerID,Level_4) VALUES(:playerID, :Level_4)
-            ON DUPLICATE KEY UPDATE Level_4 = LEAST(Level_4, VALUES(Level_4))";
+            ON DUPLICATE KEY UPDATE Level_4 = LEAST(:Level_4, VALUES(Level_4))";
 
             #Prep and send request to DB
             $sth = $pdo -> prepare($template);
