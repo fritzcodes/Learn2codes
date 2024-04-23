@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 
 </head>
-<body style="background-image: url(assets/images/backlogin.png);">
+<body style="background-image: url(assets/images/Backlogin.png);">
 
     <header>
         <a href="/startmenu" class="bx bx-chevron-left" id="back-btn"></a>

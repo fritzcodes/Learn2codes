@@ -153,44 +153,47 @@
 
             <div class="head">
                 <h2>User Details</h2>
-                <a href="#" class="close">&times;</a>                
+                <a class="close">&times;</a>                
             </div>
+        
             <div class="image-container">
                 <a href=""><img src="../assets/images/avatar.png" alt=""></a>        
             </div>
-
+        
+            @foreach($user as $use)
                 <div class="typeinput"> 
                     <label for="email">Email:</label>          
-                    <h2>david1@gmail.com</h2>
+                    <h2>{{ $use['email'] }}</h2>
                 </div>
-
+        
                 <div class="typeinput"> 
                     <label for="username">Username:</label>          
-                    <h2>Potetochipzzz</h2>
+                    <h2>{{ $use['username'] }}</h2>
                 </div>
-
+        
                 <div class="typeinput">   
                     <label for="firstname">Firstname:</label>   
-                    <h2>David</h2>
+                    <h2>{{ $use['fname'] }}</h2>
                 </div>
-
+        
                 <div class="typeinput"> 
                     <label for="lastname">Lastname:</label>     
-                    <h2>Borromeo</h2>
-
+                    <h2>{{ $use['lname'] }}</h2>
                 </div>
-
+        
                 <div class="typeinput"> 
-                    <label for="email">EXP:</label>          
-                    <h2>0</h2>
+                    <label for="exp">EXP:</label>          
+                    <h2>{{ $use['total_points'] }}</h2>
                 </div>
-
+        
                 <div class="typeinput"> 
                     <label for="badge">Badge:</label>          
-                    <h2>0</h2>
+                    <h2>{{ $use['badge_count'] }}</h2>
                 </div>
-  
+            @endforeach
+        
         </form>
+        
 
         </div>
 

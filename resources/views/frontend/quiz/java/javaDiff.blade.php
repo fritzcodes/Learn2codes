@@ -14,7 +14,7 @@
 
   <style>
     body {
-        background: url("../assets/images/backlogin.png");
+        background: url("../assets/images/Backlogin.png");
         display: flex;
         justify-content: center; /* Center horizontally */
         align-items: center; /* Center vertically */

@@ -16,7 +16,7 @@
     body{
         width: 100%;
         height: 100vh;
-        background: url("/assets/images/backlogin.png");
+        background: url("/assets/images/Backlogin.png");
         overflow: hidden; /* Prevent horizontal scrolling */
         z-index: -1; /* Behind other content */
         background-size: cover;

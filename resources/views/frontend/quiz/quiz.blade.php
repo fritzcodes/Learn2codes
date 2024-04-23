@@ -15,7 +15,7 @@
 <body>
 
   <header>
-    <a href="/selectLanguage" class="bx bx-chevron-left" id="back-btn"></a>
+    <a href="/quiz/{{urlencode($id)}}" class="bx bx-chevron-left" id="back-btn"></a>
     <div class="bx bx-menu" id="menu-icon"></div>
 
     <ul class="navbar">
