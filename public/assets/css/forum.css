@@ -7,16 +7,19 @@
   list-style: none;
 }
 
-:root {
-  /*---font and color defaults --*/
-  --bg-color: #fff;
-  --text-color: #221341;
-  --second-color: #5a7184;
-  --main-color: #6e54fa;
-  --big-font: 6rem;
-  --h2-font: 1.1rem;
-  --p-font: 1rem;
-}
+  :root { /*---font and color defaults --*/
+    --bg-color: #210535;
+    --main-color: #f5d5e0;
+    --text-color: #430d4b;
+    --second-color: #7b337d;
+    --high-color: #c874b2;
+    --big-font: 6rem;
+    --h2-font: 1.1rem;
+    --p-font: 1rem;
+    --font1: 'Orbitron';
+    --font2: Helvetica;
+    transition: .2s;
+  }
 
 header {
   padding: 20px 2%;
@@ -29,7 +32,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(180deg, #1E1E1E 0%, #4C195E 100%);
+  background: var(--second-color);
 
 }
 

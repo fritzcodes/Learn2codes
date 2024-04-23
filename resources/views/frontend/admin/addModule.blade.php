@@ -193,12 +193,29 @@
                 ['fontname', ['fontname']], // Add font family dropdown to the toolbar
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['height', ['height']],
+                ['myparaspacing', ['addSpace']],
                 ['insert', ['link', 'table']], // Add 'table' option to the 'insert' group
                 ['view', ['fullscreen', 'codeview']]
             ],
             fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica', 'Impact', 'Tahoma',
                 'Times New Roman', 'Verdana'
-            ]
+            ],
+            buttons: {
+            addSpace: function(context) {
+                var ui = $.summernote.ui;
+                // create button
+                var button = ui.button({
+                    contents: '<i class="fa fa-arrows-v"/> Spacing',
+                    tooltip: 'Add space after paragraph',
+                    click: function() {
+                        // add spacing logic
+                        var style = $('<style>.note-editable p { margin-bottom: 5px; }</style>');
+                        $('head').append(style);
+                    }
+                });
+                return button.render(); // return button as jquery object
+            }
+        }
         });
     </script>
 

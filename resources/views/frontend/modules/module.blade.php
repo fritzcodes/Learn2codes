@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Module</title>
+    <title>Module | Learn2Code</title>
     <link rel="stylesheet" href="../assets/css/java_Module.css">
-    <link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
+    <link rel="shortcut icon" type="x-icon" href="../assets/images/logo.svg">
     <link rel="stylesheet" href="../assets/css/header.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
@@ -57,6 +57,7 @@
 .dot-spirit:nth-child(5) {
   animation: moveDot 1s ease-in-out .13s; /* Spirit dot 3 animation */
 }
+
 @keyframes moveDot {
     0% {
         bottom: 20%;
@@ -92,27 +93,11 @@
 
 
 body{
-    overflow-x: hidden;
     width: 100%;
-    height: 100vh;
-    background: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background: linear-gradient(-45deg, #210535, #7b337d, #430d4b);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-  }
-  
-  @keyframes gradientShift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+    overflow-x: hidden;
+    min-height: 100vh;
+    background: var(--bg-color);
+
   }
 
 
@@ -240,17 +225,15 @@ body{
             height: 0;
             overflow: hidden;
         }
-        
-
-        #main p{
-            font-family: var(--font2);
-            margin: 70px 5%;
-        }
 
         #progressbar {
             width: 50px;
         }
-    }
+    
+        #main {
+            font-family: var(--font2);
+        }
+
     </style>
 
 </head>
@@ -303,7 +286,9 @@ body{
 
         <div class="content" id="content">
             <div id="main">
-                <p>Welcome to Learn 2 Code</p>
+                <p>
+                
+                </p>
                 
             </div>
         </div>
@@ -452,8 +437,8 @@ body{
             var addcontent = content;
 
             if (trycode !== null && trycode.trim() !== "") {
-                addcontent += '<br><br> <h2>Example Code</h2>' +
-                    '<pre>' + trycode + '</pre><br><br><button><a target="_blank" href="/trycode/' + data[newIndex].id +
+                addcontent += '<br><br> <h2>Example Code:</h2>' +
+                    '<pre>' + trycode + '</pre><br><button><a target="_blank" href="/trycode/' + data[newIndex].id +
                     '">Try Code</a></button>';
             }
 
