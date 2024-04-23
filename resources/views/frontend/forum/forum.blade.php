@@ -19,6 +19,19 @@
     <script src="/assets/js/forum.js" defer></script>
     <script src="/assets/js/insertimg.js" defer></script>
     <style>
+        .unread {
+            margin: 5px;
+            content: '';
+            position: absolute;
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 100%;
+            background-color: #ef172c;
+            animation: 1.5s infinite beatHeart;
+            transform-origin: center;
+        }
+
         .indicator {
             content: '';
             /* Add the number 1 here */
@@ -67,6 +80,21 @@
                 transform: scale(0.9);
             }
         }
+
+
+        .list-footer {
+            display: flex;
+            justify-content: center;
+            font-size: var(--p-font);
+            color: #fff;
+            padding: 10px 0px;
+            line-height: 1.5;
+            font-weight: 700;
+            background-color: var(--main-color);
+            border-radius: 3px;
+
+        }
+
 
         .no-post {
             padding: 20px 0;
