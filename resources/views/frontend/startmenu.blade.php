@@ -61,8 +61,8 @@
           <a href="module/moduleLanguage">
             <img src="assets/images/module-btn.svg" alt="Modules" id="module">
           </a>
-          <a href="/forum"> 
-            <img target="_blank" src="assets/images/forums-btn.svg" alt="forum" id="forum">
+          <a target="_blank" href="/forum"> 
+            <img src="assets/images/forums-btn.svg" alt="forum" id="forum">
           </a>
     </div>
   </section>
