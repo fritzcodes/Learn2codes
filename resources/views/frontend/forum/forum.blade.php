@@ -19,50 +19,54 @@
     <script src="/assets/js/forum.js" defer></script>
     <script src="/assets/js/insertimg.js" defer></script>
     <style>
-        .outlined-heart {
-            color: black;
-            /* Set the color of the heart */
-            /* Set the size of the heart */
-            -webkit-text-stroke: 2px black;
-            /* Set the outline using CSS stroke */
-            -webkit-text-fill-color: transparent;
-            /* Make the interior of the heart transparent */
-        }
-
-        a:hover {
-            cursor: pointer;
-        }
-
-        .tBold {
-            font-weight: bolder;
-        }
-
-        .copy-link {
-            position: relative;
-        }
-
-        .tooltip {
-            visibility: hidden;
-            width: 80px;
-            background-color: black;
-            color: white;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px;
+        .indicator {
+            content: '';
+            /* Add the number 1 here */
             position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -40px;
-            opacity: 0;
-            transition: opacity 0.3s;
+            top: -5px;
+            /* Adjust position */
+            right: -4px;
+            /* Adjust position */
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            padding: 5px 0 0 0;
+            border-radius: 100%;
+            background-color: #ef172c;
+            /* Change color to white or any desired color for the number */
+            color: #fff;
+            /* Set the text color */
+            font-weight: bold;
+            /* Make the number bold */
+            font-size: 10px;
+            /* Adjust font size */
+            text-align: center;
+            /* Center the number horizontally */
+            animation: 1.5s infinite beatHeart;
+            transform-origin: center;
         }
 
-        .copy-link:hover .tooltip {
-            visibility: visible;
-            opacity: 1;
-        }
+        @keyframes beatHeart {
+            0% {
+                transform: scale(0.9);
+            }
 
+            25% {
+                transform: scale(1.1);
+            }
+
+            40% {
+                transform: scale(0.9);
+            }
+
+            60% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(0.9);
+            }
+        }
 
         .no-post {
             padding: 20px 0;
