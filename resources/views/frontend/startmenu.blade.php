@@ -143,7 +143,7 @@
             </ul>
 
             <li><a href="/startmenu">Home</a></li>
-            <li><a href="/forum">Forums</a></li>
+            <li><a target="_blank" href="/forum">Forums</a></li>
             <li><a href="/Playground">Playground</a></li>
             <li><a href="/module/moduleLanguage">Modules</a></li>
             <li><a href="/leaderboard">Leaderboard</a></li>
