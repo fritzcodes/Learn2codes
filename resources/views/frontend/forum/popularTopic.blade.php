@@ -54,7 +54,7 @@
     <div class="user">
       <ul>
         <li>
-          <a href="#" class="bx bx-menu" id="menu-icon"></a>
+          <a class="bx bx-menu" id="menu-icon"></a>
         </li>
         <li>
         <div class="logo">
