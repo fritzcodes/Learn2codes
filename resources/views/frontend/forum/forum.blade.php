@@ -96,6 +96,65 @@
         }
 
 
+
+
+        .user ul {
+            align-items: center;
+            display: flex;
+        }
+
+        .user ul li {
+            margin-right: 10px;
+        }
+
+        .navbar {
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 40%;
+            height: 100vh;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 0%;
+            transition: 0.5s all;
+        }
+
+        .open {
+            right: 0;
+        }
+
+        .list {
+            width: 50%;
+            margin-top: 100px;
+        }
+
+        .profile button {
+            display: flex;
+            color: var(--bg-color);
+            border-style: unset;
+            background: transparent;
+            cursor: pointer;
+            align-items: center;
+            text-align: left;
+        }
+
+        .profile h3 {
+            margin-left: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            max-width: 300px;
+            text-overflow: ellipsis;
+            scroll-behavior: unset;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
         .no-post {
             padding: 20px 0;
             width: 100%;
