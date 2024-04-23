@@ -86,7 +86,7 @@
     $sql_host = "127.0.0.1";    #Where database is located
     $sql_db = "u284192868_learn2code";      #Database Name ## Change on Final Implementation
     $sql_username = "u284192868_learn2code";     #Login username on DB
-    $sql_password = "CapstoneGroup1";         #Login password on DB
+    $sql_password = "Capstonegroup1";         #Login password on DB
 
     #Set up our data in a format that PDO understands:
     $dsn = "mysql:dbname=$sql_db;host=$sql_host;charset=utf8mb4;port=3306";
