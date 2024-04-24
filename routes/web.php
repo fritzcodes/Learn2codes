@@ -128,6 +128,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/admin/updateModule', [ModuleController::class, 'updateModule'])->name('updateModule');
     Route::post('/admin/exercise-edit/{id}', [ExerciseController::class, 'updateExercise'])->name('updateExercise');
     Route::get('/admin/exercise-view/{id}', [ExerciseController::class, 'viewExercise'])->name('viewExercise');
+    Route::get('/admin/studInfo/{id}', [ManageUserController::class, 'show']);
 
 
 

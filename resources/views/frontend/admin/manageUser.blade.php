@@ -131,7 +131,7 @@
                             <td>{{$use['year']}}</td>
                             <td>{{$use['course']}}</td>
                             <td class="ved">
-                                <button id="openUser" class="bx bxs-show"></button>
+                                <button id="openUser" onclick="UserInfo('{{ $use->id }}')" class="bx bxs-show"></button>
                                 <button class="bx bxs-trash" onclick="confirmDelete({{ $use->id }})"></button>
                             </td>
                             @php
@@ -148,52 +148,17 @@
 
         <div id="userModal" class="modal">
 
-        <!-- Modal content -->
-        <form class="user-content">
+            <!-- Modal content -->
+            <form class="user-content">
+                <div class="head">
+                    <h2>User Details</h2>
+                    <a class="close">&times;</a>                
+                </div>
+                <div id="infos">
 
-            <div class="head">
-                <h2>User Details</h2>
-                <a class="close">&times;</a>                
-            </div>
-        
-            <div class="image-container">
-                <a href=""><img src="../assets/images/avatar.png" alt=""></a>        
-            </div>
-        
-            @foreach($user as $use)
-                <div class="typeinput"> 
-                    <label for="email">Email:</label>          
-                    <h2>{{ $use['email'] }}</h2>
                 </div>
-        
-                <div class="typeinput"> 
-                    <label for="username">Username:</label>          
-                    <h2>{{ $use['username'] }}</h2>
-                </div>
-        
-                <div class="typeinput">   
-                    <label for="firstname">Firstname:</label>   
-                    <h2>{{ $use['fname'] }}</h2>
-                </div>
-        
-                <div class="typeinput"> 
-                    <label for="lastname">Lastname:</label>     
-                    <h2>{{ $use['lname'] }}</h2>
-                </div>
-        
-                <div class="typeinput"> 
-                    <label for="exp">EXP:</label>          
-                    <h2>{{ $use['total_points'] }}</h2>
-                </div>
-        
-                <div class="typeinput"> 
-                    <label for="badge">Badge:</label>          
-                    <h2>{{ $use['badge_count'] }}</h2>
-                </div>
-            @endforeach
-        
-        </form>
-        
+            </form>
+
 
         </div>
 
@@ -205,25 +170,72 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        
+
+        function UserInfo(id) {
             var modal = document.getElementById("userModal");
-            var btn = document.getElementById("openUser");
-            var span = document.getElementsByClassName("close")[0];
 
-            btn.onclick = function() {
-                modal.style.display = "block";
-            };
-
-            span.onclick = function() {
-                modal.style.display = "none";
-            };
-
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
+            $(modal).toggle();
+            $.ajax({
+                url: '/admin/studInfo/' + id,
+                method: 'GET',
+                dataType: 'json',
+                beforeSend: function(){
+                    $('#infos').html('<center><h2>Please Wait...</h2><img src="/assets/images/loadings.gif" width="100px" height="100px"></center>');
+                },
+                success: function(data) {
+                    
+                    console.log(data);
+                    const userInfo = `
+                        
+            
+        
+            <div class="image-container">
+                <a href=""><img src="${data.profile_photo ? '/images/' + data.profile_photo : '../assets/images/avatar.png'}" alt=""></a>        
+            </div>
+        
+                <div class="typeinput"> 
+                    <label for="email">Email:</label>          
+                    <h2>${data.email}</h2>
+                </div>
+        
+                <div class="typeinput"> 
+                    <label for="username">Username:</label>          
+                    <h2>${data.username}</h2>
+                </div>
+        
+                <div class="typeinput">   
+                    <label for="firstname">Firstname:</label>   
+                    <h2>${data.fname}</h2>
+                </div>
+        
+                <div class="typeinput"> 
+                    <label for="lastname">Lastname:</label>     
+                    <h2>${data.lname}</h2>
+                </div>
+        
+                <div class="typeinput"> 
+                    <label for="exp">EXP:</label>          
+                    <h2>${data.total_points}</h2>
+                </div>
+        
+                <div class="typeinput"> 
+                    <label for="badge">Badge:</label>          
+                    <h2>${data.badge_count}</h2>
+                </div>
+        
+                    `;
+                
+                $('#infos').html(userInfo);
                 }
-            };
-        });
+                
+            })
+            
+        }
+        $('.close').click(function() {
+            $('#userModal').hide();
+            $('#infos').html('');
+        })
     </script>
 
     <script>
@@ -281,7 +293,7 @@
                         var lastOnlineAt2 = new Date(user.last_online_at);
                         lastOnlineAt.setMinutes(lastOnlineAt.getMinutes() + 2);
                         // Assuming dateString is "Mon Apr 22 2024 14:40:29 GMT+0800 (Singapore Standard Time)"
-                        
+
 
                         // Parse the date string
 
@@ -291,7 +303,7 @@
                         var currentDate = new Date();
                         var currentTime = currentDate.toISOString(); // Convert to UTC string
                         // Send currentDateUTC to the server
-                        
+
                         let row = `<tr id="user-${user.id}">
                                     <td>${user.id}</td>
                                     <td>${user.fname || ''}</td>
@@ -300,13 +312,13 @@
                                     <td>${user.year || ''}</td>
                                     <td>${user.course || ''}</td>
                                     <td class="ved">
-                                        <button class="bx bxs-show"></button>
+                                        <button class="bx bxs-show" onclick="UserInfo('${ user.id }')"></button>
                                         <button class="bx bxs-trash" onclick="confirmDelete(${user.id})"></button>
                                     </td>
                                     <td>${isoStringDate(lastOnlineAt) > currentTime  ? 'Online' : moment.utc(isoStringDate(lastOnlineAt2)).fromNow()}</td>
                                 </tr>`;
                         document.getElementById('userTableBody').innerHTML += row;
-                        
+
                     });
                 })
                 .catch(error => console.error('Error fetching data:', error));
