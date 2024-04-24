@@ -37,6 +37,7 @@
                 <p class="username">{{ Auth::guard('admin')->user()->username }}</p>
                 <p>Admin</p>
             </div>
+
         </div>
 
 
@@ -159,8 +160,73 @@
                 </div>
             </form>
 
-
         </div>
+        
+
+        <!--ADMIN MODAL------------------------->
+        <div id="adminModal" class="modal">
+        <!-- Modal content -->
+        <form class="admin-content">
+            <div class="head">
+                <h2>Admin</h2>
+                <a class="close">&times;</a>                
+            </div>
+            <div id="infos">
+
+                <div class="image-container" onclick="openFileInput()">
+                    <a href="#"><img src="/aboutus/avatar-removebg-preview.png"></a> 
+                    
+                    <input type="file" id="fileInput" style="display: none;" onchange="handleFileSelect(event)"
+                        accept="image/*" name="profile_photo">
+                    <input type="file" class="profile-image" accept="image/*" onchange="previewImage()">
+                    
+                </div>
+
+                <div class="typeinput"> 
+                    <label for="username">Username:</label>          
+                    <input type="text" name="username">
+                </div>
+
+                <div class="typeinput"> 
+                    <label for="email">Email:</label>          
+                    <input type="email" name="email">
+                </div>
+
+                <div class="typeinput"> 
+                    <button>Create Account</button>
+                </div>
+
+                <div class="typeinput"> 
+                    <button>Change Password</button>
+                </div>
+
+                <div class="typeinput"> 
+                    <button>Save Change</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!--clickable image container------------------------->
+    <script>
+    function openFileInput() {
+            document.getElementById('fileInput').click();
+        }
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            // Do something with the selected file, such as displaying preview or uploading it.
+            // Example:
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgElement = document.querySelector('.imageContainer a img');
+                    imgElement.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+</script>
 
 
     </div>
