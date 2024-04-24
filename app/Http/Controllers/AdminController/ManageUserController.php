@@ -10,7 +10,7 @@ class ManageUserController extends Controller
 {
     public function Index(): View
     {
-        $data = User::all();
+        $data = User::orderBy('last_online_at', 'DESC')->get();
         return View('frontend.admin.manageUser', ['user'=>$data]);
     }
     public function show($id)
@@ -20,7 +20,7 @@ class ManageUserController extends Controller
     }
     public function manageUserRefresh()
     {
-        $data = User::all();
+        $data = User::orderBy('last_online_at', 'DESC')->get();
         return response()->json($data);
     }
 
