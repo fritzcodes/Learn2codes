@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script type="text/javascript" src="assets/js/headermenu.js" defer></script>
 </head>
 
@@ -64,7 +66,7 @@
                     <td class="number-column">Total EXP</td>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="leaderboardTableBody">
                 @foreach ($userPoints as $index => $userPoint)
 
 
@@ -120,5 +122,53 @@
         }
     }
 </script>
+<script>
+ function fetchDataAndUpdateTable() {
+    $.ajax({
+        url: '/leaderboard/data',
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            console.log(data); // Debug statement
+
+            let leaderboardHtml = "";
+
+            data.forEach((userPoint, index) => {
+                leaderboardHtml += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td id="profile-img">
+                            <img src="${userPoint.profile_photo ? '/images/' + userPoint.profile_photo : '/assets/images/avatar.png'}">
+                            <p>${userPoint.username}</p>
+                        </td>
+                        <td>${userPoint.badge || 0}</td>
+                        <td>${userPoint.module || 0}</td>
+                        <td>${userPoint.quiz || 0}</td>
+                        <td>${userPoint.exercise || 0}</td>
+                        <td>${userPoint.total_points || 0}</td>
+                    </tr>
+                `;
+            });
+
+            // Update the leaderboard table with the new HTML
+            $('#leaderboardTableBody').html(leaderboardHtml);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText)
+        }
+    });
+}
+
+// Call fetchDataAndUpdateTable function immediately to load leaderboard on page load
+fetchDataAndUpdateTable();
+
+// Refresh the data every 3 seconds
+setInterval(fetchDataAndUpdateTable, 3000);
+
+
+</script>
+
+
+
 
 </html>

@@ -46,6 +46,7 @@ use App\Http\Controllers\termsController;
 */
 
 Route::get('/leaderboard', [boardController::class, 'Index'])->name('leaderboard');
+Route::get('/leaderboard/data', [boardController::class, 'fetchLeaderboardData'])->name('leaderboard.data');
 
 Route::get('/forum', [ForumController::class, 'Index'])->name('forum');
 
