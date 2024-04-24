@@ -621,6 +621,31 @@ function markNotificationAsRead(id) {
   });
 }
 
+function markNotificationAsReadAdmin(id) {
+  $.ajax({
+    url: `/notifications-update-admin/${id}`, // Assuming this URL updates the notification status
+    dataType: 'json',
+    method: 'get',
+    success: function (data) {
+
+      window.location.href = `/forum/post#${data.notif_type}Notif${data.id}`;
+      
+      var originalColor = $(`#${data.notif_type}Notif${data.id}`).css('background-color');
+
+      // Change the background color of the element
+      $(`#${data.notif_type}Notif${data.id}`).css('background-color', '#dcdcdc');
+
+      // After 10 seconds, revert the background color back to its original color
+      setTimeout(function () {
+        $(`#${data.notif_type}Notif${data.id}`).css('background-color', originalColor);
+      }, 10000);
+    },
+    error: function (xhr) {
+      console.log(xhr.responseText)
+    }
+  });
+}
+
 $(document).ready(function () {
   function fetchNotifications() {
     $.ajax({
@@ -667,9 +692,59 @@ $(document).ready(function () {
       }
     });
   }
+  function fetchNotificationsAdmin() {
+    $.ajax({
+      url: '/notificationsAdmin',
+      method: 'GET',
+      dataType: 'json',
+      success: function (data) {
+        console.log(data);
+        let notif = "";
+
+        data.forEach((notifs, i) => {
+          notif += `
+              <div class="notif-container" onclick="markNotificationAsRead('${notifs.id}')">
+                  <a href="#" class="notification-item ${notifs.is_read == 0 ? 'unread-notif' : ''}">
+                      <span class="unread"></span>
+                      <i class="icon bx bx-post"></i>
+                      <div class="content">
+                          <h2 class="notification-item-user-block">
+                           Post # ${notifs.post_id} is reported
+                          </h2>
+                          <span class="timestamp">${moment(notifs.created_at).fromNow()}</span>
+                      </div>
+                      <button onclick="showModal('settings${notifs.id}')" type="button" class="notif-action">
+                          <i class="bx bx-dots-horizontal-rounded"></i>
+                      </button>
+                  </a>
+                
+                  <div class="notif-action-modal" id="settings${notifs.id}">
+                      <!-- Your action buttons here -->
+                      <a href="#"><i class='bx bx-check'>
+                              <p>Mark as read</p>
+                          </i></a>
+                      <a href="#"><i class='bx bxs-bell'>
+                              <p>Remove</p>
+                          </i></a>
+                  </div>
+              </div>
+              `;
+        });
+
+        $('#notifContainer').html(notif);
+      },
+      error: function (xhr) {
+        console.log(xhr.responseText)
+      }
+    });
+  }
 
   // Fetch new notifications every 3 seconds
-  setInterval(fetchNotifications, 3000);
+  setInterval(function(){
+    fetchNotificationsAdmin();
+    fetchNotifications();
+  }, 3000);
+ 
 
   // Handle click on notification item
   // $(document).on('click', '.notification-item', function() {

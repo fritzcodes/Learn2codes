@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
+use App\Models\AdminNotifications;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\ImagePost;
@@ -47,6 +48,35 @@ class ForumController extends Controller
         return view('frontend.forum.forum', compact('name', 'posts', 'notif', 'notifCount'));
     }
 
+    public function AdminIndex(): View
+    {
+        $name = Auth::guard('admin')->user();
+        $posts = Post::with('images')
+            ->with('user')
+            ->withCount('likes')
+            ->with(['likes.user' => function ($query) use ($name) {
+                $query->where('id', $name->id);
+            }])
+            ->with(['comments.user', 'comments.replies.user'])
+            ->with(['comments.likes.user' => function ($query) use ($name) {
+                $query->where('id', $name->id);
+            }])
+            ->with('comments.replies.replyWithUser')
+            ->where('is_deleted', '0')
+            ->orderBy('created_at', 'desc') // Order by created_at column in descending order
+            ->get();
+        $notif = AdminNotifications::with('user')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $notifCount = count(AdminNotifications::with('user')
+            ->where('is_read', '0')
+            ->orderBy('created_at', 'desc')
+            ->get());
+
+        // dd($notif);
+        return view('frontend.admin.adminForums', compact('name', 'posts', 'notif', 'notifCount'));
+    }
+
     public function ForumPost()
     {
         $name = Auth::user();
@@ -76,6 +106,8 @@ class ForumController extends Controller
         //dd($notif);
         return view('frontend.forum.forumPost', compact('name', 'posts', 'notif', 'notifCount'));
     }
+
+    
 
 
     public function store(PostRequest $request)
@@ -250,6 +282,13 @@ class ForumController extends Controller
         return response()->json($notif);
     }
 
+    public function NotificationAdmin()
+    {
+        $notif = AdminNotifications::orderBy('created_at', 'desc') // Order by created_at column in descending order
+            ->get();
+        return response()->json($notif);
+    }
+
 
     public function NotificationUpdate($id)
     {
@@ -258,6 +297,15 @@ class ForumController extends Controller
             ->where('id', $id)
             ->update(['is_read' => '1']);
             $data = UserNotification::find($id);
+        return response()->json($data);
+    }
+
+    public function NotificationUpdateAdmin($id)
+    {
+        $notif = AdminNotifications::where('is_read', '0')
+            ->where('id', $id)
+            ->update(['is_read' => '1']);
+            $data = AdminNotifications::find($id);
         return response()->json($data);
     }
     public function NotificationUpdateAll($id)

@@ -117,6 +117,8 @@ Route::post('/reset-password', [ForgetPasswordManager::class, 'resetPasswordPost
 
 // Admin routes
 Route::middleware(['auth:admin'])->group(function () {
+    Route::get('/admin/forum', [ForumController::class, 'AdminIndex']);
+    Route::get('/notificationsAdmin', [ForumController::class, 'NotificationAdmin']);
     Route::get('/admin/dashboard', [DashboardController::class, 'Index'])->name('Dashboard');
     Route::get('/admin/totalBadge', [DashboardController::class, 'totalBadge'])->name('totalBadge');
     Route::get('/admin/totalExp', [DashboardController::class, 'totalExp'])->name('totalExp');
@@ -177,6 +179,7 @@ Route::middleware('auth', 'last_online')->group(function () {
         Route::delete('/delete-post/{id}', [ForumController::class, 'destroy']);
         Route::get('/notifications', [ForumController::class, 'Notification']);
         Route::get('/notifications-update/{id}', [ForumController::class, 'NotificationUpdate']);
+        Route::get('/notifications-update-admin/{id}', [ForumController::class, 'NotificationUpdateAdmin']);
         Route::get('/notifications-updateAll/{id}', [ForumController::class, 'NotificationUpdateAll']);
         Route::post('/like-comment', [ForumController::class, 'likeComment']);
         Route::get('/popular/{hashtag}', [ForumController::class, 'PopularTopics']);
