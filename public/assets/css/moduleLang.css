@@ -157,6 +157,7 @@
     }
 
     .space-background {
+      position: fixed;
       background: none;
       border-radius: 0px;
       width: 100%;
@@ -166,6 +167,10 @@
 
     .carousel img{
       width: 100%;
+    }
+
+    .title h2{
+      color: var(--main-color);
     }
 
   }
@@ -201,6 +206,7 @@
   }
 
 .space-background {
+  position: fixed;
   background: none;
   border-radius: 0px;
   width: 100%;

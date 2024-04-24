@@ -219,11 +219,15 @@ footer {
 	font-size: var(--p-font);
 	position: relative;
 	bottom:0;
-	right: 0;
+	left: 0;
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content:space-between;
+}
+
+.foot ul {
+	margin: 0 10px 10px 0px;
 }
 
 .foot li a {
@@ -248,6 +252,10 @@ footer {
 	justify-content: space-between;
 }
 
+.socials ul {
+	margin: 0 10px 10px 0;
+}
+
 .socials ul li a {
 	color: var(--main-color);
 }
@@ -262,24 +270,23 @@ footer {
 	to { color: var(--high-color); }
   }
 
-.socmed{
+  .icons p, .socmed p {
+	margin-right: 5px;
+	color: var(--main-color);
+  }
+
+.socmed li, .icons li{
+	align-items: center;
 	display: flex;
 }
 
-.socmed a{
-	margin: 10px;
-}
-
-.socmed li a img {
-	width: 30px; 
-	height: 30px; 
+.socmed i {
+	border-radius: 5px;
+	background: var(--bg-color);
+	font-size: var(--h2-font);
 	
 }
 
-.socmed p {
-	margin: 2px;
-	color: var(--main-color);
-}
 
 /*------------Responsiveness------------*/
 @media (max-width: 853px) {

@@ -16,7 +16,7 @@
     <script type="text/javascript" src="assets/js/headermenu.js" defer></script>
 </head>
 
-<body>
+<body style="background-image: url(/assets/images/Backlogin.png);">
 
     <header>
         <a href="startmenu" class="bx bx-chevron-left" id="back-btn"></a>

@@ -10,7 +10,7 @@
     <link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
     <link rel="stylesheet" href="assets/css/estilo.css">
     <link rel="stylesheet" href="assets/css/header2.css">
-
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 
 </head>
@@ -143,9 +143,12 @@
                 <li><a href="#">Learn2Code</a></li>
             </ul>
 
+            <ul class="icons">
+                <li><p>Icons by</p><a href="https://icons8.com/" style="text-decoration: underline;">Icons8</a></li>
+            </ul>
+
             <ul class="socmed">
-                <li><p>follow us on:</p></li>
-                <li><a href="https://www.facebook.com/profile.php?id=61558593006994&mibextid=ZbWKwL"><img src="assets/images/fb.svg"></img></a></li>
+                <li><p>follow us on:</p><a><i class="bx bxl-facebook"></i></a></li>
             </ul>
 
         </div>
