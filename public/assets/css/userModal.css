@@ -20,7 +20,7 @@
     transition: .2s;
 
 }
-    .modal {
+    #userModal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -50,20 +50,20 @@
     to {top: 0; opacity: 1}
 }
 
-.head {
+.user-content .head {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 0 10px 0;
 }
 
-.head h2{
+.user-content .head h2{
     font-family: var(--font1);
     font-size: var(--h2-font);
     color: var(--second-color);
 }
 
-.close {
+.user-content .close {
     text-decoration: none;
     font-weight: 600;
     color: var(--high-color);
@@ -71,27 +71,27 @@
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.user-content .close:hover,
+.user-content .close:focus {
     color: var(--bg-color);
     text-decoration: none;
     cursor: pointer;
 }
 
-.image-container {
+.user-content .image-container {
     display: flex;
     justify-content: center;
     width: 100%;
     padding: 10px 0;
 }
 
-.image-container img {
+.user-content .image-container img {
     width: 100px;
     height: 100px;
     border-radius: 100%;
 }
 
-.typeinput {
+.user-content .typeinput {
     text-align: center;
     font-family: var(--font2);
     display: block;
@@ -99,14 +99,14 @@
     margin-bottom: 5px;
 }
 
-.typeinput label {
+.user-content .typeinput label {
     font-weight: 800;
     font-size: var(--p-font);
     color: var(--text-color);
     
  }
 
-.typeinput h2 {
+.user-content .typeinput h2 {
     color: var(--second-color);
     font-size: var(--p-font);
     width: 100%;
@@ -116,8 +116,151 @@
     height: 35px;
 }
 
-.typeinput input:focus {
+.user-content .typeinput input:focus {
     border: none;
+}
+
+
+
+/*admin-content*/
+#adminModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow-y: auto;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.admin-content {
+    border-radius: 15px;
+    background-color: var(--text-color);
+    margin: 10px auto; /* 15% from the top and centered */
+    padding: 20px;
+    width: 500px; /* Could be more or less, depending on screen size */
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+.admin-content .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 10px 0;
+}
+
+.admin-content .head h2{
+    font-family: var(--font1);
+    font-size: var(--h2-font);
+    color: var(--main-color);
+}
+
+.admin-content .head .close {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--high-color);
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.admin-content .head .close:hover,
+.admin-content .head .close:focus {
+    color: var(--second-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.admin-content .profile-image {
+    position: absolute;   
+    display: none;
+    }
+
+.admin-content .image-container {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    display: flex;
+    margin: 10px auto;
+    justify-content: center;
+
+}
+
+.admin-content .image-container img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+
+.admin-content .typeinput {
+    text-align: left;
+    font-family: var(--font2);
+    display: block;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.admin-content  .typeinput label {
+    font-weight: 600;
+    font-size: var(--p-font);
+    color: var(--second-color);
+    
+ }
+
+.admin-content  .typeinput h2 {
+    color: var(--second-color);
+    font-size: var(--p-font);
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 35px; 
+ }
+
+.admin-content .typeinput button {
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 5px;
+    color: var(--main-color);
+    background: var(--second-color);
+    font-size: var(--p-font);
+    width: 100%;
+    text-align: center;
+    border: none;
+    height: 45px;
+}
+
+.admin-content .typeinput input {
+    background: var(--text-color);
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--second-color);
+    border-radius: 5px;
+    color: var(--high-color);
+    font-size: var(--p-font);
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 45px; 
+    font-weight: 100;
+    margin-top: 2px;
+    padding: 5px;
+}
+
+.admin-content .typeinput input:focus {
+    font-weight: 600;
+    color: var(--main-color);
 }
 
 
@@ -129,7 +272,7 @@
         transition: .2s;
       }
 
-      .user-content {
+      .admin-content, .user-content {
         margin: 7% auto; /* 15% from the top and centered */
     }
 
@@ -142,7 +285,7 @@
         --p-font: 1rem;
     }
 
-    .user-content {
+    .admin-content, .user-content {
         margin: 1% auto; /* 15% from the top and centered */
     }
 
@@ -156,7 +299,7 @@
         transition: .2s;
       }
 
-      .user-content {
+      .admin-content, .user-content {
         margin: 25% auto; /* 15% from the top and centered */
         width: 500px; /* Could be more or less, depending on screen size */
     }
@@ -171,7 +314,7 @@
         transition: .2s;
       }
 
-      .user-content {
+      .admin-content, .user-content {
         width: 300px; /* Could be more or less, depending on screen size */
     }
 
@@ -179,7 +322,7 @@
 
 @media(max-width:380px) {
  
-    .user-content {
+    .admin-content, .user-content {
         margin: 10% auto; /* 15% from the top and centered */
         width: 250px; /* Could be more or less, depending on screen size */
     }
@@ -193,7 +336,7 @@
         transition: .2s;
       }
 
-      .user-content {
+      .admin-content, .user-content {
         margin: 10% auto; /* 15% from the top and centered */
         width: 240px; /* Could be more or less, depending on screen size */
     }
@@ -208,7 +351,7 @@
         transition: .2s;
     }
 
-    .user-content {
+    .admin-content, .user-content {
         margin: 30% auto; /* 15% from the top and centered */
         width: 500px; /* Could be more or less, depending on screen size */
     }
@@ -224,7 +367,7 @@
     
     }
 
-    .user-content {
+    .admin-content, .user-content {
         margin: 50% auto; /* 15% from the top and centered */
         width: 500px; /* Could be more or less, depending on screen size */
     }

@@ -18,44 +18,39 @@
     --p-font: 1rem;
     --font1: 'Orbitron';
     --font2: Helvetica;
-    transition: .2s;
 }
 
-body{
-    overflow-x: hidden;
-    width: 100%;
-    height: 100vh;
-    background: no-repeat;
+body {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    min-height: 100vh; /* Use full viewport height */
     background-size: cover;
-    background-attachment: fixed;
-    background: linear-gradient(-45deg, #210535, #7b337d, #430d4b);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-  }
-  
-  @keyframes gradientShift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
+    animation: animateBackground 20s linear infinite; /* Adjust as needed */
+      }
+      @keyframes animateBackground {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 100% 100%;
+        }
+      }
 
 
 .leaderboard{
     align-items: center;
-    margin-top: 100px;
+    position: absolute;
+    top: 10vh;
     width: 100%;
-    height: 100vh;
+    height: 90vh;
     margin-left: auto;
     margin-right: auto;
     display: block;
     padding: 1em;
+    overflow-y: auto;
 }
+
 .description {
     margin: 50px;
     font-family: var(--font1);
@@ -160,19 +155,22 @@ tbody tr:nth-child(even){
 
 
 /*----------------------------responsiveness*/
-@media(max-width:860px){
-
-    .leaderboard{
-        position: fixed;
-        padding: 0;
+@media (max-width: 1300px) {
+    :root {
+      --h2-font: 2.3rem;
+      --p-font: 1rem;
     }
+
+    }
+
+@media(max-width:860px){
 
     .description{
         display: block;
         transform: translateY(0);
     }
     table{
-        max-width: 100vw;
+        max-width: 100%;
         overflow-x: scroll;
 
     }
@@ -180,19 +178,9 @@ tbody tr:nth-child(even){
 
 @media(max-width:540px){
     :root {
-        --big-font: 2.8rem;
-        --h2-font: .8rem;
-        --p-font: 0.5em;
-        transition: .2s;
+        --h2-font: 1.5rem;
+        --p-font: 1rem;
       }
-
-    .description h2 {
-        font-size: var(--h2-font);
-    }
-    
-    .description p {
-        font-size: var(--p-font);
-    }
 
     thead tr td {
         color: var(--main-color);
@@ -215,36 +203,23 @@ tbody tr:nth-child(even){
     }
 }
 
-@media (max-width: 1300px) {
-    :root {
-      --big-font: 4.5rem;
-      --h2-font: 2.3rem;
-      --p-font: 1rem;
-      transition: .2s;
-    }
-
-    }
-
   @media (max-width: 376px) {
-      :root {
-      --big-font: 3.5rem;
-      --h2-font: 1.5rem;
-      transition: .2s;
-    }
-
+ 
   }
 
 
   @media (max-width: 280px) {
-      :root {
-      --big-font: 3.5rem;
-      --h2-font: 1.5rem;
-      transition: .2s;
+
+    
+    .leaderboard{
+        padding: 10px;
     }
 
     table td:nth-child(3){
       display: none;
   }
+
+
 
   }
 
@@ -262,19 +237,12 @@ tbody tr:nth-child(even){
       --big-font: 5rem;
       --h2-font: 2.5rem;
       --p-font: 1.5rem;
-      transition: .2s;
 
   }
 
 }
 
 @media (min-height: 1300px) {
-  :root {
-    --big-font: 5rem;
-    --h2-font: 2.5rem;
-    --p-font: 1.5rem;
-    transition: .2s;
 
-}
 
 }

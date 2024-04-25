@@ -186,7 +186,7 @@
     height: 100vh;
     position: fixed; 
     border-radius: 0;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   .title {
@@ -310,7 +310,7 @@
   height: 100vh;
   position: fixed; 
   border-radius: 0;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .title {
