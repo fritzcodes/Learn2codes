@@ -123,12 +123,7 @@
             @csrf
         
             <label for="language" class="label">Language</label>
-            <select class="select" name="language" id="" required>
-                <option value="">--Select a Language--</option>
-                @foreach ($language as $item)
-                    <option value="{{ $item->language }}">{{ $item->language }}</option>
-                @endforeach
-            </select>
+            <input class="input" type="text" value="{{$data->language}}" name="language" readonly>
             <div style="width: 100%">
                 <textarea id="summernote" name="content">{{ $data->content }}</textarea>
             </div>
