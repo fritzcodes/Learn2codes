@@ -83,20 +83,15 @@
 
 
         .list-footer {
-            display: flex;
-            justify-content: center;
-            font-size: var(--p-font);
-            color: #fff;
-            padding: 10px 0px;
-            line-height: 1.5;
-            font-weight: 700;
-            background-color: var(--main-color);
-            border-radius: 3px;
-
+        display: flex;
+        justify-content: center;
+        font-size: var(--p-font);
+        color: var(--main-color);
+        padding: 10px 0px;
+        font-weight: 600;
+        background-color: var(--second-color);
+        border-radius: 3px;
         }
-
-
-
 
         .user ul {
             align-items: center;
@@ -267,11 +262,13 @@
                     </a>
 
                     <div id="notifsetModal">
-                        <a href="#"><i class='bx bx-check'></i>
+                        <a href="#">
+                            <i class='bx bx-check'></i>
                             <p>Mark all as read</p>
                         </a>
-                        </a>
-                        <a href="#"><i class='bx bxs-trash'></i>
+                      
+                        <a href="#">
+                            <i class='bx bxs-trash'></i>
                             <p>Clear all notifications</p>
                         </a>
                     </div>
@@ -500,8 +497,7 @@
                             </div>
 
                             <div class="post-content">
-                                <div class="caption">
-                                    @php
+                                     @php
                                         $content = $post->content;
 
                                         preg_match_all('/#(\w+)/', $content, $matches);
@@ -514,11 +510,11 @@
                                                 $content,
                                             );
                                         }
+                                     @endphp
+                                     
+                                <div class="caption">
 
-                                    @endphp
-
-                                    <pre>{!! $content !!}
-</pre>
+                                   <p>{!! $content !!}</p> 
 
                                 </div>
 
@@ -540,7 +536,7 @@
                                 @endif
 
 
-                            </div>
+                        </div>
 
                             <div class="line">
                                 <hr>

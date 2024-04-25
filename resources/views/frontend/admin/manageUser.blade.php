@@ -243,7 +243,7 @@
                     <div class="typeinput" id="passdiv">
                         <input required placeholder="Password" type="password" id="password" name="password">
                         <button class="showhide" type="button" onclick="togglePassword('password')">
-                            <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
+                            <img id="imageeye" src="/assets/images/view.png" alt="not visible eye">
                         </button>
                     </div>
 
@@ -277,21 +277,21 @@
                         <input required placeholder="Current Password" type="password" id="currentPassword"
                             name="password">
                         <button class="showhide" type="button" onclick="togglePassword('currentPassword')">
-                            <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
+                            <img id="imageeye" src="/assets/images/view.png" alt="not visible eye">
                         </button>
                     </div>
                     <div class="typeinput">
                         <input required placeholder="Set New Password" type="password" id="newPassword"
                             name="password" oninput="checkPasswords()">
                         <button class="showhide" type="button" onclick="togglePassword('newPassword')">
-                            <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
+                            <img id="imageeye" src="/assets/images/view.png" alt="not visible eye">
                         </button>
                     </div>
                     <div class="typeinput">
                         <input required placeholder="Confirm Password" type="password" id="confirmPassword"
                             name="password" oninput="checkPasswords()">
                         <button class="showhide" type="button" onclick="togglePassword('confirmPassword')">
-                            <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
+                            <img id="imageeye" src="/assets/images/view.png" alt="not visible eye">
                         </button>
                     </div>
                     <div class="typeinput" id="passwordMatch" style="display:none;">

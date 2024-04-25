@@ -14,8 +14,8 @@
     --second-color: #7b337d;
     --high-color: #c874b2;
     --big-font: 6rem;
-    --h2-font: 1.1rem;
-    --p-font: 1rem;
+    --h2-font: 1.3rem;
+    --p-font: 1.1rem;
     --font1: 'Orbitron';
     --font2: Helvetica;
     transition: .2s;
@@ -32,7 +32,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--second-color);
+  background: var(--text-color);
 
 }
 
@@ -55,16 +55,22 @@ header {
 .user input {
   margin-left: 0;
   text-indent: 10px;
-  height: 35px;
+  height: 45px;
   max-width: 250px;
-  background-color: #ebebeb;
-  border: none;
-  border-radius: 10px;
+  background-color: var(--second-color);
+  border: solid;
+  border-color: var(--high-color);
+  border-radius: 5px;
   font-size: var(--p-font);
 }
 
 .user input:focus {
-  background-color: var(--bg-color);
+  color: var(--main-color);
+}
+
+
+.user input::placeholder{
+  color: var(--text-color);
 }
 
 .logo img {
@@ -75,7 +81,7 @@ header {
 }
 
 #menu-icon {
-  color: var(--bg-color);
+  color: var(--main-color);
   font-size: 40px;
   cursor: pointer;
   display: none;
@@ -83,7 +89,7 @@ header {
 
 #filter,
 #notif {
-  color: var(--bg-color);
+  color: var(--main-color);
   font-size: 40px;
   cursor: pointer;
   display: block;
@@ -108,10 +114,9 @@ header {
   position: fixed;
   overflow: auto;
   margin-left: 20px;
-  background-color: var(--bg-color);
+  background-color: #fff;
   padding: 10px;
   max-height: 80vh;
-  border: 1px solid #ccc;
 }
 
 .notif-header {
@@ -120,16 +125,20 @@ header {
   padding: 10px 0 15px 0;
 }
 
+.notif-header h2 {
+  color: var(--bg-color);
+}
+
 #notif-setting i {
   font-size: 15px;
-  color: #000;
+  color: var(--bg-color);
   padding: 4px 6px;
 }
 
 #notif-setting i:hover {
-  color: var(--bg-color);
+  color: var(--main-color);
   border-radius: 7px;
-  background-color: #BABABA;
+  background-color: var(--high-color);
 }
 
 /* filter modal container*/
@@ -146,11 +155,14 @@ header {
   /* Sit on top */
   display: none;
   position: absolute;
-  background: #BABABA;
+  background: var(--main-color);
   border-radius: 15px;
   margin: 30px 0 0 0;
   right: 11px;
-
+  border-style: solid;
+  border-color: var(--high-color);
+  border-width: 2px;
+  
 }
 
 #notifsetModal a {
@@ -162,18 +174,21 @@ header {
 #notifsetModal p {
   margin: 7px;
   font-size: var(--p-font);
+  color: var(--bg-color);
 }
 
 #notifsetModal i {
   padding: 7px 1px;
-  color: #000;
   font-size: var(--h2-font);
+  color: var(--bg-color);
 }
 
 #notifsetModal a:hover {
   border-radius: 10px;
-  background-color: var(--bg-color);
+  background: var(--high-color);
 }
+
+
 
 .notification-item {
   display: flex;
@@ -186,7 +201,7 @@ header {
 }
 
 .notification-item.unread-notif {
-  background: #BABABA;
+  background: var(--second-color);
 }
 
 .notification-item:hover .notif-action {
@@ -207,23 +222,23 @@ header {
 
 .notif-action i {
   font-size: 15px;
-  color: #000;
+  color: var(--bg-color);
   padding: 4px 4px;
   color: var(--bg-color);
   border-radius: 100%;
-  background-color: #7a7a7a;
+  background-color: var(--main-color);
 }
 
 .notif-action-modal {
   display: none;
   z-index: 1;
   position: absolute;
-  background: #BABABA;
+  background: var(--main-color);
   border-radius: 15px;
   right: 45px;
   margin: -83px 0 0 0;
   border-style: solid;
-  border-color: #ccc;
+  border-color: var(--high-color);
   border-width: 2px;
   padding: 5px;
 }
@@ -235,12 +250,12 @@ header {
 .notif-action-modal i {
   display: flex;
   padding: 7px 1px;
-  color: #000;
+  color: var(--bg-color);
   font-size: var(--p-font);
 }
 
 .notif-action-modal i:hover {
-  background: var(--bg-color);
+  background: var(--main-color);
   border-radius: 10px;
 }
 
@@ -271,12 +286,15 @@ header {
 }
 
 .empty-state {
+  font-size: 3rem;
+  color: var(--text-color);
   text-align: center;
-  padding: 20px;
+  padding: 30px;
 }
 
 .empty-state p {
-  margin-top: 10px;
+  font-weight: 600;
+  color: var(--text-color);
 }
 
 /*
@@ -430,84 +448,18 @@ background: #BABABA;
   }
 }
 
-
 .list-footer {
   display: flex;
   justify-content: center;
   font-size: var(--p-font);
-  color: #fff;
+  color: var(--main-color);
   padding: 10px 0px;
-  line-height: 1.5;
-  font-weight: 700;
-  background-color: var(--main-color);
+  font-weight: 600;
+  background-color: var(--second-color);
   border-radius: 3px;
-
 }
-
-
-
-
-.user ul {
-  align-items: center;
-  display: flex;
-}
-
-.user ul li {
-  margin-right: 10px;
-}
-
-.navbar {
-  position: absolute;
-  top: 0;
-  right: -100%;
-  width: 40%;
-  height: 100vh;
-  background: #000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 60px 0%;
-  transition: 0.5s all;
-}
-
-.open {
-  right: 0;
-}
-
-.list {
-  width: 50%;
-  margin-top: 100px;
-}
-
-.profile button {
-  display: flex;
-  color: var(--bg-color);
-  border-style: unset;
-  background: transparent;
-  cursor: pointer;
-  align-items: center;
-  text-align: left;
-}
-
-.profile h3 {
-  margin-left: 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 300px;
-  text-overflow: ellipsis;
-  scroll-behavior: unset;
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-
-
 
 /*------------------MAIN------------------------*/
-
 .no-post {
   padding: 20px 0;
   width: 100%;
@@ -558,8 +510,8 @@ background: #BABABA;
   margin-right: auto;
   top: 90px;
   width: 100%;
-  height: 100vh;
-  background: var(--bg-color);
+  min-height: 100vh;
+  background: #fff;
   position: relative;
   align-items: center;
   background-size: cover;
@@ -592,53 +544,40 @@ background: #BABABA;
   width: 100%;
   position: relative;
   padding: 15px 10%;
-  color: #020202;
 }
 
 .writeout {
-  padding: 5px 10px;
-  height: 70px;
-  width: 100%;
-  background-color: #F3F3F3;
-  border-radius: 15px;
+  padding: 5px;
+  background: #ddd;
+  border-radius: 10px;
 }
 
 .writein {
-  margin-top: 5px;
-  height: 50px;
-  width: 100%;
-  background-color: #CFCBCB;
-  border-radius: 11px;
+  margin: 5px;
+  background: #fff;
+  border-radius: 5px;
   overflow: hidden;
 }
 
 .writein a h2 {
-  color: #5a7184;
+  color: var(--bg-color);
   font-weight: 100;
-  font-size: var(--h2-font);
+  font-size: var(--p-font);
   border-radius: 11px;
   padding: 15px 0 15px 5px;
 }
 
 #postModal {
   display: none;
-  /* Hidden by default */
   position: fixed;
-  /* Stay in place */
   z-index: 1001;
-  /* Sit on top */
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
-  background-color: rgb(0, 0, 0);
-  /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
+  background-color: rgb(12,05,35); /* Fallback color */
+  background-color: rgba(12,05,35,0.4); /* Black w/ opacity */
 }
-
 
 /* Modal Content */
 .modal-content {
@@ -646,9 +585,7 @@ background: #BABABA;
   border-radius: 10px;
   background-color: #fefefe;
   margin: 10% auto;
-  /* 15% from the top and centered */
   width: 60%;
-  /* Could be more or less, depending on screen size */
 }
 
 .createheader h2 {
@@ -885,6 +822,16 @@ background: #BABABA;
   display: flex;
   padding: 15px;
   margin-bottom: 10px;
+}
+
+.caption {
+  display: flex;
+  padding-bottom: 20px;
+}
+
+.caption p{
+  word-break: break-all;
+  text-align: justify;
 }
 
 .profile-pic img {
