@@ -118,7 +118,6 @@
                 </div>
 
                 <div class="title">
-                <h2></h2>
                 <p>Change current password</p>
                 </div>
 

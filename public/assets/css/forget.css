@@ -266,11 +266,17 @@ color: var(--text-color);
 }
 
 /* Adjust the position of the error message */
-#passwordError {
-color: var(--text-color);
+#passwordMatch {
+font-weight: 600;
+color: var(--bg-color);
 display: none;
-
 }
+
+#passwordError {
+    color: red;
+    display: none;
+}
+
 
 /*-----------RESPONSIVENESS----------*/
 @media (max-width: 1300px) {

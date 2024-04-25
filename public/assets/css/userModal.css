@@ -20,34 +20,34 @@
     transition: .2s;
 
 }
-    #userModal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow-y: auto;
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+.user {
+    cursor: pointer;
+}
+
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        background-color: rgb(12,05,35); /* Fallback color */
+        background-color: rgba(12,05,35,0.4); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 .user-content {
+    position: fixed;
+    margin: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
     border-radius: 15px;
     background-color: var(--main-color);
-    margin: 10px auto; /* 15% from the top and centered */
     padding: 20px;
-    width: 500px; /* Could be more or less, depending on screen size */
-    animation-name: animatetop;
-    animation-duration: 0.4s
-}
-
-/* Add Animation */
-@keyframes animatetop {
-    from {top: -300px; opacity: 0}
-    to {top: 0; opacity: 1}
 }
 
 .user-content .head {
@@ -89,6 +89,7 @@
     width: 100px;
     height: 100px;
     border-radius: 100%;
+    object-fit: cover;
 }
 
 .user-content .typeinput {
@@ -96,7 +97,6 @@
     font-family: var(--font2);
     display: block;
     justify-content: center;
-    margin-bottom: 5px;
 }
 
 .user-content .typeinput label {
@@ -109,11 +109,9 @@
 .user-content .typeinput h2 {
     color: var(--second-color);
     font-size: var(--p-font);
-    width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: 35px;
 }
 
 .user-content .typeinput input:focus {
@@ -123,34 +121,18 @@
 
 
 /*admin-content*/
-#adminModal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow-y: auto;
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
 
 /* Modal Content/Box */
 .admin-content {
+    position: fixed;
+    margin: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
     border-radius: 15px;
     background-color: var(--text-color);
-    margin: 10px auto; /* 15% from the top and centered */
     padding: 20px;
-    width: 500px; /* Could be more or less, depending on screen size */
-    animation-name: animatetop;
-    animation-duration: 0.4s
-}
-
-/* Add Animation */
-@keyframes animatetop {
-    from {top: -300px; opacity: 0}
-    to {top: 0; opacity: 1}
 }
 
 .admin-content .head {
@@ -200,6 +182,7 @@
     width: 100px;
     height: 100px;
     border-radius: 100%;
+    object-fit: cover;
 }
 
 .admin-content .typeinput {
@@ -207,7 +190,6 @@
     font-family: var(--font2);
     display: block;
     justify-content: center;
-    margin-bottom: 15px;
 }
 
 .admin-content  .typeinput label {
@@ -263,6 +245,159 @@
     color: var(--main-color);
 }
 
+/*admin-register and change pass css*/
+.create-admin .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 10px 0;
+}
+
+.create-admin .head h2 {
+    visibility: hidden;
+}
+
+.create-admin .head .close {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--high-color);
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.create-admin .head .close:hover,
+.create-admin .head .close:focus {
+    color: var(--second-color);
+    text-decoration: none;
+    cursor: pointer;    
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+}
+
+.logo img {
+    border-radius: 100%;
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    object-fit: cover;
+}
+
+.title{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-family: var(--font1);
+    color: var(--main-color);
+    padding: 10px 0;
+    text-align: justify;
+}
+
+.title h2 {
+    font-size: var(--h2-font);
+}
+
+.title p {
+    margin-left: 5px;
+    font-size: var(--p-font);
+}
+
+.alert {
+    width: 50%;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    text-align: center;
+    padding: 10px;
+    background-color: #ee0505; /* Adjust the background color as needed */
+    color: var(--main-color); /* Adjust the text color as needed */
+    box-shadow: 1px 2px var(--bg-color);
+    z-index: 1;
+}
+
+.alert.alert-error {
+    color: var(--text-color);
+    background-color: var(--main-color); /* Adjust the error message color as needed */
+}
+
+.typeinput {
+    font-family: var(--font2);
+    display: flex;
+    padding: 5px 0;
+}
+
+.typeinput input{
+    background: rgba(21, 05, 35, 0.5);   
+    border-style: solid;
+    border-color: var(--second-color);
+    text-indent: 7px;
+    border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    font-size: var(--p-font);
+    font-weight: 600;
+    color: var(--main-color);
+}
+
+.typeinput input::placeholder {
+    font-weight: 100;
+    color: var(--second-color);
+}
+
+.typeinput .showhide {
+    margin: 0 0px 0 10px;
+    padding: 0px 15px;
+    float: right;
+    border-radius: 5px;
+    border-style: hidden;
+    background-color: var(--second-color);
+    cursor: pointer;  
+    transition: ease 0.2s;
+}
+
+.showhide:hover {
+    background: var(--second-color);
+}
+
+.showhide img {
+    width: 15px;
+}
+
+.logbutton {
+    padding: 10px 0;
+    text-align: center;
+}
+
+.btns{
+    border-style: none;
+    font-size: var(--p-font);
+    border-radius: 5px;
+    background-color: var(--second-color);
+    color: var(--text-color);
+    width: 100%;
+    height: 40px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    transition: ease .2s;
+}
+
+.btns:hover{
+    background-color: var(--high-color);
+    color: var(--main-color);
+    cursor: pointer;
+}
+
+#passwordMatch {
+    font-weight: 600;
+    color: var(--main-color);
+    display: none;
+    }
+    
+#passwordError {
+    color: red;
+    display: none;
+}
 
 /*-----------RESPONSIVENESS----------------*/
 @media(max-width:1366px) {
@@ -272,21 +407,12 @@
         transition: .2s;
       }
 
-      .admin-content, .user-content {
-        margin: 7% auto; /* 15% from the top and centered */
-    }
-
-
 }
 
 @media (max-width: 1024px) {
     :root{ /*---font and color defaults --*/
         --h2-font: 1.5rem;
         --p-font: 1rem;
-    }
-
-    .admin-content, .user-content {
-        margin: 1% auto; /* 15% from the top and centered */
     }
 
 }
@@ -299,9 +425,9 @@
         transition: .2s;
       }
 
-      .admin-content, .user-content {
-        margin: 25% auto; /* 15% from the top and centered */
-        width: 500px; /* Could be more or less, depending on screen size */
+      .logo {
+        display: flex;
+        justify-content: center;
     }
 
 }
@@ -314,18 +440,21 @@
         transition: .2s;
       }
 
-      .admin-content, .user-content {
-        width: 300px; /* Could be more or less, depending on screen size */
+    
+      .title {
+        justify-content: center;
     }
+
+      .admin-content, .user-content, .create-admin {
+        border-radius: 0;
+        width: 100%;
+    }
+
 
 }
 
 @media(max-width:380px) {
  
-    .admin-content, .user-content {
-        margin: 10% auto; /* 15% from the top and centered */
-        width: 250px; /* Could be more or less, depending on screen size */
-    }
 
 }
 
@@ -336,24 +465,19 @@
         transition: .2s;
       }
 
-      .admin-content, .user-content {
-        margin: 10% auto; /* 15% from the top and centered */
-        width: 240px; /* Could be more or less, depending on screen size */
-    }
-
-
 }
 
 @media (min-height: 1024px) {
     :root {
-        --h2-head: 2.5rem;
+        --h2-head: 2rem;
         --p-head: 1.5rem;
         transition: .2s;
     }
 
-    .admin-content, .user-content {
-        margin: 30% auto; /* 15% from the top and centered */
-        width: 500px; /* Could be more or less, depending on screen size */
+    
+    .admin-content, .user-content, .create-admin {
+        width: 70%;
+        padding: 30px;
     }
 
 }
@@ -361,15 +485,16 @@
 @media(min-height:1300px) {
     :root {
         --big-font: 5rem;
-        --h2-font: 2.5rem;
+        --h2-font: 2rem;
         --p-font: 1.5rem;
         transition: .2s;
     
     }
 
-    .admin-content, .user-content {
-        margin: 50% auto; /* 15% from the top and centered */
-        width: 500px; /* Could be more or less, depending on screen size */
+    .admin-content, .user-content, .create-admin {
+        padding: 50px;
     }
+
+
 
 }

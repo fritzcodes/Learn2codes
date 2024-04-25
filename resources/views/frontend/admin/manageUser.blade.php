@@ -165,7 +165,7 @@
         </div>
         
 
-        <!--ADMIN MODAL------------------------->
+<!-------------------------------------------ADMIN MODAL------------------------->
         <div id="adminModal" class="modal">
             <!-- Modal content -->
                 <form method="POST" action="/admin/update-profile" class="admin-content" id="adminUpdateForm">
@@ -201,6 +201,98 @@
                 </div>
             </form>
         </div>
+
+<!----------------------------------ADMIN CREATE ACCOUNT MODAL------------------------->
+        <div id="createModal" class="modal">
+
+            <!-- Modal content -->
+            <form class="create-admin">
+                <div class="head">
+                    <h2>Admin</h2>
+                    <a class="close" onclick="closeAdminModal()">&times;</a>
+                </div>
+
+                <div class="logo">
+                    <img src="/assets/images/Logo.jpg" alt="learn2Code">
+                </div>       
+
+                    <div class="title">
+                    <h2>Learn2Code</h2>
+                    <p>Admin Creation</p>
+                    </div>
+
+                <div id="infos">
+
+                    <div class="typeinput">    
+                    <input required placeholder="Email" type="text" id="email-phone" name="email">
+                    </div>
+                    <div class="typeinput">    
+                        <input required placeholder="Admin Name" type="text" id="username" name="username">
+                    </div>
+                    <div class="typeinput" id="passdiv">                  
+                    <input required placeholder="Password" type="password" id="password" name="password">
+                    <button class="showhide" type="button" onclick="togglePassword('password')">
+                        <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
+                    </button>
+                    </div>
+                
+                    <div class="logbutton">
+                    <button id="login" type="submit" class="btns">Create</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+<!------------------------------------ADMIN CHANGE PASSWORD------------------------->
+        <div id="passModal" class="modal">
+
+            <!-- Modal content -->
+            <form class="create-admin">
+                <div class="head">
+                    <h2>Admin</h2>
+                    <a class="close" onclick="closeAdminModal()">&times;</a>
+                </div>
+
+                <div class="logo">
+                    <img src="/assets/images/Logo.jpg" alt="learn2Code">
+                </div>       
+
+                    <div class="title">
+                    <p>Change current password</p>
+                    </div>
+
+                <div id="infos">
+                        <div class="typeinput">
+                        <input required placeholder="Current Password" type="password" id="currentPassword" name="password">
+                        <button class="showhide" type="button" onclick="togglePassword('currentPassword')">
+                            <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
+                        </button>
+                        </div>
+                        <div class="typeinput">
+                        <input required placeholder="Set New Password" type="password" id="newPassword" name="password" oninput="checkPasswords()">
+                        <button class="showhide" type="button" onclick="togglePassword('newPassword')">
+                            <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
+                        </button>
+                        </div>
+                        <div class="typeinput">
+                        <input required placeholder="Confirm Password" type="password" id="confirmPassword" name="password" oninput="checkPasswords()">
+                        <button class="showhide" type="button" onclick="togglePassword('confirmPassword')">
+                            <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
+                        </button>
+                        </div>
+                        <div class="typeinput" id="passwordMatch" style="display:none;">
+                                <p >Passwords match!</p> <!-- Removed the margin-bottom -->
+                        </div>
+                        <div class="typeinput" id="passwordError">
+                                <p>Passwords do not match!</p> <!-- Removed the margin-bottom -->
+                        </div>
+                        <div class="logbutton">
+                        <button type="submit" id="changePassBtn" class="btns">Confirm</button>
+                        </div>
+            </form>
+
+            </div>
+
 
         <script>
            $(document).ready(function() {
