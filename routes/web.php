@@ -86,6 +86,8 @@ Route::post('/admin/adminLogin', [adminLoginController::class, 'adminLoginPost']
 Route::get('/admin/createAccount', [adminLoginController::class, 'createAdmin'])->name('createAccount');
 Route::post('/admin/createAccountPost', [adminLoginController::class, 'createAccountPost'])->name('createAccountPost');
 
+Route::post('/admin/update-profile', [adminLoginController::class, 'updateAdminProfile'])->name('updateAdminProfile');
+
 
 Route::get('/', [TemplateController::class, 'index']);
 Route::delete('/logout', [LoginController::class, 'logout'])->name('logout');

@@ -28,18 +28,18 @@
 
 
         <div class="user">
-            @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
-            <img src="{{Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photoo) : 'assets/images/avatar.png' }}" alt="user" class="user-img">
-            @else
-            <!-- Placeholder image or default avatar -->
-            <img src="../assets/images/avatar.png" alt="user" class="user-img">
-            @endif
-            {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
+            <a onclick="openAdminModal()">
+                @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
+                    <img src="{{ asset('images/' . Auth::guard('admin')->user()->profile_photo) }}" alt="user" class="user-img">
+                @else
+                    <!-- Placeholder image or default avatar -->
+                    <img src="../assets/images/avatar.png" alt="user" class="user-img">
+                @endif
+            </a>
             <div>
                 <p class="username">{{ Auth::guard('admin')->user()->username }}</p>
                 <p>Admin</p>
             </div>
-
         </div>
 
 
@@ -167,54 +167,93 @@
 
         <!--ADMIN MODAL------------------------->
         <div id="adminModal" class="modal">
-        <!-- Modal content -->
-        <form class="admin-content">
-            <div class="head">
-                <h2>Admin</h2>
-                <a class="close">&times;</a>                
-            </div>
-            <div id="infos">
-
-                <div class="image-container" onclick="openFileInput()">
-                    <a href="#"><img src="/aboutus/avatar-removebg-preview.png"></a> 
-                    
-                    <input type="file" id="fileInput" style="display: none;" onchange="handleFileSelect(event)"
-                        accept="image/*" name="profile_photo">
-                    <input type="file" class="profile-image" accept="image/*" onchange="previewImage()">
-                    
+            <!-- Modal content -->
+                <form method="POST" action="/admin/update-profile" class="admin-content" id="adminUpdateForm">
+                    @csrf
+                <div class="head">
+                    <h2>Admin</h2>
+                    <a class="close" onclick="closeAdminModal()">&times;</a>
                 </div>
-
-                <div class="typeinput"> 
-                    <label for="username">Username:</label>          
-                    <input type="text" name="username">
+                <div id="infos">
+                    <div class="image-container" onclick="openFileInput()">
+                        <img style="border-radius:50%" src="{{ Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photo) : '/assets/images/avatar.png' }}" alt="">
+                        <input type="file" id="fileInput" style="display: none;" onchange="handleFileSelect(event)" accept="image/*" name="profile_photo">
+                        <input type="file" class="profile-image" accept="image/*" onchange="previewImage()">
+                    </div>
+                    <div class="typeinput"> 
+                        <label for="username">Username:</label>          
+                        <input type="text" name="username" value="{{ Auth::guard('admin')->user()->username }}">
+                    </div>
+                    <div class="typeinput"> 
+                        <label for="email">Email:</label>          
+                        <input type="email" name="email" value="{{ Auth::guard('admin')->user()->email }}">
+                    </div>
+                    <div class="typeinput"> 
+                        <button>Create Account</button>
+                    </div>
+                    <div class="typeinput"> 
+                        <button>Change Password</button>
+                    </div>
+                    <div class="typeinput"> 
+                        <input type="hidden" name="id" value="{{ Auth::guard('admin')->user()->id }}" required>
+                        <button type="button" class="submit-button" id="btnSubmit">Save</button>
+                    </div>
                 </div>
+            </form>
+        </div>
 
-                <div class="typeinput"> 
-                    <label for="email">Email:</label>          
-                    <input type="email" name="email">
-                </div>
+        <script>
+           $(document).ready(function() {
+    $('#btnSubmit').click(function() {
+        var formData = new FormData($('#adminUpdateForm')[0]);
+        $.ajax({
+            url: "/admin/update-profile",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'Admin profile updated successfully.',
+                }).then(() => {
+                    window.location.reload(); // Reload the page after successful update
+                });
+            },
+            error: function(xhr, status, error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred while updating admin profile.',
+                });
+                console.error(xhr.responseText);
+            }
+        });
+    });
+});
 
-                <div class="typeinput"> 
-                    <button>Create Account</button>
-                </div>
 
-                <div class="typeinput"> 
-                    <button>Change Password</button>
-                </div>
+        </script>
+        
 
-                <div class="typeinput"> 
-                    <button>Save Change</button>
-                </div>
-            </div>
-        </form>
-    </div>
-
+        <script>
+            function openAdminModal() {
+                var modal = document.getElementById('adminModal');
+                modal.style.display = "block";
+            }
+        
+            function closeAdminModal() {
+                var modal = document.getElementById('adminModal');
+                modal.style.display = "none";
+            }
+        </script>
     <!--clickable image container------------------------->
     <script>
-    function openFileInput() {
+        function openFileInput() {
             document.getElementById('fileInput').click();
         }
-
+    
         function handleFileSelect(event) {
             const file = event.target.files[0];
             // Do something with the selected file, such as displaying preview or uploading it.
@@ -222,13 +261,13 @@
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const imgElement = document.querySelector('.imageContainer a img');
+                    const imgElement = document.querySelector('.image-container img');
                     imgElement.src = e.target.result;
                 };
                 reader.readAsDataURL(file);
             }
         }
-</script>
+    </script>
 
 
     </div>
