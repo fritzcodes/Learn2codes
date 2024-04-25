@@ -16,6 +16,7 @@
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
 
@@ -161,18 +162,16 @@
                 </thead>
                 <tbody>
                     @foreach ($data as $item)
-                        <tr>
-                            <td><img src="/images/{{ $item->picture }}" height="100px" width="100px" alt=""></td>
-                            <td>{{ $item->language }}</td>
-                            <td class="ved">
-                                <form action="{{ url('/admin/DeleteLanguage/' . $item->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="bx bxs-trash"></button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
+                    <tr>
+                        <td><img src="/images/{{ $item->picture }}" height="100px" width="100px" alt=""></td>
+                        <td>{{ $item->language }}</td>
+                        <td class="ved">
+                            <!-- Add an onclick event to trigger the del function -->
+                            <button type="button" onclick="del({{ $item->id }})" class="bx bxs-trash"></button>
+                        </td>
+                    </tr>
+                @endforeach
+                
                 </tbody>
             </table>
         </div>
@@ -273,6 +272,60 @@ document.getElementById('picture').addEventListener('change', function () {
         });
     }
 </script>
+
+<script>
+    function del(id) {
+        // Fetch CSRF token from meta tag
+        var token = $('meta[name="csrf-token"]').attr('content');
+
+        // Display a confirmation dialog using SweetAlert2
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If the user confirms, send an AJAX request to delete the language
+                $.ajax({
+                    url: '/admin/DeleteLanguage/' + id,
+                    type: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': token // Include CSRF token in headers
+                    },
+                    success: function(response) {
+                        // If deletion is successful, show a success message
+                        Swal.fire(
+                            'Deleted!',
+                            'Your language has been deleted.',
+                            'success'
+                        ).then(() => {
+                            // Reload the page first
+                            location.reload();
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        // If an error occurs, show an error message
+                        Swal.fire(
+                            'Error!',
+                            'An error occurred while deleting the language.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+    }
+</script>
+
+
+
+
+
+
 
 </body>
 

@@ -40,19 +40,22 @@ class LanguageController extends Controller
         
     }
 
-    public function DeleteLanguage($id)
+    public function deleteLanguage(Request $request, $id)
 {
-    $language = prog_language::find($id);
-    if (!$language) {
-        return redirect()->back()->with('error', 'Language not found!');
+    try {
+        $language = prog_language::find($id);
+        if (!$language) {
+            return response()->json(['error' => 'Language not found!'], 404);
+        }
+
+        $language->delete();
+
+        return response()->json(['message' => 'Language deleted successfully!'], 200);
+    } catch (\Exception $e) {
+        // Log the error for debugging purposes
+        \Log::error('Error deleting language: ' . $e->getMessage());
+        return response()->json(['error' => 'An error occurred while deleting the language.'], 500);
     }
-
-    $language->delete();
-
-    // Flash success message to session
-    Session::flash('message', 'Language deleted successfully!');
-
-    return redirect()->back();
 }
 
 
