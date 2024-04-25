@@ -30,7 +30,8 @@
         <div class="user">
             <a onclick="openAdminModal()">
                 @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
-                    <img src="{{ asset('images/' . Auth::guard('admin')->user()->profile_photo) }}" alt="user" class="user-img">
+                    <img src="{{ asset('images/' . Auth::guard('admin')->user()->profile_photo) }}" alt="user"
+                        class="user-img">
                 @else
                     <!-- Placeholder image or default avatar -->
                     <img src="../assets/images/avatar.png" alt="user" class="user-img">
@@ -125,23 +126,28 @@
                         </tr>
                     </thead>
                     <tbody id="userTableBody">
-                        @foreach($user as $use )
-                        <tr id="user-{{ $use->id }}">
-                            <td>{{$use['id']}}</td>
-                            <td>{{$use['fname']}}</td>
-                            <td>{{$use['lname']}}</td>
-                            <td>{{$use['username']}}</td>
-                            <td>{{$use['year']}}</td>
-                            <td>{{$use['course']}}</td>
-                            <td class="ved">
-                                <button id="openUser" onclick="UserInfo('{{ $use->id }}')" class="bx bxs-show"></button>
-                                <button class="bx bxs-trash" onclick="confirmDelete({{ $use->id }})"></button>
-                            </td>
-                            @php
-                            $new_last_online_at = date('Y-m-d H:i:s', strtotime($use['last_online_at'] . ' +2 minutes'));
-                            @endphp
-                            <td>{{$new_last_online_at > now() ? 'Online' :  \Illuminate\Support\Carbon::parse($use['last_online_at'])->diffForHumans()  }}</td>
-                        </tr>
+                        @foreach ($user as $use)
+                            <tr id="user-{{ $use->id }}">
+                                <td>{{ $use['id'] }}</td>
+                                <td>{{ $use['fname'] }}</td>
+                                <td>{{ $use['lname'] }}</td>
+                                <td>{{ $use['username'] }}</td>
+                                <td>{{ $use['year'] }}</td>
+                                <td>{{ $use['course'] }}</td>
+                                <td class="ved">
+                                    <button id="openUser" onclick="UserInfo('{{ $use->id }}')"
+                                        class="bx bxs-show"></button>
+                                    <button class="bx bxs-trash" onclick="confirmDelete({{ $use->id }})"></button>
+                                </td>
+                                @php
+                                    $new_last_online_at = date(
+                                        'Y-m-d H:i:s',
+                                        strtotime($use['last_online_at'] . ' +2 minutes'),
+                                    );
+                                @endphp
+                                <td>{{ $new_last_online_at > now() ? 'Online' : \Illuminate\Support\Carbon::parse($use['last_online_at'])->diffForHumans() }}
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -155,7 +161,7 @@
             <form class="user-content">
                 <div class="head">
                     <h2>User Details</h2>
-                    <a class="close">&times;</a>                
+                    <a class="close">&times;</a>
                 </div>
                 <div id="infos">
 
@@ -163,203 +169,247 @@
             </form>
 
         </div>
-        
 
-<!-------------------------------------------ADMIN MODAL------------------------->
+
+        <!-------------------------------------------ADMIN MODAL------------------------->
         <div id="adminModal" class="modal">
             <!-- Modal content -->
-                <form method="POST" action="/admin/update-profile" class="admin-content" id="adminUpdateForm">
-                    @csrf
+            <form method="POST" action="/admin/update-profile" class="admin-content" id="adminUpdateForm">
+                @csrf
                 <div class="head">
                     <h2>Admin</h2>
                     <a class="close" onclick="closeAdminModal()">&times;</a>
                 </div>
                 <div id="infos">
                     <div class="image-container" onclick="openFileInput()">
-                        <img style="border-radius:50%" src="{{ Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photo) : '/assets/images/avatar.png' }}" alt="">
-                        <input type="file" id="fileInput" style="display: none;" onchange="handleFileSelect(event)" accept="image/*" name="profile_photo">
+                        <img style="border-radius:50%"
+                            src="{{ Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photo) : '/assets/images/avatar.png' }}"
+                            alt="">
+                        <input type="file" id="fileInput" style="display: none;"
+                            onchange="handleFileSelect(event)" accept="image/*" name="profile_photo">
                         <input type="file" class="profile-image" accept="image/*" onchange="previewImage()">
                     </div>
-                    <div class="typeinput"> 
-                        <label for="username">Username:</label>          
+                    <div class="typeinput">
+                        <label for="username">Username:</label>
                         <input type="text" name="username" value="{{ Auth::guard('admin')->user()->username }}">
                     </div>
-                    <div class="typeinput"> 
-                        <label for="email">Email:</label>          
+                    <div class="typeinput">
+                        <label for="email">Email:</label>
                         <input type="email" name="email" value="{{ Auth::guard('admin')->user()->email }}">
                     </div>
-                    <div class="typeinput"> 
-                        <button>Create Account</button>
+                    <div class="typeinput">
+                        <button type="button" onclick="switchToCreateModal()">Create Account</button>
                     </div>
-                    <div class="typeinput"> 
-                        <button>Change Password</button>
+                    <div class="typeinput">
+                        <button type="button" onclick="switchToPassModal()">Change Password</button>
                     </div>
-                    <div class="typeinput"> 
-                        <input type="hidden" name="id" value="{{ Auth::guard('admin')->user()->id }}" required>
+                    <div class="typeinput">
+                        <input type="hidden" name="id" value="{{ Auth::guard('admin')->user()->id }}"
+                            required>
                         <button type="button" class="submit-button" id="btnSubmit">Save</button>
                     </div>
                 </div>
             </form>
         </div>
 
-<!----------------------------------ADMIN CREATE ACCOUNT MODAL------------------------->
+        <!----------------------------------ADMIN CREATE ACCOUNT MODAL------------------------->
         <div id="createModal" class="modal">
 
             <!-- Modal content -->
-            <form class="create-admin">
+            <form action="/admin/createAccountPost" method="POST" class="create-admin">
+                @csrf
                 <div class="head">
                     <h2>Admin</h2>
-                    <a class="close" onclick="closeAdminModal()">&times;</a>
+                    <a class="close" onclick="closecreateModal()">&times;</a>
                 </div>
 
                 <div class="logo">
                     <img src="/assets/images/Logo.jpg" alt="learn2Code">
-                </div>       
+                </div>
 
-                    <div class="title">
+                <div class="title">
                     <h2>Learn2Code</h2>
                     <p>Admin Creation</p>
-                    </div>
+                </div>
 
                 <div id="infos">
 
-                    <div class="typeinput">    
-                    <input required placeholder="Email" type="text" id="email-phone" name="email">
+                    <div class="typeinput">
+                        <input required placeholder="Email" type="text" id="email-phone" name="email">
                     </div>
-                    <div class="typeinput">    
+                    <div class="typeinput">
                         <input required placeholder="Admin Name" type="text" id="username" name="username">
                     </div>
-                    <div class="typeinput" id="passdiv">                  
-                    <input required placeholder="Password" type="password" id="password" name="password">
-                    <button class="showhide" type="button" onclick="togglePassword('password')">
-                        <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
-                    </button>
+                    <div class="typeinput" id="passdiv">
+                        <input required placeholder="Password" type="password" id="password" name="password">
+                        <button class="showhide" type="button" onclick="togglePassword('password')">
+                            <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
+                        </button>
                     </div>
-                
+
                     <div class="logbutton">
-                    <button id="login" type="submit" class="btns">Create</button>
+                        <button id="login" type="submit" class="btns">Create</button>
                     </div>
                 </div>
             </form>
         </div>
 
-<!------------------------------------ADMIN CHANGE PASSWORD------------------------->
+        <!------------------------------------ADMIN CHANGE PASSWORD------------------------->
         <div id="passModal" class="modal">
 
             <!-- Modal content -->
             <form class="create-admin">
                 <div class="head">
                     <h2>Admin</h2>
-                    <a class="close" onclick="closeAdminModal()">&times;</a>
+                    <a class="close" onclick="closepassModal()">&times;</a>
                 </div>
 
                 <div class="logo">
                     <img src="/assets/images/Logo.jpg" alt="learn2Code">
-                </div>       
+                </div>
 
-                    <div class="title">
+                <div class="title">
                     <p>Change current password</p>
-                    </div>
+                </div>
 
                 <div id="infos">
-                        <div class="typeinput">
-                        <input required placeholder="Current Password" type="password" id="currentPassword" name="password">
+                    <div class="typeinput">
+                        <input required placeholder="Current Password" type="password" id="currentPassword"
+                            name="password">
                         <button class="showhide" type="button" onclick="togglePassword('currentPassword')">
                             <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
                         </button>
-                        </div>
-                        <div class="typeinput">
-                        <input required placeholder="Set New Password" type="password" id="newPassword" name="password" oninput="checkPasswords()">
+                    </div>
+                    <div class="typeinput">
+                        <input required placeholder="Set New Password" type="password" id="newPassword"
+                            name="password" oninput="checkPasswords()">
                         <button class="showhide" type="button" onclick="togglePassword('newPassword')">
                             <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
                         </button>
-                        </div>
-                        <div class="typeinput">
-                        <input required placeholder="Confirm Password" type="password" id="confirmPassword" name="password" oninput="checkPasswords()">
+                    </div>
+                    <div class="typeinput">
+                        <input required placeholder="Confirm Password" type="password" id="confirmPassword"
+                            name="password" oninput="checkPasswords()">
                         <button class="showhide" type="button" onclick="togglePassword('confirmPassword')">
                             <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
                         </button>
-                        </div>
-                        <div class="typeinput" id="passwordMatch" style="display:none;">
-                                <p >Passwords match!</p> <!-- Removed the margin-bottom -->
-                        </div>
-                        <div class="typeinput" id="passwordError">
-                                <p>Passwords do not match!</p> <!-- Removed the margin-bottom -->
-                        </div>
-                        <div class="logbutton">
+                    </div>
+                    <div class="typeinput" id="passwordMatch" style="display:none;">
+                        <p>Passwords match!</p> <!-- Removed the margin-bottom -->
+                    </div>
+                    <div class="typeinput" id="passwordError">
+                        <p>Passwords do not match!</p> <!-- Removed the margin-bottom -->
+                    </div>
+                    <div class="logbutton">
                         <button type="submit" id="changePassBtn" class="btns">Confirm</button>
-                        </div>
+                    </div>
             </form>
 
-            </div>
+        </div>
 
 
         <script>
-           $(document).ready(function() {
-    $('#btnSubmit').click(function() {
-        var formData = new FormData($('#adminUpdateForm')[0]);
-        $.ajax({
-            url: "/admin/update-profile",
-            type: "POST",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success',
-                    text: 'Admin profile updated successfully.',
-                }).then(() => {
-                    window.location.reload(); // Reload the page after successful update
+            $(document).ready(function() {
+                $('#btnSubmit').click(function() {
+                    var formData = new FormData($('#adminUpdateForm')[0]);
+                    $.ajax({
+                        url: "/admin/update-profile",
+                        type: "POST",
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: 'Admin profile updated successfully.',
+                            }).then(() => {
+                                window.location
+                            .reload(); // Reload the page after successful update
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'An error occurred while updating admin profile.',
+                            });
+                            console.error(xhr.responseText);
+                        }
+                    });
                 });
-            },
-            error: function(xhr, status, error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'An error occurred while updating admin profile.',
-                });
-                console.error(xhr.responseText);
-            }
-        });
-    });
-});
-
-
+            });
         </script>
-        
+
+        <script>
+            // Function to switch from admin modal to create modal
+            function switchToPassModal() {
+                // Hide the admin modal
+                var adminModal = document.getElementById('adminModal');
+                adminModal.style.display = "none";
+
+                // Show the create modal
+                var passModal = document.getElementById('passModal');
+                passModal.style.display = "block";
+            }
+
+            function closepassModal() {
+                var modal = document.getElementById('passModal');
+                modal.style.display = "none";
+            }
+        </script>
+
+
+
+        <script>
+            // Function to switch from admin modal to create modal
+            function switchToCreateModal() {
+                // Hide the admin modal
+                var adminModal = document.getElementById('adminModal');
+                adminModal.style.display = "none";
+
+                // Show the create modal
+                var createModal = document.getElementById('createModal');
+                createModal.style.display = "block";
+            }
+
+            function closecreateModal() {
+                var modal = document.getElementById('createModal');
+                modal.style.display = "none";
+            }
+        </script>
 
         <script>
             function openAdminModal() {
                 var modal = document.getElementById('adminModal');
                 modal.style.display = "block";
             }
-        
+
             function closeAdminModal() {
                 var modal = document.getElementById('adminModal');
                 modal.style.display = "none";
             }
         </script>
-    <!--clickable image container------------------------->
-    <script>
-        function openFileInput() {
-            document.getElementById('fileInput').click();
-        }
-    
-        function handleFileSelect(event) {
-            const file = event.target.files[0];
-            // Do something with the selected file, such as displaying preview or uploading it.
-            // Example:
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const imgElement = document.querySelector('.image-container img');
-                    imgElement.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
+        <!--clickable image container------------------------->
+        <script>
+            function openFileInput() {
+                document.getElementById('fileInput').click();
             }
-        }
-    </script>
+
+            function handleFileSelect(event) {
+                const file = event.target.files[0];
+                // Do something with the selected file, such as displaying preview or uploading it.
+                // Example:
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const imgElement = document.querySelector('.image-container img');
+                        imgElement.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        </script>
 
 
     </div>
@@ -369,8 +419,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 
     <script>
-        
-
         function UserInfo(id) {
             var modal = document.getElementById("userModal");
 
@@ -379,12 +427,14 @@
                 url: '/admin/studInfo/' + id,
                 method: 'GET',
                 dataType: 'json',
-                beforeSend: function(){
-                    $('#infos').html('<center><h2>Please Wait...</h2><img src="/assets/images/loadings.gif" width="100px" height="100px"></center>');
+                beforeSend: function() {
+                    $('#infos').html(
+                        '<center><h2>Please Wait...</h2><img src="/assets/images/loadings.gif" width="100px" height="100px"></center>'
+                        );
                 },
                 success: function(data) {
-                    
-                   
+
+
                     const userInfo = `
                         
             
@@ -424,12 +474,12 @@
                 </div>
         
                     `;
-                
-                $('#infos').html(userInfo);
+
+                    $('#infos').html(userInfo);
                 }
-                
+
             })
-            
+
         }
         $('.close').click(function() {
             $('#userModal').hide();
@@ -525,58 +575,57 @@
 
         // Refresh the data every 10 seconds
         setInterval(fetchDataAndUpdateTable, 10000);
-
     </script>
 
-<script>
-    function confirmDelete(userId) {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Retrieve CSRF token from meta tag
-                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+    <script>
+        function confirmDelete(userId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Retrieve CSRF token from meta tag
+                    var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-                // Send a DELETE request using AJAX
-                $.ajax({
-                    url: "/admin/users/delete/" + userId,
-                    type: "DELETE",
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    success: function(response) {
-                        // Remove the deleted user row from the table
-                        $("#user-" + userId).remove();
-                        Swal.fire(
-                            'Deleted!',
-                            'User has been deleted.',
-                            'success'
-                        );
-                        // Redirect to the user management page
-                        window.location.href = '/admin/manageUser';
-                    },
-                    error: function(xhr, status, error) {
-                        if (xhr.status !== 200) {
-                            // Handle errors only if the status code is not 200 (OK)
-                            console.error(error);
+                    // Send a DELETE request using AJAX
+                    $.ajax({
+                        url: "/admin/users/delete/" + userId,
+                        type: "DELETE",
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                        success: function(response) {
+                            // Remove the deleted user row from the table
+                            $("#user-" + userId).remove();
                             Swal.fire(
-                            'Deleted!',
-                            'User has been deleted.',
-                            'success'
+                                'Deleted!',
+                                'User has been deleted.',
+                                'success'
                             );
+                            // Redirect to the user management page
+                            window.location.href = '/admin/manageUser';
+                        },
+                        error: function(xhr, status, error) {
+                            if (xhr.status !== 200) {
+                                // Handle errors only if the status code is not 200 (OK)
+                                console.error(error);
+                                Swal.fire(
+                                    'Deleted!',
+                                    'User has been deleted.',
+                                    'success'
+                                );
+                            }
                         }
-                    }
-                });
-            }
-        });
-    }
-</script>
+                    });
+                }
+            });
+        }
+    </script>
 
 
 

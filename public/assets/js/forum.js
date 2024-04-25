@@ -628,7 +628,7 @@ function markNotificationAsReadAdmin(id) {
     method: 'get',
     success: function (data) {
 
-      window.location.href = `/forum/post#${data.notif_type}Notif${data.id}`;
+      window.location.href = `/admin/forum/post#${data.notif_type}Notif${data.id}`;
       
       var originalColor = $(`#${data.notif_type}Notif${data.id}`).css('background-color');
 

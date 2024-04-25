@@ -63,7 +63,7 @@ class adminLoginController extends Controller
 
 
         // Redirect back with success message
-        return redirect()->route('createAccount')->with("success", "Created Admin account successfully");
+        return redirect()->back()->with('success', 'Created Admin account successfully.');
     }
 
 

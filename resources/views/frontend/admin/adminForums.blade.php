@@ -361,7 +361,7 @@
 
                         <hr>
 
-                        <form id="postForm" action="/post-forum" method="post" enctype="multipart/form-data">
+                        {{-- <form id="postForm" action="/post-forum" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="info-header">
                                 <div>
@@ -440,7 +440,7 @@
                             </div>
 
 
-                        </form>
+                        </form> --}}
                     </div>
                 </div>
 
