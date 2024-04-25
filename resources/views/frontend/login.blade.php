@@ -83,6 +83,7 @@
                   <a href="register">Sign Up</a>
                 </div>
             </form>
+            
       </section>
 
         <script>
@@ -134,6 +135,70 @@
                 });
             });
         </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle form submission
+        document.querySelector('form').addEventListener('submit', function(event) {
+            // Prevent default form submission
+            event.preventDefault();
+
+            // Show loading message using SweetAlert2
+            Swal.fire({
+                title: 'Sending verification code...',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            // Submit the form data using Fetch API
+            fetch('{{ route("login") }}', {
+                method: 'POST',
+                body: new FormData(this),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Check if the account verification is successful
+                if (data.success) {
+                    // Hide loading message using SweetAlert2
+                    Swal.close();
+
+                    // Show success message using SweetAlert2
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Verification code sent successfully',
+                        text: 'Check your email for verification code. Click OK to proceed to verification.',
+                        showConfirmButton: true,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirect to the verification page
+                            window.location.href = '{{ route("verify") }}';
+                        }
+                    });
+                } else {
+                    // If the account is not valid, hide loading message and show error message using SweetAlert2
+                    Swal.close();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Sorry',
+                        text: data.error,
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle error if needed
+                // Close loading message on error
+                Swal.close();
+            });
+        });
+    });
+</script>
+
+
+
 
 </body>
 

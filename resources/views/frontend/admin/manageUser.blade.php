@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
@@ -327,9 +329,24 @@
         // Refresh the data every 10 seconds
         setInterval(fetchDataAndUpdateTable, 10000);
 
-        function confirmDelete(userId) {
-            if (confirm("Are you sure you want to delete this account?")) {
-                // If the user confirms, send a DELETE request using AJAX
+    </script>
+
+<script>
+    function confirmDelete(userId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Retrieve CSRF token from meta tag
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+                // Send a DELETE request using AJAX
                 $.ajax({
                     url: "/admin/users/delete/" + userId,
                     type: "DELETE",
@@ -339,17 +356,33 @@
                     success: function(response) {
                         // Remove the deleted user row from the table
                         $("#user-" + userId).remove();
+                        Swal.fire(
+                            'Deleted!',
+                            'User has been deleted.',
+                            'success'
+                        );
+                        // Redirect to the user management page
                         window.location.href = '/admin/manageUser';
                     },
-
                     error: function(xhr, status, error) {
-                        // Handle errors
-                        console.error(error);
+                        if (xhr.status !== 200) {
+                            // Handle errors only if the status code is not 200 (OK)
+                            console.error(error);
+                            Swal.fire(
+                            'Deleted!',
+                            'User has been deleted.',
+                            'success'
+                            );
+                        }
                     }
                 });
             }
-        }
-    </script>
+        });
+    }
+</script>
+
+
+
 
 
 

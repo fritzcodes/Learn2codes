@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="assets/css/Login.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </head>
 <body style="background-image: url(assets/images/Backlogin.png)";>
@@ -24,11 +26,11 @@
       <section class="space-background">
  
             <form action="{{ route('register') }}" method="POST" class="signup-form" onsubmit="return validatePasswords()"> 
-                  @if(Session::has('success'))
+                  {{-- @if(Session::has('success'))
               <div class="alert alert-success">
                   {{ Session::get('success') }}
               </div>
-              @endif
+              @endif --}}
               @if(Session::has('error'))
               <div class="alert alert-error">
                   {{ Session::get('error') }}
@@ -137,5 +139,29 @@ function validatePasswords() {
     }
 }
 </script>
+
+<script>
+  // Check if the session has a success message
+  @if(Session::has('success'))
+      // Display Swal.fire notification for success
+      Swal.fire({
+          icon: 'success',
+          title: 'Registration Successful!',
+          text: '{{ Session::get('success') }}',
+          showConfirmButton: true, // Show the confirm button
+          confirmButtonText: 'OK', // Text for the confirm button
+          allowOutsideClick: false // Prevent dismissing the notification by clicking outside
+      }).then((result) => {
+          // Redirect to the login page when the confirm button is clicked
+          if (result.isConfirmed) {
+              window.location.href = '{{ route('login') }}';
+          }
+      });
+  @endif
+</script>
+
+
+
+
 </body>
 </html>
