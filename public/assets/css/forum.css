@@ -490,7 +490,7 @@ background: #BABABA;
 .no-post h2 {
   padding: 10px 0;
   font-size: var(--h2-font);
-  color: var(--second-color);
+  color: var(--text-color);
 }
 
 
@@ -509,9 +509,9 @@ background: #BABABA;
   margin-left: auto;
   margin-right: auto;
   top: 90px;
-  width: 100%;
+  max-width: 100%;
   min-height: 100vh;
-  background: #fff;
+  background: #eee;
   position: relative;
   align-items: center;
   background-size: cover;
@@ -539,11 +539,12 @@ background: #BABABA;
 }
 
 .feed {
+  overflow-x: hidden;
   margin-bottom: 200px;
   margin-left: 20%;
   width: 100%;
   position: relative;
-  padding: 15px 10%;
+  padding: 15px 15%;
 }
 
 .writeout {
@@ -583,25 +584,29 @@ background: #BABABA;
 .modal-content {
   padding: 5px;
   border-radius: 10px;
-  background-color: #fefefe;
+  background-color: #fff;
   margin: 10% auto;
   width: 60%;
 }
 
 .createheader h2 {
-  padding: 10px 15px;
+  color: var(--bg-color);
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  padding: 15px 15px;
 }
 
 .close {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 2rem;
   font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  color: black;
+  color: var(--bg-color);
   text-decoration: none;
   cursor: pointer;
 }
@@ -610,30 +615,30 @@ background: #BABABA;
 #postForm {
   padding: 10px 15px;
   max-height: 60vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   display: block;
   overflow-x: hidden;
 }
 
 .info-header {
   display: flex;
-  padding: 15px 0 15px 0;
+  padding: 10px 0 15px 0;
 }
 
 #textContent {
   border-style: none;
   padding: 15px 0 90px 10px;
   width: 100%;
-  font-size: var(--h2-font);
+  font-size: var(--p-font);
   resize: none;
   box-shadow: 35px 20px 20px 35px rgba(0, 0, 0, 0.09);
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 
 .photocontainer {
   display: none;
-  background: var(--bg-color);
+  background: #fff;
   width: 90%;
   position: relative;
   margin: 20px auto;
@@ -647,14 +652,14 @@ background: #BABABA;
   position: absolute;
   right: 0;
   top: 0;
-  font-size: 28px;
+  font-size: 1.7rem;
   font-weight: bold;
   margin: 10px;
 }
 
 .photoclose:hover,
 .photoclose:focus {
-  color: black;
+  color: var(--bg-color);
   text-decoration: none;
   cursor: pointer;
 }
@@ -666,8 +671,8 @@ background: #BABABA;
 .photocontainer label {
   display: block;
   position: relative;
-  background-color: var(--main-color);
-  color: var(--bg-color);
+  background-color: var(--second-color);
+  color: var(--main-color);
   font-size: var(--h2-font);
   text-align: center;
   max-width: 300px;
@@ -685,14 +690,26 @@ background: #BABABA;
 
 .codecontainer {
   display: none;
-  background: var(--bg-color);
+  background: #fff;
   width: 90%;
   position: relative;
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 50px 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 35px 20px 20px 35px rgba(0, 0, 0, 0.09);
 }
+
+.codecontainer h2 {
+  color: var(--bg-color);
+  font-size: var(--p-font);
+  }
+
+  .codecontainer textarea {
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  resize: none;
+  }
 
 .codeclose {
   color: #aaa;
@@ -706,32 +723,13 @@ background: #BABABA;
 
 .codeclose:hover,
 .codeclose:focus {
-  color: black;
+  color: var(--bg-color);
   text-decoration: none;
   cursor: pointer;
 }
 
 .codecontainer input[type="file"] {
   display: none;
-}
-
-.codecontainer label {
-  display: block;
-  position: relative;
-  background-color: var(--main-color);
-  color: var(--bg-color);
-  font-size: var(--h2-font);
-  text-align: center;
-  max-width: 300px;
-  padding: 18px 0;
-  margin: auto;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.codecontainer p {
-  text-align: center;
-  margin: 20px 0 30px 0;
 }
 
 #photos {
@@ -759,12 +757,9 @@ background: #BABABA;
   font-size: 12px;
 }
 
-
-
-
-
 #add-content {
   display: flex;
+  align-content: center;
   justify-content: space-evenly;
   overflow-x: hidden;
 }
@@ -772,15 +767,17 @@ background: #BABABA;
 #add-content a {
   margin: 5px;
   width: 100%;
-  background-color: #BABABA;
+  background: var(--main-color);
   border-radius: 5px;
   text-align: center;
   padding: 10px;
+  font-size: var(--p-font);
+  color: var(--bg-color);
 }
 
 #add-content i {
-  color: #000;
-  font-size: 20px;
+  color: var(--bg-color);
+  font-size: var(--h2-font);
 }
 
 .photos:hover::after,
@@ -789,59 +786,68 @@ background: #BABABA;
 .hashtag:hover::after {
   content: attr(data-tooltip);
   font-size: var(--p-font);
-  color: #000;
   display: absolute;
-  padding: 5px;
+  padding: 10px;
 }
 
 #postbtn {
   margin: 5px 0 0 0;
   width: 100%;
-  height: 40px;
+  height: 45px;
   cursor: pointer;
-  background-color: var(--main-color);
+  background-color: var(--second-color);
   border-style: none;
-  color: var(--bg-color);
+  color: var(--main-color);
+  font-weight: 600;
   font-size: var(--h2-font);
   border-radius: 5px;
 }
 
 
-
-
-
 .post {
   border-radius: 15px;
-  background: var(--bg-color);
+  background: #fff;
   border: 1px solid #ccc;
   margin: 20px auto;
-  font-family: Arial, sans-serif;
+  font-family: var(--font2);
 }
 
 .post-header {
   display: flex;
   padding: 15px;
-  margin-bottom: 10px;
+}
+
+.post-content {
+  margin-bottom: 15px;
 }
 
 .caption {
-  display: flex;
+  font-size: var(--p-font);
+  margin: 0px 15px 15px 15px;
+  word-wrap: break-word;
+  word-break: normal;
+  display: block;
   padding-bottom: 20px;
 }
 
-.caption p{
-  word-break: break-all;
-  text-align: justify;
+.caption pre{
+  text-wrap:balance;
+  word-wrap: break-word;
+  color: var(--bg-color);
+  margin: 0 10px;
+  text-align: left;
 }
 
 .profile-pic img {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  margin-right: 10px;
+  border-radius: 100%;
+  margin-right: 2px;
+  object-fit: cover;
 }
 
 .post-info {
+  margin-top: 3px;
   width: 100%;
 }
 
@@ -851,8 +857,8 @@ background: #BABABA;
 }
 
 .post-info .first-name a {
-  font-size: var(--h2-font);
-  color: #000;
+  font-size: var(--p-font);
+  color: var(--text-color);
 }
 
 .post-info .feelings {
@@ -866,39 +872,39 @@ background: #BABABA;
 }
 
 .post-info .date {
-  font-size: 0.8em;
+  font-size: .8rem;
   color: #777;
 }
 
 .post-setting i {
   font-size: 18px;
-  color: #000;
+  color: var(--bg-color);
   padding: 4px 6px;
 }
 
-#post-setting i:hover {
-  font-size: 18px;
-  color: var(--bg-color);
+.post-setting i:hover {
+  color: var(--main-color);
   border-radius: 7px;
-  background-color: #BABABA;
+  background-color: var(--high-color);
 }
 
 #postsetModal {
   display: none;
   position: absolute;
-  background: #BABABA;
+  background: var(--main-color);
   border-radius: 15px;
-  margin: 5px 0 0 -82px;
+  margin: 10px 0 0 -82px;
 }
 
 #postsetModal a {
   margin: 5px;
   padding: 5px 10px;
   display: flex;
+  align-items: center;
 }
 
 #postsetModal p {
-  margin: 7px;
+  margin: 0 3px 0px 0 ;
   font-size: var(--p-font);
 }
 
@@ -910,16 +916,8 @@ background: #BABABA;
 
 #postsetModal a:hover {
   border-radius: 10px;
-  background-color: var(--bg-color);
-}
-
-.post-content {
-  margin-bottom: 15px;
-}
-
-.caption {
-  font-size: var(--p-font);
-  margin: 0px 15px 15px 15px;
+    color: var(--main-color);
+  background-color: var(--high-color);
 }
 
 .tags {
@@ -1466,7 +1464,7 @@ p {
 /*-------------- content2 -------*/
 
 .content2 {
-  background-color: var(--bg-color);
+  background-color: #fff;
   left: 0;
   position: fixed;
   width: 20%;
@@ -1532,11 +1530,6 @@ ul {
 .dropdown-content li:nth-child(1) {
   display: contents;
 }
-
-
-/*------------profile section */
-
-
 
 
 /* ----------------------------------------

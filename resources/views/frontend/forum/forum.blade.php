@@ -183,7 +183,7 @@
         .no-post h2 {
             padding: 10px 0;
             font-size: var(--h2-font);
-            color: var(--second-color);
+            color: var(--text-color);
         }
     </style>
 
@@ -412,9 +412,10 @@
                                 </div>
 
                                 <div class="codecontainer">
+
                                     <span class="codeclose" onclick="insertCode()">&times;</span>
                                     <div>
-                                        <h3>Insert code here</h3>
+                                        <h2>Insert code here</h2>
                                         <textarea name="code" id="" rows="10" style="width: 100%; background-color:black; color:white"></textarea>
                                     </div>
                                 </div>
@@ -424,12 +425,12 @@
 
                             <div class="create-footer">
                                 <div id="add-content" class="add-content">
-                                    <a class="photos" data-tooltip="Add Photos"><i class='bx bx-image-add'></i></a>
-                                    <a class="emotions" data-tooltip="Add Feelings"><i
+                                    <a href="#" class="photos" data-tooltip="Add Photos"><i class='bx bx-image-add'></i></a>
+                                    <a href="#" class="emotions" data-tooltip="Add Feelings"><i
                                             class='bx bxs-heart-circle'></i></a>
-                                    <a class="snippet" data-tooltip="Insert Code" id="insertCode"
+                                    <a href="#" class="snippet" data-tooltip="Insert Code" id="insertCode"
                                         onclick="insertCode()"><i class='bx bx-code'></i></a>
-                                    <a class="hashtag" data-tooltip="Add Hashtag" id="hashtag"><i
+                                    <a href="#" class="hashtag" data-tooltip="Add Hashtag" id="hashtag"><i
                                             class='bx bx-link-alt'></i></a>
                                 </div>
 
@@ -466,13 +467,13 @@
                                 </div>
                                 @if ($post->user_id == $name->id)
                                     <div class="post-setting">
-                                        <button href="#"
+                                        <button
                                             onclick="deletePost(`postsetModal{{ $post->id }}`)"
-                                            style="background-color: transparent; border:none"><i
+                                            style="background-color: #fff; cursor: pointer;  border:none;"><i
                                                 class="bx bx-dots-horizontal-rounded"></i>
                                         </button>
                                         <div id="postsetModal" class="modal postsetModal{{ $post->id }}">
-                                            <a onclick="deletePostId('{{ $post->id }}')"><i
+                                            <a href="#" onclick="deletePostId('{{ $post->id }}')"><i
                                                     class='bx bxs-trash'></i>
                                                 <p>Delete</p>
                                             </a>
@@ -514,7 +515,7 @@
                                      
                                 <div class="caption">
 
-                                   <p>{!! $content !!}</p> 
+                                   <pre>{!! $content !!}</pre> 
 
                                 </div>
 
@@ -931,8 +932,8 @@ outlined-heart
                     @endforeach
                 @else
                     <div class="no-post">
-                        <img src="/assets/images/no-post.png" alt="">
-                        <h2>No Post Yet</h2>
+                        <img src="/assets/images/no-post.png" alt="astronaut">
+                        <h2>No post yet</h2>
                     </div>
 
                 @endif
