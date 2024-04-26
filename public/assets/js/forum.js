@@ -434,7 +434,8 @@ function postComment(comment, user_id, post_id) {
         <div class="content">${data.comment}</div>
 
         <div class="actions">
-          <button>Like</button>
+        <p id="likesCommentCount${ data.id }">${data.likes.length > 0 ?  data.likes.length : '' }</p>
+          <button onclick="likeComment('likeComment${ data.id }', '${ user_id }', '${ data.id }')">Like</button>
           <button onclick="toggleReply('replyInput${data.id}')">Reply</button>
           <button href="#">${moment(data.created_at).fromNow()}</button>
         </div>

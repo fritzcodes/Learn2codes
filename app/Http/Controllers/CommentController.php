@@ -18,7 +18,7 @@ class CommentController extends Controller
     {
         $data = $request->validated();
         $comment = Comment::create($data);
-        $commentWithUser = Comment::with('user')->find($comment->id);
+        $commentWithUser = Comment::with('user')->with('likes')->find($comment->id);
 
         $self = Post::with('user')->findOrFail($request->post_id);
 
