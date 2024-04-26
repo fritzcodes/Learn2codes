@@ -744,90 +744,13 @@ outlined-heart
                       @endforeach
                       {{ $tBold ? '' : 'tBold' }}
                     @endif
-<<<<<<< HEAD
                     "
                                                             id="likeComment{{ $comment->id }}">Like</button>
                                                         <button
                                                             onclick="toggleReply('replyInput{{ $comment->id }}')">Reply</button>
                                                         <button
                                                             href="#">{{ \Illuminate\Support\Carbon::parse($comment->created_at)->diffForHumans() }}</button>
-
-                                                        <button>Delete</button>    
                                                     </div>
-
-
-                                                    <div class="replies" id="repliesContainer{{ $comment->id }}">
-                                                        @if (count($comment->replies) > 0)
-                                                            @foreach ($comment->replies as $reply)
-                                                                <div class="reply-container reply nested-reply"
-                                                                    id="replyNotif{{ $reply->id }}">
-                                                                    <div class="user-info">
-                                                                        <img src="{{ $reply->user->profile_photo ? 'images/' . $reply->user->profile_photo : 'assets/images/avatar.png' }}"
-                                                                            alt="User Avatar"
-                                                                            style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
-                                                                        <div class="user">
-                                                                            {{ $reply->user->fname . ' ' . $reply->user->lname }}
-                                                                        </div>
-
-
-                                                                    </div>
-                                                                    @if ($reply->replyWithUser != null)
-                                                                        <p class="content"
-                                                                            style="font-size: 12px; font-style:italic">
-                                                                            {{ $name->id == $reply->user->id ? 'You' : $reply->replyWithUser->user->fname }}
-                                                                            replied to
-                                                                            {{ $reply->replyWithUser->user->fname . ' ' . $reply->replyWithUser->user->lname }}
-                                                                        </p>
-                                                                        <div
-                                                                            style="background-color:rgba(255,255,255, .5)">
-                                                                            <p class="content"
-                                                                                style="font-size: 12px; color:gray; font-style:italic">
-                                                                                {{ $reply->replyWithUser->reply }}</p>
-                                                                        </div>
-                                                                    @endif
-
-
-                                                                    <div class="content">
-                                                                    
-                                                                    <pre>{{ $reply->reply }}</pre>
-                                                                
-                                                                    </div>
-
-                                                                    <div class="actions">
-                                                                        <button
-                                                                            onclick="toggleReply('replyInputNested-{{ $reply->id }}')">Reply</button>
-                                                                        <button
-                                                                            href="#">{{ \Illuminate\Support\Carbon::parse($reply->created_at)->diffForHumans() }}</button>
-
-                                                                        <button>Delete</button> 
-                                                                    </div>
-                                                                    <div class="reply-input"
-                                                                        id="replyInputNested-{{ $reply->id }}"
-                                                                        style="display:none;">
-                                                                        <textarea oninput="auto_grow(this)" placeholder="Write a reply..." style="display:flex; min-height: 50px; width: 100%; margin-bottom: 5px;"></textarea>
-                                                                        <button
-                                                                            onclick="postReply(this, 'repliesContainer{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}', '{{ $reply->id }}')">Reply</button>
-                                                                    </div>
-                                                                    <div class="replies"
-                                                                        id="nestedRepliesContainer-{{ $comment->id }}">
-                                                                    </div> <!-- Nested replies container -->
-                                                                </div>
-                                                            @endforeach
-                                                        @endif
-                                                    </div> <!-- Replies container for comment 1 -->
-
-                                                    <div class="reply-input" id="replyInput{{ $comment->id }}">
-                                                        <textarea oninput="auto_grow(this)" placeholder="Write a reply..." style="display:flex; min-height: 50px; margin-bottom: 5px;"></textarea>
-                                                        <button
-                                                            onclick="postReply(this, 'repliesContainer{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}')">Reply</button>
-
-                                                        <button>Delete</button>
-                                                    </div>
-=======
-                    " id="likeComment{{ $comment->id }}">Like</button>
-                        <button onclick="toggleReply('replyInput{{ $comment->id }}')">Reply</button>
-                        <button href="#">{{ \Illuminate\Support\Carbon::parse($comment->created_at)->diffForHumans() }}</button>
-                    </div>
 
 
                     <<<<<<< HEAD <div class="replies" id="repliesContainer{{ $comment->id }}">
@@ -847,7 +770,6 @@ outlined-heart
                                                 <img src="{{ $reply->user->profile_photo ? 'images/' . $reply->user->profile_photo : 'assets/images/avatar.png' }}" alt="User Avatar" style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
                                                 <div class="user">
                                                     {{ $reply->user->fname . ' ' . $reply->user->lname }}
->>>>>>> e4d39f54f12fd892a66ae1e9a778c84c4e0cdfa1
                                                 </div>
 
 
@@ -872,96 +794,63 @@ outlined-heart
 
                                             </div>
 
-                                            <div class="actions">
-                                                <button onclick="toggleReply('replyInputNested-{{ $reply->id }}')">Reply</button>
-                                                <button href="#">{{ \Illuminate\Support\Carbon::parse($reply->created_at)->diffForHumans() }}</button>
-                                            </div>
-                                            <div class="reply-input" id="replyInputNested-{{ $reply->id }}" style="display:none;">
-                                                <textarea oninput="auto_grow(this)" placeholder="Write a reply..." style="display:flex; min-height: 50px; width: 100%; margin-bottom: 5px;"></textarea>
-                                                <button onclick="postReply(this, 'repliesContainer{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}', '{{ $reply->id }}')">Reply</button>
-                                            </div>
-                                            <div class="replies" id="nestedRepliesContainer-{{ $comment->id }}">
-                                            </div> <!-- Nested replies container -->
-                                        </div>
-                                        @endforeach
+                                                                    <div class="actions">
+                                                                        <button
+                                                                            onclick="toggleReply('replyInputNested-{{ $reply->id }}')">Reply</button>
+                                                                        <button
+                                                                            href="#">{{ \Illuminate\Support\Carbon::parse($reply->created_at)->diffForHumans() }}</button>
+                                                                    </div>
+                                                                    <div class="reply-input"
+                                                                        id="replyInputNested-{{ $reply->id }}"
+                                                                        style="display:none;">
+                                                                        <textarea oninput="auto_grow(this)" placeholder="Write a reply..." style="display:flex; min-height: 50px; width: 100%; margin-bottom: 5px;"></textarea>
+                                                                        <button
+                                                                            onclick="postReply(this, 'repliesContainer{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}', '{{ $reply->id }}')">Reply</button>
+                                                                    </div>
+                                                                    <div class="replies"
+                                                                        id="nestedRepliesContainer-{{ $comment->id }}">
+                                                                    </div> <!-- Nested replies container -->
+                                                                </div>
+                                                            @endforeach
+                                                        @endif
+                                                    </div> <!-- Replies container for comment 1 -->
+
+                                                    <div class="reply-input" id="replyInput{{ $comment->id }}">
+                                                        <textarea oninput="auto_grow(this)" placeholder="Write a reply..." style="display:flex; min-height: 50px; margin-bottom: 5px;"></textarea>
+                                                        <button
+                                                            onclick="postReply(this, 'repliesContainer{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}')">Reply</button>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                         @endif
-                                    </div> <!-- Replies container for comment 1 -->
-
-                                    <div class="reply-input" id="replyInput{{ $comment->id }}">
-                                        <textarea oninput="auto_grow(this)" placeholder="Write a reply..." style="display:flex; min-height: 50px; margin-bottom: 5px;"></textarea>
-                                        <button onclick="postReply(this, 'repliesContainer{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}')">Reply</button>
                                     </div>
-                                    >>>>>>> 0c8e03324c42c119a3b603d990e4279d03bea218
-                                </div>
 
-
-                            </div>
-                            @if ($reply->replyWithUser != null)
-                            <p class="content" style="font-size: 12px; font-style:italic">
-                                {{ $name->id == $reply->user->id ? 'You' : $reply->replyWithUser->user->fname }}
-                                replied to
-                                {{ $reply->replyWithUser->user->fname . ' ' . $reply->replyWithUser->user->lname }}
-                            </p>
-                            <div style="background-color:rgba(255,255,255, .5)">
-                                <p class="content" style="font-size: 12px; color:gray; font-style:italic">
-                                    {{ $reply->replyWithUser->reply }}
-                                </p>
-                            </div>
-                            @endif
-
-
-                            <div class="content">{{ $reply->reply }}</div>
-                            <div class="actions">
-                                <button onclick="toggleReply('replyInputNested-{{ $reply->id }}')">Reply</button>
-                                <button href="#">{{ \Illuminate\Support\Carbon::parse($reply->created_at)->diffForHumans() }}</button>
-                            </div>
-                            <div class="reply-input" id="replyInputNested-{{ $reply->id }}" style="display:none;">
-                                <textarea placeholder="Write a reply..."></textarea>
-                                <button onclick="postReply(this, 'repliesContainer{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}', '{{ $reply->id }}')">Reply</button>
-                            </div>
-                            <div class="replies" id="nestedRepliesContainer-{{ $comment->id }}">
-                            </div> <!-- Nested replies container -->
-                        </div>
-                        @endforeach
-                        @endif
-                </div> <!-- Replies container for comment 1 -->
-
-                <div class="reply-input" id="replyInput{{ $comment->id }}">
-                    <textarea placeholder="Write a reply..."></textarea>
-                    <button onclick="postReply(this, 'repliesContainer{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}')">Reply</button>
-                </div>
-            </div>
-            @endforeach
-            @endif
-        </div>
-
-        <<<<<<< HEAD <div style="padding:12px;">
-            <form action="/comment/store" method="POST" id="commentId{{ $post->id }}" style="display:flex; border: solid var(--main-color); border-radius: 5px;">
-                @csrf
-                <textarea name="comment" id="comment{{ $post->id }}" style="width:100%; height:50px; display:inline-block; resize: none; padding: 5px; border: none; border-radius: 5px;" placeholder="Add comment..." required></textarea>
-                <input type="hidden" id="user_id{{ $post->id }}" value="{{ $name->id }}">
-                <input type="hidden" id="postId{{ $post->id }}" value="{{ $post->id }}">
-                <button id="btn{{ $post->id }}" onclick="postComment($('#comment{{ $post->id }}').val(), $('#user_id{{ $post->id }}').val(), $('#postId{{ $post->id }}').val())" style="display: inline-block; width:50px; height:50px; font:bx-send; border: none; cursor: pointer;" value="Comment"><i class="bx bxs-send" style="color: var(--main-color); font-size: 30px;"></i></button>
-            </form>
-    </div>
-    =======
-    <div style="padding:12px;">
-        <form action="/comment/store" method="POST" id="commentId{{ $post->id }}" style="display:flex; min-height: 60px; border: solid var(--second-color); border-radius: 5px;">
-            @csrf
-            <textarea oninput="auto_grow(this)" name="comment" id="comment{{ $post->id }}" style="width:100%; display:flex; resize: none; padding: 5px; border: none; outline: none;" placeholder="Add comment..." required></textarea>
-            <script>
-                function auto_grow(element) {
-                    element.style.height = "5px"; // Set initial height
-                    element.style.height = (element.scrollHeight) + "px"; // Adjust height based on content
-                }
-            </script>
-
-            <input type="hidden" id="user_id{{ $post->id }}" value="{{ $name->id }}">
-            <input type="hidden" id="postId{{ $post->id }}" value="{{ $post->id }}">
-            <button id="btn{{ $post->id }}" onclick="postComment($('#comment{{ $post->id }}').val(), $('#user_id{{ $post->id }}').val(), $('#postId{{ $post->id }}').val())" style="position: relative; margin: auto auto 0 auto; background: #fff; width:50px; height:50px; font:bx-send; border: none; cursor: pointer;" value="Comment"><i class="bx bxs-send" style="color: var(--second-color); font-size: 30px;"></i></button>
-        </form>
-    </div>
-    >>>>>>> 0c8e03324c42c119a3b603d990e4279d03bea218
+                                    <div style="padding:12px;">
+                                        <form action="/comment/store" method="POST"
+                                            id="commentId{{ $post->id }}"
+                                            style="display:flex; min-height: 60px; border: solid var(--second-color); border-radius: 5px;">
+                                            @csrf
+                                            <textarea oninput="auto_grow(this)" name="comment" id="comment{{ $post->id }}"
+                                                style="width:100%; display:flex; resize: none; padding: 5px; border: none; outline: none;"
+                                                placeholder="Add comment..." required></textarea>
+                                                <script>
+                                                function auto_grow(element) {
+                                                    element.style.height = "5px"; // Set initial height
+                                                    element.style.height = (element.scrollHeight) + "px"; // Adjust height based on content
+                                                }
+                                                </script>
+                                            
+                                                <input type="hidden" id="user_id{{ $post->id }}"
+                                                value="{{ $name->id }}">
+                                            <input type="hidden" id="postId{{ $post->id }}"
+                                                value="{{ $post->id }}">
+                                            <button id="btn{{ $post->id }}"
+                                                onclick="postComment($('#comment{{ $post->id }}').val(), $('#user_id{{ $post->id }}').val(), $('#postId{{ $post->id }}').val())"
+                                                style="position: relative; margin: auto auto 0 auto; background: #fff; width:50px; height:50px; font:bx-send; border: none; cursor: pointer;"
+                                                value="Comment"><i class="bx bxs-send"
+                                                    style="color: var(--second-color); font-size: 30px;"></i></button>
+                                        </form>
+                                    </div>
 
 
     <!--
