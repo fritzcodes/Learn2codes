@@ -14,12 +14,7 @@ return new class extends Migration
     
     public function up(): void
     {
-<<<<<<< HEAD
         Schema::create('admins', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-
-=======
-        Schema::create('admin', function (Blueprint $table) {
             $table->id();
       
 >>>>>>> 0c8e03324c42c119a3b603d990e4279d03bea218
