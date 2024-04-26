@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -110,7 +110,7 @@
                 </script>
             @endif
 
-            <form method='POST' action="/change-password" id="changePassword">
+            <form method='POST' id="changePassword">
             @csrf
 
                 <div class="mobile-logo">
@@ -146,7 +146,7 @@
                         <p>Passwords do not match!</p> <!-- Removed the margin-bottom -->
                 </div>
                 <div class="logbutton">
-                  <button type="submit" id="changePassBtn" class="btns">Confirm</button>
+                  <button type="button" id="changePassBtn" class="btns">Confirm</button>
                 </div>
             </form>
       </section>
