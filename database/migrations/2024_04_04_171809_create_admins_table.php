@@ -16,12 +16,10 @@ return new class extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->uuid('id')->primary();
-
             $table->string('email')->unique();
             $table->string('username')->unique();
             $table->string('profile_photo')->nullable();
             $table->string('password')->nullable();
-
             $table->timestamps();
         });
         
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admin');
+        Schema::dropIfExists('admins');
     }
 };
