@@ -218,25 +218,21 @@
                         </a>
                     </div>
                 </li>
-                <li>
-                    <input type="search" id="search" placeholder="Search">
-                    <div>
-                        <!--
-        <a href="" id="filter" class="notif-setting">
-            <i class="bx bx-dots-horizontal-rounded"></i>
-          </a>
-          -->
+                <form id="search-form" action="{{ route('forum.search') }}" method="GET">
+                    <input type="text" id="search-input" name="query" required>
+                    <button type="submit">Search</button>
+                </form>
+                <div id="search-results">
+                    <!-- Search results will be displayed here -->
+                </div>
 
-
-                    </div>
-                </li>
                 <!--
       <li class="filter">
         <a class="bx bxs-filter-alt" id="filter">
         </a>
-   
 
-        
+
+
       </li>
          -->
             </ul>
@@ -307,7 +303,7 @@
                         </a>
 
                         <!-- <div class="notif-action-modal" id="settings{{ $loop->iteration }}">
-                               
+
                                 <a href="#"><i class='bx bx-check'>
                                         <p>Mark as read</p>
                                     </i></a>
@@ -544,15 +540,15 @@
                         <p id="likesCount{{ $post->id }}" class="footer-btn">{{ $post->likes_count == 0 ? '' : $post->likes_count }}</p>
                         <a class="footer-btn" onclick="likePost('like{{ $post->id }}', '{{ $name->id }}', '{{ $post->id }}')" style="text-align:left">
 
-                            <i class="fa fa-heart 
-                @if (count($post->likes) > 0) 
-                @php 
-                $outlinedHeart = true; 
+                            <i class="fa fa-heart
+                @if (count($post->likes) > 0)
+                @php
+                $outlinedHeart = true;
                 @endphp
                     @foreach ($post->likes as $like)
                         @if ($like->user != null)
-                            @php 
-                            $outlinedHeart = false; 
+                            @php
+                            $outlinedHeart = false;
                             @endphp
                             @break
                              @endif
@@ -681,7 +677,7 @@
                                             </div>
                                             @if ($reply->replyWithUser != null)
                                             <p class="content" style="font-size: 12px; font-style:italic">
-                                            
+
                                                 {{ $name->id == $reply->user->id ? 'You' : $reply->user->fname }}
                                                 replied to
                                                 {{ $reply->replyWithUser->user->fname . ' ' . $reply->replyWithUser->user->lname }}
@@ -744,7 +740,7 @@
 
                             <!--
             <div class="comment-body">
-              
+
                 <div class="user-comment">
                   <div>
                     <a href="#" class="profile-pic"><img src="/admin/avatar.jpg" alt="Profile Picture"></a>
@@ -753,7 +749,7 @@
                       <div class="fullname">
                         <h2><a href="#">David Matthew Borromeo</a><span id="author">Author</span></h2>
                       </div>
-                        
+
                         <div class="comment">
                           <p >
                                                       So, there I was, deep into the night, staring at my screen with bloodshot eyes.
@@ -767,11 +763,11 @@
                           </div>
                         </div>
                   </div>
-                    
+
                   <div class="comment-setting">
                         <a href="#" ><i class="bx bx-dots-horizontal-rounded"></i></a>
                   </div>
-      
+
                 </div>
 
                 <div class="comment-footer">
@@ -796,18 +792,18 @@
                       <div class="fullname">
                         <h2><a href="#">Jehu Famor</a></h2>
                       </div>
-                        
+
                         <div class="comment">
                           <p >
                             Nice!😄
                           </p>
                         </div>
                   </div>
-                    
+
                   <div class="comment-setting">
                         <a href="#" ><i class="bx bx-dots-horizontal-rounded"></i></a>
                   </div>
-      
+
                 </div>
 
                 <div class="comment-footer">
@@ -818,15 +814,15 @@
                     <a href="#">reply</a>
                   </div>
                 </div>
-      
+
 
             </div>
-      
+
             </div>
           -->
 
                             <!------------------------------additional comment structure
-            
+
             <div class="comment-body">
               <div class="user-comment">
                 <div>
@@ -836,18 +832,18 @@
                     <div class="fullname">
                       <h2><a href="#">Fritz Retiza</a></h2>
                     </div>
-                      
+
                       <div class="comment">
                         <p>
                           <a href="#">David Matthew</a> hey I can help you let me send my file later.
                         </p>
                       </div>
                 </div>
-                  
+
                 <div class="comment-setting">
                       <a href="#" ><i class="bx bx-dots-horizontal-rounded"></i></a>
                 </div>
-    
+
               </div>
 
               <div class="comment-footer">
@@ -868,18 +864,18 @@
                     <div class="fullname">
                       <h2><a href="#">Aedus Obrero</a></h2>
                     </div>
-                      
+
                       <div class="comment">
                         <p >
                           let's go
                         </p>
                       </div>
                 </div>
-                  
+
                 <div class="comment-setting">
                       <a href="#" ><i class="bx bx-dots-horizontal-rounded"></i></a>
                 </div>
-    
+
               </div>
 
               <div class="comment-footer">
@@ -890,10 +886,10 @@
                   <a href="#">reply</a>
                 </div>
               </div>
-    
+
 
           </div>
-    
+
           </div>
 -->
 

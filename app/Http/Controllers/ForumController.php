@@ -92,7 +92,7 @@ class ForumController extends Controller
             }])
             ->with('comments.replies.replyWithUser')
             ->where('is_deleted', '0')
-            
+
             ->orderBy('created_at', 'desc') // Order by created_at column in descending order
             ->get();
         $notif = UserNotification::with('user')->where('self_id', $name->id)
@@ -107,7 +107,7 @@ class ForumController extends Controller
         return view('frontend.forum.forumPost', compact('name', 'posts', 'notif', 'notifCount'));
     }
 
-    
+
 
 
     public function store(PostRequest $request)
@@ -241,7 +241,7 @@ class ForumController extends Controller
 
         // dd($notif);
         return view('frontend.forum.forum', compact('name', 'posts', 'notif', 'notifCount'));
-        
+
     }
 
     public function Notification()
@@ -291,4 +291,29 @@ class ForumController extends Controller
         $notif = Post::where('id', $id)->update(['is_deleted' => '1']);
         return response()->json("success");
     }
+
+    /* search */
+    public function __construct()
+    {
+        $this->middleware('auth')->only('search');
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $posts = Post::join('users', 'users.id', '=', 'posts.user_id')
+            ->where(function ($q) use ($query) {
+                $q->where('users.username', 'LIKE', "%{$query}%")
+                  ->orWhere('posts.user_id', $query)
+                  ->orWhere('posts.content', 'LIKE', "%{$query}%")
+                  ->orWhere('posts.id', $query);
+            })
+            ->select('posts.*', 'users.username')
+            ->get();
+
+        return view('frontend.forum.search_results', ['posts' => $posts]);
+    }
 }
+
+
+

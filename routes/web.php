@@ -180,6 +180,7 @@ Route::middleware('auth', 'last_online')->group(function () {
         Route::post('/report', [ReportController::class, 'store']);
         Route::post('/comment/store', [CommentController::class, 'store']);
         Route::post('/comment/storeReply', [CommentController::class, 'storeReply']);
+        Route::get('/forum/search', [ForumController::class, 'search'])->name('forum.search');
         Route::get('/forum/post', [ForumController::class, 'ForumPost']);
         Route::post('/post-forum', [ForumController::class, 'store'])->name('storeForum');
         Route::post('/like-post', [ForumController::class, 'likePost']);
@@ -214,7 +215,7 @@ Route::middleware('auth', 'last_online')->group(function () {
         Route::get('/badge-search', [ProfileController::class, 'Search'])->name('badge.search');
         Route::get('/profile-progress', [ProfileController::class, 'Myprogress'])->name('profile.progress');
 
-        //quiz 
+        //quiz
         Route::get('/selectLanguage', [QuizController::class, 'Index'])->name('Language');
         Route::get('/exercise/selectLanguage', [ExerciseControllers::class, 'selectLanguage'])->name('selectLanguage');
         Route::get('/pythonDiff', [QuizController::class, 'PythonDifficulty'])->name('pythonDiff');
