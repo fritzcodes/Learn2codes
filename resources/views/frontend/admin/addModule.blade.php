@@ -199,23 +199,7 @@
             ],
             fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica', 'Impact', 'Tahoma',
                 'Times New Roman', 'Verdana'
-            ],
-            buttons: {
-            addSpace: function(context) {
-                var ui = $.summernote.ui;
-                // create button
-                var button = ui.button({
-                    contents: '<i class="fa fa-arrows-v"/> Spacing',
-                    tooltip: 'Add space after paragraph',
-                    click: function() {
-                        // add spacing logic
-                        var style = $('<style>.note-editable p { margin-bottom: 5px; }</style>');
-                        $('head').append(style);
-                    }
-                });
-                return button.render(); // return button as jquery object
-            }
-        }
+            ]
         });
     </script>
 

@@ -14,10 +14,11 @@
     --second-color: #7b337d;
     --high-color: #c874b2;
     --big-font: 6rem;
-    --h2-font: 1.1rem;
-    --p-font: 1rem;
+    --h2-font: 1.3rem;
+    --p-font: 1.1rem;
     --font1: 'Orbitron';
     --font2: Helvetica;
+    --font3: 'Source Code Pro';
     transition: .2s;
   }
 
@@ -32,7 +33,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--second-color);
+  background: var(--text-color);
 
 }
 
@@ -55,16 +56,22 @@ header {
 .user input {
   margin-left: 0;
   text-indent: 10px;
-  height: 35px;
+  height: 45px;
   max-width: 250px;
-  background-color: #ebebeb;
-  border: none;
-  border-radius: 10px;
+  background-color: var(--second-color);
+  border: solid;
+  border-color: var(--high-color);
+  border-radius: 5px;
   font-size: var(--p-font);
 }
 
 .user input:focus {
-  background-color: var(--bg-color);
+  color: var(--main-color);
+}
+
+
+.user input::placeholder{
+  color: var(--text-color);
 }
 
 .logo img {
@@ -75,7 +82,7 @@ header {
 }
 
 #menu-icon {
-  color: var(--bg-color);
+  color: var(--main-color);
   font-size: 40px;
   cursor: pointer;
   display: none;
@@ -83,7 +90,7 @@ header {
 
 #filter,
 #notif {
-  color: var(--bg-color);
+  color: var(--main-color);
   font-size: 40px;
   cursor: pointer;
   display: block;
@@ -108,10 +115,9 @@ header {
   position: fixed;
   overflow: auto;
   margin-left: 20px;
-  background-color: var(--bg-color);
+  background-color: #fff;
   padding: 10px;
   max-height: 80vh;
-  border: 1px solid #ccc;
 }
 
 .notif-header {
@@ -120,16 +126,20 @@ header {
   padding: 10px 0 15px 0;
 }
 
+.notif-header h2 {
+  color: var(--bg-color);
+}
+
 #notif-setting i {
   font-size: 15px;
-  color: #000;
+  color: var(--bg-color);
   padding: 4px 6px;
 }
 
 #notif-setting i:hover {
-  color: var(--bg-color);
+  color: var(--main-color);
   border-radius: 7px;
-  background-color: #BABABA;
+  background-color: var(--high-color);
 }
 
 /* filter modal container*/
@@ -146,11 +156,14 @@ header {
   /* Sit on top */
   display: none;
   position: absolute;
-  background: #BABABA;
+  background: var(--main-color);
   border-radius: 15px;
   margin: 30px 0 0 0;
   right: 11px;
-
+  border-style: solid;
+  border-color: var(--high-color);
+  border-width: 2px;
+  
 }
 
 #notifsetModal a {
@@ -162,18 +175,21 @@ header {
 #notifsetModal p {
   margin: 7px;
   font-size: var(--p-font);
+  color: var(--bg-color);
 }
 
 #notifsetModal i {
   padding: 7px 1px;
-  color: #000;
   font-size: var(--h2-font);
+  color: var(--bg-color);
 }
 
 #notifsetModal a:hover {
   border-radius: 10px;
-  background-color: var(--bg-color);
+  background: var(--high-color);
 }
+
+
 
 .notification-item {
   display: flex;
@@ -186,7 +202,7 @@ header {
 }
 
 .notification-item.unread-notif {
-  background: #BABABA;
+  background: var(--second-color);
 }
 
 .notification-item:hover .notif-action {
@@ -207,23 +223,23 @@ header {
 
 .notif-action i {
   font-size: 15px;
-  color: #000;
+  color: var(--bg-color);
   padding: 4px 4px;
   color: var(--bg-color);
   border-radius: 100%;
-  background-color: #7a7a7a;
+  background-color: var(--main-color);
 }
 
 .notif-action-modal {
   display: none;
   z-index: 1;
   position: absolute;
-  background: #BABABA;
+  background: var(--main-color);
   border-radius: 15px;
   right: 45px;
   margin: -83px 0 0 0;
   border-style: solid;
-  border-color: #ccc;
+  border-color: var(--high-color);
   border-width: 2px;
   padding: 5px;
 }
@@ -235,12 +251,12 @@ header {
 .notif-action-modal i {
   display: flex;
   padding: 7px 1px;
-  color: #000;
+  color: var(--bg-color);
   font-size: var(--p-font);
 }
 
 .notif-action-modal i:hover {
-  background: var(--bg-color);
+  background: var(--main-color);
   border-radius: 10px;
 }
 
@@ -271,12 +287,16 @@ header {
 }
 
 .empty-state {
+  font-size: 3rem;
+  color: var(--text-color);
   text-align: center;
-  padding: 20px;
+  padding: 30px;
 }
 
 .empty-state p {
-  margin-top: 10px;
+  font-size: var(--p-font);
+  font-weight: 600;
+  color: var(--text-color);
 }
 
 /*
@@ -430,84 +450,18 @@ background: #BABABA;
   }
 }
 
-
 .list-footer {
   display: flex;
   justify-content: center;
   font-size: var(--p-font);
-  color: #fff;
+  color: var(--main-color);
   padding: 10px 0px;
-  line-height: 1.5;
-  font-weight: 700;
-  background-color: var(--main-color);
+  font-weight: 600;
+  background-color: var(--second-color);
   border-radius: 3px;
-
 }
-
-
-
-
-.user ul {
-  align-items: center;
-  display: flex;
-}
-
-.user ul li {
-  margin-right: 10px;
-}
-
-.navbar {
-  position: absolute;
-  top: 0;
-  right: -100%;
-  width: 40%;
-  height: 100vh;
-  background: #000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 60px 0%;
-  transition: 0.5s all;
-}
-
-.open {
-  right: 0;
-}
-
-.list {
-  width: 50%;
-  margin-top: 100px;
-}
-
-.profile button {
-  display: flex;
-  color: var(--bg-color);
-  border-style: unset;
-  background: transparent;
-  cursor: pointer;
-  align-items: center;
-  text-align: left;
-}
-
-.profile h3 {
-  margin-left: 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 300px;
-  text-overflow: ellipsis;
-  scroll-behavior: unset;
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-
-
 
 /*------------------MAIN------------------------*/
-
 .no-post {
   padding: 20px 0;
   width: 100%;
@@ -538,7 +492,7 @@ background: #BABABA;
 .no-post h2 {
   padding: 10px 0;
   font-size: var(--h2-font);
-  color: var(--second-color);
+  color: var(--text-color);
 }
 
 
@@ -557,9 +511,9 @@ background: #BABABA;
   margin-left: auto;
   margin-right: auto;
   top: 90px;
-  width: 100%;
-  height: 100vh;
-  background: var(--bg-color);
+  max-width: 100%;
+  min-height: 100vh;
+  background: #eee;
   position: relative;
   align-items: center;
   background-size: cover;
@@ -587,84 +541,74 @@ background: #BABABA;
 }
 
 .feed {
+  overflow-x: hidden;
   margin-bottom: 200px;
   margin-left: 20%;
   width: 100%;
   position: relative;
-  padding: 15px 10%;
-  color: #020202;
+  padding: 15px 15%;
 }
 
 .writeout {
-  padding: 5px 10px;
-  height: 70px;
-  width: 100%;
-  background-color: #F3F3F3;
-  border-radius: 15px;
+  padding: 5px;
+  background: #ddd;
+  border-radius: 10px;
 }
 
 .writein {
-  margin-top: 5px;
-  height: 50px;
-  width: 100%;
-  background-color: #CFCBCB;
-  border-radius: 11px;
+  margin: 5px;
+  background: #fff;
+  border-radius: 5px;
   overflow: hidden;
 }
 
 .writein a h2 {
-  color: #5a7184;
+  color: var(--bg-color);
   font-weight: 100;
-  font-size: var(--h2-font);
+  font-size: var(--p-font);
   border-radius: 11px;
   padding: 15px 0 15px 5px;
 }
 
 #postModal {
   display: none;
-  /* Hidden by default */
   position: fixed;
-  /* Stay in place */
   z-index: 1001;
-  /* Sit on top */
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
-  background-color: rgb(0, 0, 0);
-  /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
+  background-color: rgb(12,05,35); /* Fallback color */
+  background-color: rgba(12,05,35,0.4); /* Black w/ opacity */
 }
-
 
 /* Modal Content */
 .modal-content {
   padding: 5px;
   border-radius: 10px;
-  background-color: #fefefe;
+  background-color: #fff;
   margin: 10% auto;
-  /* 15% from the top and centered */
   width: 60%;
-  /* Could be more or less, depending on screen size */
 }
 
 .createheader h2 {
-  padding: 10px 15px;
+  color: var(--bg-color);
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  padding: 15px 15px;
 }
 
 .close {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 2rem;
   font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  color: black;
+  color: var(--bg-color);
   text-decoration: none;
   cursor: pointer;
 }
@@ -673,30 +617,30 @@ background: #BABABA;
 #postForm {
   padding: 10px 15px;
   max-height: 60vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   display: block;
   overflow-x: hidden;
 }
 
 .info-header {
   display: flex;
-  padding: 15px 0 15px 0;
+  padding: 10px 0 15px 0;
 }
 
 #textContent {
   border-style: none;
   padding: 15px 0 90px 10px;
   width: 100%;
-  font-size: var(--h2-font);
+  font-size: var(--p-font);
   resize: none;
   box-shadow: 35px 20px 20px 35px rgba(0, 0, 0, 0.09);
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 
 .photocontainer {
   display: none;
-  background: var(--bg-color);
+  background: #fff;
   width: 90%;
   position: relative;
   margin: 20px auto;
@@ -710,14 +654,14 @@ background: #BABABA;
   position: absolute;
   right: 0;
   top: 0;
-  font-size: 28px;
+  font-size: 1.7rem;
   font-weight: bold;
   margin: 10px;
 }
 
 .photoclose:hover,
 .photoclose:focus {
-  color: black;
+  color: var(--bg-color);
   text-decoration: none;
   cursor: pointer;
 }
@@ -729,8 +673,8 @@ background: #BABABA;
 .photocontainer label {
   display: block;
   position: relative;
-  background-color: var(--main-color);
-  color: var(--bg-color);
+  background-color: var(--second-color);
+  color: var(--main-color);
   font-size: var(--h2-font);
   text-align: center;
   max-width: 300px;
@@ -748,14 +692,26 @@ background: #BABABA;
 
 .codecontainer {
   display: none;
-  background: var(--bg-color);
+  background: #fff;
   width: 90%;
   position: relative;
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 50px 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 35px 20px 20px 35px rgba(0, 0, 0, 0.09);
 }
+
+.codecontainer h2 {
+  color: var(--bg-color);
+  font-size: var(--p-font);
+  }
+
+  .codecontainer textarea {
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  resize: none;
+  }
 
 .codeclose {
   color: #aaa;
@@ -769,32 +725,13 @@ background: #BABABA;
 
 .codeclose:hover,
 .codeclose:focus {
-  color: black;
+  color: var(--bg-color);
   text-decoration: none;
   cursor: pointer;
 }
 
 .codecontainer input[type="file"] {
   display: none;
-}
-
-.codecontainer label {
-  display: block;
-  position: relative;
-  background-color: var(--main-color);
-  color: var(--bg-color);
-  font-size: var(--h2-font);
-  text-align: center;
-  max-width: 300px;
-  padding: 18px 0;
-  margin: auto;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.codecontainer p {
-  text-align: center;
-  margin: 20px 0 30px 0;
 }
 
 #photos {
@@ -822,12 +759,9 @@ background: #BABABA;
   font-size: 12px;
 }
 
-
-
-
-
 #add-content {
   display: flex;
+  align-content: center;
   justify-content: space-evenly;
   overflow-x: hidden;
 }
@@ -835,15 +769,17 @@ background: #BABABA;
 #add-content a {
   margin: 5px;
   width: 100%;
-  background-color: #BABABA;
+  background: var(--main-color);
   border-radius: 5px;
   text-align: center;
   padding: 10px;
+  font-size: var(--p-font);
+  color: var(--bg-color);
 }
 
 #add-content i {
-  color: #000;
-  font-size: 20px;
+  color: var(--bg-color);
+  font-size: var(--h2-font);
 }
 
 .photos:hover::after,
@@ -852,49 +788,67 @@ background: #BABABA;
 .hashtag:hover::after {
   content: attr(data-tooltip);
   font-size: var(--p-font);
-  color: #000;
   display: absolute;
-  padding: 5px;
+  padding: 10px;
 }
 
 #postbtn {
   margin: 5px 0 0 0;
   width: 100%;
-  height: 40px;
+  height: 45px;
   cursor: pointer;
-  background-color: var(--main-color);
+  background-color: var(--second-color);
   border-style: none;
-  color: var(--bg-color);
+  color: var(--main-color);
+  font-weight: 600;
   font-size: var(--h2-font);
   border-radius: 5px;
 }
 
-
-
-
-
 .post {
   border-radius: 15px;
-  background: var(--bg-color);
+  background: #fff;
   border: 1px solid #ccc;
   margin: 20px auto;
-  font-family: Arial, sans-serif;
+  font-family: var(--font2);
 }
 
 .post-header {
   display: flex;
   padding: 15px;
-  margin-bottom: 10px;
+}
+
+.post-content {
+  margin-bottom: 15px;
+}
+
+.caption {
+  font-size: var(--p-font);
+  margin: 0px 15px 15px 15px;
+  word-wrap: break-word;
+  word-break: normal;
+  display: block;
+  padding-bottom: 20px;
+}
+
+.caption pre{
+  text-wrap:balance;
+  word-wrap: break-word;
+  color: var(--bg-color);
+  margin: 0 10px;
+  text-align: left;
 }
 
 .profile-pic img {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  margin-right: 10px;
+  border-radius: 100%;
+  margin-right: 2px;
+  object-fit: cover;
 }
 
 .post-info {
+  margin-top: 3px;
   width: 100%;
 }
 
@@ -904,8 +858,8 @@ background: #BABABA;
 }
 
 .post-info .first-name a {
-  font-size: var(--h2-font);
-  color: #000;
+  font-size: var(--p-font);
+  color: var(--text-color);
 }
 
 .post-info .feelings {
@@ -919,60 +873,53 @@ background: #BABABA;
 }
 
 .post-info .date {
-  font-size: 0.8em;
+  font-size: .8rem;
   color: #777;
 }
 
 .post-setting i {
   font-size: 18px;
-  color: #000;
+  color: var(--bg-color);
   padding: 4px 6px;
 }
 
-#post-setting i:hover {
-  font-size: 18px;
-  color: var(--bg-color);
+.post-setting i:hover {
+  color: var(--main-color);
   border-radius: 7px;
-  background-color: #BABABA;
+  background-color: var(--high-color);
 }
 
 #postsetModal {
   display: none;
   position: absolute;
-  background: #BABABA;
+  background: var(--main-color);
   border-radius: 15px;
-  margin: 5px 0 0 -82px;
+  margin: 10px 0 0 -82px;
 }
 
 #postsetModal a {
   margin: 5px;
   padding: 5px 10px;
   display: flex;
+  align-items: center;
 }
 
 #postsetModal p {
-  margin: 7px;
+  color: var(--text-color);
+  margin: 0 3px 0px 0 ;
   font-size: var(--p-font);
 }
 
 #postsetModal i {
   padding: 9px 1px;
-  color: #000;
+  color: var(--text-color);
   font-size: var(--h2-font);
 }
 
 #postsetModal a:hover {
   border-radius: 10px;
-  background-color: var(--bg-color);
-}
-
-.post-content {
-  margin-bottom: 15px;
-}
-
-.caption {
-  font-size: var(--p-font);
-  margin: 0px 15px 15px 15px;
+  color: var(--main-color);
+  background-color: var(--high-color);
 }
 
 .tags {
@@ -990,14 +937,12 @@ background: #BABABA;
 
 .hashtags {
   display: inline-block;
-  background-color: var(--main-color);
-  padding-left: 8px;
-  padding-right: 8px;
-  
+  background-color: var(--second-color);
+  padding: 3px 5px;
   text-decoration: none;
   border-radius: 3px;
   font-size: var(--p-font);
-  color:white
+  color: var(--main-color);
 }
 
 .hashtags p {
@@ -1005,7 +950,7 @@ background: #BABABA;
 }
 
 .hashtags:hover {
-  background-color: #0056b3;
+  background-color: var(--text-color);
 }
 
 .code-snippet {
@@ -1024,14 +969,11 @@ background: #BABABA;
 
 .code-snippet pre {
   background-color: #323232;
-  border-left: 3px solid var(--main-color);
-  color: #BABABA;
+  border-left: 3px solid var(--second-color);
   page-break-inside: avoid;
-  font-family: monospace;
-  font-size: var(--p-font);
   line-height: 1.6;
   max-width: 100%;
-  max-height: 30vh;
+  max-height: 40vh;
   overflow: auto;
   padding: 1em 1.5em;
   display: block;
@@ -1039,16 +981,24 @@ background: #BABABA;
 }
 
 .code-snippet pre code {
+  font-size: 1rem;
+  color: #fff;
   background-color: #323232;
-  font-family: monospace;
+  font-family: var(--font3);
 
 }
 
 .image-gallery {
-  background: #F3F3F3;
+  background: #ddd;
   display: flex;
+  border-style: solid;
+  border-width: 1px;
+  border-left: none;
+  border-right: none;
+  border-top-color: #ddd;
+  border-bottom-color: #ddd;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 1px;
   /* Adjust the gap as needed */
 }
 
@@ -1076,6 +1026,8 @@ background: #BABABA;
   padding: 5px;
   justify-content: center;
   display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 /*
@@ -1085,8 +1037,7 @@ background: #BABABA;
     }
     */
 
-.footer-btn i,
-p {
+.footer-btn i, .footer-btn p{
   margin: 2px 2px 0 0;
   font-size: var(--p-font);
   color: #000;
@@ -1095,23 +1046,22 @@ p {
 #shareModal {
   position: absolute;
   margin-top: 35px;
-  background: #BABABA;
+  background: var(--main-color);
   border-radius: 15px;
-  padding: 10px;
+  padding: 5px;
   display: none;
   justify-content: space-around;
 }
 
 #shareModal i {
-  background-color: #BABABA;
-  border-radius: 100%;
+  border-radius: 10px;
   padding: 10px;
-  color: #000;
-  font-size: var(--h2-font);
+  color: var(--bg-color);
+  font-size: var(--p-font);
 }
 
 #shareModal i:hover {
-  background-color: var(--bg-color);
+  background-color: var(--high-color);
 
 }
 
@@ -1126,7 +1076,7 @@ p {
 
 #filter-comment a {
   float: right;
-  font-size: 14px;
+  font-size: .9rem;
   color: #000;
   margin: 0 15px 0 0;
   padding: 4px 8px;
@@ -1143,56 +1093,69 @@ p {
   z-index: 2;
   display: none;
   position: absolute;
-  background: #BABABA;
+  background: var(--main-color);
   border-radius: 15px;
-  margin: 0px 0 0 0;
-  right: 170px;
+  right: 20%;
 
 }
 
 #filter-comment-modal a {
   margin: 5px;
-  padding: 5px 10px;
+  align-items: center;
   display: flex;
 }
 
 #filter-comment-modal p {
-  margin: 7px;
+  margin-right: 10px;
+  color: var(--text-color);
   font-size: var(--p-font);
 }
 
 #filter-comment-modal i {
-  padding: 7px 1px;
-  color: #000;
-  font-size: var(--h2-font);
+  margin: 7px;
+  color: var(--text-color);
+  font-size: var(--p-font);
 }
 
 #filter-comment-modal a:hover {
   border-radius: 10px;
-  background-color: var(--bg-color);
+  background-color: var(--high-color);
 }
 
 .comment-sec {
-  background-color: var(--bg-color);
-  margin-bottom: 15px;
-  overflow-y: auto;
-  max-height: 500px;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border-radius: 6px;
+  border: 2px solid #ddd;
 }
 
 .comments {
-  display: inline;
+  max-height: 500px;
+  overflow-y: auto;
 }
 
 .comment {
-  background-color: #f0f2f5;
-  margin: 5px 10px 20px 10px;
+  color: var(--bg-color);
+  margin: 10px 10px 5px 10px;
   padding: 15px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.0);
   /* Adjust box-shadow */
-  border-left: 2px solid #ccc;
+  border-left: 2px solid var(--second-color);
 }
 
 .comment .user-info {
@@ -1214,13 +1177,23 @@ p {
 
 .comment .user {
   font-size: var(--p-font);
-  font-weight: bold;
-  color: var(--main-color);
+  font-weight: 600;
+  color: var(--text-color);
 }
 
 .comment .content {
+  word-wrap: break-word;
+  word-break: normal;
+  display: block;
   margin-top: 0px;
   margin-left: 60px;
+  /* Adjust the left margin */
+}
+
+.comment .content pre{
+  text-wrap:balance;
+  word-wrap: break-word;
+  text-align: left;
   /* Adjust the left margin */
 }
 
@@ -1233,7 +1206,8 @@ p {
 .comment .actions button {
   background-color: transparent;
   border: none;
-  color: #385898;
+  font-weight: 600;
+  color: var(--second-color);
   cursor: pointer;
   margin: 5px;
 }
@@ -1241,6 +1215,29 @@ p {
 .comment .actions button:hover {
   text-decoration: underline;
 }
+
+/*
+.post-content {
+  margin-bottom: 15px;
+}
+
+.caption {
+  font-size: var(--p-font);
+  margin: 0px 15px 15px 15px;
+  word-wrap: break-word;
+  word-break: normal;
+  display: block;
+  padding-bottom: 20px;
+}
+
+.caption pre{
+  text-wrap:balance;
+  word-wrap: break-word;
+  color: var(--bg-color);
+  margin: 0 10px;
+  text-align: left;
+}
+*/
 
 .comment .reply-input {
   display: none;
@@ -1250,11 +1247,13 @@ p {
 .comment .reply-input textarea,
 .nested-reply .reply-input textarea {
   width: 100%;
-  max-height: 50px;
+  color: var(--bg-color);
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #aaa;
   border-radius: 5px;
+  outline: none;
   resize: none;
+  overflow-y: hidden;
   /* Disable resizing */
 }
 
@@ -1262,8 +1261,8 @@ p {
 .nested-reply .reply-input button {
   position: relative;
   float: right;
-  background-color: #385898;
-  color: white;
+  background-color: var(--second-color);
+  color: var(--main-color);
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
@@ -1271,16 +1270,13 @@ p {
 }
 
 .comment .replies {
-  margin-left: 20px;
+  margin-left: 5px;
 }
 
 .reply {
-  background-color: #f0f2f5;
+  background: #fff;
   margin-top: 10px;
   padding: 10px;
-  border-radius: 5px;
-  box-shadow: 10px 10px grey;
-  /* Add box-shadow */
 }
 
 .nested-reply {
@@ -1288,7 +1284,8 @@ p {
   /* Remove indentation for nested replies */
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.0);
   /* Adjust box-shadow */
-  border-left: 2px solid #ccc;
+  border-radius: 10px;
+  border-left: 2px solid var(--second-color);
   padding: 15px;
   /* Add padding for better spacing */
 }
@@ -1519,7 +1516,7 @@ p {
 /*-------------- content2 -------*/
 
 .content2 {
-  background-color: var(--bg-color);
+  background-color: #fff;
   left: 0;
   position: fixed;
   width: 20%;
@@ -1585,11 +1582,6 @@ ul {
 .dropdown-content li:nth-child(1) {
   display: contents;
 }
-
-
-/*------------profile section */
-
-
 
 
 /* ----------------------------------------

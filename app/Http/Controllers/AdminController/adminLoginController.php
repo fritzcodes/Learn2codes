@@ -48,23 +48,33 @@ class adminLoginController extends Controller
 
     public function createAccountPost(CreateAccountRequest $request)
     {
-
-        $data = $request->validated();
-
+        // Validate the request
+        $validatedData = $request->validated();
+    
+        // Check if the email is already taken
+        if (Admin::where('email', $validatedData['email'])->exists()) {
+            return redirect()->back()->with('error', 'Email is already taken.');
+        }
+    
+        // Check if the username is already taken
+        if (Admin::where('username', $validatedData['username'])->exists()) {
+            return redirect()->back()->with('error', 'Username is already taken.');
+        }
+    
         // Hash the password
-        $data['password'] = Hash::make($request->password);
-
+        $validatedData['password'] = Hash::make($request->password);
+    
         // Create a new Admin instance and fill it with the validated data
         $admin = new Admin();
-        $admin->fill($data);
-
+        $admin->fill($validatedData);
+    
         // Save the admin to the database
         $admin->save();
-
-
+    
         // Redirect back with success message
-        return redirect()->route('createAccount')->with("success", "Created Admin account successfully");
+        return redirect()->back()->with('success', 'Created Admin account successfully.');
     }
+    
 
 
     public function logout()
@@ -74,4 +84,85 @@ class adminLoginController extends Controller
 
         return redirect()->route('AdminLogin');
     }
+
+    public function updateAdminProfile(Request $request)
+{
+    // Validate the incoming request data
+    $validatedData = $request->validate([
+        'username' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'profile_photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size and allowed extensions as needed
+    ]);
+
+    try {
+        // Retrieve the input values from the request
+        $adminId = Auth::guard('admin')->id();
+        $username = $validatedData['username'];
+        $email = $validatedData['email'];
+
+        // Find the admin record in the database
+        $admin = Admin::find($adminId);
+
+        // If admin record doesn't exist, handle the error gracefully
+        if (!$admin) {
+            return redirect()->back()->with('error', 'Admin not found.');
+        }
+
+        // Update the admin profile fields
+        $admin->username = $username;
+        $admin->email = $email;
+
+        // Process profile photo upload
+        if ($request->hasFile('profile_photo')) {
+            $profilePhoto = $request->file('profile_photo');
+            $profilePhotoName = time() . '_' . $profilePhoto->getClientOriginalName();
+            $profilePhoto->move(public_path('images'), $profilePhotoName);
+            // Update the admin record with the profile photo path or name
+            $admin->profile_photo = $profilePhotoName;
+        }
+
+        // Save the changes to the database
+        $admin->save();
+
+        // Redirect to a different page or display a success message
+        return redirect()->route('adminDashboard')->with('success', 'Admin profile updated successfully.');
+    } catch (Exception $e) {
+        // Log the error for further investigation
+        \Log::error($e->getMessage());
+
+        // Redirect back with an error message
+        return redirect()->back()->with('error', 'An error occurred while updating admin profile.');
+    }
+}
+
+public function changeAdminPass(Request $request)
+{
+        if (!Hash::check($request->current_password, Auth::guard('admin')->user()->password)) {
+            $msg = "error";
+            return response()->json($msg);
+        }
+
+        $data = $request->validate([
+            'password' => 'required|string|min:8',
+            'confirm_password' => 'required|string|same:password',
+        ], [
+            'confirm_password.same' => 'The new password and confirmation password do not match.',
+        ]);
+
+        $hashedPassword['password'] = Hash::make($data['password']);
+
+
+        $admin = Auth::guard('admin')->user();
+
+
+        if ($admin->update($hashedPassword)) {
+            $msg = 'success';
+        } else {
+            $msg = "error";
+        }
+
+        return response()->json($msg);
+    }
+
+
 }

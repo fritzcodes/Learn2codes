@@ -92,14 +92,6 @@
 }
 
 
-body{
-    width: 100%;
-    overflow-x: hidden;
-    min-height: 100vh;
-    background: var(--bg-color);
-
-  }
-
 
 
         table,
@@ -233,7 +225,6 @@ body{
         #main {
             font-family: var(--font2);
         }
-
     </style>
 
 </head>
@@ -286,9 +277,6 @@ body{
 
         <div class="content" id="content">
             <div id="main">
-                <p>
-                
-                </p>
                 
             </div>
         </div>

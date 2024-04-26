@@ -79,55 +79,35 @@ class LoginController extends Controller
 
     public function loginPost(Request $request)
     {
-
         $email = $request->email;
         $password = $request->password;
         $user = User::where('email', $email)->first();
-
-        if ($user) {
-
-            if (Hash::check($password, $user->password)) {
-                try {
-                    $verificationCode = mt_rand(100000, 999999);
-                    Mail::raw("Your verification code is: $verificationCode", function ($message) use ($user) {
-                        $message->to($user->email)
-                                ->subject('Verification Code');
-                    });
-                } catch (\Exception $e) {
-                    return redirect()->route('login')->with('error', 'Failed to send verification email.');
-                }
-                $userId = $user->id;
-                $request->session()->put('ids', $userId);
-
-                
-                session_start();
-                $_SESSION["L2C_id"] = $userId;
-                // Generate verification code
-               
-
-                // Store verification code in the database
-                //$user->verification_code = $verificationCode;
-                //$user->save();
-
-                // Send verification code to user's email using SMTP
-
-                // For demonstration, let's assume the verification code is sent to the email
-                // You'll need to implement your SMTP email sending logic here
-
-                // Temporarily store verification code in session
-                $request->session()->put('verification_code', $verificationCode);
-                $request->session()->put('email', $email);
-                $request->session()->put('password', $password);
-
-                return redirect()->route('verify')->with('info', 'Verification code has been sent to your email.');
+    
+        if ($user && Hash::check($password, $user->password)) {
+            try {
+                $verificationCode = mt_rand(100000, 999999);
+                Mail::raw("Your verification code is: $verificationCode", function ($message) use ($user) {
+                    $message->to($user->email)->subject('Verification Code');
+                });
+            } catch (\Exception $e) {
+                return response()->json(['success' => false, 'error' => 'Failed to send verification email.']);
             }
-            else{
-                return redirect()->route('login')->with('error', 'Wrong Email or Password.');
-            }
+    
+            // Store user ID and verification code in session
+            $request->session()->put('ids', $user->id);
+            $request->session()->put('verification_code', $verificationCode);
+            $request->session()->put('email', $email);
+            $request->session()->put('password', $password);
+    
+            // Respond with JSON indicating successful login
+            return response()->json(['success' => true]);
         } else {
-            return redirect()->route('login')->with('error', 'Wrong Email or Password.');
+            // Respond with JSON indicating unsuccessful login
+            return response()->json(['success' => false, 'error' => 'Wrong email or password.']);
         }
     }
+    
+
 
 
     public function logout()

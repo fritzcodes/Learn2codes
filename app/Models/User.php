@@ -64,5 +64,22 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Define the relationship with Experience.
+     */
+    public function experiences()
+    {
+        return $this->hasMany(Experience::class);
+    }
+
+    /**
+     * Define the relationship with ClaimedBadge.
+     */
+    public function claimedBadges()
+    {
+        return $this->hasMany(ClaimedBadge::class);
+    }
+    
     
 }

@@ -26,16 +26,21 @@
 
   @media (max-width: 860px) {
     .space-background {
+      top: 10vh;
       background: none;
       padding: 0;
       position: fixed;
       border-radius: 0px;
       width: 100%;
-      height: 100vh; 
+      height: 90vh; 
     }
 
     .content-section {
       grid-template-columns: repeat(1, 1fr);
+  }
+
+  .title h2{
+    color: var(--main-color);
   }
 
   }
@@ -75,11 +80,12 @@
 
   @media (min-height: 1024px) {
   .space-background {
+    top: 10vh;
     background: none;
     position: fixed;
     border-radius: 0px;
     width: 100%;
-    height: 100vh; 
+    height: 90vh; 
   }
 
   .content-section {
@@ -97,6 +103,10 @@
   .content-section img {
     width: 300px;
   }
+
+  .title h2{
+    color: var(--main-color);
+  } 
 
   }
 

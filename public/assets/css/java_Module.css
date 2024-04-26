@@ -7,14 +7,19 @@
     list-style: none;
 }
 
+body{
+  overflow: hidden;
+  background: var(--bg-color);
+
+}
+
 :root{ /*---font and color defaults --*/
   --bg-color: #210535;
   --main-color: #f5d5e0;
   --text-color: #430d4b;
   --second-color: #7b337d;
   --high-color: #c874b2;
-  --big-font: 3rem;
-  --h2-font: 1.5rem;
+  --h2-font: 1.2rem;
   --p-font: 1rem;
   --font1: 'Orbitron';
   --font2: Helvetica;
@@ -28,13 +33,12 @@
     background-color: #FFFFFF;
     height: 90vh;
     display: block;
-    position: fixed;
+    position: absolute;
     overflow-x: hidden;
     overflow-y: hidden;
   }
 
   #content {
-    position: absolute;
     width: 100%;
     display: block;
     height: 90vh;
@@ -48,14 +52,6 @@
     display: block;
     text-align: left;
   }
-
-  #main p {
-    margin-bottom: 3px;
-    font-size: var(--p-font);
-    font-family: var(--font2);
-    color: #000;
-  }
-
   
 
     /*----------- Content Section------------ */
@@ -71,7 +67,7 @@
     }
     
 .sidenav {
-  font-family: var(--font1);
+    font-family: var(--font1);
     scroll-behavior: smooth;
     height: 90vh;
     width: 250px;
@@ -107,7 +103,7 @@
 
 .sidenav h2{
   padding: 15px 5px 2px 10px;
-  font-size: var(--p-font);
+  font-size: var(--h2-font);
 }
 
 .sidenav a {
@@ -174,22 +170,10 @@ pre {
 
 
 @media (max-width: 1300px) {
-  :root {
-    --big-font: 4.5rem;
-    --h2-font: 2.3rem;
-    --p-font: 1rem;
-    transition: .2s;
-  }
+
 }
 
-@media (max-width: 540px) {
-
-  :root {
-    --big-font: 2.8rem;
-    --h2-font: 1.5rem;
-    --p-font: 1.1rem;
-    transition: .2s;
-  }
+@media (max-width: 860px) {
 
   #btn {
     position: fixed;
@@ -227,6 +211,11 @@ left:260px;
 
 }
 
+}
+
+@media (max-width: 540px) {
+
+
 
 
 }
@@ -234,38 +223,16 @@ left:260px;
 
 @media (max-width: 376px) {
 
-
-  :root {
-    --big-font: 3.5rem;
-    --h2-font: 1.5rem;
-    transition: .2s;
-  }
 }
 
 
 @media (max-width: 280px) {
-  body {
-    padding: 80px 0%;
-    animation: paused;
-  }
 
- :root {
-    --big-font: 2.5rem;
-    --h2-font: 1.3rem;
-    transition: .2s;
-  }
+
 }
 
 
 @media (min-height: 1024px) {
-  body {
-    animation: paused;
-  }
 
-  :root {
-    --big-font: 4.5rem;
-    --h2-font: 2.3rem;
-    --p-font: 1rem;
-    transition: .2s;
-  }
+
 }

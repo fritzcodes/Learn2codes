@@ -17,7 +17,7 @@
     --h2-head: 1.5rem;
     --p-head: 1rem;
     --font1: 'Orbitron';
-    transition: .2s;
+
   }
 
 header {   
@@ -163,13 +163,11 @@ header {
     @media (max-width: 1300px) {
       header {
         padding: 17px 3%;
-        transition: .2s;
       }
     
       :root {
         --h2-head: 2rem;
         --p-head: 1.5rem;
-        transition: .2s;
       }
 
       .navbar {
@@ -206,7 +204,10 @@ header {
       :root {
         --h2-head: 1.5rem;
         --p-head: 1rem;
-        transition: .2s;
+      }
+
+      #back-btn, #menu-icon {
+        font-size: 40px;
       }
     
     }
@@ -215,7 +216,6 @@ header {
       :root {
         --h2-head: 1.1rem;
         --p-head: 0.8rem;
-        transition: .2s;
       }
     
       .navbar {
@@ -238,11 +238,14 @@ header {
         :root {
         --h2-head: 1rem;
         --p-head: 0.8rem;
-        transition: .2s;
       }
 
       .profile button {
         margin-top: 40px;
+    }
+
+    #back-btn, #menu-icon {
+      font-size: 30px;
     }
 
     }
@@ -263,11 +266,16 @@ header {
       :root {
         --h2-head: 2.5rem;
         --p-head: 1.5rem;
-        transition: .2s;
     }
 
     .navbar {
       overflow-y: scroll;
+    }
+
+    header {
+      background-color: var(--main-color);
+      box-shadow: 0 0 10px 2px var(--second-color); /* Tomato color */
+
     }
     
     }
@@ -285,14 +293,7 @@ header {
           --big-font: 5rem;
           --h2-font: 2.5rem;
           --p-font: 1.5rem;
-          transition: .2s;
       
-      }
-
-      header {
-        background-color: var(--main-color);
-        box-shadow: 0 0 10px 2px var(--second-color); /* Tomato color */
-
       }
       
       }
