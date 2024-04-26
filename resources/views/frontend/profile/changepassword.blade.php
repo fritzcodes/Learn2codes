@@ -186,7 +186,7 @@
                             text: 'Updated Successfully',
 
                         }).then(res => {
-                            window.location.reload.href();
+                            window.location.reload();
                         })
                     } else {
                         toastr.options = {
