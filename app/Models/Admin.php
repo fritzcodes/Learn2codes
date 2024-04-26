@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
 
 class Admin extends Authenticatable
 {
@@ -21,7 +22,18 @@ class Admin extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $table = 'admin';
+    //protected $table = 'admin';
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->id = (string) Str::uuid();
+        });
+    }
     protected $fillable = [
         'email',
         'username',
