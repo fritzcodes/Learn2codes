@@ -88,6 +88,9 @@ Route::post('/admin/createAccountPost', [adminLoginController::class, 'createAcc
 
 Route::post('/admin/update-profile', [adminLoginController::class, 'updateAdminProfile'])->name('updateAdminProfile');
 
+Route::post('/admin/change-password', [adminLoginController::class, 'changeAdminPass'])->name('admin.changePassword');
+
+
 
 Route::get('/', [TemplateController::class, 'index']);
 Route::delete('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -159,6 +162,7 @@ Route::middleware(['auth:admin'])->group(function () {
 
 
     Route::get('/admin/manageUser', [ManageUserController::class, 'Index'])->name('ManageUser');
+    Route::post('/admin/manageUser', [ManageUserController::class, 'Index'])->name('ManageUser');
     Route::get('/admin/manageUserRefresh', [ManageUserController::class, 'manageUserRefresh'])->name('manageUserRefresh');
     Route::delete('/admin/users/delete/{id}', [ManageUserController::class, 'delete'])->name('admin.users.delete');
 
@@ -204,7 +208,7 @@ Route::middleware('auth', 'last_online')->group(function () {
         Route::get('/profile-edit', [ProfileController::class, 'Edit'])->name('profile.edit');
         Route::post('/profile-edit', [ProfileController::class, 'update'])->name('profile.edit');
         // Route::get('/changepassword', [ProfileController::class, 'changePassword'])->name('changepassword');
-        Route::post('/change-password', [ProfileController::class, 'changePasswords'])->name('changepassword');
+        Route::post('/change-password', [ProfileController::class, 'changePasswords'])->name('changepasswordPost');
         Route::get('/changepassword', [ProfileController::class, 'changePassword'])->name('changepassword');
         Route::get('/profile-badge', [ProfileController::class, 'Badge'])->name('profile.badge');
         Route::get('/badge-search', [ProfileController::class, 'Search'])->name('badge.search');
