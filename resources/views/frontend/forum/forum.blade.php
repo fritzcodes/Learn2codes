@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/assets/css/forum.css">
     <link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css" rel="stylesheet" />
@@ -590,8 +591,8 @@ outlined-heart
                 <a href=""><i class='bx bxl-twitter'></i></a> -->
                                         <a href="#" class="copy-link"
                                             onclick="copyLink('/forum/{{ $post->id }}')">
-                                            <i class='bx bx-link-alt'></i>
-                                            <span class="tooltip" id="tooltip">Copy link</span>
+                                            <i class='bx bx-link-alt'><span class="tooltip" id="tooltip">Copy link</span></i>
+                                            
                                         </a>
 
                                     </div>
@@ -653,7 +654,9 @@ outlined-heart
                                                     </div>
 
                                                     <div class="content">
-                                                        {{ $comment->comment }}
+
+                                                        <pre>{{ $comment->comment }}</pre>
+                                                       
                                                         <!-- @if (Auth::user()->id == $comment->user_id)
                   <a href="">Edit</a> |
                   <a href="">Delete</a>
@@ -716,7 +719,12 @@ outlined-heart
                                                                     @endif
 
 
-                                                                    <div class="content">{{ $reply->reply }}</div>
+                                                                    <div class="content">
+                                                                    
+                                                                    <pre>{{ $reply->reply }}</pre>
+                                                                
+                                                                    </div>
+
                                                                     <div class="actions">
                                                                         <button
                                                                             onclick="toggleReply('replyInputNested-{{ $reply->id }}')">Reply</button>
@@ -726,7 +734,7 @@ outlined-heart
                                                                     <div class="reply-input"
                                                                         id="replyInputNested-{{ $reply->id }}"
                                                                         style="display:none;">
-                                                                        <textarea placeholder="Write a reply..."></textarea>
+                                                                        <textarea oninput="auto_grow(this)" placeholder="Write a reply..." style="display:flex; min-height: 50px; width: 100%; margin-bottom: 5px;"></textarea>
                                                                         <button
                                                                             onclick="postReply(this, 'repliesContainer{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}', '{{ $reply->id }}')">Reply</button>
                                                                     </div>
@@ -739,7 +747,7 @@ outlined-heart
                                                     </div> <!-- Replies container for comment 1 -->
 
                                                     <div class="reply-input" id="replyInput{{ $comment->id }}">
-                                                        <textarea placeholder="Write a reply..."></textarea>
+                                                        <textarea oninput="auto_grow(this)" placeholder="Write a reply..." style="display:flex; min-height: 50px; margin-bottom: 5px;"></textarea>
                                                         <button
                                                             onclick="postReply(this, 'repliesContainer{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}')">Reply</button>
                                                     </div>
@@ -751,20 +759,27 @@ outlined-heart
                                     <div style="padding:12px;">
                                         <form action="/comment/store" method="POST"
                                             id="commentId{{ $post->id }}"
-                                            style="display:flex; border: solid var(--main-color); border-radius: 5px;">
+                                            style="display:flex; min-height: 60px; border: solid var(--second-color); border-radius: 5px;">
                                             @csrf
-                                            <textarea name="comment" id="comment{{ $post->id }}"
-                                                style="width:100%; height:50px; display:inline-block; resize: none; padding: 5px; border: none; border-radius: 5px;"
+                                            <textarea oninput="auto_grow(this)" name="comment" id="comment{{ $post->id }}"
+                                                style="width:100%; display:flex; resize: none; padding: 5px; border: none; outline: none;"
                                                 placeholder="Add comment..." required></textarea>
-                                            <input type="hidden" id="user_id{{ $post->id }}"
+                                                <script>
+                                                function auto_grow(element) {
+                                                    element.style.height = "5px"; // Set initial height
+                                                    element.style.height = (element.scrollHeight) + "px"; // Adjust height based on content
+                                                }
+                                                </script>
+                                            
+                                                <input type="hidden" id="user_id{{ $post->id }}"
                                                 value="{{ $name->id }}">
                                             <input type="hidden" id="postId{{ $post->id }}"
                                                 value="{{ $post->id }}">
                                             <button id="btn{{ $post->id }}"
                                                 onclick="postComment($('#comment{{ $post->id }}').val(), $('#user_id{{ $post->id }}').val(), $('#postId{{ $post->id }}').val())"
-                                                style="display: inline-block; width:50px; height:50px; font:bx-send; border: none; cursor: pointer;"
+                                                style="position: relative; margin: auto auto 0 auto; background: #fff; width:50px; height:50px; font:bx-send; border: none; cursor: pointer;"
                                                 value="Comment"><i class="bx bxs-send"
-                                                    style="color: var(--main-color); font-size: 30px;"></i></button>
+                                                    style="color: var(--second-color); font-size: 30px;"></i></button>
                                         </form>
                                     </div>
 
@@ -937,9 +952,6 @@ outlined-heart
                     </div>
 
                 @endif
-
-
-
 
 
 
