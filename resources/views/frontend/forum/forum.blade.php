@@ -681,7 +681,8 @@
                                             </div>
                                             @if ($reply->replyWithUser != null)
                                             <p class="content" style="font-size: 12px; font-style:italic">
-                                                {{ $name->id == $reply->user->id ? 'You' : $reply->replyWithUser->user->fname }}
+                                            
+                                                {{ $name->id == $reply->user->id ? 'You' : $reply->user->fname }}
                                                 replied to
                                                 {{ $reply->replyWithUser->user->fname . ' ' . $reply->replyWithUser->user->lname }}
                                             </p>
