@@ -110,7 +110,7 @@
                 </script>
             @endif
 
-            <form method='POST' id="changePassword">
+            <form method='POST' action="/change-password" id="changePassword">
             @csrf
 
                 <div class="mobile-logo">

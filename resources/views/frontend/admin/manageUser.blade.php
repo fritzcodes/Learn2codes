@@ -216,7 +216,7 @@
         <div id="createModal" class="modal">
 
             <!-- Modal content -->
-            <form action="/admin/createAccountPost" method="POST" class="create-admin">
+            <form action="/admin/createAccountPost" method="POST" class="create-admin" id="createAccount">
                 @csrf
                 <div class="head">
                     <h2>Admin</h2>
@@ -256,57 +256,210 @@
 
         <!------------------------------------ADMIN CHANGE PASSWORD------------------------->
         <div id="passModal" class="modal">
-
+            @if (Session::has('error'))
+            <div class="alert alert-danger" role="alert">
+                <p style="">{{ Session::get('error') }}</p>
+            </div>
+        @endif
+        @if (session('success'))
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: '{{ session('success') }}',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                });
+            </script>
+        @endif
             <!-- Modal content -->
-            <form class="create-admin">
+            <form method="POST" action="/admin/change-password" class="create-admin">
+                @csrf
                 <div class="head">
                     <h2>Admin</h2>
                     <a class="close" onclick="closepassModal()">&times;</a>
                 </div>
-
+            
                 <div class="logo">
                     <img src="/assets/images/Logo.jpg" alt="learn2Code">
                 </div>
-
+            
                 <div class="title">
                     <p>Change current password</p>
                 </div>
-
+            
                 <div id="infos">
                     <div class="typeinput">
-                        <input required placeholder="Current Password" type="password" id="currentPassword"
-                            name="password">
+                        <input required placeholder="Current Password" type="password" id="currentPassword" name="current_password">
                         <button class="showhide" type="button" onclick="togglePassword('currentPassword')">
                             <img id="imageeye" src="/assets/images/view.png" alt="not visible eye">
                         </button>
                     </div>
                     <div class="typeinput">
-                        <input required placeholder="Set New Password" type="password" id="newPassword"
-                            name="password" oninput="checkPasswords()">
+                        <input required placeholder="Set New Password" type="password" id="newPassword" name="new_password" oninput="checkPasswords()">
                         <button class="showhide" type="button" onclick="togglePassword('newPassword')">
                             <img id="imageeye" src="/assets/images/view.png" alt="not visible eye">
                         </button>
                     </div>
                     <div class="typeinput">
-                        <input required placeholder="Confirm Password" type="password" id="confirmPassword"
-                            name="password" oninput="checkPasswords()">
+                        <input required placeholder="Confirm Password" type="password" id="confirmPassword" name="confirm_password" oninput="checkPasswords()">
                         <button class="showhide" type="button" onclick="togglePassword('confirmPassword')">
                             <img id="imageeye" src="/assets/images/view.png" alt="not visible eye">
                         </button>
                     </div>
                     <div class="typeinput" id="passwordMatch" style="display:none;">
-                        <p>Passwords match!</p> <!-- Removed the margin-bottom -->
+                        <p>Passwords match!</p>
                     </div>
                     <div class="typeinput" id="passwordError">
-                        <p>Passwords do not match!</p> <!-- Removed the margin-bottom -->
+                        <p>Passwords do not match!</p>
                     </div>
                     <div class="logbutton">
                         <button type="submit" id="changePassBtn" class="btns">Confirm</button>
                     </div>
+                </div>
             </form>
+            
 
         </div>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script>
+       $('#changePassBtn').click(function() {
+            const currentPassword = $('#currentPassword').val();
+            const newPassword = $('#newPassword').val();
+            const confirmPassword = $('#confirmPassword').val();
+            var bool = false;
+
+            $.ajax({
+                url: '/admin/change-password',
+                method: 'POST',
+                data: {
+                    current_password: currentPassword,
+                    password: newPassword,
+                    confirm_password: confirmPassword,
+                    _token: '{{ csrf_token() }}',
+                },
+
+                dataType: 'json',
+                beforeSend: function() {
+                    Swal.fire({
+                        title: 'Please Wait...',
+                        didOpen: () => {
+                            Swal.showLoading()
+                        }
+                    })
+                },
+                success: function(data) {
+                    if (data == "success") {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Updated Successfully',
+
+                        }).then(res => {
+                            window.location.reload.href();
+                        })
+                    } else {
+                        toastr.options = {
+                            closeButton: true,
+                            progressBar: true,
+                            showMethod: 'slideDown',
+                            hideMethod: 'slideUp',
+                            timeOut: 5000
+                        };
+                        toastr.error('', 'Your current password did not match!')
+                        Swal.close();
+                    }
+                },
+                error: function(xhr) {
+                    Swal.close();
+                    const errors = JSON.parse(xhr.responseText);
+
+                    const errorMessages = Object.values(errors.errors).flat();
+
+                    errorMessages.map(item => {
+                        toastr.options = {
+                            closeButton: true,
+                            progressBar: true,
+                            showMethod: 'slideDown',
+                            hideMethod: 'slideUp',
+                            timeOut: 5000
+                        };
+                        toastr.error(item, 'Error')
+                    });
+
+                }
+            });
+        });
+
+
+
+
+    
+                function togglePassword(inputId) {
+                var passwordInput = document.getElementById(inputId);
+                var imageeye = passwordInput.parentNode.querySelector('img');
+    
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    imageeye.src = '/assets/images/hidden.png';
+                } else {
+                    passwordInput.type = 'password';
+                    imageeye.src = 'assets/images/view.png';
+                }
+            }
+    
+        function checkPasswords() {
+        var newPassword = document.getElementById('newPassword');
+        var confirmPassword = document.getElementById('confirmPassword');
+        var errorElement = document.getElementById('passwordError');
+        var matchElement = document.getElementById('passwordMatch');
+    
+        // Reset the visibility of messages
+        errorElement.style.display = 'none';
+        matchElement.style.display = 'none';
+    
+        // Check if both fields are empty
+        if (newPassword.value === '' || confirmPassword.value === '') {
+            return false; // Prevent form submission if fields are empty
+        }
+    
+        // Compare passwords
+        if (newPassword.value === confirmPassword.value) {
+            matchElement.style.display = 'flex'; // Show the match message
+            return true; // Allow form submission
+        } else {
+            errorElement.style.display = 'flex'; // Show the error message
+            return false; // Prevent form submission
+        }
+    }
+        </script>
+
+
+
+
+
+
+
+
+
+
+        <script>
+            @if(session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: '{{ session('success') }}',
+                });
+            @elseif(session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: '{{ session('error') }}',
+                });
+            @endif
+        </script>
 
         <script>
             $(document).ready(function() {
