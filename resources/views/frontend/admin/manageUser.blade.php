@@ -315,7 +315,7 @@
                         <p>Passwords do not match!</p>
                     </div>
                     <div class="logbutton">
-                        <button type="submit" id="changePassBtn" class="btns">Confirm</button>
+                        <button type="button" id="changePassBtn" class="btns">Confirm</button>
                     </div>
                 </div>
             </form>
@@ -325,7 +325,7 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script>
-       $('#changePassBtn').click(function() {
+        $('#changePassBtn').click(function() {
             const currentPassword = $('#currentPassword').val();
             const newPassword = $('#newPassword').val();
             const confirmPassword = $('#confirmPassword').val();
@@ -358,7 +358,7 @@
                             text: 'Updated Successfully',
 
                         }).then(res => {
-                            window.location.reload.href();
+                            window.location.reload();
                         })
                     } else {
                         toastr.options = {
@@ -392,6 +392,19 @@
                 }
             });
         });
+
+            function togglePassword(inputId) {
+            var passwordInput = document.getElementById(inputId);
+            var imageeye = passwordInput.parentNode.querySelector('img');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                imageeye.src = 'assets/images/hidden.png';
+            } else {
+                passwordInput.type = 'password';
+                imageeye.src = 'assets/images/view.png';
+            }
+        }
 
 
 

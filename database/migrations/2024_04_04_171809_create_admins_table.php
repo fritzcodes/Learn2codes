@@ -15,9 +15,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('admins', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id');
       
->>>>>>> 0c8e03324c42c119a3b603d990e4279d03bea218
+
             $table->string('email')->unique();
             $table->string('username')->unique();
             $table->string('profile_photo')->nullable();
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admin');
+        Schema::dropIfExists('admins');
     }
 };
