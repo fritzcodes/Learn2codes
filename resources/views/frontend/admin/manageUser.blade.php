@@ -392,23 +392,6 @@
                 }
             });
         });
-
-            function togglePassword(inputId) {
-            var passwordInput = document.getElementById(inputId);
-            var imageeye = passwordInput.parentNode.querySelector('img');
-
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                imageeye.src = 'assets/images/hidden.png';
-            } else {
-                passwordInput.type = 'password';
-                imageeye.src = 'assets/images/view.png';
-            }
-        }
-
-
-
-
     
                 function togglePassword(inputId) {
                 var passwordInput = document.getElementById(inputId);
@@ -419,7 +402,7 @@
                     imageeye.src = '/assets/images/hidden.png';
                 } else {
                     passwordInput.type = 'password';
-                    imageeye.src = 'assets/images/view.png';
+                    imageeye.src = '/assets/images/view.png';
                 }
             }
     
