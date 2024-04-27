@@ -63,10 +63,7 @@ transition: .2s;
     padding: 50px 30px;
     position: relative; 
     border-radius: 35.066px;
-    background: var(--main-color);  
-    background: radial-gradient(254.43% 143.73% at 6.62% 2.73%, rgba(255, 182, 72, 0.56) 0%, rgba(255, 182, 72, 0.56) 0%, rgba(255, 182, 72, 0.56) 0.01%, rgba(53, 0, 62, 0.08) 100%);
-    box-shadow: 15px 18px 2px rgba(0, 0, 0, 0.5), -15px 18px 2px rgba(0, 0, 0, 0.6); 
-    backdrop-filter: blur(3px);  
+    background: var(--text-color);  
     z-index: 1;   
   }
   
@@ -78,13 +75,13 @@ transition: .2s;
 
   .title h2 {
     padding: 10px 0;
-    color: var(--bg-color);
+    color: var(--high-color);
     font-size: var(--h2-font);
   }
   
   #question-1 {
   padding: 5px 0;
-  color: var(--text-color);
+  color: var(--main-color);
    font-family: var(--font2); /* Change 'YourChosenFont' to the desired font family */
    font-size: var(--p-font);
    text-align: left;
@@ -98,12 +95,14 @@ transition: .2s;
    justify-content: center;
    background-color: white; /* Set the background color for the code container */
    border: 1px solid var(--second-color);
-   border-radius: 15px; /* Adjust the border radius as needed */
+   border-radius: 5px; /* Adjust the border radius as needed */
    padding: 30px; /* Adjust the padding as needed */
   
   }
   
   .code-container code {
+    word-wrap: break-word;
+    word-break: normal;
    padding: 40px 0;
    font-family: var(--font2); /* Change the font for the code */
    font-size: var(--h2-font); /* Adjust the font size as needed */
@@ -113,6 +112,8 @@ transition: .2s;
   } 
 
   code input {
+    text-wrap:balance;
+    word-wrap: break-word;
     max-width: 200px;
     padding: 5px 3px;
     margin: 5px;
@@ -156,7 +157,7 @@ transition: .2s;
   }
   
   .btn button:hover {
-   background: var(--text-color);
+   background: var(--high-color);
   }
 
   #showScore .btn{
@@ -165,15 +166,15 @@ transition: .2s;
 
   #showScore .btn a{
     font-family: var(--font2);
+  }
+
+  #try a {
     color: var(--main-color);
   }
 
-  #try {
- background-color: green;
-  }
-  
   #quit {
- background-color: red;
+ color: var(--bg-color);
+ background-color: var(--main-color);
   }
 
 
@@ -184,10 +185,7 @@ transition: .2s;
    padding: 50px 30px;
    position: relative; 
    border-radius: 35.066px;
-   background: var(--main-color);  
-   background: radial-gradient(254.43% 143.73% at 6.62% 2.73%, rgba(255, 182, 72, 0.56) 0%, rgba(255, 182, 72, 0.56) 0%, rgba(255, 182, 72, 0.56) 0.01%, rgba(53, 0, 62, 0.08) 100%);
-   box-shadow: 15px 18px 2px rgba(0, 0, 0, 0.5), -15px 18px 2px rgba(0, 0, 0, 0.6); 
-   backdrop-filter: blur(3px);  
+   background: var(--text-color);  
    z-index: 1;   
   }
   
@@ -214,6 +212,8 @@ transition: .2s;
   
   
   .correct-container code {
+    word-wrap: break-word;
+    word-break: normal;
     display: flex;
     padding: 40px 0;
    font-family: var(--font1); /* Change the font for the code */
@@ -230,20 +230,15 @@ transition: .2s;
     padding: 50px 30px;
     position: relative; 
     border-radius: 35.066px;
-    background: var(--main-color);  
-    background: radial-gradient(254.43% 143.73% at 6.62% 2.73%, rgba(255, 182, 72, 0.56) 0%, rgba(255, 182, 72, 0.56) 0%, rgba(255, 182, 72, 0.56) 0.01%, rgba(53, 0, 62, 0.08) 100%);
-    box-shadow: 15px 18px 2px rgba(0, 0, 0, 0.5), -15px 18px 2px rgba(0, 0, 0, 0.6); 
-    backdrop-filter: blur(3px);  
+    background: #A02A2A;  
     z-index: 1;  
   }
-  
   
   #incorrect .title h2 {
     text-align: center;
     padding: 10px 0;
-    color: var(--bg-color);
+    color: var(--main-color);
     font-size: var(--h2-font); 
-    color: red; /* Adjust the color as needed */
   }
 
 
@@ -259,6 +254,8 @@ transition: .2s;
   
   
   .incorrect-ans code {
+    word-wrap: break-word;
+    word-break: normal;
     display: flex;
     padding: 40px 0;
     font-family: var(--font1); /* Change the font for the code */
@@ -270,23 +267,19 @@ transition: .2s;
   
   #showScore{
     display: none;
-    width: 80%;
+    width: 50%;
     padding: 50px 30px;
     position: relative; 
     border-radius: 35.066px;
-    background: var(--main-color);  
-    background: radial-gradient(254.43% 143.73% at 6.62% 2.73%, rgba(255, 182, 72, 0.56) 0%, rgba(255, 182, 72, 0.56) 0%, rgba(255, 182, 72, 0.56) 0.01%, rgba(53, 0, 62, 0.08) 100%);
-    box-shadow: 15px 18px 2px rgba(0, 0, 0, 0.5), -15px 18px 2px rgba(0, 0, 0, 0.6); 
-    backdrop-filter: blur(3px);  
+    background: var(--text-color);  
     z-index: 1;  
    }
    
    #showScore .title h2 {
     text-align: center;
     padding: 10px 0;
-    color: var(--bg-color);
+    color: var(--main-color);
     font-size: var(--h2-font);
-   color: lightgreen; /* Adjust the color as needed */
   
    /* Add any additional styles for the h2 element */
   }
@@ -300,11 +293,14 @@ transition: .2s;
   }
 
   .correct-containers p{
+    color: var(--second-color);
     font-family: var(--font1); /* Change the font for the code */  
   }
   
   
   .correct-containers code {
+    word-wrap: break-word;
+    word-break: normal;
     display: inline-flex;
     padding: 40px 5px;
    font-family: var(--font1); /* Change the font for the code */
@@ -315,13 +311,23 @@ transition: .2s;
   }
 
 
+  /*animated objects */
+  #confetti {
+    position: fixed; /* Use 'fixed' to cover the entire view at all times */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Ensures that click, scroll, and other events pass through the canvas */
+            z-index: 999; /* Ensure it stays on top */
+        }
+
 
 
     @media (max-width: 1300px) {
         :root {
             --h2-head: 2rem;
             --p-head: 1.5rem;
-            transition: .2s;
           }
 
     }
@@ -345,7 +351,6 @@ transition: .2s;
         :root {
             --h2-head: 1.5rem;
             --p-head: 1rem;
-            transition: .2s;
           }
 
         body {
@@ -359,13 +364,13 @@ transition: .2s;
         }
 
         .quiz-container, #congratulations,
-        #incorrect, #showScore {
+        #incorrect {
           position: fixed;
            border-radius: 0;
            width: 100%;
            height: 100vh;
            align-content: center;
-           overflow-y: scroll;
+           overflow-y: auto;
            
        }
 
@@ -389,10 +394,6 @@ transition: .2s;
        .btn button {
    font-size: var(--p-font);
   }
-     
-  img {
-    display: none;
-  }
 
         }  
 
@@ -400,34 +401,30 @@ transition: .2s;
 
     @media (max-width: 540px) {
         :root{ /*---font and color defaults --*/
-            --h2-font: 2.2rem;
-            --p-font: 1.1rem;
+            --h2-font: 1.5rem;
+            --p-font: 1rem;
         }
 
         .quiz-container, #congratulations,
-        #incorrect, #showScore {
+        #incorrect{
           padding: 0 10px;
            
        }
 
+       img {
+            display: none;
+        }
 
     }
 
 
     @media (max-width: 376px) {
-        :root{ /*---font and color defaults --*/
-            --h2-font: 2rem;
-            --p-font: 1rem;
-        }
+
 
     }
 
 
     @media (max-width: 280px) {
-        :root{ /*---font and color defaults --*/
-            --h2-font: 1.5rem;
-            --p-font: .9rem;
-        }
 
 
     }
@@ -435,7 +432,7 @@ transition: .2s;
 
     @media (min-height: 1024px) {
         :root {
-            --h2-font: 2.5rem;
+            --h2-font: 2rem;
             --p-font: 1.5rem;
         }
 
@@ -446,13 +443,13 @@ transition: .2s;
         }
 
         .quiz-container, #congratulations,
-        #incorrect, #showScore {
+        #incorrect{
           position: fixed;
            border-radius: 0;
            width: 100%;
            height: 100vh;
            align-content: center;
-           overflow-y: scroll;
+           overflow-y: auto;
            
        }
 
@@ -461,7 +458,7 @@ transition: .2s;
        }
 
        code input {
-        max-width: 100px;
+        max-width: 200px;
         padding: 2px 2px;
         margin: 5px;
         font-size: var(--h2-font);
@@ -482,9 +479,10 @@ transition: .2s;
 
     @media (min-height: 1300px) {
         :root {
-            --h2-font: 3rem;
-            --p-font: 2rem;
+            --h2-font: 2rem;
+            --p-font: 1.5rem;
         }
+
 
 
     }
@@ -563,10 +561,8 @@ transition: .2s;
 
     </div>
 
-
     <div id="congratulations">
-        <img src="/assets/images/confe2.svg" alt="Left Image" style="position: absolute; left: 120px; top: 15%; transform: translateY(-50%); width: 120px;">
-        <img src="/assets/images/confet.svg" alt="Right Image" style="position: absolute; right: 120px; top: 15%; transform: translateY(-50%); width: 120px;">
+        <canvas id="confetti"></canvas>
         <div class="title">
             <h2>CORRECT!</h2>            
         </div>
@@ -586,8 +582,6 @@ transition: .2s;
 
 
     <div id="incorrect">
-        <img src="/assets/images/robo1.svg" alt="Right Image" style="position: absolute; right: 120px; top: 15%; transform: translateY(-50%); width: 100px;">
-        <img src="/assets/images/robo2.svg" alt="Left Image" style="position: absolute; left: 120px; top: 15%; transform: translateY(-50%); width: 100px;">
         <div class="title">
             <h2>INCORRECT!</h2>            
         </div>
@@ -606,8 +600,6 @@ transition: .2s;
 
 
     <div id="showScore" style="display: none">
-        <img src="/assets/images/confe2.svg" alt="Left Image" style="position: absolute; left: 125px; top: 20%; transform: translateY(-50%); width: 120px;">
-        <img src="/assets/images/confet.svg" alt="Right Image" style="position: absolute; right: 125px; top: 20%; transform: translateY(-50%); width: 120px;">
         <div class="title">
             <h2>You Got</h2>            
         </div>
@@ -616,8 +608,8 @@ transition: .2s;
         </div>
 
         <div class="btn">
-            <button class="next-btn submitBtns" id="try"><a href="">Try again</a></button>
             <button class="next-btn submitBtns" id="quit"><a href="/exercise/selectLanguage">Quit</a></button>
+            <button class="next-btn submitBtns" id="try"><a href="">Try again</a></button>
         </div>
 
     </div>
@@ -766,6 +758,7 @@ transition: .2s;
     @endif
 
     <script type="text/javascript" src="/assets/js/headermenu.js"></script>
+    <script src="/assets/js/confetti.js"></script>
 
 
 </body>

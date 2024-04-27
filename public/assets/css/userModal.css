@@ -272,12 +272,12 @@
     cursor: pointer;    
 }
 
-.logo {
+.modal .logo {
     display: flex;
     justify-content: center;
 }
 
-.logo img {
+.modal .logo img {
     border-radius: 100%;
     width: 100px; /* Adjust as needed */
     height: 100px; /* Adjust as needed */
@@ -424,11 +424,6 @@
         --p-head: 1rem;
         transition: .2s;
       }
-
-      .logo {
-        display: flex;
-        justify-content: center;
-    }
 
 }
 
