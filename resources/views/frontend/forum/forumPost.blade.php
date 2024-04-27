@@ -16,9 +16,13 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/assets/js/forum.js" defer></script>
     <script src="/assets/js/insertimg.js" defer></script>
     <style>
+        a{
+            cursor: pointer;
+        }
         .outlined-heart {
             color: black;
             /* Set the color of the heart */
@@ -84,7 +88,7 @@
                         </a>
                     </div>
                 </li>
-               
+
                 <!--
       <li class="filter">
         <a class="bx bxs-filter-alt" id="filter">
@@ -107,11 +111,17 @@
             </script>
             <a href="/profile" class="profile-link">
                 @if (Auth::check() && Auth::user()->profile_photo)
-                    <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
-                        alt="Profile Photo" class="avatar">
+                    <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : '/assets/images/avatar.png' }}"
+                        alt="Profile Photo" class="avatar"
+                        style="width: 35px;
+                        height: 35px;
+                        border-radius: 50%;">
                 @else
                     <!-- Placeholder image or default avatar -->
-                    <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
+                    <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar"
+                        style="width: 35px;
+                    height: 35px;
+                    border-radius: 50%;">
                 @endif
             </a>
         </div>
@@ -128,7 +138,8 @@
                     </a>
 
                     <div id="notifsetModal">
-                        <a href="#"><i class='bx bx-check'></i>
+                        <a onclick="markAllAsRead()">
+                            <i class='bx bx-check'></i>
                             <p>Mark all as read</p>
                         </a>
                         </a>
@@ -145,8 +156,9 @@
                     @foreach ($notif as $notification)
                         <div class="notif-container" onclick="markNotificationAsRead('{{ $notification->id }}')">
                             <a href="#"
-                                 class="notification-item @if (!$notification->is_read) unread-notif @endif"
-                                data-notification-id="{{ $notification->id }}" data-post-id="{{ $notification->post_id }}">
+                                class="notification-item @if (!$notification->is_read) unread-notif @endif"
+                                data-notification-id="{{ $notification->id }}"
+                                data-post-id="{{ $notification->post_id }}">
                                 <span class="unread"></span>
                                 <img src="/images/{{ $notification->user->profile_photo }}" alt="Notification Icon"
                                     class="icon"> <!-- Display user's avatar -->
@@ -179,7 +191,7 @@
 
 
 
-               
+
 
                 <!-- WHEN NO NOTIF DISPLAYED THIS WILL SHOW UP-->
                 <div class="empty-state">
@@ -227,7 +239,7 @@
                                 <div>
                                     <a href="#" class="profile-pic">
                                         @if (Auth::check() && Auth::user()->profile_photo)
-                                            <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
+                                            <img src="{{ Auth::user()->profile_photo ? asset('/images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
                                                 alt="Profile Picture" class="profile-pic">
                                         @else
                                             <!-- Placeholder image or default avatar -->
@@ -308,11 +320,11 @@
 
                 @if (count($posts) > 0)
                     @foreach ($posts as $index => $post)
-                        <div class="post" id="postNotif{{$post->id}}">
+                        <div class="post" id="postNotif{{ $post->id }}">
                             <div class="post-header">
                                 <div>
                                     <a href="#" class="profile-pic"><img
-                                            src="{{ $post->user->profile_photo ? 'images/' . $post->user->profile_photo : 'assets/images/avatar.png' }}"
+                                            src="{{ $post->user->profile_photo ? '/images/' . $post->user->profile_photo : 'assets/images/avatar.png' }}"
                                             alt="Profile Picture" id="profile-pic"></a>
                                 </div>
 
@@ -392,9 +404,11 @@
                                 @endif
 
                                 @if (count($post->images) > 0)
+
                                     <div class="image-gallery">
                                         @foreach ($post->images as $image)
-                                            <img class="post-pic" src="forums/{{ $image->image }}" alt="Image 1">
+
+                                            <img class="post-pic" src="/forums/{{ $image->image }}" alt="Image 1">
                                         @endforeach
                                     </div>
                                 @endif
@@ -506,9 +520,9 @@ outlined-heart
                                     <div class="comments" id="post{{ $post->id }}">
                                         @if (count($post->comments) > 0)
                                             @foreach ($post->comments as $comment)
-                                                <div class="comment" id="commentNotif{{$comment->id}}">
+                                                <div class="comment" id="commentNotif{{ $comment->id }}">
                                                     <div class="user-info">
-                                                        <img src="{{ $comment->user->profile_photo ? 'images/' . $comment->user->profile_photo : 'assets/images/avatar.png' }}"
+                                                        <img src="{{ $comment->user->profile_photo ? '/images/' . $comment->user->profile_photo : 'assets/images/avatar.png' }}"
                                                             alt="Profile Picture">
                                                         <div class="user">
                                                             {{ $comment->user->fname . ' ' . $comment->user->lname }}
@@ -551,9 +565,10 @@ outlined-heart
                                                     <div class="replies" id="repliesContainer{{ $comment->id }}">
                                                         @if (count($comment->replies) > 0)
                                                             @foreach ($comment->replies as $reply)
-                                                                <div class="reply-container reply nested-reply" id="replyNotif{{$reply->id}}">
+                                                                <div class="reply-container reply nested-reply"
+                                                                    id="replyNotif{{ $reply->id }}">
                                                                     <div class="user-info">
-                                                                        <img src="{{ $reply->user->profile_photo ? 'images/' . $reply->user->profile_photo : 'assets/images/avatar.png' }}"
+                                                                        <img src="{{ $reply->user->profile_photo ? '/images/' . $reply->user->profile_photo : '/assets/images/avatar.png' }}"
                                                                             alt="User Avatar"
                                                                             style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
                                                                         <div class="user">
@@ -791,7 +806,10 @@ outlined-heart
                         </div>
                     @endforeach
                 @else
-                    No posts yet
+                <div class="no-post">
+                    <img src="/assets/images/no-post.png" alt="astronaut">
+                    <h2>No post yet</h2>
+                </div>
                 @endif
 
 
@@ -879,55 +897,88 @@ outlined-heart
         $('#hashtag').click(function() {
             $('#textContent').val($('#textContent').val() + '#');
         })
+
         function fetchNotifications() {
             $.ajax({
                 url: '/notifications',
                 method: 'GET',
                 dataType: 'json',
                 success: function(data) {
-                    console.log(data);
                     let notif = "";
+                    let unreadCount = 0; // Initialize unread notification count
 
                     data.forEach((notifs, i) => {
                         notif += `
-              <div class="notif-container" onclick="markNotificationAsRead('${notifs.id}')">
-                  <a href="#" class="notification-item ${notifs.is_read == 0 ? 'unread-notif' : ''}">
-                      <span class="unread"></span>
-                      <i class="icon bx bx-post"></i>
-                      <div class="content">
-                          <h2 class="notification-item-user-block">
-                           Post # ${notifs.post_id} is reported
-                          </h2>
-                          <span class="timestamp">${moment(notifs.created_at).fromNow()}</span>
-                      </div>
-                      <button onclick="showModal('settings${notifs.id}')" type="button" class="notif-action">
-                          <i class="bx bx-dots-horizontal-rounded"></i>
-                      </button>
-                  </a>
-                
-                  <div class="notif-action-modal" id="settings${notifs.id}">
-                      <!-- Your action buttons here -->
-                      <a href="#"><i class='bx bx-check'>
-                              <p>Mark as read</p>
-                          </i></a>
-                      <a href="#"><i class='bx bxs-bell'>
-                              <p>Remove</p>
-                          </i></a>
-                  </div>
-              </div>
-              `;
+                    <div class="notif-container" onclick="markNotificationAsRead('${notifs.id}')">
+                        <a href="#" class="notification-item ${notifs.is_read == 0 ? 'unread-notif' : ''}">
+                            <span class="unread"></span>
+                            <i class="icon bx bx-post"></i>
+                            <div class="content">
+                                <h2 class="notification-item-user-block">
+                                    ${notifs.content}
+                                </h2>
+                                <span class="timestamp">${moment(notifs.created_at).fromNow()}</span>
+                            </div>
+                            <button onclick="showModal('settings${notifs.id}')" type="button" class="notif-action">
+                                <i class="bx bx-dots-horizontal-rounded"></i>
+                            </button>
+                        </a>
+                    
+                        <div class="notif-action-modal" id="settings${notifs.id}">
+                            <!-- Your action buttons here -->
+                            <a href="#"><i class='bx bx-check'>
+                                    <p>Mark as read</p>
+                                </i></a>
+                            <a href="#"><i class='bx bxs-bell'>
+                                    <p>Remove</p>
+                                </i></a>
+                        </div>
+                    </div>
+                `;
+
+                        // Increment unreadCount if the notification is unread
+                        if (notifs.is_read == 0) {
+                            unreadCount++;
+                        }
                     });
 
                     $('#notifContainer').html(notif);
+
+                    // Update the indicator content to the number of unread notifications
+                    $('.indicator').text(unreadCount);
                 },
                 error: function(xhr) {
                     console.log(xhr.responseText)
                 }
             });
         }
-        setInterval(function() {
+
+        $(document).ready(function() {
             fetchNotifications();
-        }, 3000);
+
+            // Set up an interval to call fetchNotifications every 3 seconds
+            setInterval(function() {
+                fetchNotifications();
+            }, 3000);
+        });
+
+
+        function markAllAsRead() {
+            $.ajax({
+                url: '/notifications-updateAll',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {}
+            })
+        }
+        $(document).ready(function() {
+            fetchNotifications();
+
+            // Set up an interval to call fetchNotifications every 3 seconds
+            setInterval(function() {
+                fetchNotifications();
+            }, 3000);
+        });
     </script>
 </body>
 

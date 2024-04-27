@@ -568,26 +568,46 @@ function report(post_id, user_id) {
 
 
 function deletePostId(post_id) {
-  if (confirm('Are you sure you want to delete this post?')) {
-    $.ajax({
-      url: `/delete-post/${post_id}`,
-      method: 'delete',
-      dataType: 'json',
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      success: function (data) {
-        if (data == "success") {
-          alert("deleted successfully");
-          location.reload();
-        }
-      },
-      error: function (xhr) {
-        alert(xhr.responseText);
+  Swal.fire({
+      title: 'Are you sure?',
+      text: 'You are about to delete this post!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+      if (result.isConfirmed) {
+          $.ajax({
+              url: `/delete-post/${post_id}`,
+              method: 'DELETE', // Use 'DELETE' method instead of 'delete'
+              dataType: 'json',
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              success: function (data) {
+                  if (data == "success") {
+                      Swal.fire({
+                          title: 'Deleted!',
+                          text: 'The post has been deleted.',
+                          icon: 'success'
+                      }).then(() => {
+                          location.reload(); // Reload the page after successful deletion
+                      });
+                  }
+              },
+              error: function (xhr) {
+                  Swal.fire({
+                      title: 'Error!',
+                      text: xhr.responseText,
+                      icon: 'error'
+                  });
+              }
+          });
       }
-    })
-  }
+  });
 }
+
 /* Notif-Section */
 function showModal(id) {
   document.getElementById(id).style.display = 'block';

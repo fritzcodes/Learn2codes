@@ -59,7 +59,7 @@
         </li>
         <li>
           <div class="logo">
-              <a href="/forum">
+              <a href="/admin/forum">
                   <img src="http://learning2code.online/assets/images/Logo.jpg" alt="logo">
               </a>
           </div>
@@ -116,7 +116,6 @@
                         <i class='bx bx-check'></i>
                         <p>Mark all as read</p>
                     </a>
-                      
                       <a href="#"><i class='bx bxs-trash'></i>
                           <p>Clear all notifications</p>
                       </a>
@@ -239,7 +238,7 @@
 
               $hashtags = $matches[1];
               foreach ($hashtags as $hashtag) {
-              $content = str_replace("#$hashtag", "<a href='/popular/$hashtag' class='hashtags'>#$hashtag</a>", $content);
+              $content = str_replace("#$hashtag", "<a href='/admin/popular/$hashtag' class='hashtags'>#$hashtag</a>", $content);
               }
 
 
@@ -286,7 +285,7 @@
             <p></p>
           </div>  -->
             <p id="likesCount{{$post->id}}" class="footer-btn">{{ $post->likes_count == 0 ? '' :  $post->likes_count}}</p>
-            <a class="footer-btn" onclick="likePost('like{{$post->id}}', '{{$name->id}}', '{{$post->id}}')" style="text-align:left">
+            <a class="footer-btn" style="text-align:left">
 
               <i class="fa fa-heart 
                 @if (count($post->likes) > 0)
@@ -309,7 +308,7 @@
             <a class="footer-btn" onclick="showComment('main-comment-sec{{$post->id}}')"><i class="bx bxs-message-rounded"></i>
               <p>Comment</p>
             </a>
-            <a href="#" class="footer-btn" id="share-btn"><i class='bx bxs-share'></i>
+            <a class="footer-btn" id="share-btn"><i class='bx bxs-share'></i>
               <p>Share</p>
             </a>
 
@@ -372,8 +371,8 @@
                       @endforeach
                       {{ $tBold ? '' : 'tBold' }}
                     @endif
-                    " id="likeComment{{$comment->id}}">Like</button>
-                    <button onclick="toggleReply('replyInput{{$comment->id}}')">Reply</button>
+                    " id="likeComment{{$comment->id}}"></button>
+                    <button onclick="toggleReply('replyInput{{$comment->id}}')"></button>
                     <button href="#">{{ \Illuminate\Support\Carbon::parse($comment->created_at)->diffForHumans() }}</button>
                   </div>
 
@@ -399,12 +398,12 @@
 
                       <div class="content">{{ $reply->reply }}</div>
                       <div class="actions">
-                        <button onclick="toggleReply('replyInputNested-{{$reply->id}}')">Reply</button>
+                        <button onclick="toggleReply('replyInputNested-{{$reply->id}}')"></button>
                         <button href="#">{{ \Illuminate\Support\Carbon::parse($reply->created_at)->diffForHumans() }}</button>
                       </div>
                       <div class="reply-input" id="replyInputNested-{{$reply->id}}" style="display:none;">
                         <textarea placeholder="Write a reply..."></textarea>
-                        <button onclick="postReply(this, 'repliesContainer{{$comment->id}}', '{{$name->id}}', '{{$comment->id}}', '{{$reply->id}}')">Reply</button>
+                        <button onclick="postReply(this, 'repliesContainer{{$comment->id}}', '{{$name->id}}', '{{$comment->id}}', '{{$reply->id}}')"></button>
                       </div>
                       <div class="replies" id="nestedRepliesContainer-{{$comment->id}}"></div> <!-- Nested replies container -->
                     </div>
@@ -414,22 +413,14 @@
 
                   <div class="reply-input" id="replyInput{{$comment->id}}">
                     <textarea placeholder="Write a reply..."></textarea>
-                    <button onclick="postReply(this, 'repliesContainer{{$comment->id}}', '{{$name->id}}', '{{$comment->id}}')">Reply</button>
+                    <button onclick="postReply(this, 'repliesContainer{{$comment->id}}', '{{$name->id}}', '{{$comment->id}}')"></button>
                   </div>
                 </div>
                 @endforeach
                 @endif
               </div>
 
-              <div class="" style="padding:12px">
-                <form action="/comment/store" method="POST" id="commentId{{$post->id}}" style="display:flex; border: solid var(--main-color); border-radius: 5px;">
-                  @csrf
-                  <textarea name="comment" id="comment{{$post->id}}" style="width:100%; height:50px; display:inline-block; resize: none; padding: 5px; border: none; border-radius: 5px;" placeholder="Add comment..." required></textarea>
-                  <input type="hidden" id="user_id{{ $post->id }}" value="{{ $name->id }}">
-                  <input type="hidden" id="postId{{ $post->id }}" value="{{ $post->id }}">
-                  <button id="btn{{ $post->id }}" onclick="postComment($('#comment{{$post->id}}').val(), $('#user_id{{$post->id}}').val(), $('#postId{{$post->id}}').val())" style="display: inline-block; width:50px; height:50px; font:bx-send; border: none; cursor: pointer;" value="Comment"><i class="bx bxs-send" style="color: var(--main-color); font-size: 30px;"></i></button>
-                </form>
-              </div>
+ 
 
             </div>
           </div>
@@ -437,9 +428,9 @@
         @endforeach
         @else
         <div class="no-post">
-          <img src="/assets/images/no-post.png" alt="astronaut">
-          <h2>No post yet</h2>
-      </div>
+            <img src="/assets/images/no-post.png" alt="astronaut">
+            <h2>No post yet</h2>
+        </div>
         @endif
 
 
@@ -478,7 +469,7 @@
             
               <ul class="dropdown-content">
                 @foreach ($popularHashtags as $hashtag => $count)
-                  <li><a href="/popular/{{$hashtag}}">#{{ $hashtag }}</a></li>
+                  <li><a href="/admin/popular/{{$hashtag}}">#{{ $hashtag }}</a></li>
                 @endforeach
               </ul>
             </li>
@@ -503,9 +494,9 @@
       $('#textContent').val($('#textContent').val() + '#');
     })
 
-    function fetchNotifications() {
+    function fetchNotificationsAdmin() {
     $.ajax({
-        url: '/notifications',
+        url: '/notificationsAdmin',
         method: 'GET',
         dataType: 'json',
         success: function(data) {
@@ -514,13 +505,13 @@
 
             data.forEach((notifs, i) => {
                 notif += `
-                    <div class="notif-container" onclick="markNotificationAsRead('${notifs.id}')">
+                    <div class="notif-container" onclick="markNotificationAsReadAdmin('${notifs.id}')">
                         <a href="#" class="notification-item ${notifs.is_read == 0 ? 'unread-notif' : ''}">
                             <span class="unread"></span>
                             <i class="icon bx bx-post"></i>
                             <div class="content">
                                 <h2 class="notification-item-user-block">
-                                    ${notifs.content}
+                                    Post # ${notifs.post_id} is reported
                                 </h2>
                                 <span class="timestamp">${moment(notifs.created_at).fromNow()}</span>
                             </div>
@@ -559,11 +550,11 @@
 }
 
 $(document).ready(function() {
-    fetchNotifications();
+    fetchNotificationsAdmin();
 
-    // Set up an interval to call fetchNotifications every 3 seconds
+    // Set up an interval to call fetchNotificationsAdmin every 3 seconds
     setInterval(function() {
-        fetchNotifications();
+        fetchNotificationsAdmin();
     }, 3000);
 });
 
@@ -576,16 +567,17 @@ $(document).ready(function() {
                 success: function(data) {
                 }
             })
-        }
+        } 
         $(document).ready(function() {
-            fetchNotifications();
+            fetchNotificationsAdmin();
 
             // Set up an interval to call fetchNotifications every 3 seconds
             setInterval(function() {
-                fetchNotifications();
+                fetchNotificationsAdmin();
             }, 3000);
         });
-  </script>
+    </script>
+ 
 </body>
 
 </html>

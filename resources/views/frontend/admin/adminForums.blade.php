@@ -16,9 +16,14 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script src="/assets/js/forum.js" defer></script>
     <script src="/assets/js/insertimg.js" defer></script>
     <style>
+        a{
+            cursor: pointer;
+        }
         .unread {
             margin: 5px;
             content: '';
@@ -207,46 +212,26 @@
                 </li>
                 <li>
                     <div class="logo">
-                        <a href="/forum">
-                            <img src="assets/images/Logo.jpg" alt="logo">
+                        <a href="/admin/forum">
+                            <img src="/assets/images/Logo.jpg" alt="logo">
                         </a>
                     </div>
                 </li>
-                <li>
-                    <input type="search" id="search" placeholder="Search">
-                    <div>
-                        <!--
-        <a href="" id="filter" class="notif-setting">
-            <i class="bx bx-dots-horizontal-rounded"></i>
-          </a>
-          -->
-
-
-                    </div>
-                </li>
-                <!--
-      <li class="filter">
-        <a class="bx bxs-filter-alt" id="filter">
-        </a>
-   
-
-        
-      </li>
-         -->
+                
             </ul>
 
         </div>
         <div class="right-btn">
 
             <a href="#" class="bx bxs-bell" id="notif"><span class="indicator">{{ $notifCount }}</span></a>
-            <script>
+            {{-- <script>
                 $(document).ready(function() {
                     $('.indicator').css('content', '5');
                 })
-            </script>
+            </script> --}}
             <a href="/profile" class="profile-link">
-                @if (Auth::check() && Auth::user()->profile_photo)
-                <img src="{{ Auth::user()->profile_photo ? asset('/images/' . Auth::user()->profile_photo) : '/assets/images/avatar.png' }}" alt="Profile Photo" class="avatar">
+                @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
+                <img src="{{ Auth::guard('admin')->user()->profile_photo ? asset('/images/' . Auth::guard('admin')->user()->profile_photo) : '/assets/images/avatar.png' }}" alt="Profile Photo" class="avatar">
                 @else
                 <!-- Placeholder image or default avatar -->
                 <img src="/assets/images/avatar.png" alt="Default Avatar" class="avatar">
@@ -266,7 +251,8 @@
                     </a>
 
                     <div id="notifsetModal">
-                        <a href="#"><i class='bx bx-check'></i>
+                        <a onclick="markAllAsRead()">
+                            <i class='bx bx-check'></i>
                             <p>Mark all as read</p>
                         </a>
                         </a>
@@ -432,7 +418,7 @@
                 <div class="post" id="postNotif{{ $post->id }}">
                     <div class="post-header">
                         <div>
-                            <a href="#" class="profile-pic"><img src="{{ $post->user->profile_photo ? 'images/' . $post->user->profile_photo : 'assets/images/avatar.png' }}" alt="Profile Picture" id="profile-pic"></a>
+                            <a href="#" class="profile-pic"><img src="{{ $post->user->profile_photo ? '/images/' . $post->user->profile_photo : '/assets/images/avatar.png' }}" alt="Profile Picture" id="profile-pic"></a>
                         </div>
 
                         <div class="post-info">
@@ -468,7 +454,7 @@
                             foreach ($hashtags as $hashtag) {
                             $content = str_replace(
                             "#$hashtag",
-                            "<a href='/popular/$hashtag' class='hashtags'>#$hashtag</a>",
+                            "<a href='/admin/popular/$hashtag' class='hashtags'>#$hashtag</a>",
                             $content,
                             );
                             }
@@ -516,7 +502,7 @@
                         <p id="likesCount{{ $post->id }}" class="footer-btn">
                             {{ $post->likes_count == 0 ? '' : $post->likes_count }}
                         </p>
-                        <a class="footer-btn" onclick="likePost('like{{ $post->id }}', '{{ $name->id }}', '{{ $post->id }}')" style="text-align:left">
+                        <a class="footer-btn"  style="text-align:left">
 
                             <i class="fa fa-heart 
                 @if (count($post->likes) > 0) @php $outlinedHeart = true; @endphp
@@ -602,7 +588,7 @@ outlined-heart
                                 @foreach ($post->comments as $comment)
                                 <div class="comment" id="commentNotif{{ $comment->id }}">
                                     <div class="user-info">
-                                        <img src="{{ $comment->user->profile_photo ? 'images/' . $comment->user->profile_photo : 'assets/images/avatar.png' }}" alt="Profile Picture">
+                                        <img src="{{ $comment->user->profile_photo ? '/images/' . $comment->user->profile_photo : '/assets/images/avatar.png' }}" alt="Profile Picture">
                                         <div class="user">
                                             {{ $comment->user->fname . ' ' . $comment->user->lname }}
                                         </div>
@@ -630,8 +616,8 @@ outlined-heart
                       @endforeach
                       {{ $tBold ? '' : 'tBold' }}
                     @endif
-                    " id="likeComment{{ $comment->id }}">Like</button>
-                                        <button onclick="toggleReply('replyInput{{ $comment->id }}')">Reply</button>
+                    " id="likeComment{{ $comment->id }}"></button>
+                                        <button onclick="toggleReply('replyInput{{ $comment->id }}')"></button>
                                         <button href="#">{{ \Illuminate\Support\Carbon::parse($comment->created_at)->diffForHumans() }}</button>
                                     </div>
 
@@ -641,7 +627,7 @@ outlined-heart
                                         @foreach ($comment->replies as $reply)
                                         <div class="reply-container reply nested-reply" id="replyNotif{{ $reply->id }}">
                                             <div class="user-info">
-                                                <img src="{{ $reply->user->profile_photo ? 'images/' . $reply->user->profile_photo : 'assets/images/avatar.png' }}" alt="User Avatar" style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
+                                                <img src="{{ $reply->user->profile_photo ? '/images/' . $reply->user->profile_photo : '/assets/images/avatar.png' }}" alt="User Avatar" style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
                                                 <div class="user">
                                                     {{ $reply->user->fname . ' ' . $reply->user->lname }}
                                                 </div>
@@ -664,12 +650,12 @@ outlined-heart
 
                                             <div class="content">{{ $reply->reply }}</div>
                                             <div class="actions">
-                                                <button onclick="toggleReply('replyInputNested-{{ $reply->id }}')">Reply</button>
+                                                <button onclick="toggleReply('replyInputNested-{{ $reply->id }}')"></button>
                                                 <button href="#">{{ \Illuminate\Support\Carbon::parse($reply->created_at)->diffForHumans() }}</button>
                                             </div>
                                             <div class="reply-input" id="replyInputNested-{{ $reply->id }}" style="display:none;">
                                                 <textarea placeholder="Write a reply..."></textarea>
-                                                <button onclick="postReply(this, 'repliesContainer{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}', '{{ $reply->id }}')">Reply</button>
+                                                <button onclick="postReply(this, 'repliesContainer{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}', '{{ $reply->id }}')"></button>
                                             </div>
                                             <div class="replies" id="nestedRepliesContainer-{{ $comment->id }}">
                                             </div> <!-- Nested replies container -->
@@ -680,14 +666,14 @@ outlined-heart
 
                                     <div class="reply-input" id="replyInput{{ $comment->id }}">
                                         <textarea placeholder="Write a reply..."></textarea>
-                                        <button onclick="postReply(this, 'repliesContainer{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}')">Reply</button>
+                                        <button onclick="postReply(this, 'repliesContainer{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}')"></button>
                                     </div>
                                 </div>
                                 @endforeach
                                 @endif
                             </div>
 
-                            <div style="padding:12px;">
+                            {{-- <div style="padding:12px;">
                                 <form action="/comment/store" method="POST" id="commentId{{ $post->id }}" style="display:flex; border: solid var(--main-color); border-radius: 5px;">
                                     @csrf
                                     <textarea name="comment" id="comment{{ $post->id }}" style="width:100%; height:50px; display:inline-block; resize: none; padding: 5px; border: none; border-radius: 5px;" placeholder="Add comment..." required></textarea>
@@ -695,163 +681,10 @@ outlined-heart
                                     <input type="hidden" id="postId{{ $post->id }}" value="{{ $post->id }}">
                                     <button id="btn{{ $post->id }}" onclick="postComment($('#comment{{ $post->id }}').val(), $('#user_id{{ $post->id }}').val(), $('#postId{{ $post->id }}').val())" style="display: inline-block; width:50px; height:50px; font:bx-send; border: none; cursor: pointer;" value="Comment"><i class="bx bxs-send" style="color: var(--main-color); font-size: 30px;"></i></button>
                                 </form>
-                            </div>
+                            </div> --}}
 
 
-                            <!--
-            <div class="comment-body">
-              
-                <div class="user-comment">
-                  <div>
-                    <a href="#" class="profile-pic"><img src="/admin/avatar.jpg" alt="Profile Picture"></a>
-                  </div>
-                  <div class="comment-container">
-                      <div class="fullname">
-                        <h2><a href="#">David Matthew Borromeo</a><span id="author">Author</span></h2>
-                      </div>
-                        
-                        <div class="comment">
-                          <p >
-                                                      So, there I was, deep into the night, staring at my screen with bloodshot eyes.
-                          I had this piece of code in front of me that, by all accounts, should've been working flawlessly.
-                          But, as luck would have it, the universe seemed to have other plans. The bug was as elusive as a shadow in the dark.
-                          You see, everything was peachy until you tried to upload an image alongside some text through our fancy new form. The text?
-                          It went through just fine. But the image? It vanished into thin air, like it was being swallowed by some digital black hole.
-                          </p>
-                          <div class="comment-pic">
-                            <img src="/newForum/images/Technology.png" alt="Image 1">
-                          </div>
-                        </div>
-                  </div>
-                    
-                  <div class="comment-setting">
-                        <a href="#" ><i class="bx bx-dots-horizontal-rounded"></i></a>
-                  </div>
-      
-                </div>
-
-                <div class="comment-footer">
-                  <div class="time">
-                    <a href="#">2h</a>
-                  </div>
-                  <div class="reply">
-                    <a href="#">reply</a>
-                  </div>
-                  <div class="reply">
-                    <a href="#">edited</a>
-                  </div>
-                </div>
-
-
-                <div class="reply-comment-body">
-                <div class="reply-comment">
-                  <div>
-                    <a href="#" class="profile-pic"><img src="/admin/avatar.jpg" alt="Profile Picture"></a>
-                  </div>
-                  <div class="reply-container">
-                      <div class="fullname">
-                        <h2><a href="#">Jehu Famor</a></h2>
-                      </div>
-                        
-                        <div class="comment">
-                          <p >
-                            Nice!😄
-                          </p>
-                        </div>
-                  </div>
-                    
-                  <div class="comment-setting">
-                        <a href="#" ><i class="bx bx-dots-horizontal-rounded"></i></a>
-                  </div>
-      
-                </div>
-
-                <div class="comment-footer">
-                  <div class="time">
-                    <a href="#">2h</a>
-                  </div>
-                  <div class="reply">
-                    <a href="#">reply</a>
-                  </div>
-                </div>
-      
-
-            </div>
-      
-            </div>
-          -->
-
-                            <!------------------------------additional comment structure
-            
-            <div class="comment-body">
-              <div class="user-comment">
-                <div>
-                  <a href="#" class="profile-pic"><img src="/admin/avatar.jpg" alt="Profile Picture"></a>
-                </div>
-                <div class="comment-container">
-                    <div class="fullname">
-                      <h2><a href="#">Fritz Retiza</a></h2>
-                    </div>
-                      
-                      <div class="comment">
-                        <p>
-                          <a href="#">David Matthew</a> hey I can help you let me send my file later.
-                        </p>
-                      </div>
-                </div>
-                  
-                <div class="comment-setting">
-                      <a href="#" ><i class="bx bx-dots-horizontal-rounded"></i></a>
-                </div>
-    
-              </div>
-
-              <div class="comment-footer">
-                <div class="time">
-                  <a href="#">2h</a>
-                </div>
-                <div class="reply">
-                  <a href="#">reply</a>
-                </div>
-              </div>
-
-              <div class="reply-comment-body">
-              <div class="reply-comment">
-                <div>
-                  <a href="#" class="profile-pic"><img src="/admin/avatar.jpg" alt="Profile Picture"></a>
-                </div>
-                <div class="reply-container">
-                    <div class="fullname">
-                      <h2><a href="#">Aedus Obrero</a></h2>
-                    </div>
-                      
-                      <div class="comment">
-                        <p >
-                          let's go
-                        </p>
-                      </div>
-                </div>
-                  
-                <div class="comment-setting">
-                      <a href="#" ><i class="bx bx-dots-horizontal-rounded"></i></a>
-                </div>
-    
-              </div>
-
-              <div class="comment-footer">
-                <div class="time">
-                  <a href="#">2h</a>
-                </div>
-                <div class="reply">
-                  <a href="#">reply</a>
-                </div>
-              </div>
-    
-
-          </div>
-    
-          </div>
--->
+                           
 
                         </div>
                     </div>
@@ -903,7 +736,7 @@ outlined-heart
 
                             <ul class="dropdown-content">
                                 @foreach ($popularHashtags as $hashtag => $count)
-                                <li><a href="/popular/{{ $hashtag }}">#{{ $hashtag }}</a></li>
+                                <li><a href="/admin/popular/{{ $hashtag }}">#{{ $hashtag }}</a></li>
                                 @endforeach
                             </ul>
                         </li>
@@ -954,54 +787,87 @@ outlined-heart
         })
 
         function fetchNotificationsAdmin() {
+    $.ajax({
+        url: '/notificationsAdmin',
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            let notif = "";
+            let unreadCount = 0; // Initialize unread notification count
+
+            data.forEach((notifs, i) => {
+                notif += `
+                    <div class="notif-container" onclick="markNotificationAsReadAdmin('${notifs.id}')">
+                        <a href="#" class="notification-item ${notifs.is_read == 0 ? 'unread-notif' : ''}">
+                            <span class="unread"></span>
+                            <i class="icon bx bx-post"></i>
+                            <div class="content">
+                                <h2 class="notification-item-user-block">
+                                    Post # ${notifs.post_id} is reported
+                                </h2>
+                                <span class="timestamp">${moment(notifs.created_at).fromNow()}</span>
+                            </div>
+                            <button onclick="showModal('settings${notifs.id}')" type="button" class="notif-action">
+                                <i class="bx bx-dots-horizontal-rounded"></i>
+                            </button>
+                        </a>
+                    
+                        <div class="notif-action-modal" id="settings${notifs.id}">
+                            <!-- Your action buttons here -->
+                            <a href="#"><i class='bx bx-check'>
+                                    <p>Mark as read</p>
+                                </i></a>
+                            <a href="#"><i class='bx bxs-bell'>
+                                    <p>Remove</p>
+                                </i></a>
+                        </div>
+                    </div>
+                `;
+
+                // Increment unreadCount if the notification is unread
+                if (notifs.is_read == 0) {
+                    unreadCount++;
+                }
+            });
+
+            $('#notifContainer').html(notif);
+
+            // Update the indicator content to the number of unread notifications
+            $('.indicator').text(unreadCount);
+        },
+        error: function(xhr) {
+            console.log(xhr.responseText)
+        }
+    });
+}
+
+$(document).ready(function() {
+    fetchNotificationsAdmin();
+
+    // Set up an interval to call fetchNotificationsAdmin every 3 seconds
+    setInterval(function() {
+        fetchNotificationsAdmin();
+    }, 3000);
+});
+
+
+        function markAllAsRead(){
             $.ajax({
-                url: '/notificationsAdmin',
+                url: '/notifications-updateAlladmin',
                 method: 'GET',
                 dataType: 'json',
                 success: function(data) {
-                    console.log(data);
-                    let notif = "";
-
-                    data.forEach((notifs, i) => {
-                        notif += `
-              <div class="notif-container" onclick="markNotificationAsReadAdmin('${notifs.id}')">
-                  <a href="#" class="notification-item ${notifs.is_read == 0 ? 'unread-notif' : ''}">
-                      <span class="unread"></span>
-                      <i class="icon bx bx-post"></i>
-                      <div class="content">
-                          <h2 class="notification-item-user-block">
-                           Post # ${notifs.post_id} is reported
-                          </h2>
-                          <span class="timestamp">${moment(notifs.created_at).fromNow()}</span>
-                      </div>
-                      <button onclick="showModal('settings${notifs.id}')" type="button" class="notif-action">
-                          <i class="bx bx-dots-horizontal-rounded"></i>
-                      </button>
-                  </a>
-                
-                  <div class="notif-action-modal" id="settings${notifs.id}">
-                      <!-- Your action buttons here -->
-                      <a href="#"><i class='bx bx-check'>
-                              <p>Mark as read</p>
-                          </i></a>
-                      <a href="#"><i class='bx bxs-bell'>
-                              <p>Remove</p>
-                          </i></a>
-                  </div>
-              </div>
-              `;
-                    });
-
-                    $('#notifContainer').html(notif);
-                },
-                error: function(xhr) {
-                    console.log(xhr.responseText)
                 }
-            });
-        }
-        setInterval(function() {
+            })
+        } 
+        $(document).ready(function() {
             fetchNotificationsAdmin();
-        }, 3000);
+
+            // Set up an interval to call fetchNotifications every 3 seconds
+            setInterval(function() {
+                fetchNotificationsAdmin();
+            }, 3000);
+        });
     </script>
 </body>
 

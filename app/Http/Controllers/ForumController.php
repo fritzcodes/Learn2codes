@@ -312,6 +312,13 @@ class ForumController extends Controller
             ->update(['is_read' => '1']);
         return response()->json($notif);
     }
+    public function adminNotificationUpdateAll()
+    {
+        $notif = AdminNotifications::where('self_id', Auth::user()->id)
+            ->where('is_read', '0')
+            ->update(['is_read' => '1']);
+        return response()->json($notif);
+    }
 
     public function destroy($id)
     {
@@ -320,26 +327,45 @@ class ForumController extends Controller
     }
 
     /* search */
-    public function __construct()
+    public function PopularAdmin($hashtag): View
     {
-        $this->middleware('auth')->only('search');
-    }
-
-    public function search(Request $request)
-    {
-        $query = $request->input('query');
-        $posts = Post::join('users', 'users.id', '=', 'posts.user_id')
-            ->where(function ($q) use ($query) {
-                $q->where('users.username', 'LIKE', "%{$query}%")
-                  ->orWhere('posts.user_id', $query)
-                  ->orWhere('posts.content', 'LIKE', "%{$query}%")
-                  ->orWhere('posts.id', $query);
-            })
-            ->select('posts.*', 'users.username')
+        $name = Auth::user();
+        $posts = Post::with('images')
+            ->with('user')
+            ->withCount('likes')
+            ->with(['likes.user' => function ($query) use ($name) {
+                $query->where('id', $name->id);
+            }])
+            ->with(['comments.user', 'comments.replies.user'])
+            ->with(['comments.likes.user' => function ($query) use ($name) {
+                $query->where('id', $name->id);
+            }])
+            ->with('comments.replies.replyWithUser')
+            ->where('content', 'LIKE', '%#' . $hashtag . '%')
+            ->where('is_deleted', '0')
             ->get();
+            $notif = UserNotification::with('user')->where('self_id', $name->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+             $notifCount = count(UserNotification::with('user')->where('self_id', $name->id)
+            ->where('is_read', '0')
+            ->orderBy('created_at', 'desc')
+            ->get());
 
-        return view('frontend.forum.search_results', ['posts' => $posts]);
+        // dd($notif);
+        return view('frontend.admin.adminForumPopular', compact('name', 'posts', 'notif', 'notifCount'));
+
     }
+    public function clearAllNotifications()
+    {
+        $userId = auth()->id(); // Get the ID of the authenticated user
+        $notifications = UserNotification::where('self_id', $userId)
+            ->where('is_read', 0) // Select only unread notifications
+            ->update(['is_read' => 1]); // Mark them as read
+    
+        return response()->json(['message' => 'All notifications cleared successfully.']);
+    }
+
 }
 
 

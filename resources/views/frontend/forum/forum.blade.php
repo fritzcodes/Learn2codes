@@ -18,6 +18,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/assets/js/forum.js" defer></script>
     <script src="/assets/js/insertimg.js" defer></script>
     <style>
@@ -272,7 +273,7 @@
                             <p>Mark all as read</p>
                         </a>
 
-                        <a href="#">
+                        <a onclick="clearNotifications()">
                             <i class='bx bxs-trash'></i>
                             <p>Clear all notifications</p>
                         </a>
@@ -557,8 +558,7 @@
             <a href="#"><i class=""></i></a>
             <p></p>
           </div>  -->
-                                <p id="likesCount{{ $post->id }}" class="footer-btn">
-                                    {{ $post->likes_count == 0 ? '' : $post->likes_count }}</p>
+                                <p id="likesCount{{ $post->id }}" class="footer-btn">{{ $post->likes_count == 0 ? '' : $post->likes_count }}</p>
                                 <a class="footer-btn"
                                     onclick="likePost('like{{ $post->id }}', '{{ $name->id }}', '{{ $post->id }}')"
                                     style="text-align:left">
@@ -673,10 +673,7 @@ outlined-heart
                                                     </div>
 
                                                     <div class="actions">
-                                                        <p id="likesCommentCount{{ $comment->id }}">
-                                                            @if (count($comment->likes) > 0)
-                                                                {{ count($comment->likes) }}@endif
-                                                        </p>
+                                                        <p id="likesCommentCount{{ $comment->id }}">@if(count($comment->likes) > 0){{ count($comment->likes) }}@endif</p>
                                                         <button
                                                             onclick="likeComment('likeComment{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}')"
                                                             class="
@@ -1050,52 +1047,69 @@ outlined-heart
         })
 
         function fetchNotifications() {
-            $.ajax({
-                url: '/notifications',
-                method: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    let notif = "";
+    $.ajax({
+        url: '/notifications',
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            let notif = "";
+            let unreadCount = 0; // Initialize unread notification count
 
-                    data.forEach((notifs, i) => {
-                        notif += `
-              <div class="notif-container" onclick="markNotificationAsRead('${notifs.id}')">
-                  <a href="#" class="notification-item ${notifs.is_read == 0 ? 'unread-notif' : ''}">
-                      <span class="unread"></span>
-                      <i class="icon bx bx-post"></i>
-                      <div class="content">
-                          <h2 class="notification-item-user-block">
-                            ${notifs.content}
-                          </h2>
-                          <span class="timestamp">${moment(notifs.created_at).fromNow()}</span>
-                      </div>
-                      <button onclick="showModal('settings${notifs.id}')" type="button" class="notif-action">
-                          <i class="bx bx-dots-horizontal-rounded"></i>
-                      </button>
-                  </a>
-                
-                  <div class="notif-action-modal" id="settings${notifs.id}">
-                      <!-- Your action buttons here -->
-                      <a href="#"><i class='bx bx-check'>
-                              <p>Mark as read</p>
-                          </i></a>
-                      <a href="#"><i class='bx bxs-bell'>
-                              <p>Remove</p>
-                          </i></a>
-                  </div>
-              </div>
-              `;
-                    });
+            data.forEach((notifs, i) => {
+                notif += `
+                    <div class="notif-container" onclick="markNotificationAsRead('${notifs.id}')">
+                        <a href="#" class="notification-item ${notifs.is_read == 0 ? 'unread-notif' : ''}">
+                            <span class="unread"></span>
+                            <i class="icon bx bx-post"></i>
+                            <div class="content">
+                                <h2 class="notification-item-user-block">
+                                    ${notifs.content}
+                                </h2>
+                                <span class="timestamp">${moment(notifs.created_at).fromNow()}</span>
+                            </div>
+                            <button onclick="showModal('settings${notifs.id}')" type="button" class="notif-action">
+                                <i class="bx bx-dots-horizontal-rounded"></i>
+                            </button>
+                        </a>
+                    
+                        <div class="notif-action-modal" id="settings${notifs.id}">
+                            <!-- Your action buttons here -->
+                            <a href="#"><i class='bx bx-check'>
+                                    <p>Mark as read</p>
+                                </i></a>
+                            <a href="#"><i class='bx bxs-bell'>
+                                    <p>Remove</p>
+                                </i></a>
+                        </div>
+                    </div>
+                `;
 
-                    $('#notifContainer').html(notif);
-                    $('.indicator').text(unreadCount);
-
-                },
-                error: function(xhr) {
-                    console.log(xhr.responseText)
+                // Increment unreadCount if the notification is unread
+                if (notifs.is_read == 0) {
+                    unreadCount++;
                 }
             });
+
+            $('#notifContainer').html(notif);
+
+            // Update the indicator content to the number of unread notifications
+            $('.indicator').text(unreadCount);
+        },
+        error: function(xhr) {
+            console.log(xhr.responseText)
         }
+    });
+}
+
+$(document).ready(function() {
+    fetchNotifications();
+
+    // Set up an interval to call fetchNotifications every 3 seconds
+    setInterval(function() {
+        fetchNotifications();
+    }, 3000);
+});
+
 
         function markAllAsRead(){
             $.ajax({
@@ -1105,7 +1119,7 @@ outlined-heart
                 success: function(data) {
                 }
             })
-        }
+        } 
         $(document).ready(function() {
             fetchNotifications();
 
@@ -1115,6 +1129,26 @@ outlined-heart
             }, 3000);
         });
     </script>
+
+<script>
+    function clearNotifications(){
+            $.ajax({
+                url: '/notifications/clear-all',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                }
+            })
+        } 
+        $(document).ready(function() {
+            fetchNotifications();
+
+            // Set up an interval to call fetchNotifications every 3 seconds
+            setInterval(function() {
+                fetchNotifications();
+            }, 3000);
+        });
+</script>
 </body>
 
 </html>
