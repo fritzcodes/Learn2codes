@@ -37,9 +37,17 @@
             <i class="bx bx-menu" id="btn"></i>
         </div>
         <div class="user">
-            <img src="/admin/avatar.jpg" alt="user" class="user-img">
+            <a onclick="openAdminModal()">
+                @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
+                    <img src="{{ asset('images/' . Auth::guard('admin')->user()->profile_photo) }}" alt="user"
+                        class="user-img">
+                @else
+                    <!-- Placeholder image or default avatar -->
+                    <img src="../assets/images/avatar.png" alt="user" class="user-img">
+                @endif
+            </a>
             <div>
-                <p class="username">David Matthew Borromeo</p>
+                <p class="username">{{ Auth::guard('admin')->user()->username }}</p>
                 <p>Admin</p>
             </div>
         </div>
@@ -76,7 +84,7 @@
             </li>
 
             <li>
-                <a target="_top" href="#">
+                <a target="_top" href="/admin/forum">
                     <i class="bx bxs-chat"></i>
                     <span class="nav-item">Forum</span>
                 </a>

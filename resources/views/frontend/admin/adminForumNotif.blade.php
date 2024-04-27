@@ -208,7 +208,7 @@
                 <li>
                     <div class="logo">
                         <a href="/forum">
-                            <img src="assets/images/Logo.jpg" alt="logo">
+                            <img src="/assets/images/Logo.jpg" alt="logo">
                         </a>
                     </div>
                 </li>
@@ -432,7 +432,7 @@
                 <div class="post" id="postNotif{{ $post->id }}">
                     <div class="post-header">
                         <div>
-                            <a href="#" class="profile-pic"><img src="{{ $post->user->profile_photo ? 'images/' . $post->user->profile_photo : 'assets/images/avatar.png' }}" alt="Profile Picture" id="profile-pic"></a>
+                            <a href="#" class="profile-pic"><img src="{{ $post->user->profile_photo ? '/images/' . $post->user->profile_photo : '/assets/images/avatar.png' }}" alt="Profile Picture" id="profile-pic"></a>
                         </div>
 
                         <div class="post-info">
@@ -602,7 +602,7 @@ outlined-heart
                                 @foreach ($post->comments as $comment)
                                 <div class="comment" id="commentNotif{{ $comment->id }}">
                                     <div class="user-info">
-                                        <img src="{{ $comment->user->profile_photo ? 'images/' . $comment->user->profile_photo : 'assets/images/avatar.png' }}" alt="Profile Picture">
+                                        <img src="{{ $comment->user->profile_photo ? '/images/' . $comment->user->profile_photo : '/assets/images/avatar.png' }}" alt="Profile Picture">
                                         <div class="user">
                                             {{ $comment->user->fname . ' ' . $comment->user->lname }}
                                         </div>
@@ -641,7 +641,7 @@ outlined-heart
                                         @foreach ($comment->replies as $reply)
                                         <div class="reply-container reply nested-reply" id="replyNotif{{ $reply->id }}">
                                             <div class="user-info">
-                                                <img src="{{ $reply->user->profile_photo ? 'images/' . $reply->user->profile_photo : 'assets/images/avatar.png' }}" alt="User Avatar" style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
+                                                <img src="{{ $reply->user->profile_photo ? '/images/' . $reply->user->profile_photo : '/assets/images/avatar.png' }}" alt="User Avatar" style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
                                                 <div class="user">
                                                     {{ $reply->user->fname . ' ' . $reply->user->lname }}
                                                 </div>

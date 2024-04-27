@@ -77,7 +77,7 @@
                 </a>
             </li>
             <li>
-                <a target="_top" href="#">
+                <a target="_top" href="/admin/forum">
                     <i class="bx bxs-chat"></i>
                     <span class="nav-item">Forum</span>
                 </a>

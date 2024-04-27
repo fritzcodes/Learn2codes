@@ -22,13 +22,15 @@
 
 
         <div class="user">
-            @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
-            <img src="{{Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photoo) : 'assets/images/avatar.png' }}" alt="user" class="user-img">
-            @else
-            <!-- Placeholder image or default avatar -->
-            <img src="../assets/images/avatar.png" alt="user" class="user-img">
-            @endif
-            {{-- <img src="../assets/images/avatar.png" alt="user" class="user-img"> --}}
+            <a onclick="openAdminModal()">
+                @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
+                    <img src="{{ asset('images/' . Auth::guard('admin')->user()->profile_photo) }}" alt="user"
+                        class="user-img">
+                @else
+                    <!-- Placeholder image or default avatar -->
+                    <img src="/assets/images/avatar.png" alt="user" class="user-img">
+                @endif
+            </a>
             <div>
                 <p class="username">{{ Auth::guard('admin')->user()->username }}</p>
                 <p>Admin</p>
@@ -69,7 +71,7 @@
                 </a>
             </li>
             <li>
-                <a target="_top" href="#">
+                <a target="_top" href="/admin/forum">
                     <i class="bx bxs-chat"></i>
                     <span class="nav-item">Forum</span>
                 </a>
@@ -140,6 +142,8 @@
             <div class="chart"> <canvas id="chart-2"></canvas> </div>
         </div>
     </div>
+
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../assets/js/admin/admin.js" async></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
