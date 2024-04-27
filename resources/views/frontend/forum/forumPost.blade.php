@@ -80,22 +80,11 @@
                 <li>
                     <div class="logo">
                         <a href="/forum">
-                            <img src="assets/images/Logo.jpg" alt="logo">
+                            <img src="/assets/images/Logo.jpg" alt="logo">
                         </a>
                     </div>
                 </li>
-                <li>
-                    <input type="search" id="search" placeholder="Search">
-                    <div>
-                        <!--
-        <a href="" id="filter" class="notif-setting">
-            <i class="bx bx-dots-horizontal-rounded"></i>
-          </a>
-          -->
-
-
-                    </div>
-                </li>
+               
                 <!--
       <li class="filter">
         <a class="bx bxs-filter-alt" id="filter">
@@ -118,11 +107,11 @@
             </script>
             <a href="/profile" class="profile-link">
                 @if (Auth::check() && Auth::user()->profile_photo)
-                    <img src="{{ Auth::user()->profile_photo ? asset('/images/' . Auth::user()->profile_photo) : '/assets/images/avatar.png' }}"
+                    <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
                         alt="Profile Photo" class="avatar">
                 @else
                     <!-- Placeholder image or default avatar -->
-                    <img src="/assets/images/avatar.png" alt="Default Avatar" class="avatar">
+                    <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
                 @endif
             </a>
         </div>
@@ -890,6 +879,55 @@ outlined-heart
         $('#hashtag').click(function() {
             $('#textContent').val($('#textContent').val() + '#');
         })
+        function fetchNotifications() {
+            $.ajax({
+                url: '/notifications',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data);
+                    let notif = "";
+
+                    data.forEach((notifs, i) => {
+                        notif += `
+              <div class="notif-container" onclick="markNotificationAsRead('${notifs.id}')">
+                  <a href="#" class="notification-item ${notifs.is_read == 0 ? 'unread-notif' : ''}">
+                      <span class="unread"></span>
+                      <i class="icon bx bx-post"></i>
+                      <div class="content">
+                          <h2 class="notification-item-user-block">
+                           Post # ${notifs.post_id} is reported
+                          </h2>
+                          <span class="timestamp">${moment(notifs.created_at).fromNow()}</span>
+                      </div>
+                      <button onclick="showModal('settings${notifs.id}')" type="button" class="notif-action">
+                          <i class="bx bx-dots-horizontal-rounded"></i>
+                      </button>
+                  </a>
+                
+                  <div class="notif-action-modal" id="settings${notifs.id}">
+                      <!-- Your action buttons here -->
+                      <a href="#"><i class='bx bx-check'>
+                              <p>Mark as read</p>
+                          </i></a>
+                      <a href="#"><i class='bx bxs-bell'>
+                              <p>Remove</p>
+                          </i></a>
+                  </div>
+              </div>
+              `;
+                    });
+
+                    $('#notifContainer').html(notif);
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText)
+                }
+            });
+        }
+        setInterval(function() {
+            fetchNotifications();
+        }, 3000);
     </script>
 </body>
 

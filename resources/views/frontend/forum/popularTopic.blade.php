@@ -51,24 +51,13 @@
           <a class="bx bx-menu" id="menu-icon"></a>
         </li>
         <li>
-        <div class="logo">
-  <a href="/forum">
-    <img src="../assets/images/Logo.jpg" alt="logo">
-  </a>
-</div>
-        </li>
-        <li>
-          <input type="search" id="search" placeholder="Search">
-          <div>
-            <!--
-        <a href="" id="filter" class="notif-setting">
-            <i class="bx bx-dots-horizontal-rounded"></i>
-          </a>            
-          -->
-
-
+          <div class="logo">
+              <a href="/forum">
+                  <img src="/assets/images/Logo.jpg" alt="logo">
+              </a>
           </div>
-        </li>
+      </li>
+        
         <!--
       <li class="filter">
         <a class="bx bxs-filter-alt" id="filter">    
@@ -202,7 +191,7 @@
         <div class="post">
           <div class="post-header">
             <div>
-              <a href="#" class="profile-pic"><img src="{{ $post->user->profile_photo ? '/images/' . $post->user->profile_photo : '/assets/images/avatar.png' }}" alt="Profile Picture" id="profile-pic"></a>
+              <a href="#" class="profile-pic"><img src="{{ $post->user->profile_photo ? '/images/' . $post->user->profile_photo : '../assets/images/avatar.png' }}" alt="Profile Picture" id="profile-pic"></a>
             </div>
 
             <div class="post-info">
@@ -264,7 +253,7 @@
             @if (count($post->images) > 0)
             <div class="image-gallery">
               @foreach ($post->images as $image)
-              <img class="post-pic" src="/forums/{{$image->image}}" alt="Image 1">
+              <img class="post-pic" src="/forum/{{$image->image}}" alt="Image 1">
               @endforeach
             </div>
             @endif

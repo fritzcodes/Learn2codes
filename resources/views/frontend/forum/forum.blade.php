@@ -218,13 +218,7 @@
                         </a>
                     </div>
                 </li>
-                <form id="search-form" action="{{ route('forum.search') }}" method="GET">
-                    <input type="text" id="search-input" name="query" required>
-                    <button type="submit">Search</button>
-                </form>
-                <div id="search-results">
-                    <!-- Search results will be displayed here -->
-                </div>
+                
 
                 <!--
       <li class="filter">
@@ -241,11 +235,11 @@
         <div class="right-btn">
 
             <a href="#" class="bx bxs-bell" id="notif"><span class="indicator">{{ $notifCount }}</span></a>
-            <script>
+            {{-- <script>
                 $(document).ready(function() {
                     $('.indicator').css('content', '5');
                 })
-            </script>
+            </script> --}}
             <a href="/profile" class="profile-link">
                 @if (Auth::check() && Auth::user()->profile_photo)
                 <img src="{{ Auth::user()->profile_photo ? asset('/images/' . Auth::user()->profile_photo) : '/assets/images/avatar.png' }}" alt="Profile Photo" class="avatar">
@@ -989,6 +983,72 @@
         $('#hashtag').click(function() {
             $('#textContent').val($('#textContent').val() + '#');
         })
+        
+        function fetchNotifications() {
+    $.ajax({
+        url: '/notifications',
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            let notif = "";
+            let unreadCount = 0; // Initialize unread notification count
+
+            data.forEach((notifs, i) => {
+                notif += `
+                    <div class="notif-container" onclick="markNotificationAsRead('${notifs.id}')">
+                        <a href="#" class="notification-item ${notifs.is_read == 0 ? 'unread-notif' : ''}">
+                            <span class="unread"></span>
+                            <i class="icon bx bx-post"></i>
+                            <div class="content">
+                                <h2 class="notification-item-user-block">
+                                    Post # ${notifs.post_id} is reported
+                                </h2>
+                                <span class="timestamp">${moment(notifs.created_at).fromNow()}</span>
+                            </div>
+                            <button onclick="showModal('settings${notifs.id}')" type="button" class="notif-action">
+                                <i class="bx bx-dots-horizontal-rounded"></i>
+                            </button>
+                        </a>
+                    
+                        <div class="notif-action-modal" id="settings${notifs.id}">
+                            <!-- Your action buttons here -->
+                            <a href="#"><i class='bx bx-check'>
+                                    <p>Mark as read</p>
+                                </i></a>
+                            <a href="#"><i class='bx bxs-bell'>
+                                    <p>Remove</p>
+                                </i></a>
+                        </div>
+                    </div>
+                `;
+
+                // Increment unreadCount if the notification is unread
+                if (notifs.is_read == 0) {
+                    unreadCount++;
+                }
+            });
+
+            $('#notifContainer').html(notif);
+
+            // Update the indicator content to the number of unread notifications
+            $('.indicator').text(unreadCount);
+        },
+        error: function(xhr) {
+            console.log(xhr.responseText)
+        }
+    });
+}
+
+$(document).ready(function() {
+    fetchNotifications();
+
+    // Set up an interval to call fetchNotifications every 3 seconds
+    setInterval(function() {
+        fetchNotifications();
+    }, 3000);
+});
+
     </script>
 </body>
 
