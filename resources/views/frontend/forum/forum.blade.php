@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="/assets/css/forum.css">
     <link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css" rel="stylesheet" />
@@ -20,6 +21,9 @@
     <script src="/assets/js/forum.js" defer></script>
     <script src="/assets/js/insertimg.js" defer></script>
     <style>
+        a{
+            cursor: pointer;
+        }
         .outlined-heart {
             color: black;
             /* Set the color of the heart */
@@ -218,7 +222,7 @@
                         </a>
                     </div>
                 </li>
-                
+
 
                 <!--
       <li class="filter">
@@ -242,10 +246,11 @@
             </script> --}}
             <a href="/profile" class="profile-link">
                 @if (Auth::check() && Auth::user()->profile_photo)
-                <img src="{{ Auth::user()->profile_photo ? asset('/images/' . Auth::user()->profile_photo) : '/assets/images/avatar.png' }}" alt="Profile Photo" class="avatar">
+                    <img src="{{ Auth::user()->profile_photo ? asset('/images/' . Auth::user()->profile_photo) : '/assets/images/avatar.png' }}"
+                        alt="Profile Photo" class="avatar">
                 @else
-                <!-- Placeholder image or default avatar -->
-                <img src="/assets/images/avatar.png" alt="Default Avatar" class="avatar">
+                    <!-- Placeholder image or default avatar -->
+                    <img src="/assets/images/avatar.png" alt="Default Avatar" class="avatar">
                 @endif
             </a>
         </div>
@@ -262,7 +267,7 @@
                     </a>
 
                     <div id="notifsetModal">
-                        <a href="#">
+                        <a onclick="markAllAsRead()">
                             <i class='bx bx-check'></i>
                             <p>Mark all as read</p>
                         </a>
@@ -279,24 +284,28 @@
 
                 <div id="notifContainer">
                     @foreach ($notif as $notification)
-                    <div class="notif-container" onclick="markNotificationAsRead('{{ $notification->id }}')">
-                        <a href="#" class="notification-item @if (!$notification->is_read) unread-notif @endif" data-notification-id="{{ $notification->id }}" data-post-id="{{ $notification->post_id }}">
-                            <span class="unread"></span>
-                            <img src="/images/{{ $notification->user->profile_photo }}" alt="Notification Icon" class="icon"> <!-- Display user's avatar -->
-                            <div class="content">
-                                <h2 class="notification-item-user-block">
-                                    <span class="notification-item-user-name"></span>
-                                    {{ $notification->content }}
-                                </h2>
-                                <span class="timestamp">{{ $notification->created_at->diffForHumans() }}</span>
-                            </div>
-                            <!-- <button onclick="showModal('settings{{ $loop->iteration }}')" type="button"
+                        <div class="notif-container" onclick="markNotificationAsRead('{{ $notification->id }}')">
+                            <a href="#"
+                                class="notification-item @if (!$notification->is_read) unread-notif @endif"
+                                data-notification-id="{{ $notification->id }}"
+                                data-post-id="{{ $notification->post_id }}">
+                                <span class="unread"></span>
+                                <img src="/images/{{ $notification->user->profile_photo }}" alt="Notification Icon"
+                                    class="icon"> <!-- Display user's avatar -->
+                                <div class="content">
+                                    <h2 class="notification-item-user-block">
+                                        <span class="notification-item-user-name"></span>
+                                        {{ $notification->content }}
+                                    </h2>
+                                    <span class="timestamp">{{ $notification->created_at->diffForHumans() }}</span>
+                                </div>
+                                <!-- <button onclick="showModal('settings{{ $loop->iteration }}')" type="button"
                                     class="notif-action">
                                     <i class="bx bx-dots-horizontal-rounded"></i>
                                 </button> -->
-                        </a>
+                            </a>
 
-                        <!-- <div class="notif-action-modal" id="settings{{ $loop->iteration }}">
+                            <!-- <div class="notif-action-modal" id="settings{{ $loop->iteration }}">
 
                                 <a href="#"><i class='bx bx-check'>
                                         <p>Mark as read</p>
@@ -305,7 +314,7 @@
                                         <p>Remove</p>
                                     </i></a>
                             </div> -->
-                    </div>
+                        </div>
                     @endforeach
                 </div>
 
@@ -360,17 +369,20 @@
                                 <div>
                                     <a href="#" class="profile-pic">
                                         @if (Auth::check() && Auth::user()->profile_photo)
-                                        <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}" alt="Profile Picture" class="profile-pic">
+                                            <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
+                                                alt="Profile Picture" class="profile-pic">
                                         @else
-                                        <!-- Placeholder image or default avatar -->
-                                        <img src="assets/images/avatar.png" alt="Profile Picture" class="profile-pic">
+                                            <!-- Placeholder image or default avatar -->
+                                            <img src="assets/images/avatar.png" alt="Profile Picture"
+                                                class="profile-pic">
                                         @endif
                                     </a>
                                 </div>
 
                                 <div class="post-info">
                                     <div class="first-name">
-                                        <p><a href="#">{{ $name->fname . ' ' . $name->lname }}</a><span class="feelings" style="display: none;">
+                                        <p><a href="#">{{ $name->fname . ' ' . $name->lname }}</a><span
+                                                class="feelings" style="display: none;">
                                                 is <img src="images/smiley.PNG" alt=""> feeling happy</span>
                                         </p>
                                     </div>
@@ -391,7 +403,8 @@
 
                                 <div class="photocontainer">
                                     <span class="photoclose">&times;</span>
-                                    <input type="file" id="file-input" name="image[]" accept="image/png, image/jpeg" onchange="preview()" multiple>
+                                    <input type="file" id="file-input" name="image[]"
+                                        accept="image/png, image/jpeg" onchange="preview()" multiple>
                                     <label for="file-input">
                                         <i class='bx bx-upload'></i> &nbsp; Choose A Photo
                                     </label>
@@ -417,10 +430,14 @@
 
                             <div class="create-footer">
                                 <div id="add-content" class="add-content">
-                                    <a href="#" class="photos" data-tooltip="Add Photos"><i class='bx bx-image-add'></i></a>
-                                    <a href="#" class="emotions" data-tooltip="Add Feelings"><i class='bx bxs-heart-circle'></i></a>
-                                    <a href="#" class="snippet" data-tooltip="Insert Code" id="insertCode" onclick="insertCode()"><i class='bx bx-code'></i></a>
-                                    <a href="#" class="hashtag" data-tooltip="Add Hashtag" id="hashtag"><i class='bx bx-link-alt'></i></a>
+                                    <a href="#" class="photos" data-tooltip="Add Photos"><i
+                                            class='bx bx-image-add'></i></a>
+                                    <a href="#" class="emotions" data-tooltip="Add Feelings"><i
+                                            class='bx bxs-heart-circle'></i></a>
+                                    <a href="#" class="snippet" data-tooltip="Insert Code" id="insertCode"
+                                        onclick="insertCode()"><i class='bx bx-code'></i></a>
+                                    <a href="#" class="hashtag" data-tooltip="Add Hashtag" id="hashtag"><i
+                                            class='bx bx-link-alt'></i></a>
                                 </div>
 
                                 <button type="submit" id="postbtn">Post</button>
@@ -434,95 +451,104 @@
 
 
                 @if (count($posts) > 0)
-                @foreach ($posts as $index => $post)
-                <div class="post" id="postNotif{{ $post->id }}">
-                    <div class="post-header">
-                        <div>
-                            <a href="#" class="profile-pic"><img src="{{ $post->user->profile_photo ? 'images/' . $post->user->profile_photo : 'assets/images/avatar.png' }}" alt="Profile Picture" id="profile-pic"></a>
-                        </div>
+                    @foreach ($posts as $index => $post)
+                        <div class="post" id="postNotif{{ $post->id }}">
+                            <div class="post-header">
+                                <div>
+                                    <a href="#" class="profile-pic"><img
+                                            src="{{ $post->user->profile_photo ? 'images/' . $post->user->profile_photo : 'assets/images/avatar.png' }}"
+                                            alt="Profile Picture" id="profile-pic"></a>
+                                </div>
 
-                        <div class="post-info">
-                            <div class="first-name">
-                                <p><a href="#">{{ $post->user->fname . ' ' . $post->user->lname }}</a><!--<span class="feelings">
+                                <div class="post-info">
+                                    <div class="first-name">
+                                        <p><a href="#">{{ $post->user->fname . ' ' . $post->user->lname }}</a><!--<span class="feelings">
                     is <img src="images/smiley.PNG" alt=""> feeling happy</span></p> -->
+                                    </div>
+
+                                    <div class="date">
+                                        <!-- \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $post->updated_at )->format('h:i a | M. d, Y')  -->
+                                        {{ \Illuminate\Support\Carbon::parse($post->created_at)->diffForHumans() }}
+                                    </div>
+                                </div>
+                                @if ($post->user_id == $name->id)
+                                    <div class="post-setting">
+                                        <button onclick="deletePost(`postsetModal{{ $post->id }}`)"
+                                            style="background-color: #fff; cursor: pointer;  border:none;"><i
+                                                class="bx bx-dots-horizontal-rounded"></i>
+                                        </button>
+                                        <div id="postsetModal" class="modal postsetModal{{ $post->id }}">
+                                            <a href="#" onclick="deletePostId('{{ $post->id }}')"><i
+                                                    class='bx bxs-trash'></i>
+                                                <p>Delete</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="post-setting">
+                                        <button href="#"
+                                            onclick="deletePost(`postsetModal{{ $post->id }}`)"
+                                            style="background-color: transparent; border:none"><i
+                                                class="bx bx-dots-horizontal-rounded"></i>
+                                        </button>
+                                        <div id="postsetModal" class="modal postsetModal{{ $post->id }}">
+                                            <a onclick="report('{{ $post->id }}', '{{ $name->id }}')"><i
+                                                    class='bx bxl-instagram-alt'></i>
+                                                <p>Report</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endif
+
                             </div>
 
-                            <div class="date">
-                                <!-- \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $post->updated_at )->format('h:i a | M. d, Y')  -->
-                                {{ \Illuminate\Support\Carbon::parse($post->created_at)->diffForHumans() }}
+                            <div class="post-content">
+                                @php
+                                    $content = $post->content;
+
+                                    preg_match_all('/#(\w+)/', $content, $matches);
+
+                                    $hashtags = $matches[1];
+                                    foreach ($hashtags as $hashtag) {
+                                        $content = str_replace(
+                                            "#$hashtag",
+                                            "<a href='/popular/$hashtag' class='hashtags'>#$hashtag</a>",
+                                            $content,
+                                        );
+                                    }
+                                @endphp
+
+                                <div class="caption">
+
+                                    <pre>{!! $content !!}</pre>
+
+                                </div>
+
+                                @if ($post->code != null)
+                                    <div class="code-snippet"> <!--where code will display-->
+                                        <div class="code-name">
+                                            <p> </p>
+                                        </div>
+                                        <pre><code>{{ $post->code }}</code> </pre>
+                                    </div>
+                                @endif
+
+                                @if (count($post->images) > 0)
+                                    <div class="image-gallery">
+                                        @foreach ($post->images as $image)
+                                            <img class="post-pic" src="forums/{{ $image->image }}" alt="Image 1">
+                                        @endforeach
+                                    </div>
+                                @endif
+
+
                             </div>
-                        </div>
-                        @if ($post->user_id == $name->id)
-                        <div class="post-setting">
-                            <button onclick="deletePost(`postsetModal{{ $post->id }}`)" style="background-color: #fff; cursor: pointer;  border:none;"><i class="bx bx-dots-horizontal-rounded"></i>
-                            </button>
-                            <div id="postsetModal" class="modal postsetModal{{ $post->id }}">
-                                <a href="#" onclick="deletePostId('{{ $post->id }}')"><i class='bx bxs-trash'></i>
-                                    <p>Delete</p>
-                                </a>
+
+                            <div class="line">
+                                <hr>
                             </div>
-                        </div>
-                        @else
-                        <div class="post-setting">
-                            <button href="#" onclick="deletePost(`postsetModal{{ $post->id }}`)" style="background-color: transparent; border:none"><i class="bx bx-dots-horizontal-rounded"></i>
-                            </button>
-                            <div id="postsetModal" class="modal postsetModal{{ $post->id }}">
-                                <a onclick="report('{{ $post->id }}', '{{ $name->id }}')"><i class='bx bxl-instagram-alt'></i>
-                                    <p>Report</p>
-                                </a>
-                            </div>
-                        </div>
-                        @endif
 
-                    </div>
-
-                    <div class="post-content">
-                        @php
-                        $content = $post->content;
-
-                        preg_match_all('/#(\w+)/', $content, $matches);
-
-                        $hashtags = $matches[1];
-                        foreach ($hashtags as $hashtag) {
-                        $content = str_replace(
-                        "#$hashtag",
-                        "<a href='/popular/$hashtag' class='hashtags'>#$hashtag</a>",
-                        $content,
-                        );
-                        }
-                        @endphp
-
-                        <div class="caption">
-
-                            <pre>{!! $content !!}</pre>
-
-                        </div>
-
-                        @if ($post->code != null)
-                        <div class="code-snippet"> <!--where code will display-->
-                            <div class="code-name">
-                                <p> </p>
-                            </div>
-                            <pre><code>{{ $post->code }}</code> </pre>
-                        </div>
-                        @endif
-
-                        @if (count($post->images) > 0)
-                        <div class="image-gallery">
-                            @foreach ($post->images as $image)
-                            <img class="post-pic" src="forums/{{ $image->image }}" alt="Image 1">
-                            @endforeach
-                        </div>
-                        @endif
-
-
-                    </div>
-
-                    <div class="line">
-                        <hr>
-                    </div>
-
-                    <div class="post-footer"> <!--add buttons example: react, reply if necessary
+                            <div class="post-footer"> <!--add buttons example: react, reply if necessary
           <div class="footer-btn" id="comment-btn">
             <a href="#"><i class=""></i></a>
             <p></p>
@@ -531,12 +557,14 @@
             <a href="#"><i class=""></i></a>
             <p></p>
           </div>  -->
-                        <p id="likesCount{{ $post->id }}" class="footer-btn">{{ $post->likes_count == 0 ? '' : $post->likes_count }}</p>
-                        <a class="footer-btn" onclick="likePost('like{{ $post->id }}', '{{ $name->id }}', '{{ $post->id }}')" style="text-align:left">
+                                <p id="likesCount{{ $post->id }}" class="footer-btn">
+                                    {{ $post->likes_count == 0 ? '' : $post->likes_count }}</p>
+                                <a class="footer-btn"
+                                    onclick="likePost('like{{ $post->id }}', '{{ $name->id }}', '{{ $post->id }}')"
+                                    style="text-align:left">
 
-                            <i class="fa fa-heart
-                @if (count($post->likes) > 0)
-                @php
+                                    <i class="fa fa-heart
+                @if (count($post->likes) > 0) @php
                 $outlinedHeart = true;
                 @endphp
                     @foreach ($post->likes as $like)
@@ -544,105 +572,114 @@
                             @php
                             $outlinedHeart = false;
                             @endphp
-                            @break
-                             @endif
+                            @break @endif
                     @endforeach
                     {{ $outlinedHeart ? 'outlined-heart' : '' }}
-                @else
-                outlined-heart
+@else
+outlined-heart
                 @endif
-            " id="like{{ $post->id }}">
-                            </i>
+            "
+                                        id="like{{ $post->id }}">
+                                    </i>
 
-                            <p>Like</p>
-                        </a>
-                        <a class="footer-btn" onclick="showComment('main-comment-sec{{ $post->id }}')"><i class="bx bxs-message-rounded"></i>
-                            <p>Comment</p>
-                        </a>
-                        <a href="#" class="footer-btn" id="share-btn"><i class='bx bxs-share'></i>
-                            <p>Share</p>
-                        </a>
-
-                        <div id="shareModal" class="modal">
-                            <div id="share-content" class="share-content">
-                                <!-- <a href=""><i class='bx bxl-facebook'></i></a>
-                <a href=""><i class='bx bxl-instagram-alt'></i></a>
-                <a href=""><i class='bx bxl-twitter'></i></a> -->
-                                <a href="#" class="copy-link" onclick="copyLink('/forum/{{ $post->id }}')">
-                                    <i class='bx bx-link-alt'><span class="tooltip" id="tooltip">Copy link</span></i>
-
+                                    <p>Like</p>
+                                </a>
+                                <a class="footer-btn" onclick="showComment('main-comment-sec{{ $post->id }}')"><i
+                                        class="bx bxs-message-rounded"></i>
+                                    <p>Comment</p>
+                                </a>
+                                <a href="#" class="footer-btn" id="share-btn"><i class='bx bxs-share'></i>
+                                    <p>Share</p>
                                 </a>
 
-                            </div>
-                        </div>
+                                <div id="shareModal" class="modal">
+                                    <div id="share-content" class="share-content">
+                                        <!-- <a href=""><i class='bx bxl-facebook'></i></a>
+                <a href=""><i class='bx bxl-instagram-alt'></i></a>
+                <a href=""><i class='bx bxl-twitter'></i></a> -->
+                                        <a href="#" class="copy-link"
+                                            onclick="copyLink('/forum/{{ $post->id }}')">
+                                            <i class='bx bx-link-alt'><span class="tooltip" id="tooltip">Copy
+                                                    link</span></i>
 
-                        <script>
-                            function copyLink(link) {
-                                var linkText = window.location.href;
-                                var url = window.location.href;
-                                var parser = document.createElement('a');
-                                parser.href = url;
-                                var host = parser.protocol + "//" + parser.hostname + (parser.port ? ":" + parser.port : "");
-                                navigator.clipboard.writeText(host + link).then(function() {
-                                    var tooltip = document.getElementById("tooltip");
-                                    tooltip.innerText = "Link copied!";
-                                    setTimeout(function() {
-                                        tooltip.innerText = "Copy link";
-                                    }, 1500);
-                                }).catch(function(err) {
-                                    console.error('Failed to copy: ', err);
-                                });
-                            }
-                        </script>
-                    </div>
+                                        </a>
 
-                    <div class="main-comment-sec" id="main-comment-sec{{ $post->id }}">
-                        <!--comment section / hidden in default-->
-                        <div class="line">
-                            <hr>
-                        </div>
-
-                        <div id="filter-comment">
-                            <a href="#">All comments <i class="bx bx-chevron-down"></i></a>
-                        </div>
-
-                        <div id="filter-comment-modal">
-                            <a href=""><i class='bx bx-check'></i>
-                                <p>Newest</p>
-                            </a>
-                            <a href=""><i class='bx bxs-bell'></i>
-                                <p>All comments</p>
-                            </a>
-                        </div>
-
-                        <div class="comment-sec">
-
-
-                            <!-------------------------------------COMMENT BODY-->
-                            <div class="comments" id="post{{ $post->id }}">
-                                @if (count($post->comments) > 0)
-                                @foreach ($post->comments as $comment)
-                                <div class="comment" id="commentNotif{{ $comment->id }}">
-                                    <div class="user-info">
-                                        <img src="{{ $comment->user->profile_photo ? 'images/' . $comment->user->profile_photo : 'assets/images/avatar.png' }}" alt="Profile Picture">
-                                        <div class="user">
-                                            {{ $comment->user->fname . ' ' . $comment->user->lname }}
-                                        </div>
                                     </div>
+                                </div>
 
-                                    <div class="content">
+                                <script>
+                                    function copyLink(link) {
+                                        var linkText = window.location.href;
+                                        var url = window.location.href;
+                                        var parser = document.createElement('a');
+                                        parser.href = url;
+                                        var host = parser.protocol + "//" + parser.hostname + (parser.port ? ":" + parser.port : "");
+                                        navigator.clipboard.writeText(host + link).then(function() {
+                                            var tooltip = document.getElementById("tooltip");
+                                            tooltip.innerText = "Link copied!";
+                                            setTimeout(function() {
+                                                tooltip.innerText = "Copy link";
+                                            }, 1500);
+                                        }).catch(function(err) {
+                                            console.error('Failed to copy: ', err);
+                                        });
+                                    }
+                                </script>
+                            </div>
 
-                                        <pre>{{ $comment->comment }}</pre>
+                            <div class="main-comment-sec" id="main-comment-sec{{ $post->id }}">
+                                <!--comment section / hidden in default-->
+                                <div class="line">
+                                    <hr>
+                                </div>
 
-                                        <!-- @if (Auth::user()->id == $comment->user_id)
+                                <div id="filter-comment">
+                                    <a href="#">All comments <i class="bx bx-chevron-down"></i></a>
+                                </div>
+
+                                <div id="filter-comment-modal">
+                                    <a href=""><i class='bx bx-check'></i>
+                                        <p>Newest</p>
+                                    </a>
+                                    <a href=""><i class='bx bxs-bell'></i>
+                                        <p>All comments</p>
+                                    </a>
+                                </div>
+
+                                <div class="comment-sec">
+
+
+                                    <!-------------------------------------COMMENT BODY-->
+                                    <div class="comments" id="post{{ $post->id }}">
+                                        @if (count($post->comments) > 0)
+                                            @foreach ($post->comments as $comment)
+                                                <div class="comment" id="commentNotif{{ $comment->id }}">
+                                                    <div class="user-info">
+                                                        <img src="{{ $comment->user->profile_photo ? 'images/' . $comment->user->profile_photo : 'assets/images/avatar.png' }}"
+                                                            alt="Profile Picture">
+                                                        <div class="user">
+                                                            {{ $comment->user->fname . ' ' . $comment->user->lname }}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="content">
+
+                                                        <pre>{{ $comment->comment }}</pre>
+
+                                                        <!-- @if (Auth::user()->id == $comment->user_id)
                   <a href="">Edit</a> |
                   <a href="">Delete</a>
                   @endif -->
-                                    </div>
+                                                    </div>
 
-                                    <div class="actions">
-                                        <p id="likesCommentCount{{ $comment->id }}">@if (count($comment->likes) > 0){{ count($comment->likes) }}@endif</p>
-                                        <button onclick="likeComment('likeComment{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}')" class="
+                                                    <div class="actions">
+                                                        <p id="likesCommentCount{{ $comment->id }}">
+                                                            @if (count($comment->likes) > 0)
+                                                                {{ count($comment->likes) }}@endif
+                                                        </p>
+                                                        <button
+                                                            onclick="likeComment('likeComment{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}')"
+                                                            class="
                     @if (count($comment->likes) > 0) @php $tBold = true; @endphp
                       @foreach ($comment->likes as $like)
                           @if ($like->user != null)
@@ -651,88 +688,116 @@
                       @endforeach
                       {{ $tBold ? '' : 'tBold' }}
                     @endif
-                    " id="likeComment{{ $comment->id }}">Like</button>
-                                        <button onclick="toggleReply('replyInput{{ $comment->id }}')">Reply</button>
-                                        <button href="#">{{ \Illuminate\Support\Carbon::parse($comment->created_at)->diffForHumans() }}</button>
-                                    </div>
+                    "
+                                                            id="likeComment{{ $comment->id }}">Like</button>
+                                                        <button
+                                                            onclick="toggleReply('replyInput{{ $comment->id }}')">Reply</button>
+                                                        <button
+                                                            href="#">{{ \Illuminate\Support\Carbon::parse($comment->created_at)->diffForHumans() }}</button>
+                                                    </div>
 
 
-                                    <div class="replies" id="repliesContainer{{ $comment->id }}">
-                                        @if (count($comment->replies) > 0)
-                                        @foreach ($comment->replies as $reply)
-                                        <div class="reply-container reply nested-reply" id="replyNotif{{ $reply->id }}">
-                                            <div class="user-info">
-                                                <img src="{{ $reply->user->profile_photo ? 'images/' . $reply->user->profile_photo : 'assets/images/avatar.png' }}" alt="User Avatar" style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
-                                                <div class="user">
-                                                    {{ $reply->user->fname . ' ' . $reply->user->lname }}
+                                                    <div class="replies" id="repliesContainer{{ $comment->id }}">
+                                                        @if (count($comment->replies) > 0)
+                                                            @foreach ($comment->replies as $reply)
+                                                                <div class="reply-container reply nested-reply"
+                                                                    id="replyNotif{{ $reply->id }}">
+                                                                    <div class="user-info">
+                                                                        <img src="{{ $reply->user->profile_photo ? 'images/' . $reply->user->profile_photo : 'assets/images/avatar.png' }}"
+                                                                            alt="User Avatar"
+                                                                            style=" border-radius: 50%; margin-right: 10px; object-fit: cover;">
+                                                                        <div class="user">
+                                                                            {{ $reply->user->fname . ' ' . $reply->user->lname }}
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                    @if ($reply->replyWithUser != null)
+                                                                        <p class="content"
+                                                                            style="font-size: 12px; font-style:italic">
+
+                                                                            {{ $name->id == $reply->user->id ? 'You' : $reply->user->fname }}
+                                                                            replied to
+                                                                            {{ $reply->replyWithUser->user->fname . ' ' . $reply->replyWithUser->user->lname }}
+                                                                        </p>
+                                                                        <div
+                                                                            style="background-color:rgba(255,255,255, .5)">
+                                                                            <p class="content"
+                                                                                style="font-size: 12px; color:gray; font-style:italic">
+                                                                                {{ $reply->replyWithUser->reply }}
+                                                                            </p>
+                                                                        </div>
+                                                                    @endif
+
+
+                                                                    <div class="content">
+
+                                                                        <pre>{{ $reply->reply }}</pre>
+
+                                                                    </div>
+
+                                                                    <div class="actions">
+                                                                        <button
+                                                                            onclick="toggleReply('replyInputNested-{{ $reply->id }}')">Reply</button>
+                                                                        <button
+                                                                            href="#">{{ \Illuminate\Support\Carbon::parse($reply->created_at)->diffForHumans() }}</button>
+                                                                    </div>
+                                                                    <div class="reply-input"
+                                                                        id="replyInputNested-{{ $reply->id }}"
+                                                                        style="display:none;">
+                                                                        <textarea oninput="auto_grow(this)" placeholder="Write a reply..."
+                                                                            style="display:flex; min-height: 50px; width: 100%; margin-bottom: 5px;"></textarea>
+                                                                        <button
+                                                                            onclick="postReply(this, 'repliesContainer{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}', '{{ $reply->id }}')">Reply</button>
+                                                                    </div>
+                                                                    <div class="replies"
+                                                                        id="nestedRepliesContainer-{{ $comment->id }}">
+                                                                    </div> <!-- Nested replies container -->
+                                                                </div>
+                                                            @endforeach
+                                                        @endif
+                                                    </div> <!-- Replies container for comment 1 -->
+
+                                                    <div class="reply-input" id="replyInput{{ $comment->id }}">
+                                                        <textarea oninput="auto_grow(this)" placeholder="Write a reply..."
+                                                            style="display:flex; min-height: 50px; margin-bottom: 5px;"></textarea>
+                                                        <button
+                                                            onclick="postReply(this, 'repliesContainer{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}')">Reply</button>
+                                                    </div>
                                                 </div>
-
-
-                                            </div>
-                                            @if ($reply->replyWithUser != null)
-                                            <p class="content" style="font-size: 12px; font-style:italic">
-
-                                                {{ $name->id == $reply->user->id ? 'You' : $reply->user->fname }}
-                                                replied to
-                                                {{ $reply->replyWithUser->user->fname . ' ' . $reply->replyWithUser->user->lname }}
-                                            </p>
-                                            <div style="background-color:rgba(255,255,255, .5)">
-                                                <p class="content" style="font-size: 12px; color:gray; font-style:italic">
-                                                    {{ $reply->replyWithUser->reply }}
-                                                </p>
-                                            </div>
-                                            @endif
-
-
-                                            <div class="content">
-
-                                                <pre>{{ $reply->reply }}</pre>
-
-                                            </div>
-
-                                            <div class="actions">
-                                                <button onclick="toggleReply('replyInputNested-{{ $reply->id }}')">Reply</button>
-                                                <button href="#">{{ \Illuminate\Support\Carbon::parse($reply->created_at)->diffForHumans() }}</button>
-                                            </div>
-                                            <div class="reply-input" id="replyInputNested-{{ $reply->id }}" style="display:none;">
-                                                <textarea oninput="auto_grow(this)" placeholder="Write a reply..." style="display:flex; min-height: 50px; width: 100%; margin-bottom: 5px;"></textarea>
-                                                <button onclick="postReply(this, 'repliesContainer{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}', '{{ $reply->id }}')">Reply</button>
-                                            </div>
-                                            <div class="replies" id="nestedRepliesContainer-{{ $comment->id }}">
-                                            </div> <!-- Nested replies container -->
-                                        </div>
-                                        @endforeach
+                                            @endforeach
                                         @endif
-                                    </div> <!-- Replies container for comment 1 -->
-
-                                    <div class="reply-input" id="replyInput{{ $comment->id }}">
-                                        <textarea oninput="auto_grow(this)" placeholder="Write a reply..." style="display:flex; min-height: 50px; margin-bottom: 5px;"></textarea>
-                                        <button onclick="postReply(this, 'repliesContainer{{ $comment->id }}', '{{ $name->id }}', '{{ $comment->id }}')">Reply</button>
                                     </div>
-                                </div>
-                                @endforeach
-                                @endif
-                            </div>
 
-                            <div style="padding:12px;">
-                                <form action="/comment/store" method="POST" id="commentId{{ $post->id }}" style="display:flex; min-height: 60px; border: solid var(--second-color); border-radius: 5px;">
-                                    @csrf
-                                    <textarea oninput="auto_grow(this)" name="comment" id="comment{{ $post->id }}" style="width:100%; display:flex; resize: none; padding: 5px; border: none; outline: none;" placeholder="Add comment..." required></textarea>
-                                    <script>
-                                        function auto_grow(element) {
-                                            element.style.height = "5px"; // Set initial height
-                                            element.style.height = (element.scrollHeight) + "px"; // Adjust height based on content
-                                        }
-                                    </script>
+                                    <div style="padding:12px;">
+                                        <form action="/comment/store" method="POST"
+                                            id="commentId{{ $post->id }}"
+                                            style="display:flex; min-height: 60px; border: solid var(--second-color); border-radius: 5px;">
+                                            @csrf
+                                            <textarea oninput="auto_grow(this)" name="comment" id="comment{{ $post->id }}"
+                                                style="width:100%; display:flex; resize: none; padding: 5px; border: none; outline: none;"
+                                                placeholder="Add comment..." required></textarea>
+                                            <script>
+                                                function auto_grow(element) {
+                                                    element.style.height = "5px"; // Set initial height
+                                                    element.style.height = (element.scrollHeight) + "px"; // Adjust height based on content
+                                                }
+                                            </script>
 
-                                    <input type="hidden" id="user_id{{ $post->id }}" value="{{ $name->id }}">
-                                    <input type="hidden" id="postId{{ $post->id }}" value="{{ $post->id }}">
-                                    <button id="btn{{ $post->id }}" onclick="postComment($('#comment{{ $post->id }}').val(), $('#user_id{{ $post->id }}').val(), $('#postId{{ $post->id }}').val())" style="position: relative; margin: auto auto 0 auto; background: #fff; width:50px; height:50px; font:bx-send; border: none; cursor: pointer;" value="Comment"><i class="bx bxs-send" style="color: var(--second-color); font-size: 30px;"></i></button>
-                                </form>
-                            </div>
+                                            <input type="hidden" id="user_id{{ $post->id }}"
+                                                value="{{ $name->id }}">
+                                            <input type="hidden" id="postId{{ $post->id }}"
+                                                value="{{ $post->id }}">
+                                            <button id="btn{{ $post->id }}"
+                                                onclick="postComment($('#comment{{ $post->id }}').val(), $('#user_id{{ $post->id }}').val(), $('#postId{{ $post->id }}').val())"
+                                                style="position: relative; margin: auto auto 0 auto; background: #fff; width:50px; height:50px; font:bx-send; border: none; cursor: pointer;"
+                                                value="Comment"><i class="bx bxs-send"
+                                                    style="color: var(--second-color); font-size: 30px;"></i></button>
+                                        </form>
+                                    </div>
 
 
-                            <!--
+                                    <!--
             <div class="comment-body">
 
                 <div class="user-comment">
@@ -815,7 +880,7 @@
             </div>
           -->
 
-                            <!------------------------------additional comment structure
+                                    <!------------------------------additional comment structure
 
             <div class="comment-body">
               <div class="user-comment">
@@ -887,17 +952,17 @@
           </div>
 -->
 
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
 
-                @endforeach
+                    @endforeach
                 @else
-                <div class="no-post">
-                    <img src="/assets/images/no-post.png" alt="astronaut">
-                    <h2>No post yet</h2>
-                </div>
+                    <div class="no-post">
+                        <img src="/assets/images/no-post.png" alt="astronaut">
+                        <h2>No post yet</h2>
+                    </div>
 
                 @endif
 
@@ -905,23 +970,23 @@
 
             </div>
             @php
-            $allHashtags = [];
-            foreach ($posts as $post) {
-            $content = $post->content;
-            preg_match_all('/#(\w+)/', $content, $matches);
-            $allHashtags = array_merge($allHashtags, $matches[1]);
-            }
+                $allHashtags = [];
+                foreach ($posts as $post) {
+                    $content = $post->content;
+                    preg_match_all('/#(\w+)/', $content, $matches);
+                    $allHashtags = array_merge($allHashtags, $matches[1]);
+                }
 
-            $hashtagCounts = array_count_values($allHashtags);
-            arsort($hashtagCounts);
-            $popularHashtags = array_slice($hashtagCounts, 0, 5, true);
+                $hashtagCounts = array_count_values($allHashtags);
+                arsort($hashtagCounts);
+                $popularHashtags = array_slice($hashtagCounts, 0, 5, true);
             @endphp
 
             @foreach ($posts as $index => $post)
-            @php
-            $content = $post->content;
-            preg_match_all('/#(\w+)/', $content, $matches);
-            @endphp
+                @php
+                    $content = $post->content;
+                    preg_match_all('/#(\w+)/', $content, $matches);
+                @endphp
 
             @endforeach
 
@@ -934,7 +999,7 @@
 
                             <ul class="dropdown-content">
                                 @foreach ($popularHashtags as $hashtag => $count)
-                                <li><a href="/popular/{{ $hashtag }}">#{{ $hashtag }}</a></li>
+                                    <li><a href="/popular/{{ $hashtag }}">#{{ $hashtag }}</a></li>
                                 @endforeach
                             </ul>
                         </li>
@@ -983,72 +1048,72 @@
         $('#hashtag').click(function() {
             $('#textContent').val($('#textContent').val() + '#');
         })
-        
+
         function fetchNotifications() {
-    $.ajax({
-        url: '/notifications',
-        method: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            console.log(data);
-            let notif = "";
-            let unreadCount = 0; // Initialize unread notification count
+            $.ajax({
+                url: '/notifications',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    let notif = "";
 
-            data.forEach((notifs, i) => {
-                notif += `
-                    <div class="notif-container" onclick="markNotificationAsRead('${notifs.id}')">
-                        <a href="#" class="notification-item ${notifs.is_read == 0 ? 'unread-notif' : ''}">
-                            <span class="unread"></span>
-                            <i class="icon bx bx-post"></i>
-                            <div class="content">
-                                <h2 class="notification-item-user-block">
-                                    Post # ${notifs.post_id} is reported
-                                </h2>
-                                <span class="timestamp">${moment(notifs.created_at).fromNow()}</span>
-                            </div>
-                            <button onclick="showModal('settings${notifs.id}')" type="button" class="notif-action">
-                                <i class="bx bx-dots-horizontal-rounded"></i>
-                            </button>
-                        </a>
-                    
-                        <div class="notif-action-modal" id="settings${notifs.id}">
-                            <!-- Your action buttons here -->
-                            <a href="#"><i class='bx bx-check'>
-                                    <p>Mark as read</p>
-                                </i></a>
-                            <a href="#"><i class='bx bxs-bell'>
-                                    <p>Remove</p>
-                                </i></a>
-                        </div>
-                    </div>
-                `;
+                    data.forEach((notifs, i) => {
+                        notif += `
+              <div class="notif-container" onclick="markNotificationAsRead('${notifs.id}')">
+                  <a href="#" class="notification-item ${notifs.is_read == 0 ? 'unread-notif' : ''}">
+                      <span class="unread"></span>
+                      <i class="icon bx bx-post"></i>
+                      <div class="content">
+                          <h2 class="notification-item-user-block">
+                            ${notifs.content}
+                          </h2>
+                          <span class="timestamp">${moment(notifs.created_at).fromNow()}</span>
+                      </div>
+                      <button onclick="showModal('settings${notifs.id}')" type="button" class="notif-action">
+                          <i class="bx bx-dots-horizontal-rounded"></i>
+                      </button>
+                  </a>
+                
+                  <div class="notif-action-modal" id="settings${notifs.id}">
+                      <!-- Your action buttons here -->
+                      <a href="#"><i class='bx bx-check'>
+                              <p>Mark as read</p>
+                          </i></a>
+                      <a href="#"><i class='bx bxs-bell'>
+                              <p>Remove</p>
+                          </i></a>
+                  </div>
+              </div>
+              `;
+                    });
 
-                // Increment unreadCount if the notification is unread
-                if (notifs.is_read == 0) {
-                    unreadCount++;
+                    $('#notifContainer').html(notif);
+                    $('.indicator').text(unreadCount);
+
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText)
                 }
             });
-
-            $('#notifContainer').html(notif);
-
-            // Update the indicator content to the number of unread notifications
-            $('.indicator').text(unreadCount);
-        },
-        error: function(xhr) {
-            console.log(xhr.responseText)
         }
-    });
-}
 
-$(document).ready(function() {
-    fetchNotifications();
+        function markAllAsRead(){
+            $.ajax({
+                url: '/notifications-updateAll',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                }
+            })
+        }
+        $(document).ready(function() {
+            fetchNotifications();
 
-    // Set up an interval to call fetchNotifications every 3 seconds
-    setInterval(function() {
-        fetchNotifications();
-    }, 3000);
-});
-
+            // Set up an interval to call fetchNotifications every 3 seconds
+            setInterval(function() {
+                fetchNotifications();
+            }, 3000);
+        });
     </script>
 </body>
 

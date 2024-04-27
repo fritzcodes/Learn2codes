@@ -76,7 +76,34 @@ class ForumController extends Controller
         // dd($notif);
         return view('frontend.admin.adminForums', compact('name', 'posts', 'notif', 'notifCount'));
     }
+    public function forumNotif()
+    {
+        $name = Auth::user();
+        $posts = Post::with('images')
+            ->with('user')
+            ->withCount('likes')
+            ->with(['likes.user' => function ($query) use ($name) {
+                $query->where('id', $name->id);
+            }])
+            ->with(['comments.user', 'comments.replies.user'])
+            ->with(['comments.likes.user' => function ($query) use ($name) {
+                $query->where('id', $name->id);
+            }])
+            ->with('comments.replies.replyWithUser')
+            ->where('is_deleted', '0')
+            ->orderBy('created_at', 'desc') // Order by created_at column in descending order
+            ->get();
+            $notif = AdminNotifications::with('user')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $notifCount = count(AdminNotifications::with('user')
+            ->where('is_read', '0')
+            ->orderBy('created_at', 'desc')
+            ->get());
 
+        // dd($notif);
+        return view('frontend.admin.adminForumNotif', compact('name', 'posts', 'notif', 'notifCount'));
+    }
     public function ForumPost()
     {
         $name = Auth::user();
@@ -240,7 +267,7 @@ class ForumController extends Controller
             ->get());
 
         // dd($notif);
-        return view('frontend.forum.forum', compact('name', 'posts', 'notif', 'notifCount'));
+        return view('frontend.forum.popularTopic', compact('name', 'posts', 'notif', 'notifCount'));
 
     }
 
@@ -278,7 +305,7 @@ class ForumController extends Controller
             $data = AdminNotifications::find($id);
         return response()->json($data);
     }
-    public function NotificationUpdateAll($id)
+    public function NotificationUpdateAll()
     {
         $notif = UserNotification::where('self_id', Auth::user()->id)
             ->where('is_read', '0')

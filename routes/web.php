@@ -188,7 +188,8 @@ Route::middleware('auth', 'last_online')->group(function () {
         Route::get('/notifications', [ForumController::class, 'Notification']);
         Route::get('/notifications-update/{id}', [ForumController::class, 'NotificationUpdate']);
         Route::get('/notifications-update-admin/{id}', [ForumController::class, 'NotificationUpdateAdmin']);
-        Route::get('/notifications-updateAll/{id}', [ForumController::class, 'NotificationUpdateAll']);
+        Route::get('/admin/forum/post', [ForumController::class, 'forumNotif']);
+        Route::get('/notifications-updateAll', [ForumController::class, 'NotificationUpdateAll']);
         Route::post('/like-comment', [ForumController::class, 'likeComment']);
         Route::get('/popular/{hashtag}', [ForumController::class, 'PopularTopics']);
         Route::get('/forum/{postId}', [ForumController::class, 'PostNotif']);

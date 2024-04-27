@@ -8,6 +8,7 @@
   <title>Forum | Learn2Code</title>
   <link rel="stylesheet" href="/assets/css/forum.css">
   <link rel="stylesheet" href="/upload.css">
+  
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css" rel="stylesheet" />
@@ -17,6 +18,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script src="/assets/js/forum.js" defer></script>
   <script src="/assets/js/insertimg.js" defer></script>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  
   <style>
     .outlined-heart {
       color: black;
@@ -53,7 +56,7 @@
         <li>
           <div class="logo">
               <a href="/forum">
-                  <img src="/assets/images/Logo.jpg" alt="logo">
+                  <img src="http://learning2code.online/assets/images/Logo.jpg" alt="logo">
               </a>
           </div>
       </li>
@@ -84,7 +87,9 @@
                       alt="Profile Photo" class="avatar">
               @else
                   <!-- Placeholder image or default avatar -->
-                  <img src="assets/images/avatar.png" alt="Default Avatar" class="avatar">
+                  <img src="/assets/images/avatar.png" alt="Default Avatar" style="width: 35px;
+                  height: 35px;
+                  border-radius: 50%;">
               @endif
           </a>
       </div>
@@ -184,7 +189,6 @@
 
         
 
-        
 
         @if(count($posts) > 0)
         @foreach ($posts as $index => $post)
@@ -249,11 +253,13 @@
               <pre><code>{{ $post->code }}</code> </pre>
             </div>
             @endif
-
+           
             @if (count($post->images) > 0)
+            
             <div class="image-gallery">
               @foreach ($post->images as $image)
-              <img class="post-pic" src="/forum/{{$image->image}}" alt="Image 1">
+              
+              <img class="post-pic" src="/forums/{{ $image->image }}" alt="Image 1">
               @endforeach
             </div>
             @endif
