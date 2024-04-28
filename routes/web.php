@@ -146,6 +146,8 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/admin/exercise-edit/{id}', [ExerciseController::class, 'updateExercise'])->name('updateExercise');
     Route::get('/admin/exercise-view/{id}', [ExerciseController::class, 'viewExercise'])->name('viewExercise');
 
+    Route::delete('/admin/module/{id}', [ModuleController::class, 'deleteModule'])->name('module.delete');
+
     Route::delete('/admin/exercise/{id}', [ExerciseController::class, 'deleteExercise'])->name('exercise.delete');
 
     Route::get('/admin/studInfo/{id}', [ManageUserController::class, 'show']);

@@ -30,14 +30,14 @@ class AddQuestionController extends Controller
 
 
         $quiz->save();
-        return back()->with('success', 'Register successfully');
+        return back()->with('success', 'Quiz added successfully');
     }
     public function deleteQuestion(Request $request)
     {
         $id = $request->input('id');
         Quizzes::where('id', $id)->delete();
 
-        return back()->with('success', 'Deleted');
+        return back()->with('success', 'Quiz Deleted');
     }
 
     public function getQuiz($id, $diff, $item) //this is Java Easy

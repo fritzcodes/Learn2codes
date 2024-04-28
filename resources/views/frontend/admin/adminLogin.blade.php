@@ -74,7 +74,7 @@
                   <button id="login" type="submit" class="btns">Log In</button>
                 </div>
                 <div class="forgot">
-                  <a onclick="">Forgot password?</a>
+                 
                 </div>
             </form>
       </section>

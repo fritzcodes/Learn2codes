@@ -231,6 +231,7 @@
                         <td>{{ $item->title }}</td>
                         <td class="ved">
                                 <a href="/admin/viewModule/{{$item->id}}"><i class="bx bxs-show"></i></a>
+                                <button class="bx bxs-trash delete-module" data-id="{{ $item->id }}" data-title="{{ $item->title }}"></button>
                         </td>
                     </tr>
                 @endforeach
@@ -837,6 +838,70 @@
             });
         });
     </script>
+
+<script>
+    // Assuming you're using jQuery
+    $(document).ready(function() {
+    $('.delete-module').on('click', function() {
+        var id = $(this).data('id');
+        var title = $(this).data('title');
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You are about to delete the module: ' + title,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // User confirmed, send the delete request
+                $.ajax({
+                    url: '/admin/module/' + id,
+                    type: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        console.log(response); // Log the response
+                        // Display success message
+                        Swal.fire(
+                            'Deleted!',
+                            'The module has been deleted.',
+                            'success'
+                        ).then((result) => {
+                            // Reload the page after the user clicks "OK"
+                            if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
+                                location.reload();
+                            }
+                        });
+                    },
+                    error: function(xhr) {
+                        console.error(xhr.responseText); // Log the error response
+                        // Display error message
+                        Swal.fire(
+                            'Deleted!',
+                            'The module has been deleted.',
+                            'success'
+                        ).then((result) => {
+                            // Reload the page after the user clicks "OK"
+                            if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
+                                location.reload();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+});
+
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>
