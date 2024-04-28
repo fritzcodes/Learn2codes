@@ -226,7 +226,7 @@
                     $('.indicator').css('content', '5');
                 })
             </script>
-            <a href="/profile" class="profile-link">
+            <a href="/admin/dashboard" class="profile-link">
                 @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
                     <img src="{{ Auth::guard('admin')->user()->profile_photo ? asset('/images/' . Auth::guard('admin')->user()->profile_photo) : '/assets/images/avatar.png' }}"
                         alt="Profile Photo" class="avatar">

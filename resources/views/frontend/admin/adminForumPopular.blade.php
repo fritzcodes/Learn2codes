@@ -79,7 +79,7 @@
                   $('.indicator').css('content', '5');
               })
           </script>
-          <a href="/profile" class="profile-link">
+          <a href="/admin/dashboard" class="profile-link">
               @if (Auth::check() && Auth::user()->profile_photo)
                   <img src="{{ Auth::user()->profile_photo ? asset('images/' . Auth::user()->profile_photo) : 'assets/images/avatar.png' }}"
                       alt="Profile Photo" class="avatar" style="width: 35px;
