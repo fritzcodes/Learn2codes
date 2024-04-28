@@ -974,48 +974,51 @@
                 },
                 success: function(data) {
 
-
+                    console.log(data);
                     const userInfo = `
                         
             
         
             <div class="image-container">
-                <a href=""><img src="${data.profile_photo ? '/images/' + data.profile_photo : '../assets/images/avatar.png'}" alt=""></a>        
+                <a href=""><img src="${data.user.profile_photo ? '/images/' + data.user.profile_photo : '../assets/images/avatar.png'}" alt=""></a>        
             </div>
         
                 <div class="typeinput"> 
                     <label for="email">Email:</label>          
-                    <h2>${data.email}</h2>
+                    <h2>${data.user.email}</h2>
                 </div>
         
                 <div class="typeinput"> 
                     <label for="username">Username:</label>          
-                    <h2>${data.username}</h2>
+                    <h2>${data.user.username}</h2>
                 </div>
         
                 <div class="typeinput">   
                     <label for="firstname">Firstname:</label>   
-                    <h2>${data.fname}</h2>
+                    <h2>${data.user.fname}</h2>
                 </div>
         
                 <div class="typeinput"> 
                     <label for="lastname">Lastname:</label>     
-                    <h2>${data.lname}</h2>
+                    <h2>${data.user.lname}</h2>
                 </div>
         
                 <div class="typeinput"> 
                     <label for="exp">EXP:</label>          
-                    <h2>${data.total_points}</h2>
+                    <h2>${data.userPoints[1]?.total_points || 0}</h2>
                 </div>
         
                 <div class="typeinput"> 
                     <label for="badge">Badge:</label>          
-                    <h2>${data.badge_count}</h2>
+                    <h2>${data.badge}</h2>
                 </div>
         
                     `;
 
                     $('#infos').html(userInfo);
+                },
+                error:function(xhr){
+                    console.log(xhr.responseText);
                 }
 
             })
