@@ -35,6 +35,7 @@
       /*----------- Content Section------------ */
  
       .title {
+        font-family: var(--font1);
         padding: 20px;
         display: block;
         text-align: center;
@@ -59,6 +60,7 @@
       }
 
     .content-section{ 
+      font-family: var(--font2);
       padding: 20px;
       align-content: center;
       align-items: center;
