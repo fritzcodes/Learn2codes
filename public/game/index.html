@@ -7,7 +7,6 @@
 		<link rel="shortcut icon" type="x-icon" href="/assets/images/logo.svg">
 		<title>CosmicCode</title>
 		<style>
-
 :root{ /*---font and color defaults --*/
   --bg-color: #210535;
   --main-color: #f5d5e0;
@@ -66,11 +65,12 @@ body {
 
 #status-progress {
 	width: 366px;
-	height: 20px;
-	background-color: var(--main-color);
-	border: 1px solid var(--bg-color);
+	height: 7px;
+	background-color: #38363A;
+	border: 1px solid #444246;
 	padding: 1px;
-	box-shadow: 0 0 2px 1px var(--bg-color);
+	box-shadow: 0 0 2px 1px #1B1C22;
+	border-radius: 2px;
 	visibility: visible;
 }
 
@@ -85,11 +85,10 @@ body {
 	width: 0;
 	box-sizing: border-box;
 	transition: width 0.5s linear;
-	background-color: var(--bg-color);
+	background-color: #202020;
 	border: 1px solid #222223;
 	box-shadow: 0 0 1px 1px #27282E;
-	border-top-right-radius: 3px;
-	border-bottom-right-radius: 3px;
+	border-radius: 3px;
 }
 
 #status-indeterminate {
@@ -134,11 +133,7 @@ body {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	
-
-
 }
-
 
 		</style>
 		<link id='-gd-engine-icon' rel='icon' type='image/png' href='index.icon.png' />
@@ -179,7 +174,7 @@ if (!window.SharedArrayBuffer) {
 <script src="coi-serviceworker.min.js"></script>
 <script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":84050272,"index.wasm":48954223},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":84076496,"index.wasm":49282035},"focusCanvas":true,"gdextensionLibs":[]};
 const engine = new Engine(GODOT_CONFIG);
 
 (function () {
