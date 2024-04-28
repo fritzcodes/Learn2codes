@@ -5,7 +5,7 @@
     <title>View Module | Admin</title>
     <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.svg">
     <link rel="stylesheet" href="/assets/css/Admin.css">
-    <link rel="stylesheet" href="../assets/css/userModal.css">
+    <link rel="stylesheet" href="/assets/css/userModal.css">
     <link rel="stylesheet"href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>

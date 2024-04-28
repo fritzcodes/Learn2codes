@@ -7,7 +7,7 @@
     <meta name="author" content="CodeHim">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="/assets/css/Admin.css">
-    <link rel="stylesheet" href="../assets/css/userModal.css">
+    <link rel="stylesheet" href="/assets/css/userModal.css">
     <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.svg">
     <title> Exercise List | Admin </title>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
