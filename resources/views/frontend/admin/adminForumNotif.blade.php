@@ -99,9 +99,6 @@
 
         }
 
-
-
-
         .user ul {
             align-items: center;
             display: flex;
@@ -188,7 +185,6 @@
             }
         }
 
-
         .no-post h2 {
             padding: 10px 0;
             font-size: var(--h2-font);
@@ -216,7 +212,9 @@
                         </a>
                     </div>
                 </li>
-
+        <li>
+            <p class="textlogo">Learn2Code</p>
+        </li>
             </ul>
 
         </div>
@@ -714,6 +712,9 @@ outlined-heart
             </li>
 
             <li><a href="#">About</a></li> -->
+                <div class="termss">
+                            <a href="/terms">Terms and Condition</a>
+                </div>
                     </ul>
                 </div>
 

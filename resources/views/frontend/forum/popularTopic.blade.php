@@ -42,6 +42,7 @@
     .tBold {
       font-weight: bolder;
     }
+
   </style>
 
 
@@ -64,16 +65,9 @@
               </a>
           </div>
       </li>
-        
-        <!--
-      <li class="filter">
-        <a class="bx bxs-filter-alt" id="filter">    
-        </a>
-   
-
-        
+      <li>
+        <p class="textlogo">Learn2Code</p>
       </li>
-         -->
         </ul>
 
       </div>
@@ -486,6 +480,9 @@
               <hr>
             </div>
            
+            <div class="termss">
+                        <a href="/terms">Terms and Condition</a>
+            </div>
           </ul>
         </div>
 

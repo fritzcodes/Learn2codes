@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Forum | Learn2Code</title>
     <link rel="stylesheet" href="/assets/css/forum.css">
-    <link rel="shortcut icon" type="x-icon" href="assets/images/logo.svg">
+    <link rel="shortcut icon" type="x-icon" href="/assets/images/logo.svg">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -217,7 +217,9 @@
                         </a>
                     </div>
                 </li>
-                
+                <li>
+                    <p class="textlogo">Learn2Code</p>
+                </li>
             </ul>
 
         </div>
@@ -769,6 +771,9 @@ outlined-heart
             </li>
 
             <li><a href="#">About</a></li> -->
+            <div class="termss">
+                        <a href="/terms">Terms and Condition</a>
+            </div>
                     </ul>
                 </div>
 

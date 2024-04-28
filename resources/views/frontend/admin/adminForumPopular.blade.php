@@ -8,7 +8,7 @@
   <title>Forum | Learn2Code</title>
   <link rel="stylesheet" href="/assets/css/forum.css">
   <link rel="stylesheet" href="/upload.css">
-  
+  <link rel="shortcut icon" type="x-icon" href="/assets/images/logo.svg">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css" rel="stylesheet" />
@@ -20,6 +20,7 @@
   <script src="/assets/js/insertimg.js" defer></script>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   
   <style>
     a{
@@ -64,16 +65,9 @@
               </a>
           </div>
       </li>
-        
-        <!--
-      <li class="filter">
-        <a class="bx bxs-filter-alt" id="filter">    
-        </a>
-   
-
-        
+      <li>
+        <p class="textlogo">Learn2Code</p>
       </li>
-         -->
         </ul>
 
       </div>
@@ -476,7 +470,9 @@
             <div>
               <hr>
             </div>
-           
+            <div class="termss">
+                        <a href="/terms">Terms and Condition</a>
+            </div>
           </ul>
         </div>
 

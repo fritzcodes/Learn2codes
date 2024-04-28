@@ -109,15 +109,6 @@
             border-radius: 3px;
         }
 
-        .user ul {
-            align-items: center;
-            display: flex;
-        }
-
-        .user ul li {
-            margin-right: 10px;
-        }
-
         .navbar {
             position: absolute;
             top: 0;
@@ -225,15 +216,10 @@
                 </li>
 
 
-                <!--
-      <li class="filter">
-        <a class="bx bxs-filter-alt" id="filter">
-        </a>
-
-
-
+            
+      <li>
+        <p class="textlogo">Learn2Code</p>
       </li>
-         -->
             </ul>
 
         </div>
@@ -1029,6 +1015,9 @@ outlined-heart
             </li>
 
             <li><a href="#">About</a></li> -->
+                    <div class="termss">
+                        <a href="/terms">Terms and Condition</a>
+                    </div>
                     </ul>
                 </div>
 
