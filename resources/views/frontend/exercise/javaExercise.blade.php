@@ -90,8 +90,11 @@ transition: .2s;
   }
   
   .code-container {
-   margin: 10px 0;
-   display: flex;
+    margin: 10px 0;
+    display: flex;
+    height: 30vh;
+    overflow-y: auto;
+    align-items:center;
    justify-content: center;
    background-color: white; /* Set the background color for the code container */
    border: 1px solid var(--second-color);
@@ -103,7 +106,6 @@ transition: .2s;
   .code-container code {
     word-wrap: break-word;
     word-break: normal;
-   padding: 40px 0;
    font-family: var(--font2); /* Change the font for the code */
    font-size: var(--h2-font); /* Adjust the font size as needed */
    color: var(--bg-color);
@@ -203,6 +205,9 @@ transition: .2s;
   .correct-container {
     margin: 10px 0;
     display: flex;
+    height: 30vh;
+    overflow-y: auto;
+    align-items: center;
     justify-content: center;
     background-color: white; /* Set the background color for the code container */
     border: 1px solid green;
@@ -245,11 +250,14 @@ transition: .2s;
   .incorrect-ans {
     margin: 10px 0;
     display: flex;
+    height: 30vh;
+    overflow-y: auto;
+    align-items: center;
     justify-content: center;
     background-color: white; /* Set the background color for the code container */
     border: 1px solid red;
     border-radius: 15px; /* Adjust the border radius as needed */
-    padding: 30px; /* Adjust the padding as needed *//*/* Adjust margin as needed */
+    padding: 30px; /* Adjust the paddin*/
   }
   
   
