@@ -94,7 +94,6 @@ transition: .2s;
     display: flex;
     height: 30vh;
     overflow-y: auto;
-    align-items:center;
    justify-content: center;
    background-color: white; /* Set the background color for the code container */
    border: 1px solid var(--second-color);
@@ -116,9 +115,9 @@ transition: .2s;
   code input {
     text-wrap:balance;
     word-wrap: break-word;
-    max-width: 200px;
-    padding: 5px 3px;
-    margin: 5px;
+    min-width: 200px;
+    padding: 10px 3px;
+    margin: 10px;
     border-top: none;
     border-left: none;
     border-right: none;
@@ -207,19 +206,20 @@ transition: .2s;
     display: flex;
     height: 30vh;
     overflow-y: auto;
-    align-items: center;
-    justify-content: center;
-    background-color: white; /* Set the background color for the code container */
-    border: 1px solid green;
-    border-radius: 15px; /* Adjust the border radius as needed */
-    padding: 30px; /* Adjust the padding as needed *//*/* Adjust margin as needed */
+   justify-content: center;
+   background-color: white; /* Set the background color for the code container */
+   border: 1px solid var(--second-color);
+   border-radius: 5px; /* Adjust the border radius as needed */
+   padding: 30px; /* Adjust the padding as needed */
   }
   
   
   .correct-container code {
+    min-width: 200px;
+    padding: 10px 3px;
+    margin: 10px 0;
     word-wrap: break-word;
     word-break: normal;
-    padding: 40px 0;
    font-family: var(--font1); /* Change the font for the code */
    font-size: var(--h2-font); /* Adjust the font size as needed */
    color: green; /* Set the color for the code */
@@ -251,12 +251,11 @@ transition: .2s;
     display: flex;
     height: 30vh;
     overflow-y: auto;
-    align-items: center;
-    justify-content: center;
-    background-color: white; /* Set the background color for the code container */
-    border: 1px solid red;
-    border-radius: 15px; /* Adjust the border radius as needed */
-    padding: 30px; /* Adjust the paddin*/
+   justify-content: center;
+   background-color: white; /* Set the background color for the code container */
+   border: 1px solid red;
+   border-radius: 5px; /* Adjust the border radius as needed */
+   padding: 30px; /* Adjust the padding as needed */
   }
   
   
