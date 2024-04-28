@@ -219,7 +219,6 @@ transition: .2s;
   .correct-container code {
     word-wrap: break-word;
     word-break: normal;
-    display: flex;
     padding: 40px 0;
    font-family: var(--font1); /* Change the font for the code */
    font-size: var(--h2-font); /* Adjust the font size as needed */
@@ -264,8 +263,7 @@ transition: .2s;
   .incorrect-ans code {
     word-wrap: break-word;
     word-break: normal;
-    display: flex;
-    padding: 40px 0;
+    margin: 10px 0
     font-family: var(--font1); /* Change the font for the code */
     font-size: var(--h2-font); /* Adjust the font size as needed */
     color: red; /* Set the color for the code */
@@ -309,8 +307,6 @@ transition: .2s;
   .correct-containers code {
     word-wrap: break-word;
     word-break: normal;
-    display: inline-flex;
-    padding: 40px 5px;
    font-family: var(--font1); /* Change the font for the code */
    font-size: var(--big-font); /* Adjust the font size as needed */
    color: var(--main-color); /* Set the color for the code */
