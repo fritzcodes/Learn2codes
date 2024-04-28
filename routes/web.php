@@ -45,6 +45,11 @@ use App\Http\Controllers\termsController;
 |
 */
 
+
+Route::get('/termsforum', [termsController::class, 'TermForum'])->name('termsforum');
+Route::get('/termsign', [termsController::class, 'Termsign'])->name('termsign');
+
+
 Route::get('/leaderboard', [boardController::class, 'Index'])->name('leaderboard');
 Route::get('/leaderboard/data', [boardController::class, 'fetchLeaderboardData'])->name('leaderboard.data');
 
@@ -113,6 +118,9 @@ Route::get('/about', function () {
 Route::get('/terms', function () {
     return view('frontend.terms');
 })->name('terms');
+
+
+
 
 Route::get('/forget-password', [ForgetPasswordManager::class, 'ForgetPassword'])->name('forgetPassword');
 Route::post('/forget-passwordpost', [ForgetPasswordManager::class, 'ForgetPasswordPost'])->name('forget.password.post');

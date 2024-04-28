@@ -481,7 +481,7 @@
             </div>
            
             <div class="termss">
-                        <a href="/terms">Terms and Condition</a>
+                        <a href="/termsforum">Terms and Condition</a>
             </div>
           </ul>
         </div>

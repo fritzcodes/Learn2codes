@@ -772,7 +772,7 @@ outlined-heart
 
             <li><a href="#">About</a></li> -->
             <div class="termss">
-                        <a href="/terms">Terms and Condition</a>
+                        <a href="/termsforum">Terms and Condition</a>
             </div>
                     </ul>
                 </div>
