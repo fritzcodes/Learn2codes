@@ -230,7 +230,7 @@
             <tbody id="1">
                 @foreach ($data as $item)
                     <tr id="{{ $item->id }}">
-                        <td>{{ $item->content }}</td>
+                    <td>{{ Str::limit($item->content, 20) }}</td>
                         <td class="ved">
                                 <a href="/admin/exercise-view/{{$item->id}}"><i class="bx bxs-show"></i></a>
                                 <button class="bx bxs-trash delete-exercise" data-id="{{ $item->id }}"></button>

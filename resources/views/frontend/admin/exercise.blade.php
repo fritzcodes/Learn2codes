@@ -121,7 +121,7 @@
         @csrf
        
         <label for="language" class="label">Language</label>
-        <select name="language" id="" class="select">
+        <select name="language" id="" class="select" required>
             <option value="">--Select a Language--</option>
             @foreach ($data as $item)
                 <option value="{{ $item->language }}">{{ $item->language }}</option>
