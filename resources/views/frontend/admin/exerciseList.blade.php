@@ -143,7 +143,7 @@
                         class="user-img">
                 @else
                     <!-- Placeholder image or default avatar -->
-                    <img src="../assets/images/avatar.png" alt="user" class="user-img">
+                    <img src="/assets/images/avatar.png" alt="user" class="user-img">
                 @endif
             </a>
             <div>

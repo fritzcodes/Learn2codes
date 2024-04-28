@@ -35,7 +35,7 @@
         </div>
 
 
-        <div class="user">
+        <div class="user" style="margin-top: 1rem;">
             <a onclick="openAdminModal()">
                 @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
                     <img src="{{ asset('images/' . Auth::guard('admin')->user()->profile_photo) }}" alt="user"
@@ -45,8 +45,8 @@
                     <img src="../assets/images/avatar.png" alt="user" class="user-img">
                 @endif
             </a>
-            <div>
-                <p class="username">{{ Auth::guard('admin')->user()->username }}</p>
+            <div class="deet" style="line-height: 0.1;">
+                <p class="username" style="margin-top: 15px;">{{ Auth::guard('admin')->user()->username }}</p>
                 <p>Admin</p>
             </div>
         </div>
