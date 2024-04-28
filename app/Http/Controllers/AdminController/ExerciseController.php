@@ -45,4 +45,18 @@ class ExerciseController extends Controller
         $exercise->update($data);
         return back()->with('message', "Exercise updated successfully");
     }
+
+    public function deleteExercise($id)
+{
+    // Find the exercise by ID
+    $exercise = Exercise::findOrFail($id);
+
+    // Delete the exercise
+    $exercise->delete();
+
+    // Redirect back with a success message
+    return back()->with('message', 'Exercise deleted successfully');
+}
+
+
 }

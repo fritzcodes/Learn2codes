@@ -233,6 +233,7 @@
                         <td>{{ $item->content }}</td>
                         <td class="ved">
                                 <a href="/admin/exercise-view/{{$item->id}}"><i class="bx bxs-show"></i></a>
+                                <button class="bx bxs-trash delete-exercise" data-id="{{ $item->id }}"></button>
                         </td>
                     </tr>
                 @endforeach
@@ -632,6 +633,79 @@
 
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Add JavaScript to handle delete button click -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const deleteButtons = document.querySelectorAll('.delete-exercise');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const exerciseId = this.getAttribute('data-id');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You won\'t be able to revert this!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Send AJAX request to delete the exercise
+                        fetch('/admin/exercise/' + exerciseId, {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            }
+                        }).then(response => {
+                            if (response.ok) {
+                                // If deletion is successful, remove the row from the table
+                                const row = document.getElementById(exerciseId);
+                                row.parentNode.removeChild(row);
+                                // Show success message
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Exercise has been deleted.',
+                                    'success'
+                                ).then(() => {
+                                    // Reload the page
+                                    location.reload();
+                                });
+                            } else {
+                                // Show error message
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Exercise has been deleted.',
+                                    'success'
+                                ).then(() => {
+                                    // Reload the page
+                                    location.reload();
+                                });
+                            }
+                        }).catch(error => {
+                            console.error('Error:', error);
+                            // Show error message
+                            Swal.fire(
+                                'Error!',
+                                'An error occurred while deleting exercise.',
+                                'error'
+                            ).then(() => {
+                                // Reload the page
+                                location.reload();
+                            });
+                        });
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+
+
+
     <script src="/assets/js/admin/admin.js" async></script>
 
     
