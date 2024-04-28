@@ -79,7 +79,7 @@
             </li>
             <li>
                 <a target="_top" href="{{ route('addModule') }}">
-                <i class='bx bxs-book-reader'></i>
+                    <i class='bx bxs-book-reader'></i>
                     <span class="nav-item">Module</span>
                 </a>
             </li>
@@ -127,7 +127,7 @@
                     <div class="langDiv">
                         <label for="lang">Programming Language</label>
                         <select name="language" id="">
-                            @foreach($progLanguage as $item)
+                            @foreach ($progLanguage as $item)
                                 <option value="{{ $item->language }}">{{ $item->language }}</option>
                             @endforeach
                         </select><br>
@@ -163,20 +163,24 @@
                     </thead>
                     <tbody>
                         @foreach ($questions as $question)
-                        <form method="POST" action="/admin/deleteQuestion?id={{ $question->id }}">
-                            @csrf
                             <tr>
                                 <td>{{ $question->question }}</td>
                                 <td>{{ $question->answer }}</td>
                                 <td>{{ $question->language }}</td>
                                 <td>{{ $question->level }}</td>
-                                <td>{{ $question->option1 . ' | ' . $question->option2 . ' | ' . $question->option3 . ' | ' . $question->option4 }}</td>
+                                <td>{{ $question->option1 . ' | ' . $question->option2 . ' | ' . $question->option3 . ' | ' . $question->option4 }}
+                                </td>
                                 <td class="ved">
-                                    <button type="submit" class="bx bxs-trash"></button>
+                                    <button type="button" class="bx bxs-trash"
+                                        onclick="confirmDelete({{ $question->id }})"></button>
+                                    <form id="deleteForm{{ $question->id }}" method="POST"
+                                        action="/admin/deleteQuestion?id={{ $question->id }}">
+                                        @csrf
+                                    </form>
                                 </td>
                             </tr>
-                        </form>
                         @endforeach
+
                     </tbody>
                 </table>
             </div>
@@ -195,8 +199,8 @@
                     <img style="border-radius:50%"
                         src="{{ Auth::guard('admin')->user()->profile_photo ? asset('images/' . Auth::guard('admin')->user()->profile_photo) : '/assets/images/avatar.png' }}"
                         alt="">
-                    <input type="file" id="fileInput" style="display: none;"
-                        onchange="handleFileSelect(event)" accept="image/*" name="profile_photo">
+                    <input type="file" id="fileInput" style="display: none;" onchange="handleFileSelect(event)"
+                        accept="image/*" name="profile_photo">
                     <input type="file" class="profile-image" accept="image/*" onchange="previewImage()">
                 </div>
                 <div class="typeinput">
@@ -214,8 +218,7 @@
                     <button type="button" onclick="switchToPassModal()">Change Password</button>
                 </div>
                 <div class="typeinput">
-                    <input type="hidden" name="id" value="{{ Auth::guard('admin')->user()->id }}"
-                        required>
+                    <input type="hidden" name="id" value="{{ Auth::guard('admin')->user()->id }}" required>
                     <button type="button" class="submit-button" id="btnSubmit">Save</button>
                 </div>
             </div>
@@ -267,22 +270,22 @@
     <!------------------------------------ADMIN CHANGE PASSWORD------------------------->
     <div id="passModal" class="modal">
         @if (Session::has('error'))
-        <div class="alert alert-danger" role="alert">
-            <p style="">{{ Session::get('error') }}</p>
-        </div>
-    @endif
-    @if (session('success'))
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    title: 'Success!',
-                    text: '{{ session('success') }}',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
+            <div class="alert alert-danger" role="alert">
+                <p style="">{{ Session::get('error') }}</p>
+            </div>
+        @endif
+        @if (session('success'))
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: '{{ session('success') }}',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
                 });
-            });
-        </script>
-    @endif
+            </script>
+        @endif
         <!-- Modal content -->
         <form method="POST" action="/admin/change-password" class="create-admin">
             @csrf
@@ -290,30 +293,33 @@
                 <h2>Admin</h2>
                 <a class="close" onclick="closepassModal()">&times;</a>
             </div>
-        
+
             <div class="logo">
                 <img src="/assets/images/Logo.jpg" alt="learn2Code">
             </div>
-        
+
             <div class="title">
                 <p>Change current password</p>
             </div>
-        
+
             <div id="infos">
                 <div class="typeinput">
-                    <input required placeholder="Current Password" type="password" id="currentPassword" name="current_password">
+                    <input required placeholder="Current Password" type="password" id="currentPassword"
+                        name="current_password">
                     <button class="showhide" type="button" onclick="togglePassword('currentPassword')">
                         <img id="imageeye" src="/assets/images/view.png" alt="not visible eye">
                     </button>
                 </div>
                 <div class="typeinput">
-                    <input required placeholder="Set New Password" type="password" id="newPassword" name="new_password" oninput="checkPasswords()">
+                    <input required placeholder="Set New Password" type="password" id="newPassword"
+                        name="new_password" oninput="checkPasswords()">
                     <button class="showhide" type="button" onclick="togglePassword('newPassword')">
                         <img id="imageeye" src="/assets/images/view.png" alt="not visible eye">
                     </button>
                 </div>
                 <div class="typeinput">
-                    <input required placeholder="Confirm Password" type="password" id="confirmPassword" name="confirm_password" oninput="checkPasswords()">
+                    <input required placeholder="Confirm Password" type="password" id="confirmPassword"
+                        name="confirm_password" oninput="checkPasswords()">
                     <button class="showhide" type="button" onclick="togglePassword('confirmPassword')">
                         <img id="imageeye" src="/assets/images/view.png" alt="not visible eye">
                     </button>
@@ -329,81 +335,81 @@
                 </div>
             </div>
         </form>
-        
+
 
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
-    $('#changePassBtn').click(function() {
-        const currentPassword = $('#currentPassword').val();
-        const newPassword = $('#newPassword').val();
-        const confirmPassword = $('#confirmPassword').val();
-        var bool = false;
+        $('#changePassBtn').click(function() {
+            const currentPassword = $('#currentPassword').val();
+            const newPassword = $('#newPassword').val();
+            const confirmPassword = $('#confirmPassword').val();
+            var bool = false;
 
-        $.ajax({
-            url: '/admin/change-password',
-            method: 'POST',
-            data: {
-                current_password: currentPassword,
-                password: newPassword,
-                confirm_password: confirmPassword,
-                _token: '{{ csrf_token() }}',
-            },
+            $.ajax({
+                url: '/admin/change-password',
+                method: 'POST',
+                data: {
+                    current_password: currentPassword,
+                    password: newPassword,
+                    confirm_password: confirmPassword,
+                    _token: '{{ csrf_token() }}',
+                },
 
-            dataType: 'json',
-            beforeSend: function() {
-                Swal.fire({
-                    title: 'Please Wait...',
-                    didOpen: () => {
-                        Swal.showLoading()
-                    }
-                })
-            },
-            success: function(data) {
-                if (data == "success") {
+                dataType: 'json',
+                beforeSend: function() {
                     Swal.fire({
-                        icon: 'success',
-                        title: 'Success',
-                        text: 'Updated Successfully',
-
-                    }).then(res => {
-                        window.location.reload();
+                        title: 'Please Wait...',
+                        didOpen: () => {
+                            Swal.showLoading()
+                        }
                     })
-                } else {
-                    toastr.options = {
-                        closeButton: true,
-                        progressBar: true,
-                        showMethod: 'slideDown',
-                        hideMethod: 'slideUp',
-                        timeOut: 5000
-                    };
-                    toastr.error('', 'Your current password did not match!')
+                },
+                success: function(data) {
+                    if (data == "success") {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Updated Successfully',
+
+                        }).then(res => {
+                            window.location.reload();
+                        })
+                    } else {
+                        toastr.options = {
+                            closeButton: true,
+                            progressBar: true,
+                            showMethod: 'slideDown',
+                            hideMethod: 'slideUp',
+                            timeOut: 5000
+                        };
+                        toastr.error('', 'Your current password did not match!')
+                        Swal.close();
+                    }
+                },
+                error: function(xhr) {
                     Swal.close();
+                    const errors = JSON.parse(xhr.responseText);
+
+                    const errorMessages = Object.values(errors.errors).flat();
+
+                    errorMessages.map(item => {
+                        toastr.options = {
+                            closeButton: true,
+                            progressBar: true,
+                            showMethod: 'slideDown',
+                            hideMethod: 'slideUp',
+                            timeOut: 5000
+                        };
+                        toastr.error(item, 'Error')
+                    });
+
                 }
-            },
-            error: function(xhr) {
-                Swal.close();
-                const errors = JSON.parse(xhr.responseText);
-
-                const errorMessages = Object.values(errors.errors).flat();
-
-                errorMessages.map(item => {
-                    toastr.options = {
-                        closeButton: true,
-                        progressBar: true,
-                        showMethod: 'slideDown',
-                        hideMethod: 'slideUp',
-                        timeOut: 5000
-                    };
-                    toastr.error(item, 'Error')
-                });
-
-            }
+            });
         });
-    });
 
-            function togglePassword(inputId) {
+        function togglePassword(inputId) {
             var passwordInput = document.getElementById(inputId);
             var imageeye = passwordInput.parentNode.querySelector('img');
 
@@ -416,30 +422,30 @@
             }
         }
 
-    function checkPasswords() {
-    var newPassword = document.getElementById('newPassword');
-    var confirmPassword = document.getElementById('confirmPassword');
-    var errorElement = document.getElementById('passwordError');
-    var matchElement = document.getElementById('passwordMatch');
+        function checkPasswords() {
+            var newPassword = document.getElementById('newPassword');
+            var confirmPassword = document.getElementById('confirmPassword');
+            var errorElement = document.getElementById('passwordError');
+            var matchElement = document.getElementById('passwordMatch');
 
-    // Reset the visibility of messages
-    errorElement.style.display = 'none';
-    matchElement.style.display = 'none';
+            // Reset the visibility of messages
+            errorElement.style.display = 'none';
+            matchElement.style.display = 'none';
 
-    // Check if both fields are empty
-    if (newPassword.value === '' || confirmPassword.value === '') {
-        return false; // Prevent form submission if fields are empty
-    }
+            // Check if both fields are empty
+            if (newPassword.value === '' || confirmPassword.value === '') {
+                return false; // Prevent form submission if fields are empty
+            }
 
-    // Compare passwords
-    if (newPassword.value === confirmPassword.value) {
-        matchElement.style.display = 'flex'; // Show the match message
-        return true; // Allow form submission
-    } else {
-        errorElement.style.display = 'flex'; // Show the error message
-        return false; // Prevent form submission
-    }
-}
+            // Compare passwords
+            if (newPassword.value === confirmPassword.value) {
+                matchElement.style.display = 'flex'; // Show the match message
+                return true; // Allow form submission
+            } else {
+                errorElement.style.display = 'flex'; // Show the error message
+                return false; // Prevent form submission
+            }
+        }
     </script>
 
 
@@ -452,13 +458,13 @@
 
 
     <script>
-        @if(session('success'))
+        @if (session('success'))
             Swal.fire({
                 icon: 'success',
                 title: 'Success',
                 text: '{{ session('success') }}',
             });
-        @elseif(session('error'))
+        @elseif (session('error'))
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -484,7 +490,7 @@
                             text: 'Admin profile updated successfully.',
                         }).then(() => {
                             window.location
-                        .reload(); // Reload the page after successful update
+                                .reload(); // Reload the page after successful update
                         });
                     },
                     error: function(xhr, status, error) {
@@ -571,7 +577,7 @@
     </script>
 
 
-</div>
+    </div>
 
     <script>
         function search() {
@@ -593,8 +599,31 @@
             });
         }
     </script>
+
+
+<script>
+    function confirmDelete(questionId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You won\'t be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit the form for deletion
+                document.getElementById('deleteForm' + questionId).submit();
+            }
+        });
+    }
+</script>
+
     <script src="../assets/js/admin/admin.js" async></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </body>
 

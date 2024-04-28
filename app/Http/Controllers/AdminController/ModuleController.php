@@ -70,4 +70,18 @@ class ModuleController extends Controller
         }
         
     }
+
+    public function deleteModule($id)
+{
+    $module = ModuleTable::find($id);
+    
+    if (!$module) {
+        return back()->with('error', 'Module not found');
+    }
+    
+    $module->delete();
+    
+    return redirect()->back()->with('message', 'Module Deleted');
+}
+
 }
