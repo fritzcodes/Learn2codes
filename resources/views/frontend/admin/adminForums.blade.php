@@ -435,7 +435,7 @@
                             </div>
                         </div>
                         <div class="post-setting">
-                            <button href="#" onclick="deletePost(`postsetModal{{ $post->id }}`)" style="background-color: transparent; border:none"><i class="bx bx-dots-horizontal-rounded"></i>
+                            <button href="#" onclick="deletePostId(`postsetModal{{ $post->id }}`)" style="background-color: transparent; border:none"><i class="bx bx-dots-horizontal-rounded"></i>
                             </button>
                             <div id="postsetModal" class="modal postsetModal{{ $post->id }}">
                                 <a onclick="deletePostId('{{ $post->id }}')"><i class='bx bxs-trash'></i>

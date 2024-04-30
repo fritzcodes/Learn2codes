@@ -28,48 +28,65 @@ class LoginController extends Controller
     }
 
     public function registerPost(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email|unique:users,email',
-            'username' => 'required|unique:users,username',
-            'firstname' => 'required|string',
-            'lastname' => 'required|string',
-            'course' => 'required|string',
-            'password' => 'required|min:8|confirmed',
-        ]);
-
-        if ($validator->fails()) {
-            $errors = $validator->errors();
-            if ($errors->has('username') && $errors->has('email')) {
-                return back()->with('error', 'Username and email already exists');
+{
+   $validator = Validator::make($request->all(), [
+    'email' => [
+        'required',
+        'email',
+        'unique:users,email',
+        function ($attribute, $value, $fail) {
+            if (!strpos($value, 'qcu@')) {
+                $fail('Your email is invalid to register.');
             }
-            if ($errors->has('email')) {
-                return back()->with('error', 'Email already exists');
-            }
-            if ($errors->has('username')) {
-                return back()->with('error', 'Username already exists');
-            }
-        }
+        },
+    ],
+    'username' => 'required|unique:users,username',
+    'firstname' => 'required|string',
+    'lastname' => 'required|string',
+    'course' => 'required|string',
+    'password' => 'required|min:8|confirmed',
+]);
 
-
-        // If there are other validation failures, you can handle them here
-
-        // If validation succeeds, continue with your logic
-
-        $user = new User();
-
-        $user->fname = $request->firstname;
-        $user->lname = $request->lastname;
-        $user->email = $request->email;
-        $user->username = $request->username;
-        $user->course = $request->course;
-        $user->year = $request->year;
-        $user->password = Hash::make($request->password);
-
-        $user->save();
-
-        return redirect()->to(route('register'))->with("success", "Register successfully");
+// Add an "after" hook to display a specific error message
+$validator->after(function ($validator) use ($request) {
+    if ($validator->errors()->has('email')) {
+        $validator->errors()->add('email', 'Your email is invalid to register');
     }
+});
+
+if ($validator->fails()) {
+    $errors = $validator->errors();
+    if ($errors->has('username') && $errors->has('email')) {
+        return back()->with('error', 'Username and email already exist');
+    }
+    if ($errors->has('email')) {
+        return back()->with('error', $errors->first('email')); // Display the specific error message
+    }
+    if ($errors->has('username')) {
+        return back()->with('error', 'Username already exists');
+    }
+}
+    
+
+    // If there are other validation failures, you can handle them here
+
+    // If validation succeeds, continue with your logic
+
+    $user = new User();
+
+    $user->fname = $request->firstname;
+    $user->lname = $request->lastname;
+    $user->email = $request->email;
+    $user->username = $request->username;
+    $user->course = $request->course;
+    $user->year = $request->year;
+    $user->password = Hash::make($request->password);
+
+    $user->save();
+
+    return redirect()->to(route('register'))->with("success", "Registered successfully");
+}
+
 
     public function login()
     {
