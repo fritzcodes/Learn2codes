@@ -267,8 +267,7 @@ color: var(--text-color);
 
 /* Adjust the position of the error message */
 #passwordMatch {
-font-weight: 600;
-color: var(--bg-color);
+color: green;
 display: none;
 }
 

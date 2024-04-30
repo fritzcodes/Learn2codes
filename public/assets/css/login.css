@@ -74,7 +74,6 @@
     }
 
     .logo img{
-
         width: 55%;
         border-radius: 50%;
         box-shadow: 2px 4px var(--main-color);
@@ -286,10 +285,14 @@
 
 /* Adjust the position of the error message */
 #passwordError {
-    margin-left: 10px;
-    color: var(--main-color);
+    color: red;
     display: none;
 
+}
+
+.alerts {
+    font-family: var(--font2);
+    display: flex;
 }
 
 .terms {
@@ -389,7 +392,8 @@
         width: 100%;
         height: 100vh;
         border-radius: 0px;
-        overflow: hidden;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     .logo {
@@ -429,11 +433,11 @@
         }
 
     .title {
-        justify-content: center;
+        display: block;
     }
 
     .typeinput label #year{
-        width: 150px;
+        width: 130px;
     }
 
     
@@ -529,6 +533,8 @@
         }
 
         .space-background {
+            overflow-y: auto;
+            overflow-x: hidden;
             background: rgba(21, 05, 35, 0.8);    
         }
 

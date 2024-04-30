@@ -74,11 +74,12 @@
                 <div class="typeinput">
                     <input required placeholder="Password" type="password" id="password" name="password"
                         onkeyup="displayPasswordStrengthMessage(this.value)">
-                    <div id="passwordStrengthMessage"></div>
-                   
                     <button class="showhide" type="button" onclick="togglePassword('password')">
                         <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
                     </button>
+                </div>
+                <div class="alerts">
+                    <p id="passwordStrengthMessage"></p> <!-- Removed the margin-bottom -->
                 </div>
                 <div class="typeinput">
                     <input required placeholder="Confirm password" type="password" id="confirmPassword"
@@ -87,8 +88,8 @@
                         <img id="imageeye" src="assets/images/view.png" alt="not visible eye">
                     </button>
                 </div>
-                <div class="typeinput">
-                    <p id="passwordError">Passwords do not match!</p> <!-- Removed the margin-bottom -->
+                <div class="alerts">
+                    <p id="passwordError">Passwords do not match</p> <!-- Removed the margin-bottom -->
                 </div>
                 <div class="terms">
                     <input type="checkbox" name="check" id="check" required>
@@ -134,7 +135,7 @@
             }
         }
 
-        function validatePasswords() {
+        function validatePasswords(password) {
             var password = document.getElementById('password').value;
             var confirmPassword = document.getElementById('confirmPassword').value;
             var errorElement = document.getElementById('passwordError');
@@ -191,7 +192,7 @@
           if (strength === 'strong') {
               message = '<span style="color: green;">Strong password</span>';
           } else if (strength === 'medium') {
-              message = '<span style="color: white;">Medium password</span>';
+              message = '<span style="color: orange;">Medium password</span>';
           } else {
               message = '<span style="color: red;">Weak password</span>';
           }
