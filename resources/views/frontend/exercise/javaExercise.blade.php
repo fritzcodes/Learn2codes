@@ -292,12 +292,15 @@ transition: .2s;
   .correct-containers {
     margin: 10px 0;
     display: flex;
+    text-align: center;
+    font-weight: 600;
     justify-content: center;
     border-radius: 15px; /* Adjust the border radius as needed */
     padding: 30px; /* Adjust the padding as needed *//*/* Adjust margin as needed */
   }
 
   .correct-containers p{
+    font-size: var(--p-font);
     color: var(--second-color);
     font-family: var(--font1); /* Change the font for the code */  
   }
@@ -607,9 +610,11 @@ transition: .2s;
             <h2>You Got</h2>            
         </div>
         <div class="correct-containers">
-            <p class="correct-answers"><code id="scoreShow"></code>XP</p>
+            <p class="correct-answers"><code id="scoreShow"></code></p>
         </div>
-
+        <div class="correct-containers">
+            <p>Your Score will be converted to XP</p>
+        </div>
         <div class="btn">
             <button class="next-btn submitBtns" id="quit"><a href="/exercise/selectLanguage">Quit</a></button>
             <button class="next-btn submitBtns" id="try"><a href="">Try again</a></button>
