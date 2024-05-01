@@ -111,15 +111,15 @@
     </div>
 
     <div class="main-content">
+        @if (session()->has('msg'))
+        <div class="alert alert-success" style="position: relative; width: 100%; top: 0; margin: 0; border-radius: 0;">
+            {{ session('msg') }}
+        </div>
+        @endif
+
         <div class="back">
             <a href="/admin/addModule" class="bx bx-chevron-left" id="back-btn"></a>
         </div>
-
-    @if (session()->has('msg'))
-        <div class="alert alert-success" style="border-radius: 0;">
-            {{ session('msg') }}
-        </div>
-         @endif 
 
     <form method="post" action="/admin/updateModule" class="summernote">   
         @csrf

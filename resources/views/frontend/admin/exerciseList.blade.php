@@ -40,13 +40,11 @@
         .draggable-table {
             font-family: var(--font2);  
             position: absolute;
-            top: 25%;
-            left: 20%;
-            width: 60%;
-            height: 50%;
+            width: 100%;
             border-collapse: collapse;
             -webkit-box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.1);
             box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
         }
 
         .draggable-table .draggable-table__drag {
@@ -59,7 +57,6 @@
             position: absolute;
             border: 1px solid #f1f1f1;
             z-index: 10;
-            cursor: grabbing;
             opacity: 60%;
             
         }
@@ -72,10 +69,6 @@
             padding: 10px 20px;
             text-align: left;
             user-select: none;
-        }
-
-        .draggable-table tbody tr {
-            cursor: grabbing;
         }
 
         .draggable-table tbody tr td {

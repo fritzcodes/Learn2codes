@@ -111,16 +111,15 @@
     </div>
 
     <div class="main-content">
+    @if (session()->has('message'))
+        <div class="alert alert-success" style="position: relative; width: 100%; top: 0; margin: 0; border-radius: 0;">
+            {{ session('message') }}
+        </div>
+        @endif
+
         <div class="back">
             <a href="/admin/exercise" class="bx bx-chevron-left" id="back-btn"></a>
         </div>
-
-
-            @if (session()->has('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
-            </div>
-        @endif
 
         <form method="post" action="/admin/exercise-edit/{{ $data->id }}" class="summernote">
             @csrf

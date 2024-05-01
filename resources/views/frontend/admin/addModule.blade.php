@@ -97,8 +97,8 @@
     </div>
 
     <div class="main-content"> <!------------------------------------------ dashboard -->
-        @if (session()->has('message'))
-        <div class="alert alert-success">
+    @if (session()->has('message'))
+        <div class="alert alert-success" style="position: relative; width: 100%; top: 0; margin: 0; border-radius: 0;">
             {{ session('message') }}
         </div>
         @endif

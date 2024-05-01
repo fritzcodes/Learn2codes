@@ -38,13 +38,11 @@
         .draggable-table {
             font-family: var(--font2); 
             position: absolute;
-            top: 25%;
-            left: 20%;
-            width: 60%;
-            height: 50%;
+            width: 100%;
             border-collapse: collapse;
             -webkit-box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.1);
             box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
         }
 
         .draggable-table .draggable-table__drag {
