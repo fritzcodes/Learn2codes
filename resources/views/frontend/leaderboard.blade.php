@@ -64,6 +64,7 @@
                     <td class="number-column">Quiz</td>
                     <td class="number-column">Exercise</td>
                     <td class="number-column">Total EXP</td>
+                    <td class="number-column">Status</td>
                 </tr>
             </thead>
             <tbody id="leaderboardTableBody">
@@ -80,6 +81,13 @@
                     <td>{{ $userPoint['quiz'] ?? 0 }}</td>
                     <td>{{ $userPoint['exercise'] ?? 0}}</td>
                     <td>{{ $userPoint['total_points'] ?? 0}}</td>
+                    @php
+                    $new_last_online_at = date(
+                    'Y-m-d H:i:s',
+                    strtotime($userPoint['status'] . ' +2 minutes'),
+                    );
+                    @endphp
+                    <td>{{ $new_last_online_at > now() ? 'Online' : \Illuminate\Support\Carbon::parse($userPoint['status'])->diffForHumans() }}
                 </tr>
 
                 <!-- <tr>
@@ -123,18 +131,36 @@
     }
 </script>
 <script>
- function fetchDataAndUpdateTable() {
-    $.ajax({
-        url: '/leaderboard/data',
-        method: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            console.log(data); // Debug statement
+    function isoStringDate(lastOnline) {
+        var date = new Date(lastOnline);
 
-            let leaderboardHtml = "";
+        // Get the individual components
+        var year = date.getFullYear();
+        var month = ('0' + (date.getMonth() + 1)).slice(-2); // Month is zero-based, so add 1
+        var day = ('0' + date.getDate()).slice(-2);
+        var hours = ('0' + date.getHours()).slice(-2);
+        var minutes = ('0' + date.getMinutes()).slice(-2);
+        var seconds = ('0' + date.getSeconds()).slice(-2);
+        var milliseconds = ('00' + date.getMilliseconds()).slice(-3);
 
-            data.forEach((userPoint, index) => {
-                leaderboardHtml += `
+        // Format the date string
+        return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}Z`;
+    }
+
+    function fetchDataAndUpdateTable() {
+        $.ajax({
+            url: '/leaderboard/data',
+            method: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                var currentTime = currentDate.toISOString();
+
+                let leaderboardHtml = "";
+
+                data.forEach((userPoint, index) => {
+                    var lastOnlineAt = new Date(userPoint.status);
+                    var lastOnlineAt2 = new Date(userPoint.status);
+                    leaderboardHtml += `
                     <tr>
                         <td>${index + 1}</td>
                         <td id="profile-img">
@@ -146,26 +172,25 @@
                         <td>${userPoint.quiz || 0}</td>
                         <td>${userPoint.exercise || 0}</td>
                         <td>${userPoint.total_points || 0}</td>
+                        <td>${isoStringDate(lastOnlineAt) > currentTime  ? 'Online' : moment.utc(isoStringDate(lastOnlineAt2)).fromNow()}</td>
                     </tr>
                 `;
-            });
+                });
 
-            // Update the leaderboard table with the new HTML
-            $('#leaderboardTableBody').html(leaderboardHtml);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR.responseText)
-        }
-    });
-}
+                // Update the leaderboard table with the new HTML
+                $('#leaderboardTableBody').html(leaderboardHtml);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.responseText)
+            }
+        });
+    }
 
-// Call fetchDataAndUpdateTable function immediately to load leaderboard on page load
-fetchDataAndUpdateTable();
+    // Call fetchDataAndUpdateTable function immediately to load leaderboard on page load
+    fetchDataAndUpdateTable();
 
-// Refresh the data every 3 seconds
-setInterval(fetchDataAndUpdateTable, 3000);
-
-
+    // Refresh the data every 3 seconds
+    setInterval(fetchDataAndUpdateTable, 3000);
 </script>
 
 

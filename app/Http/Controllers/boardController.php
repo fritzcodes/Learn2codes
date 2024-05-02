@@ -72,10 +72,12 @@ class boardController extends Controller
                 // If user exists, add their name to userPoint
                 $userPoint['username'] = $user->username;
                 $userPoint['profile_photo'] = $user->profile_photo;
+                $userPoint['status'] = $user->last_online_at;
             } else {
                 // If user does not exist, set user_name to null
                 $userPoint['username'] = null;
                 $userPoint['profile_photo'] = null;
+                $userPoint['status'] = null;
             }
         }
         
@@ -152,10 +154,12 @@ class boardController extends Controller
                 // If user exists, add their name to userPoint
                 $userPoint['username'] = $user->username;
                 $userPoint['profile_photo'] = $user->profile_photo;
+                $userPoint['status'] = $user->last_online_at;
             } else {
                 // If user does not exist, set user_name to null
                 $userPoint['username'] = null;
                 $userPoint['profile_photo'] = null;
+                $userPoint['status'] = null;
             }
         }
         
