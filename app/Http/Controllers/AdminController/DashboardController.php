@@ -42,10 +42,32 @@ class DashboardController extends Controller
     public function totalExp()
     {
         $top4Exp = Experience::selectRaw('language as label, SUM(points) as value')
-        ->groupBy('language')
-        ->orderByDesc('value')
-        ->limit(4)
-        ->get();
+            ->groupBy('language')
+            ->orderByDesc('value')
+            ->limit(4)
+            ->get();
         return response()->json($top4Exp);
+    }
+    public function totalCourse()
+    {
+        $totalCourses = User::groupBy('course')
+            ->selectRaw('course, count(*) as total')
+            ->get();
+
+        $courseNames = $totalCourses->pluck('course')->toArray();
+        $counts = $totalCourses->pluck('total')->toArray();
+
+        $zippedData = array_map(null, $courseNames, $counts);
+
+        usort($zippedData, function ($a, $b) {
+            return $b[1] - $a[1]; // Sort by counts
+        });
+
+        $sortedCourseNames = array_column($zippedData, 0);
+        $sortedCounts = array_column($zippedData, 1);
+
+        $formattedResult = [$sortedCourseNames, $sortedCounts];
+
+        return response()->json($formattedResult);
     }
 }

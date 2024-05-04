@@ -9,6 +9,8 @@ use App\Models\prog_language;
 use App\Http\Requests\Module;
 use App\Models\Module as ModuleTable;
 use App\Http\Requests\UpdateModuleRequest;
+use App\Models\Record;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleController extends Controller
 {
@@ -30,6 +32,13 @@ class ModuleController extends Controller
         $module->filename = $request->filename;
 
         $module->save();
+
+        Record::create([
+            'admin_id' => Auth::guard('admin')->user()->id,
+            'action' => 'added',
+            'category' => 'Module',
+            'category_id' => $module->id
+        ]);
         return redirect()->back()->with('message', 'Module Added');
     }
 
@@ -64,10 +73,18 @@ class ModuleController extends Controller
     {
         $data = $request->validated();
         if(ModuleTable::where('id', $request->id)->update($data)){
+            Record::create([
+                'admin_id' => Auth::guard('admin')->user()->id,
+                'action' => 'updated',
+                'category' => 'Module',
+                'category_id' => $data->id
+            ]);
             return back()->with('msg', "Module Updated");
+
         }else{
             return back()->with('msg', "Something went wrong.");
         }
+        
         
     }
 
@@ -80,6 +97,12 @@ class ModuleController extends Controller
     }
     
     $module->delete();
+    Record::create([
+        'admin_id' => Auth::guard('admin')->user()->id,
+        'action' => 'deleted',
+        'category' => 'Module',
+        'category_id' => $module->id
+    ]);
     
     return redirect()->back()->with('message', 'Module Deleted');
 }

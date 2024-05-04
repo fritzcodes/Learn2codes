@@ -152,27 +152,27 @@ function showResult() {
     quiz_box.classList.remove("activeQuiz"); //hide quiz box
     result_box.classList.add("activeResult"); //show result box
     const scoreText = result_box.querySelector(".score_text");
-    if (userScore > 5) { // if user scored more than 3
-        //creating a new span tag and passing the user score number and total question number
-        let scoreTag = '<span>Excellent,You got a score <p>' + userScore + '</p> out of <p>' + questions.length + '</p></span>';
+    if (userScore > 5) { // if user scored more than 5
+        let scoreTag = '<span>Excellent! You got a score <p>' + userScore + '</p> out of <p>' + questions.length + '</p></span>';
             scoreTag += '<span>Your score will be converted as XP</span>';
-
-        
         scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text
     }
-    else if (userScore > 2) { // if user scored more than 1
-        let scoreTag = '<span>Good Job,You got a score<p>' + userScore + '</p> out of <p>' + questions.length + '</p></span>';
+    else if (userScore > 2) { // if user scored more than 2
+        let scoreTag = '<span>Good Job! You got a score <p>' + userScore + '</p> out of <p>' + questions.length + '</p></span>';
             scoreTag += '<span>Your score will be converted as XP</span>';
-
-
         scoreText.innerHTML = scoreTag;
     }
-    else { // if user scored less than 1
-        let scoreTag = '<span>Sorry but, You got a score<p>' + userScore + '</p> out of <p>' + questions.length + '</p></span>';
-            scoreTag += '<span>No score to convert as XP</span>';
-
+    else if (userScore > 0) { // if user scored more than 0
+        let scoreTag = '<span>Sorry, but you got a score <p>' + userScore + '</p> out of <p>' + questions.length + '</p></span>';
+            scoreTag += '<span>Your score will be converted as XP</span>';
         scoreText.innerHTML = scoreTag;
     }
+    else { // if user scored 0
+        let scoreTag = '<span>No score to convert as XP</span>';
+        scoreText.innerHTML = scoreTag;
+    }
+
+
 
     const url = window.location.href;
     const parts = url.split('/');
