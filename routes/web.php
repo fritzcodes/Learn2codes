@@ -30,6 +30,7 @@ use App\Http\Controllers\ForumController;
 use App\Http\Controllers\TryCodeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\boardController;
+use App\Http\Controllers\CertController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\termsController;
@@ -48,8 +49,8 @@ use App\Http\Controllers\termsController;
 
 Route::get('/termsforum', [termsController::class, 'TermForum'])->name('termsforum');
 Route::get('/termsign', [termsController::class, 'Termsign'])->name('termsign');
-
-
+Route::get('/generate-pdf', [CertController::class, 'generatePDF'])->name('generate.pdf');
+Route::get('/edit-pdf', [CertController::class, 'editPDF'])->name('edit.pdf');
 Route::get('/leaderboard', [boardController::class, 'Index'])->name('leaderboard');
 Route::get('/leaderboard/data', [boardController::class, 'fetchLeaderboardData'])->name('leaderboard.data');
 
@@ -60,6 +61,9 @@ Route::get('/forum', [ForumController::class, 'Index'])->name('forum');
 Route::get('/trycode/{id}', [TryCodeController::class, 'Index'])->name('trycode');
 Route::get('/', function () {
     return view('landing');
+});
+Route::get('/edit-pdfs', function(){
+    return view('frontend.cert');
 });
 Route::get('/admin/getQuiz/{id}/{diff}/{item}', [AddQuestionController::class, 'getQuiz'])->name('getQuiz');
 Route::get('/admin/language', [LanguageController::class, 'Index'])->name('Language');
