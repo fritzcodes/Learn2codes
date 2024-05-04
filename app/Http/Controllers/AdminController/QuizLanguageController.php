@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\LanguageAddRequest;
 use App\Models\quiz_languages;
+use App\Models\Record;
+use Illuminate\Support\Facades\Auth;
 
 
 class QuizLanguageController extends Controller
@@ -32,6 +34,12 @@ class QuizLanguageController extends Controller
 
         $language->language = $request->language;
         $language->save();
+        Record::create([
+            'admin_id' => Auth::guard('admin')->user()->id,
+            'action' => 'added',
+            'category' => 'Quiz',
+            'category_id' => $language->id
+        ]);
         return redirect()->back()->with('message', 'Quiz Language added successfully!');
     }
     public function UpdateLanguage($id)

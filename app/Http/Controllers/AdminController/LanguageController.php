@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\LanguageAddRequest;
 use App\Models\prog_language;
 use Illuminate\Support\Facades\Session;
+use App\Models\Record;
+use Illuminate\Support\Facades\Auth;
 
 
 class LanguageController extends Controller
@@ -33,6 +35,12 @@ class LanguageController extends Controller
 
         $language->language = $request->language;
         $language->save();
+        Record::create([
+            'admin_id' => Auth::guard('admin')->user()->id,
+            'action' => 'added',
+            'category' => 'Module',
+            'category_id' => $language->id
+        ]);
         return redirect()->back()->with('message', 'Language added successfully!');
     }
     public function UpdateLanguage($id)
@@ -49,6 +57,12 @@ class LanguageController extends Controller
         }
 
         $language->delete();
+        Record::create([
+            'admin_id' => Auth::guard('admin')->user()->id,
+            'action' => 'deleted',
+            'category' => 'Module',
+            'category_id' => $language->id
+        ]);
 
         return response()->json(['message' => 'Language deleted successfully!'], 200);
     } catch (\Exception $e) {

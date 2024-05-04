@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ExcerciseRequest;
 use App\Models\prog_language;
 use App\Models\Exercise;
+use App\Models\Record;
+use Illuminate\Support\Facades\Auth;
 
 class ExerciseController extends Controller
 {
@@ -23,6 +25,13 @@ class ExerciseController extends Controller
         $exercise->content = $request->content;
         $exercise->language = $request->language;
         $exercise->save();
+        
+        Record::create([
+            'admin_id' => Auth::guard('admin')->user()->id,
+            'action' => 'added',
+            'category' => 'Exercise',
+            'category_id' => $exercise->id
+        ]);
         return back()->with('message', "Exercise added successfully");
     }
 
@@ -43,16 +52,31 @@ class ExerciseController extends Controller
         $data = $request->validated();
         $exercise = Exercise::findOrFail($id);
         $exercise->update($data);
+
+        Record::create([
+            'admin_id' => Auth::guard('admin')->user()->id,
+            'action' => 'updated',
+            'category' => 'Exercise',
+            'category_id' => $exercise->id
+        ]);
         return back()->with('message', "Exercise updated successfully");
     }
 
     public function deleteExercise($id)
 {
+    
     // Find the exercise by ID
     $exercise = Exercise::findOrFail($id);
 
     // Delete the exercise
     $exercise->delete();
+
+    Record::create([
+        'admin_id' => Auth::guard('admin')->user()->id,
+        'action' => 'deleted',
+        'category' => 'Exercise',
+        'category_id' => $exercise->id
+    ]);
 
     // Redirect back with a success message
     return back()->with('message', 'Exercise deleted successfully');

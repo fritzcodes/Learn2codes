@@ -1,5 +1,8 @@
 var dataPoints = [];
 
+function randomRGB() {
+  return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+}
 $.ajax({
   url: '/admin/totalBadge',
   method: 'GET',
@@ -51,6 +54,60 @@ $.ajax({
 });
 
 $.ajax({
+  url: '/admin/totalCourse',
+  method: 'GET',
+  dataType: 'json',
+  success: function (data) {
+    console.log("data",data);
+    
+    var labels = [];
+    var datas = [];
+    data[0].forEach(element => {
+      labels.push(element)
+    });
+    data[1].forEach(element => {
+      datas.push(element);
+    });
+    const ctx2 = document.getElementById("chart-3").getContext("2d");
+    const myChart2 = new Chart(ctx2, {
+      type: "bar",
+      data: {
+        labels: labels,
+          datasets: [
+            {
+              label: "Top 1",
+              data: datas,
+              backgroundColor: [
+                randomRGB(),
+                randomRGB(),
+                randomRGB(),
+                randomRGB()
+              ],
+            },
+          ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'left',
+          },
+          title: {
+            display: true,
+            text: 'Course'
+          }
+        } // Makes the chart responsive
+      }
+    });
+
+  },
+  error: function (xhr){
+    alert(xhr.responseText);
+  }
+})
+
+$.ajax({
   url: '/admin/totalExp',
   method: 'GET',
   dataType: 'json',
@@ -88,7 +145,7 @@ $.ajax({
           },
           title: {
             display: true,
-            text: 'EXP Points'
+            text: 'Exp Points'
           }
         } // Makes the chart responsive
       }

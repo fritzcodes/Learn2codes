@@ -25,6 +25,7 @@ use App\Http\Middleware\Admin;
 use App\Http\Controllers\AdminController\LanguageController;
 use App\Http\Controllers\AdminController\ModuleController;
 use App\Http\Controllers\AdminController\QuizLanguageController;
+use App\Http\Controllers\AdminController\HistoryController;
 use App\Http\Controllers\ExpController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\TryCodeController;
@@ -135,12 +136,15 @@ Route::post('/reset-password', [ForgetPasswordManager::class, 'resetPasswordPost
 
 // Admin routes
 Route::middleware(['auth:admin'])->group(function () {
+
+    Route::get('/admin/history', [HistoryController::class, 'Index'])->name('history');
     Route::get('/admin/forum', [ForumController::class, 'AdminIndex']);
     Route::get('/admin/popular/{hashtag}', [ForumController::class, 'PopularAdmin']);
     Route::get('/notificationsAdmin', [ForumController::class, 'NotificationAdmin']);
     Route::get('/admin/dashboard', [DashboardController::class, 'Index'])->name('Dashboard');
     Route::get('/admin/totalBadge', [DashboardController::class, 'totalBadge'])->name('totalBadge');
     Route::get('/admin/totalExp', [DashboardController::class, 'totalExp'])->name('totalExp');
+    Route::get('/admin/totalCourse', [DashboardController::class, 'totalCourse'])->name('totalCourse');
     Route::post('/admin/changeOrder', [ModuleController::class, 'changeOrder'])->name('changeOrder');
     Route::get('/admin/languageModule/{id}', [ModuleController::class, 'languageModule'])->name('languageModule');
     Route::get('/admin/addModule', [ModuleController::class, 'Index'])->name('addModule');
@@ -155,7 +159,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::delete('/admin/exercise/{id}', [ExerciseController::class, 'deleteExercise'])->name('exercise.delete');
 
     Route::get('/admin/studInfo/{id}', [ManageUserController::class, 'show']);
-
+    
 
 
 
