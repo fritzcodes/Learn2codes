@@ -6,14 +6,15 @@
     <title>Learn2Code E-Certificate</title>
     <link rel="stylesheet" href="../assets/css/cert.css">
     <link rel="shortcut icon" type="x-icon" href="../assets/images/logo.svg">
-
+    
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <body>
-    <div class="container" style="padding:38.5px">
-        <div class="border" style="margin-right:20px">
+    <div class="container">
+        <div class="border">
             <div class="marquee">
                 <div class="logo">
                     <img src="../assets/images/qcu.svg" alt=""> <img src="../assets/images/Logo.svg" alt="">
@@ -48,8 +49,8 @@
             const options = {
                 filename: 'certificate.pdf',
                 jsPDF: {
-                    unit: 'px',
-                    format: 'a4',
+                    unit: 'em',
+                    format: [65.9, 38.86],  // width x height in pixels for A4 landscape
                     orientation: 'landscape'
                 },
                 html2canvas: {
@@ -66,7 +67,7 @@
                 .save();
         }
     </script>
-    <button onclick="toPDF()">To PDF</button>
+    <button onclick="toPDF()">Download<i class='bx bxs-file-pdf'></i></button>
 </body>
 
 </html>

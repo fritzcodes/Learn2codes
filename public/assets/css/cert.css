@@ -5,7 +5,7 @@ body{
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background: #fff;
+    background: var(--bg-color);
     font-family: 'Garamond';
 }
 
@@ -21,18 +21,18 @@ body{
   position: absolute;
   display: flex;
   justify-content: space-between;
-  width: 56vw;
+  width: 56em;
 }
 
 .logo img {
     border-radius: 100%;
-    width: 5vw;
-    height: 5vw;
+    width: 5em;
+    height: 5em;
 }
 
 .container {
-    width: 60vw;
-    padding: 3vw; /* Responsive padding */
+    width: 60em;
+    padding: 3em; /* Responsive padding */
     background: linear-gradient(-180deg, #FFDCDC 0%, #C874B2 100%);
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     text-align: center;
@@ -41,51 +41,75 @@ body{
 .border {
     position: relative;
     border: 3px solid var(--text-color);
-    width: 50vw;
-    padding: 5vw;
+    width: 50em;
+    padding: 5em;
 }
 
 .marquee {
     margin: 0.5em 0;
     display: flex;
     justify-content: center;
-    color: gold;
+    color: var(--second-color);
 }
 
 .marquee h1 {
     margin-top: 0;
-   font-size: 4vw;
+   font-size: 4em;
 }
 
 .assignment {
-    width: 45vw;
+    width: 45em;
     margin: 0.5em auto;
 }
 
 .assignment p {
     color: #000;
-    font-size: 1rem;
+    font-size: 1.2em;
 }
 
 .person {
     margin: 0.5em auto;
-    width: 50vw;
+    width: 50em;
 }
 
 .person h2 {
-    text-decoration: underline;
     color: #000;
-    font-size: 3.5vw;
+    font-size: 3em;
 }
 
 .reason {
-    width: 45vw;
+    width: 45em;
     margin: 0.2em auto;
 }
 
 .reason p {
     color: #000;
-    font-size: 1rem;
+    font-size: 1.2em;
+}
+
+button {
+    background-color: var(--second-color);
+    color: var(--main-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-style: none;
+    border-radius: 5px;
+    font-size: 1em;
+    padding: 10px 15px;
+    top: 5vh;
+    right: 50px;
+    position: absolute;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--text-color);
+}
+
+button i {
+    margin-left: 5px;
+    font-size: 1.5em;
 }
 
 
@@ -97,12 +121,10 @@ body{
         min-height: 0;
     }
 
-    .certificate {
-        width: 210mm;
-        height: 297mm;
-        padding: 20mm;
+    .container {
+        height: 49.66em;  /* approximately the width of A4 */
+        width: 70.16em; /* approximately the height of A4 */
         box-shadow: none;
-        margin: auto;
         page-break-after: always;
     }
 
