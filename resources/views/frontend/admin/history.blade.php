@@ -12,6 +12,92 @@
 </head>
 
 <body>
+    <!-- -----------SIDEBAR------------ -->
+    <div class="sidebar">
+        <div class="top">
+            <div class="logo">
+                <span>Learn2Code</span>
+            </div>
+            <i class="bx bx-menu" id="btn"></i>
+        </div>
+
+
+        <div class="user">
+            <a onclick="openAdminModal()">
+                @if (Auth::guard('admin')->check() && Auth::guard('admin')->user()->profile_photo)
+                    <img src="{{ asset('images/' . Auth::guard('admin')->user()->profile_photo) }}" alt="user"
+                        class="user-img">
+                @else
+                    <!-- Placeholder image or default avatar -->
+                    <img src="/assets/images/avatar.png" alt="user" class="user-img">
+                @endif
+            </a>
+            <div>
+                <p class="username">{{ Auth::guard('admin')->user()->username }}</p>
+                <p>Admin</p>
+            </div>
+        </div>
+
+
+        <ul>
+            <li>
+                <a target="_top" href="{{ route('Dashboard') }}" class='active'>
+                    <i class="bx bxs-dashboard"></i>
+                    <span class="nav-item">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="{{ route('ManageUser') }}">
+                    <i class="bx bxs-user"></i>
+                    <span class="nav-item">Manage Users</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="{{ route('Leaderboard') }}">
+                    <i class="bx bxs-trophy"></i>
+                    <span class="nav-item">Leaderboard</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="/admin/language">
+                    <i class="bx bxs-select-multiple"></i>
+                    <span class="nav-item">Add Language</span>
+                </a>
+            </li>
+            <li>
+
+                <a target="_top" href="{{ route('Question') }}">
+                    <i class="bx bxs-hourglass-top"></i>
+                    <span class="nav-item">Quiz</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="/admin/forum">
+                    <i class="bx bxs-chat"></i>
+                    <span class="nav-item">Forum</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="{{ route('addModule') }}">
+                <i class='bx bxs-book-reader'></i>
+                    <span class="nav-item">Module</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="/admin/exercise">
+                    <i class="bx bx-dumbbell"></i>
+                    <span class="nav-item">Exercise</span>
+                </a>
+            </li>
+            <li class="Logout">
+                <a target="_top" href="{{ route('adminLogout') }}">
+                    <i class="bx bxs-exit"></i>
+                    <span class="nav-item">Logout</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
 
     <div class="main-content"> <!---------------------- manage users -->
         <div class="table">

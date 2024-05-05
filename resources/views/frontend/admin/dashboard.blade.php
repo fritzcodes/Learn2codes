@@ -142,7 +142,9 @@
             <div class="chart"> <canvas id="chart-1"></canvas> </div>
             <div class="chart"> <canvas id="chart-2"></canvas> </div>
             <div class="chart"> <canvas id="chart-3"></canvas> </div>
+            <div id="iChart"></div>
         </div>
+        
     </div>
 
     <div id="adminModal" class="modal">
@@ -296,6 +298,7 @@
 
     </div>
 
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
     $('#changePassBtn').click(function() {
@@ -533,6 +536,77 @@
         }
     </script>
 
+<script>
+google.charts.load('current', {packages:['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+    // Set Data
+    const data = google.visualization.arrayToDataTable([
+        ['Price', 'Size'],
+        [50,7], [60,8], [70,8], [80,9], [90,9],
+        [100,9], [110,10], [120,11],
+        [130,14], [140,14], [150,15]
+    ]);
+
+    // Set Options
+    const options = {
+        title: 'House Prices vs. Size',
+        titleTextStyle: {
+            color: '#f5d5e0'  // Title text color
+        },
+
+        hAxis: {
+            title: 'Square Meters',
+            textStyle: { color: '#f5d5e0' }, // Color of the horizontal axis labels
+            titleTextStyle: { color: '#f5d5e0' } // Color of the horizontal axis title
+        },
+
+        vAxis: {
+            title: 'Price in Millions',
+            textStyle: { color: '#f5d5e0' }, // Color of the vertical axis labels
+            titleTextStyle: { color: '#f5d5e0' } // Color of the vertical axis title
+        },
+        
+        legend: 'none',
+        backgroundColor: '#430d4b',
+        pointSize: 10,             // Larger size for visibility
+        pointShape: 'circle',     // Ensure the shape is circle
+        series: {
+            0: { color: '#c874b2' }  // Default line and point color
+        },
+        pointType: 'typeA', // Custom label, no inherent functionality
+    };
+
+    // Draw the chart
+    const chart = new google.visualization.LineChart(document.getElementById('iChart'));
+    chart.draw(data, options);
+
+    // Style adjustments after drawing
+    styleChartPoints();
+}
+
+function styleChartPoints() {
+    setTimeout(() => {
+        const circleElements = document.querySelectorAll('#iChart circle');
+        circleElements.forEach((circle) => {
+            circle.setAttribute('stroke', 'white'); // Border color
+            circle.setAttribute('stroke-width', '2'); // Border width
+        });
+    }, 300);
+}
+
+</script>
+<style>
+    #iChart {
+        width: 100%;
+        min-height: 40vh;
+        background-color: #430d4b; /* Background color of the container */
+        border-radius: 20px; /* Rounded corners for the container */
+        padding: 10px; /* Optional: Adds some spacing inside the container */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: Adds shadow for better visibility */
+    }
+</style>
 
 </div>
 

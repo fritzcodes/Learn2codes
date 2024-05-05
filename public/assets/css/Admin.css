@@ -192,7 +192,7 @@
     grid-gap: 30px;
     font-family: var(--font2);
   }
-  
+
   .cardBox .card {
     position: relative;
     background: var(--text-color);
@@ -250,7 +250,6 @@
     border-radius: 20px;
     border: 1px solid var(--blue);
 }
-
 
 
 
