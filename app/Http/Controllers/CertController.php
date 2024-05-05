@@ -5,6 +5,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use setasign\Fpdi\Fpdi;
+use Barryvdh\Snappy\Facades\SnappyPdf;
 
 
 
