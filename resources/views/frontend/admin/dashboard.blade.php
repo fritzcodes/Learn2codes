@@ -539,14 +539,15 @@
 <script>
 google.charts.load('current', {packages:['corechart']});
 google.charts.setOnLoadCallback(drawChart);
+var userCount = {!! json_encode($userCountsJson) !!};
 
+console.log(userCount);
 function drawChart() {
     // Set Data
+    
     const data = google.visualization.arrayToDataTable([
-        ['Price', 'Size'],
-        [50,7], [60,8], [70,8], [80,9], [90,9],
-        [100,9], [110,10], [120,11],
-        [130,14], [140,14], [150,15]
+        ['Month', 'Count'],
+        ...userCount
     ]);
 
     // Set Options

@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use App\Models\ClaimedBadge;
 use App\Models\Experience;
-
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -27,8 +27,46 @@ class DashboardController extends Controller
 
         $totalUsers = User::count() ?? 0;
 
+        $currentMonth = date('n');
 
-        return view('frontend.admin.dashboard', compact('totalUsers', 'badges', 'highest'));
+        $userCounts = User::select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(*) as count'))
+            ->groupBy(DB::raw('MONTH(created_at)'))
+            ->orderBy(DB::raw('MONTH(created_at)'))
+            ->get();
+
+        $months = [
+            1 => "January",
+            2 => "February",
+            3 => "March",
+            4 => "April",
+            5 => "May",
+            6 => "June",
+            7 => "July",
+            8 => "August",
+            9 => "September",
+            10 => "October",
+            11 => "November",
+            12 => "December",
+        ];
+
+        $userCountsJson = [];
+
+        // Loop through each month and set count to 0 if no data available
+        for ($i = 1; $i <= $currentMonth; $i++) {
+            $monthName = $months[$i];
+            $count = 0;
+            foreach ($userCounts as $userCount) {
+                if ($userCount->month == $i) {
+                    $count = $userCount->count;
+                    break;
+                }
+            }
+            $userCountsJson[] = [$monthName, $count];
+        }
+
+
+      
+        return view('frontend.admin.dashboard', compact('totalUsers', 'badges', 'highest', 'userCountsJson'));
     }
     public function totalBadge()
     {
