@@ -19,8 +19,8 @@ class LastOnlineReminder extends Mailable
     }
 
     public function build()
-    {
-        return $this->markdown('mails.last_online_reminder')
-                    ->subject('Reminder: Last Online');
+    {   
+        return $this->markdown('mails.last_online_reminder', ['user' => $this->user])
+            ->subject('Reminder: Last Online');
     }
 }

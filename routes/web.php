@@ -50,7 +50,7 @@ use App\Http\Controllers\termsController;
 
 Route::get('/termsforum', [termsController::class, 'TermForum'])->name('termsforum');
 Route::get('/termsign', [termsController::class, 'Termsign'])->name('termsign');
-Route::get('/generate-pdf', [CertController::class, 'generatePDF'])->name('generate.pdf');
+Route::get('/e-cert/{id}', [CertController::class, 'generatePDF'])->name('generate.pdf');
 Route::get('/edit-pdf', [CertController::class, 'editPDF'])->name('edit.pdf');
 Route::get('/leaderboard', [boardController::class, 'Index'])->name('leaderboard');
 Route::get('/leaderboard/data', [boardController::class, 'fetchLeaderboardData'])->name('leaderboard.data');

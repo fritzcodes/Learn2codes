@@ -3,27 +3,20 @@
 namespace App\Http\Controllers;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
+use App\Models\ClaimedBadge;
 use Illuminate\Http\Request;
 use setasign\Fpdi\Fpdi;
 use Barryvdh\Snappy\Facades\SnappyPdf;
-
-
+use Illuminate\Support\Facades\Auth;
 
 class CertController extends Controller
 {
-    public function generatePDF()
+    public function generatePDF($id)
     {
-        $data = [
-            'title' => 'My PDF Title',
-            'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-        ];
-
-        $pdf = Pdf::loadView('frontend.cert')->setPaper('a4', 'landscape');
-      
-        // Edit the PDF if needed
-        // Example: $pdf->getDomPDF()->getCanvas()->text(72, 144, 'Edited text');
-
-        return $pdf->download('example.pdf');
+        $data = ClaimedBadge::where('user_id', Auth::user()->id)
+        ->where('language', $id)->first();
+        $fullname = Auth::user()->fname . ' ' . Auth::user()->lname;
+       return view('frontend.cert', compact('data', 'fullname'));
     }
     // public function editPDF()
     // {

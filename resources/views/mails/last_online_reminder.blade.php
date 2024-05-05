@@ -1,12 +1,13 @@
-<x-mail::message>
-# Introduction
 
-The body of your message.
+@component('mail::message')
+# Reminder: Last Online
 
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
+Hello {{ $user->fname }},
 
-Thanks,<br>
-{{ config('app.name') }}
-</x-mail::message>
+This is a reminder that you were last online at {{ date('F d, Y', strtotime($user->last_online_at)) }}.
+
+Thank you for using our service.
+
+Regards,  
+Learn2Code Team
+@endcomponent

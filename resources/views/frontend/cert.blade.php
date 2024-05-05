@@ -28,14 +28,14 @@
             </div>
 
             <div class="person">
-                <h2>David Matthew Borromeo</h2>
+                <h2>{{ $fullname }}</h2>
             </div>
 
             <div class="reason">
                 <p>
-                    have been successfully completed the Learn2Code Java language,
+                    have been successfully completed the Learn2Code {{ $data->language }} language,
                     and hereby awarded this certificate of completion. This acknowledgement
-                    is conferred on January 20, 2024.
+                    is conferred on {{ date('F d, Y', strtotime($data->created_at)) }}.
                 </p>
 
             </div>
@@ -50,7 +50,7 @@
                 filename: 'certificate.pdf',
                 jsPDF: {
                     unit: 'em',
-                    format: [65.9, 38.86],  // width x height in pixels for A4 landscape
+                    format: [65.9, 39],  // width x height in pixels for A4 landscape
                     orientation: 'landscape'
                 },
                 html2canvas: {
