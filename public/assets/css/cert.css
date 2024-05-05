@@ -1,0 +1,112 @@
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: #fff;
+    font-family: 'Garamond';
+}
+
+:root{ /*---font and color defaults --*/
+    --bg-color: #210535;
+    --main-color: #f5d5e0;
+    --text-color: #430d4b;
+    --second-color: #7b337d;
+    --high-color: #c874b2;
+}
+
+.logo {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 56vw;
+}
+
+.logo img {
+    border-radius: 100%;
+    width: 5vw;
+    height: 5vw;
+}
+
+.container {
+    width: 60vw;
+    padding: 3vw; /* Responsive padding */
+    background: linear-gradient(-180deg, #FFDCDC 0%, #C874B2 100%);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.border {
+    position: relative;
+    border: 3px solid var(--text-color);
+    width: 50vw;
+    padding: 5vw;
+}
+
+.marquee {
+    margin: 0.5em 0;
+    display: flex;
+    justify-content: center;
+    color: gold;
+}
+
+.marquee h1 {
+    margin-top: 0;
+   font-size: 4vw;
+}
+
+.assignment {
+    width: 45vw;
+    margin: 0.5em auto;
+}
+
+.assignment p {
+    color: #000;
+    font-size: 1rem;
+}
+
+.person {
+    margin: 0.5em auto;
+    width: 50vw;
+}
+
+.person h2 {
+    text-decoration: underline;
+    color: #000;
+    font-size: 3.5vw;
+}
+
+.reason {
+    width: 45vw;
+    margin: 0.2em auto;
+}
+
+.reason p {
+    color: #000;
+    font-size: 1rem;
+}
+
+
+@media print {
+    body {
+        display: block;
+        background: none;
+        margin: 0;
+        min-height: 0;
+    }
+
+    .certificate {
+        width: 210mm;
+        height: 297mm;
+        padding: 20mm;
+        box-shadow: none;
+        margin: auto;
+        page-break-after: always;
+    }
+
+    h1, h2, h3, h4, p {
+        font-size: 12pt; /* Adjust font sizes as needed for print */
+    }
+}

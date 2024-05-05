@@ -1,78 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            /* Set body to A4 size */
-            width: 96.5%; /* A4 width */
-            height: 95%; /* A4 height */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        body {
-            color: black;
-            font-family: Georgia, serif;
-            font-size: 24px;
-            text-align: center;
-        }
-        .container {
-            border: 20px solid tan;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .logo {
-            color: tan;
-        }
-        .marquee {
-            color: tan;
-            font-size: 48px;
-            margin: 20px;
-        }
-        .assignment {
-            margin: 20px;
-        }
-        .person {
-            border-bottom: 2px solid black;
-            font-size: 32px;
-            font-style: italic;
-            margin: 20px auto;
-            width: 400px;
-        }
-        .reason {
-            margin: 20px;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Learn2Code E-Certificate</title>
+    <link rel="stylesheet" href="../assets/css/cert.css">
+    <link rel="shortcut icon" type="x-icon" href="../assets/images/logo.svg">
+    
 </head>
 <body>
     <div class="container">
-        <br><br>
-        <div class="logo">
-            An Organization
-        </div>
+        <div class="border">
+            <div class="marquee">
+                <div class="logo">
+                  <img src="../assets/images/qcu.svg" alt=""> <img src="../assets/images/Logo.svg" alt=""> 
+                </div>
 
-        <div class="marquee">
-            Certificate of Completion
+                <h1>Certificate of Completion</h1>
+            </div>
+    
+            <div class="assignment">
+                <p>This certificate is presented to</p>
+            </div>
+    
+            <div class="person">
+                <h2>David Matthew Borromeo</h2>
+            </div>
+    
+            <div class="reason">
+                <p>
+                    have been successfully completed the Learn2Code Java language, 
+                    and hereby awarded this certificate of completion. This acknowledgement 
+                    is conferred on January 20, 2024.
+                </p>
+                
+            </div>
         </div>
-
-        <div class="assignment">
-            This certificate is presented to
-        </div>
-
-        <div class="person">
-            Joe Nathan
-        </div>
-
-        <div class="reason">
-            For deftly defying the laws of gravity<br/>
-            and flying high
-        </div>
+    
     </div>
 </body>
 </html>
