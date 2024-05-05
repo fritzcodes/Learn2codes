@@ -551,19 +551,19 @@ function drawChart() {
 
     // Set Options
     const options = {
-        title: 'House Prices vs. Size',
+        title: 'Monthly users',
         titleTextStyle: {
             color: '#f5d5e0'  // Title text color
         },
 
         hAxis: {
-            title: 'Square Meters',
+            title: 'January-December',
             textStyle: { color: '#f5d5e0' }, // Color of the horizontal axis labels
             titleTextStyle: { color: '#f5d5e0' } // Color of the horizontal axis title
         },
 
         vAxis: {
-            title: 'Price in Millions',
+            title: 'Number of new users',
             textStyle: { color: '#f5d5e0' }, // Color of the vertical axis labels
             titleTextStyle: { color: '#f5d5e0' } // Color of the vertical axis title
         },
