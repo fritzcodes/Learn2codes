@@ -38,7 +38,7 @@ class LanguageController extends Controller
         Record::create([
             'admin_id' => Auth::guard('admin')->user()->id,
             'action' => 'added',
-            'category' => 'Module',
+            'category' => 'New Language',
             'category_id' => $language->id
         ]);
         return redirect()->back()->with('message', 'Language added successfully!');
@@ -60,7 +60,7 @@ class LanguageController extends Controller
         Record::create([
             'admin_id' => Auth::guard('admin')->user()->id,
             'action' => 'deleted',
-            'category' => 'Module',
+            'category' => 'Language',
             'category_id' => $language->id
         ]);
 

@@ -29,7 +29,7 @@ class ExerciseController extends Controller
         Record::create([
             'admin_id' => Auth::guard('admin')->user()->id,
             'action' => 'added',
-            'category' => 'Exercise',
+            'category' => 'New Exercise',
             'category_id' => $exercise->id
         ]);
         return back()->with('message', "Exercise added successfully");

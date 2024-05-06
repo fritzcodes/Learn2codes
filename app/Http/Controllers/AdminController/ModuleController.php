@@ -36,7 +36,7 @@ class ModuleController extends Controller
         Record::create([
             'admin_id' => Auth::guard('admin')->user()->id,
             'action' => 'added',
-            'category' => 'Module',
+            'category' => 'New Module',
             'category_id' => $module->id
         ]);
         return redirect()->back()->with('message', 'Module Added');

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Quizzes;
 use App\Models\prog_language;
+use App\Models\Record;
+use Illuminate\Support\Facades\Auth;
 
 class AddQuestionController extends Controller
 {
@@ -30,6 +32,12 @@ class AddQuestionController extends Controller
 
 
         $quiz->save();
+        Record::create([
+            'admin_id' => Auth::guard('admin')->user()->id,
+            'action' => 'added',
+            'category' => 'New Quiz',
+            'category_id' => $quiz->id
+        ]);
         return back()->with('success', 'Quiz added successfully');
     }
     public function deleteQuestion(Request $request)
