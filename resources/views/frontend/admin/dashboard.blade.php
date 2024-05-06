@@ -89,6 +89,12 @@
                     <span class="nav-item">Exercise</span>
                 </a>
             </li>
+            <li>
+                <a target="_top" href="/admin/history">
+                <i class='bx bx-history'></i>
+                    <span class="nav-item">History</span>
+                </a>
+            </li>
             <li class="Logout">
                 <a target="_top" href="{{ route('adminLogout') }}">
                     <i class="bx bxs-exit"></i>
