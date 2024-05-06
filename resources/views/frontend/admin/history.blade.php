@@ -110,7 +110,7 @@
         <div class="table">
             <div class="tablebg">
                 <div class="heading">
-                    <h2>All Users</h2>
+                    <h2>History</h2>
                     <input class="search" placeholder="Search" id="search" onkeyup="search()">
                 </div>
                 <table class="manage-user">
