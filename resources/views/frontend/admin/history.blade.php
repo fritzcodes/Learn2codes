@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../assets/css/userModal.css">
     <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.svg">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <script src="/assets/js/admin/admin.js" async></script>
 </head>
 
 <body>
@@ -41,7 +42,7 @@
 
         <ul>
             <li>
-                <a target="_top" href="{{ route('Dashboard') }}" class='active'>
+                <a target="_top" href="{{ route('Dashboard') }}" >
                     <i class="bx bxs-dashboard"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
@@ -87,6 +88,12 @@
                 <a target="_top" href="/admin/exercise">
                     <i class="bx bx-dumbbell"></i>
                     <span class="nav-item">Exercise</span>
+                </a>
+            </li>
+            <li>
+                <a target="_top" href="/admin/history" class='active'>
+                <i class='bx bx-history'></i>
+                    <span class="nav-item">History</span>
                 </a>
             </li>
             <li class="Logout">
