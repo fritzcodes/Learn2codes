@@ -549,17 +549,32 @@
             tabsize: 2,
             height: 300,
             toolbar: [
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['fontsize', ['fontsize']], // Add font size dropdown to the toolbar
-                ['fontname', ['fontname']], // Add font family dropdown to the toolbar
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['height', ['height']],
-                ['insert', ['link', 'table']], // Add 'table' option to the 'insert' group
-                ['view', ['fullscreen', 'codeview']]
-            ],
-            fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica', 'Impact', 'Tahoma',
-                'Times New Roman', 'Verdana'
-            ]
+          // [groupName, [list of button]]
+          ['style', ['style']],
+          ['font', ['bold', 'italic', 'underline', 'clear']],
+          ['fontname', ['fontname']],
+          ['fontsize', ['fontsize']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['height', ['height']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video', 'hr']],
+          ['view', ['fullscreen', 'codeview', 'help']],
+          ['misc', ['undo', 'redo']]
+        ],
+        styleTags: ['p', 'blockquote', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+        fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica', 'Impact', 'Lucida Grande', 'Tahoma', 'Times New Roman', 'Verdana'],
+        fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '26', '28', '30', '32', '34', '36', '40', '44', '48', '54', '60', '66', '72'],
+        colors: [
+          ['#000000', '#424242', '#636363', '#9C9C94', '#CEC6CE', '#EFEFEF', '#F7F7F7', '#FFFFFF'],
+          ['#FF0000', '#FF9C00', '#FFFF00', '#00FF00', '#00FFFF', '#0000FF', '#9C00FF', '#FF00FF'],
+          ['#F7C6CE', '#FFE7CE', '#FFEFC6', '#D6EFD6', '#CEDEE7', '#CEE7F7', '#D6D6E7', '#E7D6DE'],
+          ['#E79C9C', '#FFC69C', '#FFDE9C', '#B5D6A5', '#A5C6CE', '#9CC6EF', '#B5A5D6', '#D6A5BD'],
+          ['#E76363', '#F7AD6B', '#FFD663', '#94BD7B', '#73A5AD', '#6BADCF', '#8C7BC6', '#C67BA5'],
+          ['#CE0000', '#E79439', '#EFC631', '#6BA54A', '#4A7B8C', '#3984C6', '#634AA5', '#A54A7B'],
+          ['#9C0000', '#B56308', '#BD9400', '#397B21', '#104A5A', '#085294', '#311873', '#731842'],
+          ['#630000', '#7B3900', '#846300', '#295218', '#083139', '#003163', '#21104A', '#4A1031']
+        ]
         });
     </script>
 </body>
