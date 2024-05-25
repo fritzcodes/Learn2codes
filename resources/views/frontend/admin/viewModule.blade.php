@@ -545,9 +545,9 @@
         // Initialize Summernote with customized toolbar
         // Initialize Summernote with customized toolbar
         $('#summernote').summernote({
-            placeholder: 'Add Module Here...',
+            placeholder: 'Edit Module Here...',
             tabsize: 2,
-            height: 500,
+            height: 300,
             toolbar: [
                 ['style', ['bold', 'italic', 'underline', 'clear']],
                 ['fontsize', ['fontsize']], // Add font size dropdown to the toolbar
