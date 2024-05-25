@@ -62,7 +62,6 @@
 }
 
 .user-content .close {
-    text-decoration: none;
     font-weight: 600;
     color: var(--high-color);
     font-size: 30px;
@@ -72,7 +71,6 @@
 .user-content .close:hover,
 .user-content .close:focus {
     color: var(--bg-color);
-    text-decoration: none;
     cursor: pointer;
 }
 
@@ -147,7 +145,6 @@
 }
 
 .admin-content .head .close {
-    text-decoration: none;
     font-weight: 600;
     color: var(--high-color);
     font-size: 30px;
@@ -157,7 +154,6 @@
 .admin-content .head .close:hover,
 .admin-content .head .close:focus {
     color: var(--second-color);
-    text-decoration: none;
     cursor: pointer;
 }
 
@@ -256,7 +252,6 @@
 }
 
 .create-admin .head .close {
-    text-decoration: none;
     font-weight: 600;
     color: var(--high-color);
     font-size: 30px;
@@ -266,7 +261,6 @@
 .create-admin .head .close:hover,
 .create-admin .head .close:focus {
     color: var(--second-color);
-    text-decoration: none;
     cursor: pointer;    
 }
 
