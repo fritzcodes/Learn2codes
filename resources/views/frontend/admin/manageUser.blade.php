@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="../assets/css/Admin.css">
     <link rel="stylesheet" href="../assets/css/userModal.css">
-    <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.svg">
+    <link rel="shortcut icon" type="x-icon" href="../assets/images/logo.svg">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>

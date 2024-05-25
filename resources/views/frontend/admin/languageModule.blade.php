@@ -7,7 +7,7 @@
     <meta name="author" content="CodeHim">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Module List | Admin </title>
-    <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.svg">
+    <link rel="shortcut icon" type="x-icon" href="../assets/images/logo.svg">
     <link rel="stylesheet" href="/assets/css/Admin.css">
     <link rel="stylesheet" href="/assets/css/userModal.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -22,7 +22,6 @@
         *{
             text-decoration: none;
             box-sizing: border-box;
-            list-style: none;
         }
  
         @media only screen and (min-width: 1360px) {

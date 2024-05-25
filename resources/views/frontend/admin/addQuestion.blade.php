@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Quiz | Admin</title>
-    <link rel="shortcut icon" type="x-icon" href="/assets/images/Logo.svg">
+    <link rel="shortcut icon" type="x-icon" href="../assets/images/Logo.svg">
     <link rel="stylesheet" href="../assets/css/Admin.css">
     <link rel="stylesheet" href="../assets/css/userModal.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">

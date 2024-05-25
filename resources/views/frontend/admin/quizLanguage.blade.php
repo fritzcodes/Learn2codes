@@ -7,6 +7,7 @@
     <title>Learn2Code</title>
     <link rel="stylesheet" href="../assets/css/Admin.css">
     <link rel="stylesheet" href="../assets/css/userModal.css">
+    <link rel="shortcut icon" type="x-icon" href="../assets/images/logo.svg">
     <link rel="stylesheet"href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
 
