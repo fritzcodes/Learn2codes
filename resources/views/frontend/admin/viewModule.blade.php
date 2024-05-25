@@ -547,7 +547,7 @@
         $('#summernote').summernote({
             placeholder: 'Add Module Here...',
             tabsize: 2,
-            height: 100,
+            height: 500,
             toolbar: [
                 ['style', ['bold', 'italic', 'underline', 'clear']],
                 ['fontsize', ['fontsize']], // Add font size dropdown to the toolbar
